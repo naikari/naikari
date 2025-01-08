@@ -40,7 +40,7 @@ equip_classOutfits_weapons["Yacht"] = {
       "Photon Dagger",
    },
    {
-      "FL21-U Laser Gun",
+      "FL21-U Lumina Gun",
       "FR11-U Razor Gun",
       "FM22-U Meteor Gun",
       "Plasma Blaster MK1",
@@ -54,7 +54,7 @@ equip_classOutfits_weapons["Light Fighter"] = {
          "Unicorp Mace Launcher",
       },
       {
-         "FL21-U Laser Gun",
+         "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "Plasma Blaster MK1",
@@ -67,14 +67,14 @@ equip_classOutfits_weapons["Fighter"] = {
       "Unicorp Headhunter Launcher",
    },
    {
-      "FL27-S Laser Gun",
+      "FL27-S Lumina Gun",
       "FR18-S Razor Gun",
       "FM28-S Meteor Gun",
       "Plasma Blaster MK2",
       "Orion Lance",
    },
    {
-      "FL21-U Laser Gun",
+      "FL21-U Lumina Gun",
       "FR11-U Razor Gun",
       "FM22-U Meteor Gun",
       "Plasma Blaster MK1",
@@ -91,7 +91,7 @@ equip_classOutfits_weapons["Bomber"] = {
       "Unicorp Headhunter Launcher",
    },
    {
-      "FL27-S Laser Gun",
+      "FL27-S Lumina Gun",
       "FR18-S Razor Gun",
       "FM28-S Meteor Gun",
       "Plasma Blaster MK2",
@@ -113,16 +113,16 @@ equip_classOutfits_weapons["Corvette"] = {
    },
    {
       probability = {
-         ["FL50-H Laser Gun"] = 10,
+         ["FL50-H Lumina Gun"] = 10,
          ["FR39-H Razor Gun"] = 10,
          ["FM50-H Meteor Gun"] = 10,
          ["Plasma Cannon"] = 10,
       };
-      "FL50-H Laser Gun",
+      "FL50-H Lumina Gun",
       "FR39-H Razor Gun",
       "FM50-H Meteor Gun",
       "Plasma Cannon",
-      "FL27-S Laser Gun",
+      "FL27-S Lumina Gun",
       "FR18-S Razor Gun",
       "FM28-S Meteor Gun",
       "Plasma Blaster MK2",
@@ -132,7 +132,7 @@ equip_classOutfits_weapons["Corvette"] = {
 equip_classOutfits_weapons["Destroyer"] = {
    {
       "FM66-L Meteor Gun",
-      "TL110-L Laser Turret",
+      "TL110-L Lumina Turret",
       "Plasma Cluster Turret",
       "TM110-L Meteor Turret",
       "Grave Beam",
@@ -147,11 +147,11 @@ equip_classOutfits_weapons["Destroyer"] = {
    },
    {
       num = 1;
-      "FL55-M Laser Gun",
+      "FL55-M Lumina Gun",
       "FM55-M Meteor Gun",
       "Plasma Cluster Cannon",
       "Grave Lance",
-      "TL54-M Laser Turret",
+      "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "Plasma Turret MK2",
@@ -163,11 +163,11 @@ equip_classOutfits_weapons["Destroyer"] = {
       "Mini Lancelot Fighter Bay",
    },
    {
-      "FL55-M Laser Gun",
+      "FL55-M Lumina Gun",
       "FM55-M Meteor Gun",
       "Plasma Cluster Cannon",
       "Grave Lance",
-      "TL54-M Laser Turret",
+      "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "Plasma Turret MK2",
@@ -185,13 +185,13 @@ equip_classOutfits_weapons["Light Cruiser"] = {
    },
    {
       "FM66-L Meteor Gun",
-      "TL110-L Laser Turret",
+      "TL110-L Lumina Turret",
       "Plasma Cluster Turret",
       "TM110-L Meteor Turret",
       "Grave Beam",
    },
    {
-      "TL54-M Laser Turret",
+      "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "Plasma Turret MK2",
@@ -209,13 +209,13 @@ equip_classOutfits_weapons["Cruiser"] = {
    },
    {
       "FM66-L Meteor Gun",
-      "TL110-L Laser Turret",
+      "TL110-L Lumina Turret",
       "Plasma Cluster Turret",
       "TM110-L Meteor Turret",
       "Grave Beam",
    },
    {
-      "TL54-M Laser Turret",
+      "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
       "TM54-M Meteor Turret",
       "Plasma Turret MK2",
@@ -235,13 +235,13 @@ equip_classOutfits_weapons["Battleship"] = {
       "Lancelot Fighter Bay",
    },
    {
-      "TL200-X Laser Turret",
+      "TL200-X Lumina Turret",
       "TM200-X Meteor Turret",
       "Ragnarok Beam",
    },
    {
       "FM66-L Meteor Gun",
-      "TL110-L Laser Turret",
+      "TL110-L Lumina Turret",
       "Plasma Cluster Turret",
       "TM110-L Meteor Turret",
       "Grave Beam",
@@ -255,12 +255,12 @@ equip_classOutfits_weapons["Carrier"] = {
       "Lancelot Fighter Bay",
    },
    {
-      "TL200-X Laser Turret",
+      "TL200-X Lumina Turret",
       "TM200-X Meteor Turret",
       "Ragnarok Beam",
    },
    {
-      "TL110-L Laser Turret",
+      "TL110-L Lumina Turret",
       "Plasma Cluster Turret",
       "TM110-L Meteor Turret",
       "Grave Beam",

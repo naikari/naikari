@@ -28,8 +28,8 @@
   <cargo>40</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="28" y="0" h="5">TL110-L Laser Turret</weapon>
-  <weapon size="large" x="18" y="0" h="5">TL110-L Laser Turret</weapon>
+  <weapon size="large" x="28" y="0" h="5">TL110-L Lumina Turret</weapon>
+  <weapon size="large" x="18" y="0" h="5">TL110-L Lumina Turret</weapon>
   <weapon size="medium" prop="fighter_bay" x="-30" y="-8" h="3" />
   <weapon size="medium" prop="fighter_bay" x="-30" y="8" h="3">Enygma Systems Turreted Fury Launcher</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-600 APU</utility>

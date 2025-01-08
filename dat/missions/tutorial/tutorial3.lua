@@ -178,14 +178,14 @@ function asteroid_proximity()
    local p = player.pilot()
    local n = #p:outfits("weapon")
    if n < 2 then
-      p:outfitAdd("FL21-U Laser Gun", 2 - n)
+      p:outfitAdd("FL21-U Lumina Gun", 2 - n)
    end
 
    -- If this happens, that likely means not enough CPU is available for
    -- weapons, so we'll override the CPU limitation and just let them
    -- have a weapon they shouldn't.
    if #p:outfits("weapon") <= 0 then
-      p:outfitAdd("FL21-U Laser Gun", 1, true, true)
+      p:outfitAdd("FL21-U Lumina Gun", 1, true, true)
    end
 
    hook.timer(0.5, "timer_mining")

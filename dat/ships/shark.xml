@@ -28,8 +28,8 @@
   <cargo>10</cargo>
  </characteristics>
  <slots>
-  <weapon size="small" x="12" y="0" h="0">FL21-U Laser Gun</weapon>
-  <weapon size="small" x="-3" y="0" h="2">FL21-U Laser Gun</weapon>
+  <weapon size="small" x="12" y="0" h="0">FL21-U Lumina Gun</weapon>
+  <weapon size="small" x="-3" y="0" h="2">FL21-U Lumina Gun</weapon>
   <weapon size="small" x="3" y="0" h="2">Photon Dagger</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-200 APU</utility>
   <utility size="small" />

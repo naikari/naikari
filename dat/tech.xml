@@ -2,15 +2,15 @@
 <Techs>
  <!-- Templates - add all new outfits, commodities and ships here! -->
  <tech name="All Outfits">
-  <item>FL21-U Laser Gun</item>
-  <item>FL27-S Laser Gun</item>
-  <item>FL50-H Laser Gun</item>
-  <item>FL55-M Laser Gun</item>
-  <item>TL21-S Laser Turret</item>
-  <item>TL54-M Laser Turret</item>
-  <item>TL110-L Laser Turret</item>
-  <item>TL200-X Laser Turret</item>
-  <item>TL250-X Laser Turret</item>
+  <item>FL21-U Lumina Gun</item>
+  <item>FL27-S Lumina Gun</item>
+  <item>FL50-H Lumina Gun</item>
+  <item>FL55-M Lumina Gun</item>
+  <item>TL21-S Lumina Turret</item>
+  <item>TL54-M Lumina Turret</item>
+  <item>TL110-L Lumina Turret</item>
+  <item>TL200-X Lumina Turret</item>
+  <item>TL250-X Lumina Turret</item>
   <item>FR11-U Razor Gun</item>
   <item>FR18-S Razor Gun</item>
   <item>FR39-H Razor Gun</item>
@@ -404,7 +404,7 @@
  <tech name="Population Empire">
   <item>Population Generic</item>
   <item>Photon Dagger</item>
-  <item>FL21-U Laser Gun</item>
+  <item>FL21-U Lumina Gun</item>
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
   <item>Exacorp D-2 Hull</item>

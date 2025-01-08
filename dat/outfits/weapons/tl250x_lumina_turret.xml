@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="TL250-X Laser Turret">
+<outfit name="TL250-X Lumina Turret">
  <general>
   <slot>weapon</slot>
   <size>large</size>
   <license>Heavy Weapon License</license>
   <mass>150</mass>
   <price>175000</price>
-  <description>This special model of the TL200-X Laser Turret is one of the heaviest weapons found in the galaxy, developed in response to House Dvaered's development of the FM66-L Meteor Gun during the Dvaered revolts. Imperial Capital ships use it to lay down devastating barrages against enemy vessels.</description>
-  <gfx_store>ripperturret.webp</gfx_store>
+  <description>This special model of the TL200-X Lumina Turret is one of the heaviest weapons found in the galaxy, developed in response to House Dvaered's development of the FM66-L Meteor Gun during the Dvaered revolts. Imperial Capital ships use it to lay down devastating barrages against enemy vessels.</description>
+  <gfx_store>tesla.webp</gfx_store>
  </general>
  <specific type="turret bolt">
   <gfx>laser4L.png</gfx>

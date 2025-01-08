@@ -24,8 +24,8 @@
   <rdr_jump_range>6000</rdr_jump_range>
  </characteristics>
  <slots>
-  <weapon size="small" x="10" y="-1" h="-3">FL21-U Laser Gun</weapon>
-  <weapon size="small" x="10" y="-1" h="-3">FL21-U Laser Gun</weapon>
+  <weapon size="small" x="10" y="-1" h="-3">FL21-U Lumina Gun</weapon>
+  <weapon size="small" x="10" y="-1" h="-3">FL21-U Lumina Gun</weapon>
   <weapon size="small" x="10" y="-1" h="-3" />
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-200 APU</utility>
   <utility size="small" />

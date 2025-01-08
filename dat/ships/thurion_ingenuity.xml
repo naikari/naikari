@@ -29,8 +29,8 @@
   <cargo>15</cargo>
  </characteristics>
  <slots>
-  <weapon size="small" x="8" y="-5" h="-2">FL27-S Laser Gun</weapon>
-  <weapon size="small" x="8" y="5" h="-2">FL27-S Laser Gun</weapon>
+  <weapon size="small" x="8" y="-5" h="-2">FL27-S Lumina Gun</weapon>
+  <weapon size="small" x="8" y="5" h="-2">FL27-S Lumina Gun</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>
   <utility size="medium" />
   <utility size="small" />

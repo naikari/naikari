@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="FL55-M Laser Gun">
+<outfit name="FL55-M Lumina Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
   <mass>40</mass>
   <price>58500</price>
-  <description>By modulating the frequency of the basic FL50-H Laser Gun, the Empire military increased its range, accuracy and destructive power. After reworking the power conduits, their efforts culminated in the devastating FL55-M Laser Gun. The main drawback to this model is its increased bulk, which makes it unsuitable for smaller ships. As such, it has largely fallen out of favor among Imperial ranks.</description>
+  <description>By modulating the frequency of the basic FL50-H Lumina Gun, the Empire military increased its range, accuracy and destructive power. After reworking the power conduits, their efforts culminated in the devastating FL55-M Lumina Gun. The main drawback to this model is its increased bulk, which makes it unsuitable for smaller ships. As such, it has largely fallen out of favor among Imperial ranks.</description>
   <gfx_store>ripper.webp</gfx_store>
  </general>
  <specific type="bolt">

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="TL110-L Laser Turret">
+<outfit name="TL110-L Lumina Turret">
  <general>
   <slot>weapon</slot>
   <size>large</size>
   <license>Medium Weapon License</license>
   <mass>100</mass>
   <price>95000</price>
-  <description>While limited in range compared to true capital-class weaponry, the TL110-L Laser Turret's pair of heavy ripper cannons delivers exceptional firepower for Imperial Destroyers and Cruisers.</description>
+  <description>While limited in range compared to true capital-class weaponry, the TL110-L Lumina Turret's pair of heavy ripper cannons delivers exceptional firepower for Imperial Destroyers and Cruisers.</description>
   <gfx_store>ripperturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">

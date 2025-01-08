@@ -311,7 +311,7 @@ equip_classOutfits_weapons = {
       {
          num = 1;
          "Photon Dagger",
-         "FL21-U Laser Gun",
+         "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "Plasma Blaster MK1",
@@ -319,7 +319,7 @@ equip_classOutfits_weapons = {
          "Ion Cannon",
       },
       {
-         "FL21-U Laser Gun",
+         "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "Plasma Blaster MK1",
@@ -331,7 +331,7 @@ equip_classOutfits_weapons = {
       {
          num = 1;
          "Photon Dagger",
-         "FL21-U Laser Gun",
+         "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "Plasma Blaster MK1",
@@ -339,7 +339,7 @@ equip_classOutfits_weapons = {
          "Ion Cannon",
       },
       {
-         "FL21-U Laser Gun",
+         "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "Plasma Blaster MK1",
@@ -349,7 +349,7 @@ equip_classOutfits_weapons = {
    },
    ["Scout"] = {
       {
-         "TL21-S Laser Turret",
+         "TL21-S Lumina Turret",
          "TR14-S Razor Turret",
          "TM22-S Meteor Turret",
          "Plasma Turret MK1",
@@ -358,7 +358,7 @@ equip_classOutfits_weapons = {
    },
    ["Courier"] = {
       {
-         "TL21-S Laser Turret",
+         "TL21-S Lumina Turret",
          "TR14-S Razor Turret",
          "TM22-S Meteor Turret",
          "Plasma Turret MK1",
@@ -375,7 +375,7 @@ equip_classOutfits_weapons = {
          "Mini Lancelot Fighter Bay",
       },
       {
-         "TL54-M Laser Turret",
+         "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
          "Plasma Turret MK2",
@@ -388,7 +388,7 @@ equip_classOutfits_weapons = {
    },
    ["Armored Transport"] = {
       {
-         "TL110-L Laser Turret",
+         "TL110-L Lumina Turret",
          "Plasma Cluster Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
@@ -403,7 +403,7 @@ equip_classOutfits_weapons = {
          "Mini Lancelot Fighter Bay",
       },
       {
-         "TL54-M Laser Turret",
+         "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
          "Plasma Turret MK2",
@@ -426,12 +426,12 @@ equip_classOutfits_weapons = {
          "Lancelot Fighter Bay",
       },
       {
-         "TL200-X Laser Turret",
+         "TL200-X Lumina Turret",
          "TM200-X Meteor Turret",
          "Ragnarok Beam",
       },
       {
-         "TL110-L Laser Turret",
+         "TL110-L Lumina Turret",
          "Plasma Cluster Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
@@ -445,7 +445,7 @@ equip_classOutfits_weapons = {
          "Unicorp Mace Launcher",
       },
       {
-         "FL21-U Laser Gun",
+         "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "Plasma Blaster MK1",
@@ -459,7 +459,7 @@ equip_classOutfits_weapons = {
          "Unicorp Headhunter Launcher",
       },
       {
-         "FL27-S Laser Gun",
+         "FL27-S Lumina Gun",
          "FR18-S Razor Gun",
          "FM28-S Meteor Gun",
          "Plasma Blaster MK2",
@@ -467,7 +467,7 @@ equip_classOutfits_weapons = {
          "Ion Cannon",
       },
       {
-         "FL21-U Laser Gun",
+         "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FM22-U Meteor Gun",
          "Plasma Blaster MK1",
@@ -485,7 +485,7 @@ equip_classOutfits_weapons = {
          "Unicorp Medusa Launcher",
       },
       {
-         "FL27-S Laser Gun",
+         "FL27-S Lumina Gun",
          "FR18-S Razor Gun",
          "FM28-S Meteor Gun",
          "Plasma Blaster MK2",
@@ -511,16 +511,16 @@ equip_classOutfits_weapons = {
       },
       {
          probability = {
-            ["FL50-H Laser Gun"] = 10,
+            ["FL50-H Lumina Gun"] = 10,
             ["FR39-H Razor Gun"] = 10,
             ["FM50-H Meteor Gun"] = 10,
             ["Plasma Cannon"] = 10,
          };
-         "FL50-H Laser Gun",
+         "FL50-H Lumina Gun",
          "FR39-H Razor Gun",
          "FM50-H Meteor Gun",
          "Plasma Cannon",
-         "FL27-S Laser Gun",
+         "FL27-S Lumina Gun",
          "FR18-S Razor Gun",
          "FM28-S Meteor Gun",
          "Plasma Blaster MK2",
@@ -530,7 +530,7 @@ equip_classOutfits_weapons = {
    ["Destroyer"] = {
       {
          "FM66-L Meteor Gun",
-         "TL110-L Laser Turret",
+         "TL110-L Lumina Turret",
          "Plasma Cluster Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
@@ -546,12 +546,12 @@ equip_classOutfits_weapons = {
       },
       {
          num = 1;
-         "FL55-M Laser Gun",
+         "FL55-M Lumina Gun",
          "FM55-M Meteor Gun",
          "Plasma Cluster Cannon",
          "Grave Lance",
          "Heavy Ion Cannon",
-         "TL54-M Laser Turret",
+         "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
          "Plasma Turret MK2",
@@ -564,12 +564,12 @@ equip_classOutfits_weapons = {
          "Mini Lancelot Fighter Bay",
       },
       {
-         "FL55-M Laser Gun",
+         "FL55-M Lumina Gun",
          "FM55-M Meteor Gun",
          "Plasma Cluster Cannon",
          "Grave Lance",
          "Heavy Ion Cannon",
-         "TL54-M Laser Turret",
+         "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
          "Plasma Turret MK2",
@@ -591,14 +591,14 @@ equip_classOutfits_weapons = {
       },
       {
          "FM66-L Meteor Gun",
-         "TL110-L Laser Turret",
+         "TL110-L Lumina Turret",
          "Plasma Cluster Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
          "Heavy Ion Turret",
       },
       {
-         "TL54-M Laser Turret",
+         "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
          "Plasma Turret MK2",
@@ -617,14 +617,14 @@ equip_classOutfits_weapons = {
       },
       {
          "FM66-L Meteor Gun",
-         "TL110-L Laser Turret",
+         "TL110-L Lumina Turret",
          "Plasma Cluster Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
          "Heavy Ion Turret",
       },
       {
-         "TL54-M Laser Turret",
+         "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
          "Plasma Turret MK2",
@@ -645,13 +645,13 @@ equip_classOutfits_weapons = {
          "Lancelot Fighter Bay",
       },
       {
-         "TL200-X Laser Turret",
+         "TL200-X Lumina Turret",
          "TM200-X Meteor Turret",
          "Ragnarok Beam",
       },
       {
          "FM66-L Meteor Gun",
-         "TL110-L Laser Turret",
+         "TL110-L Lumina Turret",
          "Plasma Cluster Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
@@ -666,12 +666,12 @@ equip_classOutfits_weapons = {
          "Lancelot Fighter Bay",
       },
       {
-         "TL200-X Laser Turret",
+         "TL200-X Lumina Turret",
          "TM200-X Meteor Turret",
          "Ragnarok Beam",
       },
       {
-         "TL110-L Laser Turret",
+         "TL110-L Lumina Turret",
          "Plasma Cluster Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
