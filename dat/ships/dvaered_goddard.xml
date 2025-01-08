@@ -30,10 +30,10 @@
   <cargo>140</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="-10" y="-13" h="2">Railgun</weapon>
-  <weapon size="large" x="-10" y="13" h="2">Railgun</weapon>
-  <weapon size="large" x="-15" y="-25" h="3">Railgun</weapon>
-  <weapon size="large" x="-15" y="25" h="3">Railgun</weapon>
+  <weapon size="large" x="-10" y="-13" h="2">FM66-L Meteor Gun</weapon>
+  <weapon size="large" x="-10" y="13" h="2">FM66-L Meteor Gun</weapon>
+  <weapon size="large" x="-15" y="-25" h="3">FM66-L Meteor Gun</weapon>
+  <weapon size="large" x="-15" y="25" h="3">FM66-L Meteor Gun</weapon>
   <weapon size="large" x="16" y="0" h="3" />
   <weapon size="large" prop="fighter_bay" x="0" y="0" h="5" />
   <weapon size="large" prop="fighter_bay" x="-20" y="0" h="5">Unicorp Fury Launcher</weapon>

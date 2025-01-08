@@ -28,9 +28,9 @@
   <cargo>15</cargo>
  </characteristics>
  <slots>
-  <weapon size="small" x="16" y="-9" h="0">Vulcan Gun</weapon>
-  <weapon size="small" x="16" y="9" h="0">Vulcan Gun</weapon>
-  <weapon size="small" x="19" y="0" h="-2">Vulcan Gun</weapon>
+  <weapon size="small" x="16" y="-9" h="0">FM28-S Meteor Gun</weapon>
+  <weapon size="small" x="16" y="9" h="0">FM28-S Meteor Gun</weapon>
+  <weapon size="small" x="19" y="0" h="-2">FM28-S Meteor Gun</weapon>
   <weapon size="small" x="13" y="-13" h="0" />
   <weapon size="small" x="13" y="13" h="0" />
   <weapon size="small" x="3" y="0" h="2" />

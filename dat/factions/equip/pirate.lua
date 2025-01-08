@@ -52,8 +52,8 @@ equip_typeOutfits_weapons["Vendetta"] = {
       probability = {
          ["Ion Cannon"] = 16,
       };
-      "FL27-S Laser Gun", "Vulcan Gun", "Plasma Blaster MK2",
-      "FL21-U Laser Gun", "Gauss Gun", "Plasma Blaster MK1",
+      "FL27-S Laser Gun", "FM28-S Meteor Gun", "Plasma Blaster MK2",
+      "FL21-U Laser Gun", "FM22-U Meteor Gun", "Plasma Blaster MK1",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
       "Ion Cannon",
    },
@@ -68,8 +68,8 @@ equip_typeOutfits_weapons["Ancestor"] = {
       probability = {
          ["Ion Cannon"] = 16,
       };
-      "FL27-S Laser Gun", "Vulcan Gun", "Plasma Blaster MK2",
-      "FL21-U Laser Gun", "Gauss Gun", "Plasma Blaster MK1",
+      "FL27-S Laser Gun", "FM28-S Meteor Gun", "Plasma Blaster MK2",
+      "FL21-U Laser Gun", "FM22-U Meteor Gun", "Plasma Blaster MK1",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
       "Ion Cannon",
    },
@@ -82,8 +82,8 @@ equip_typeOutfits_weapons["Phalanx"] = {
    },
    {
       varied = true;
-      "FL50-H Laser Gun", "Shredder", "Plasma Cannon",
-      "FL27-S Laser Gun", "Vulcan Gun", "Plasma Blaster MK2",
+      "FL50-H Laser Gun", "FM50-H Meteor Gun", "Plasma Cannon",
+      "FL27-S Laser Gun", "FM28-S Meteor Gun", "Plasma Blaster MK2",
    },
 }
 equip_typeOutfits_weapons["Rhino"] = {
@@ -92,7 +92,7 @@ equip_typeOutfits_weapons["Rhino"] = {
       probability = {
          ["Heavy Ion Turret"] = 6,
       };
-      "TL110-L Laser Turret", "Plasma Cluster Turret", "Turreted Mass Driver",
+      "TL110-L Laser Turret", "Plasma Cluster Turret", "TM110-L Meteor Turret",
       "Heavy Ion Turret",
    },
    {
@@ -104,7 +104,7 @@ equip_typeOutfits_weapons["Rhino"] = {
       probability = {
          ["EMP Grenade Launcher"] = 6,
       };
-      "TL54-M Laser Turret", "Turreted Vulcan Gun", "Plasma Turret MK2",
+      "TL54-M Laser Turret", "TM54-M Meteor Turret", "Plasma Turret MK2",
       "EMP Grenade Launcher",
       "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
    },
@@ -115,7 +115,7 @@ equip_typeOutfits_weapons["Kestrel"] = {
       probability = {
          ["Heavy Ion Turret"] = 6,
       };
-      "TL110-L Laser Turret", "Railgun Turret", "Plasma Cluster Turret",
+      "TL110-L Laser Turret", "TM200-X Meteor Turret", "Plasma Cluster Turret",
       "Heavy Ion Turret",
    },
    {
@@ -127,7 +127,7 @@ equip_typeOutfits_weapons["Kestrel"] = {
       probability = {
          ["EMP Grenade Launcher"] = 6,
       };
-      "TL54-M Laser Turret", "Turreted Vulcan Gun", "Plasma Turret MK2",
+      "TL54-M Laser Turret", "TM54-M Meteor Turret", "Plasma Turret MK2",
       "EMP Grenade Launcher",
    },
 }

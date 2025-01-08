@@ -20,20 +20,20 @@ equip_classCargo["Heavy Drone"] = .1
 
 equip_classOutfits_weapons["Yacht"] = {
    {
-      "FL21-U Laser Gun", "Gauss Gun", "Plasma Blaster MK1",
+      "FL21-U Laser Gun", "FM22-U Meteor Gun", "Plasma Blaster MK1",
    },
 }
 
 equip_classOutfits_weapons["Courier"] = {
    {
-      "TL21-S Laser Turret", "Turreted Gauss Gun", "Plasma Turret MK1",
+      "TL21-S Laser Turret", "TM22-S Meteor Turret", "Plasma Turret MK1",
    },
 }
 
 equip_classOutfits_weapons["Freighter"] = {
    {
       num = 1;
-      "TL54-M Laser Turret", "Turreted Vulcan Gun", "Plasma Turret MK2",
+      "TL54-M Laser Turret", "TM54-M Meteor Turret", "Plasma Turret MK2",
       "Orion Beam",
    },
    {

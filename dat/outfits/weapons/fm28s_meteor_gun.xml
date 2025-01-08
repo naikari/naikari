@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Vulcan Gun">
+<outfit name="FM28-S Meteor Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
   <mass>18</mass>
   <price>10000</price>
-  <description>The Vulcan Gun improves over the Gauss Gun with increased range and damage, achieved by using a heavier caliber ammunition. A skilled pilot can wreak some serious havoc even to medium-sized vessels with a pair of Vulcan Guns installed on their ship.</description>
+  <description>The FM28-S Meteor Gun improves over the FM22-U Meteor Gun with increased range and damage, achieved by using a heavier caliber ammunition. A skilled pilot can wreak some serious havoc even to medium-sized vessels with a pair of FM28-S Meteor Guns installed on their ship.</description>
   <gfx_store>vulcangun.webp</gfx_store>
  </general>
  <specific type="bolt">

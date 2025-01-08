@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Gauss Gun">
+<outfit name="FM22-U Meteor Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <mass>6</mass>
   <price>4000</price>
-  <description>The Gauss Gun is one of the oldest weapon designs in the galaxy today, dating back to the times of the Federation. It fires a rapid stream of high velocity projectiles at a target, dealing damage thru sheer kinetic impact. Gauss Guns are popular among small time pirates for being an easy to use, reliable weapon. House Dvaered has also taken a particular liking to the style, althô Dvaered pilots typically use their own higher-powered versions of the weapon.</description>
+  <description>The FM22-U Meteor Gun is one of the oldest weapon designs in the galaxy today, dating back to the times of the Federation. It fires a rapid stream of high velocity projectiles at a target, dealing damage thru sheer kinetic impact. FM22-U Meteor Guns are popular among small time pirates for being an easy to use, reliable weapon. House Dvaered has also taken a particular liking to the style, althô Dvaered pilots typically use their own higher-powered versions of the weapon.</description>
   <gfx_store>gaussgun.webp</gfx_store>
  </general>
  <specific type="bolt">

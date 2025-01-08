@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Turreted Vulcan Gun">
+<outfit name="TM54-M Meteor Turret">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <mass>60</mass>
   <license>Medium Weapon License</license>
   <price>50000</price>
-  <description>Turreted Vulcan Guns pack the same caliber ammunition as their fixed mount brethren. Ships not nimble enough to evade its relentless stream of projectiles might find themselves riddled with hull punctures before long.</description>
+  <description>TM54-M Meteor Turrets pack the same caliber ammunition as their fixed mount brethren. Ships not nimble enough to evade its relentless stream of projectiles might find themselves riddled with hull punctures before long.</description>
   <gfx_store>vulcanturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">

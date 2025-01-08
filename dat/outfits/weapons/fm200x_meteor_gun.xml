@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Repeating Railgun">
+<outfit name="FM200-X Meteor Gun">
  <general>
   <slot>weapon</slot>
   <size>large</size>
   <license>Heavy Weapon License</license>
   <mass>120</mass>
   <price>140000</price>
-  <description>While the Railgun was devastating in its effects, it wasn't quite devastating enough for Dvaered High Command. They had their engineers enhance the weapon into a heavier, faster firing variant that isn't so much a gun as it is a miniature meteor shower generator.</description>
+  <description>While the FM66-L Meteor Gun was devastating in its effects, it wasn't quite devastating enough for Dvaered High Command. They had their engineers enhance the weapon into a heavier, faster firing variant that isn't so much a gun as it is a miniature meteor shower generator.</description>
   <gfx_store>railgun.webp</gfx_store>
  </general>
  <specific type="bolt">

@@ -20,23 +20,23 @@ equip_typeOutfits_hulls["Goddard"] = {
 equip_typeOutfits_weapons["Vendetta"] = {
    {
       num = 2, probability = {
-         ["Vulcan Gun"] = 4, ["Gauss Gun"] = 4,
+         ["FM28-S Meteor Gun"] = 4, ["FM22-U Meteor Gun"] = 4,
       };
-      "Vulcan Gun", "Gauss Gun",
+      "FM28-S Meteor Gun", "FM22-U Meteor Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
    },
    {
       num = 2, probability = {
-         ["Vulcan Gun"] = 4, ["Gauss Gun"] = 4,
+         ["FM28-S Meteor Gun"] = 4, ["FM22-U Meteor Gun"] = 4,
       };
-      "Vulcan Gun", "Gauss Gun",
+      "FM28-S Meteor Gun", "FM22-U Meteor Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
    },
    {
       probability = {
-         ["Vulcan Gun"] = 4, ["Gauss Gun"] = 4,
+         ["FM28-S Meteor Gun"] = 4, ["FM22-U Meteor Gun"] = 4,
       };
-      "Vulcan Gun", "Gauss Gun",
+      "FM28-S Meteor Gun", "FM22-U Meteor Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
    },
 }
@@ -47,7 +47,7 @@ equip_typeOutfits_weapons["Ancestor"] = {
    },
    {
       varied = true;
-      "Vulcan Gun", "TeraCom Mace Launcher",
+      "FM28-S Meteor Gun", "TeraCom Mace Launcher",
    },
 }
 equip_typeOutfits_weapons["Phalanx"] = {
@@ -62,14 +62,14 @@ equip_typeOutfits_weapons["Phalanx"] = {
    },
    {
       probability = {
-         ["Shredder"] = 8,
+         ["FM50-H Meteor Gun"] = 8,
       };
-      "Shredder", "Vulcan Gun",
+      "FM50-H Meteor Gun", "FM28-S Meteor Gun",
    },
 }
 equip_typeOutfits_weapons["Vigilance"] = {
    {
-      "Railgun",
+      "FM66-L Meteor Gun",
    },
    {
       num = 1;
@@ -77,11 +77,11 @@ equip_typeOutfits_weapons["Vigilance"] = {
    },
    {
       num = 1;
-      "Mass Driver",
+      "FM55-M Meteor Gun",
       "Enygma Systems Turreted Headhunter Launcher",
    },
    {
-      "Mass Driver",
+      "FM55-M Meteor Gun",
    },
 }
 equip_typeOutfits_weapons["Goddard"] = {
@@ -90,10 +90,10 @@ equip_typeOutfits_weapons["Goddard"] = {
       "Enygma Systems Turreted Headhunter Launcher",
    },
    {
-      "Repeating Railgun",
+      "FM200-X Meteor Gun",
    },
    {
-      "Railgun",
+      "FM66-L Meteor Gun",
    },
 }
 
