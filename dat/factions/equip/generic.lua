@@ -316,7 +316,7 @@ equip_classOutfits_weapons = {
          "FM22-U Meteor Gun",
          "FK21-U Katana Gun",
          "Particle Lance",
-         "Ion Cannon",
+         "FS21-S Shackle Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -324,7 +324,7 @@ equip_classOutfits_weapons = {
          "FM22-U Meteor Gun",
          "FK21-U Katana Gun",
          "Particle Lance",
-         "Ion Cannon",
+         "FS21-S Shackle Gun",
       },
    },
    ["Luxury Yacht"] = {
@@ -336,7 +336,7 @@ equip_classOutfits_weapons = {
          "FM22-U Meteor Gun",
          "FK21-U Katana Gun",
          "Particle Lance",
-         "Ion Cannon",
+         "FS21-S Shackle Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -344,7 +344,7 @@ equip_classOutfits_weapons = {
          "FM22-U Meteor Gun",
          "FK21-U Katana Gun",
          "Particle Lance",
-         "Ion Cannon",
+         "FS21-S Shackle Gun",
       },
    },
    ["Scout"] = {
@@ -392,7 +392,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
-         "Heavy Ion Turret",
+         "TS193-X Shackle Turret",
       },
       {
          num = 1;
@@ -435,7 +435,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
-         "Heavy Ion Turret",
+         "TS193-X Shackle Turret",
       },
    },
    ["Light Fighter"] = {
@@ -450,7 +450,7 @@ equip_classOutfits_weapons = {
          "FM22-U Meteor Gun",
          "FK21-U Katana Gun",
          "Particle Lance",
-         "Ion Cannon",
+         "FS21-S Shackle Gun",
       },
    },
    ["Fighter"] = {
@@ -464,7 +464,7 @@ equip_classOutfits_weapons = {
          "FM28-S Meteor Gun",
          "FK27-S Katana Gun",
          "Orion Lance",
-         "Ion Cannon",
+         "FS21-S Shackle Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -490,7 +490,7 @@ equip_classOutfits_weapons = {
          "FM28-S Meteor Gun",
          "FK27-S Katana Gun",
          "Orion Lance",
-         "Ion Cannon",
+         "FS21-S Shackle Gun",
       },
    },
    ["Corvette"] = {
@@ -534,7 +534,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
-         "Heavy Ion Turret",
+         "TS193-X Shackle Turret",
       },
       {
          num = 1;
@@ -550,7 +550,7 @@ equip_classOutfits_weapons = {
          "FM55-M Meteor Gun",
          "FK55-M Katana Gun",
          "Grave Lance",
-         "Heavy Ion Cannon",
+         "FS71-M Shackle Gun",
          "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
@@ -568,7 +568,7 @@ equip_classOutfits_weapons = {
          "FM55-M Meteor Gun",
          "FK55-M Katana Gun",
          "Grave Lance",
-         "Heavy Ion Cannon",
+         "FS71-M Shackle Gun",
          "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TM54-M Meteor Turret",
@@ -595,7 +595,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
-         "Heavy Ion Turret",
+         "TS193-X Shackle Turret",
       },
       {
          "TL54-M Lumina Turret",
@@ -621,7 +621,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
-         "Heavy Ion Turret",
+         "TS193-X Shackle Turret",
       },
       {
          "TL54-M Lumina Turret",
@@ -655,7 +655,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
-         "Heavy Ion Turret",
+         "TS193-X Shackle Turret",
       },
    },
    ["Carrier"] = {
@@ -675,7 +675,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TM110-L Meteor Turret",
          "Grave Beam",
-         "Heavy Ion Turret",
+         "TS193-X Shackle Turret",
       },
    },
    ["Drone"] = {

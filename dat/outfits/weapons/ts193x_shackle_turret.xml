@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Heavy Ion Turret">
+<outfit name="TS193-X Shackle Turret">
  <general>
   <slot>weapon</slot>
   <size>large</size>
   <mass>110</mass>
   <license>Heavy Weapon License</license>
   <price>115000</price>
-  <description>The Heavy Ion Turret is the strongest less-than-lethal weapon in the galaxy, applying brute force to its target's internal systems. It is well-used by pirates all across the galaxy despite repeated attempts to restrict its sale.</description>
+  <description>The TS193-X Shackle Turret is the strongest less-than-lethal weapon in the galaxy, applying brute force to its target's internal systems. It is well-used by pirates all across the galaxy despite repeated attempts to restrict its sale.</description>
   <gfx_store>heavy_ionturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">
