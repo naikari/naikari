@@ -31,8 +31,8 @@
   <weapon size="medium" x="8" y="0" h="2">Unicorp Fury Launcher</weapon>
   <weapon size="medium" x="4" y="5" h="-2">Unicorp Headhunter Launcher</weapon>
   <weapon size="medium" x="4" y="-5" h="-2">Unicorp Headhunter Launcher</weapon>
-  <weapon size="small" x="0" y="10" h="-2">FM50-H Meteor Gun</weapon>
-  <weapon size="small" x="0" y="-10" h="-2">FM50-H Meteor Gun</weapon>
+  <weapon size="small" x="0" y="10" h="-2">FM50-H Crystal Gun</weapon>
+  <weapon size="small" x="0" y="-10" h="-2">FM50-H Crystal Gun</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-500 APU</utility>
   <utility size="medium" />
   <utility size="medium" />

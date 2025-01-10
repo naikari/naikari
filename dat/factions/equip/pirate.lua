@@ -52,8 +52,8 @@ equip_typeOutfits_weapons["Vendetta"] = {
       probability = {
          ["FS21-S Shackle Gun"] = 16,
       };
-      "FL27-S Lumina Gun", "FM28-S Meteor Gun", "FK27-S Katana Gun",
-      "FL21-U Lumina Gun", "FM22-U Meteor Gun", "FK21-U Katana Gun",
+      "FL27-S Lumina Gun", "FM28-S Crystal Gun", "FK27-S Katana Gun",
+      "FL21-U Lumina Gun", "FM22-U Crystal Gun", "FK21-U Katana Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
       "FS21-S Shackle Gun",
    },
@@ -68,8 +68,8 @@ equip_typeOutfits_weapons["Ancestor"] = {
       probability = {
          ["FS21-S Shackle Gun"] = 16,
       };
-      "FL27-S Lumina Gun", "FM28-S Meteor Gun", "FK27-S Katana Gun",
-      "FL21-U Lumina Gun", "FM22-U Meteor Gun", "FK21-U Katana Gun",
+      "FL27-S Lumina Gun", "FM28-S Crystal Gun", "FK27-S Katana Gun",
+      "FL21-U Lumina Gun", "FM22-U Crystal Gun", "FK21-U Katana Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
       "FS21-S Shackle Gun",
    },
@@ -82,8 +82,8 @@ equip_typeOutfits_weapons["Phalanx"] = {
    },
    {
       varied = true;
-      "FL50-H Lumina Gun", "FM50-H Meteor Gun", "FK50-H Katana Gun",
-      "FL27-S Lumina Gun", "FM28-S Meteor Gun", "FK27-S Katana Gun",
+      "FL50-H Lumina Gun", "FM50-H Crystal Gun", "FK50-H Katana Gun",
+      "FL27-S Lumina Gun", "FM28-S Crystal Gun", "FK27-S Katana Gun",
    },
 }
 equip_typeOutfits_weapons["Rhino"] = {
@@ -92,7 +92,7 @@ equip_typeOutfits_weapons["Rhino"] = {
       probability = {
          ["TS193-X Shackle Turret"] = 6,
       };
-      "TL110-L Lumina Turret", "TK110-L Katana Turret", "TM110-L Meteor Turret",
+      "TL110-L Lumina Turret", "TK110-L Katana Turret", "TM110-L Crystal Turret",
       "TS193-X Shackle Turret",
    },
    {
@@ -104,7 +104,7 @@ equip_typeOutfits_weapons["Rhino"] = {
       probability = {
          ["EMP Grenade Launcher"] = 6,
       };
-      "TL54-M Lumina Turret", "TM54-M Meteor Turret", "TK54-M Katana Turret",
+      "TL54-M Lumina Turret", "TM54-M Crystal Turret", "TK54-M Katana Turret",
       "EMP Grenade Launcher",
       "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
    },
@@ -115,7 +115,7 @@ equip_typeOutfits_weapons["Kestrel"] = {
       probability = {
          ["TS193-X Shackle Turret"] = 6,
       };
-      "TL110-L Lumina Turret", "TM200-X Meteor Turret", "TK110-L Katana Turret",
+      "TL110-L Lumina Turret", "TM200-X Crystal Turret", "TK110-L Katana Turret",
       "TS193-X Shackle Turret",
    },
    {
@@ -127,7 +127,7 @@ equip_typeOutfits_weapons["Kestrel"] = {
       probability = {
          ["EMP Grenade Launcher"] = 6,
       };
-      "TL54-M Lumina Turret", "TM54-M Meteor Turret", "TK54-M Katana Turret",
+      "TL54-M Lumina Turret", "TM54-M Crystal Turret", "TK54-M Katana Turret",
       "EMP Grenade Launcher",
    },
 }

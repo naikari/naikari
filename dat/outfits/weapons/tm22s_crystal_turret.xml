@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="TM22-S Meteor Turret">
+<outfit name="TM22-S Crystal Turret">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
   <mass>18</mass>
   <price>16500</price>
-  <description>One of the more common countermeasures employed by low-budget merchant ships in Dvaered space, the turret version of the FM22-U Meteor Gun provides basic defense against lone pirates. A more determined attacker is unlikely to be deterred, however.</description>
+  <description>One of the more common countermeasures employed by low-budget merchant ships in Dvaered space, the turret version of the FM22-U Crystal Gun provides basic defense against lone pirates. A more determined attacker is unlikely to be deterred, however.</description>
   <gfx_store>gaussturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">

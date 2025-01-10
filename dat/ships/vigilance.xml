@@ -26,8 +26,8 @@
   <cargo>50</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" x="28" y="-3" h="-0">FM66-L Meteor Gun</weapon>
-  <weapon size="large" x="28" y="3" h="-0">FM66-L Meteor Gun</weapon>
+  <weapon size="large" x="28" y="-3" h="-0">FM66-L Crystal Gun</weapon>
+  <weapon size="large" x="28" y="3" h="-0">FM66-L Crystal Gun</weapon>
   <weapon size="medium" x="10" y="-3" h="2" />
   <weapon size="medium" x="10" y="3" h="2" />
   <weapon size="medium" prop="fighter_bay" x="-22" y="-8" h="-0" />

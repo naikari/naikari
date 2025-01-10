@@ -20,23 +20,23 @@ equip_typeOutfits_hulls["Goddard"] = {
 equip_typeOutfits_weapons["Vendetta"] = {
    {
       num = 2, probability = {
-         ["FM28-S Meteor Gun"] = 4, ["FM22-U Meteor Gun"] = 4,
+         ["FM28-S Crystal Gun"] = 4, ["FM22-U Crystal Gun"] = 4,
       };
-      "FM28-S Meteor Gun", "FM22-U Meteor Gun",
+      "FM28-S Crystal Gun", "FM22-U Crystal Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
    },
    {
       num = 2, probability = {
-         ["FM28-S Meteor Gun"] = 4, ["FM22-U Meteor Gun"] = 4,
+         ["FM28-S Crystal Gun"] = 4, ["FM22-U Crystal Gun"] = 4,
       };
-      "FM28-S Meteor Gun", "FM22-U Meteor Gun",
+      "FM28-S Crystal Gun", "FM22-U Crystal Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
    },
    {
       probability = {
-         ["FM28-S Meteor Gun"] = 4, ["FM22-U Meteor Gun"] = 4,
+         ["FM28-S Crystal Gun"] = 4, ["FM22-U Crystal Gun"] = 4,
       };
-      "FM28-S Meteor Gun", "FM22-U Meteor Gun",
+      "FM28-S Crystal Gun", "FM22-U Crystal Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
    },
 }
@@ -47,7 +47,7 @@ equip_typeOutfits_weapons["Ancestor"] = {
    },
    {
       varied = true;
-      "FM28-S Meteor Gun", "TeraCom Mace Launcher",
+      "FM28-S Crystal Gun", "TeraCom Mace Launcher",
    },
 }
 equip_typeOutfits_weapons["Phalanx"] = {
@@ -62,14 +62,14 @@ equip_typeOutfits_weapons["Phalanx"] = {
    },
    {
       probability = {
-         ["FM50-H Meteor Gun"] = 8,
+         ["FM50-H Crystal Gun"] = 8,
       };
-      "FM50-H Meteor Gun", "FM28-S Meteor Gun",
+      "FM50-H Crystal Gun", "FM28-S Crystal Gun",
    },
 }
 equip_typeOutfits_weapons["Vigilance"] = {
    {
-      "FM66-L Meteor Gun",
+      "FM66-L Crystal Gun",
    },
    {
       num = 1;
@@ -77,11 +77,11 @@ equip_typeOutfits_weapons["Vigilance"] = {
    },
    {
       num = 1;
-      "FM55-M Meteor Gun",
+      "FM55-M Crystal Gun",
       "Enygma Systems Turreted Headhunter Launcher",
    },
    {
-      "FM55-M Meteor Gun",
+      "FM55-M Crystal Gun",
    },
 }
 equip_typeOutfits_weapons["Goddard"] = {
@@ -90,10 +90,10 @@ equip_typeOutfits_weapons["Goddard"] = {
       "Enygma Systems Turreted Headhunter Launcher",
    },
    {
-      "FM200-X Meteor Gun",
+      "FM200-X Crystal Gun",
    },
    {
-      "FM66-L Meteor Gun",
+      "FM66-L Crystal Gun",
    },
 }
 
