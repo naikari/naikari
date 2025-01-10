@@ -17,19 +17,19 @@
   <item>TR14-S Razor Turret</item>
   <item>TR42-M Razor Turret</item>
   <item>TR186-X Razor Turret</item>
-  <item>FS21-S Shackle Gun</item>
-  <item>FS71-M Shackle Gun</item>
-  <item>TS193-X Shackle Turret</item>
-  <item>FM22-U Crystal Gun</item>
-  <item>FM28-S Crystal Gun</item>
-  <item>FM50-H Crystal Gun</item>
-  <item>TM22-S Crystal Turret</item>
-  <item>TM54-M Crystal Turret</item>
-  <item>FM55-M Crystal Gun</item>
-  <item>FM66-L Crystal Gun</item>
-  <item>FM200-X Crystal Gun</item>
-  <item>TM110-L Crystal Turret</item>
-  <item>TM200-X Crystal Turret</item>
+  <item>FI21-S Ion-Shackle Gun</item>
+  <item>FI71-M Ion-Shackle Gun</item>
+  <item>TI193-X Ion-Shackle Turret</item>
+  <item>FC22-U Crystal Gun</item>
+  <item>FC28-S Crystal Gun</item>
+  <item>FC50-H Crystal Gun</item>
+  <item>TC22-S Crystal Turret</item>
+  <item>TC54-M Crystal Turret</item>
+  <item>FC55-M Crystal Gun</item>
+  <item>FC66-L Crystal Gun</item>
+  <item>FC200-X Crystal Gun</item>
+  <item>TC110-L Crystal Turret</item>
+  <item>TC200-X Crystal Turret</item>
   <item>FK21-U Katana Gun</item>
   <item>FK27-S Katana Gun</item>
   <item>FK50-H Katana Gun</item>
@@ -37,13 +37,13 @@
   <item>TK54-M Katana Turret</item>
   <item>FK55-M Katana Gun</item>
   <item>TK110-L Katana Turret</item>
-  <item>TC257-X Cutter Turret</item>
-  <item>TC150-L Cutter Turret</item>
-  <item>TC81-M Cutter Turret</item>
-  <item>TC36-S Cutter Turret</item>
-  <item>FC78-M Cutter Gun</item>
-  <item>FC36-U Cutter Gun</item>
-  <item>FC46-S Cutter Gun</item>
+  <item>TS257-X Spear Turret</item>
+  <item>TS150-L Spear Turret</item>
+  <item>TS81-M Spear Turret</item>
+  <item>TS36-S Spear Turret</item>
+  <item>FS78-M Spear Gun</item>
+  <item>FS36-U Spear Gun</item>
+  <item>FS46-S Spear Gun</item>
   <item>Neutron Disruptor</item>
   <item>Heavy Neutron Disruptor</item>
   <item>Electron Burst Cannon</item>

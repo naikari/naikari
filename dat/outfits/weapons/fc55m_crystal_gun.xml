@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="FM55-M Crystal Gun">
+<outfit name="FC55-M Crystal Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
   <mass>40</mass>
   <price>52000</price>
-  <description>FM55-M Crystal Guns fire massive slugs of matter at enemy ships, dealing damage thru kinetic impact and knocking the target back. One of the most economical heavy weapons in the galaxy.</description>
+  <description>FC55-M Crystal Guns fire massive slugs of matter at enemy ships, dealing damage thru kinetic impact and knocking the target back. One of the most economical heavy weapons in the galaxy.</description>
   <gfx_store>weapon02.webp</gfx_store>
  </general>
  <specific type="bolt">

@@ -42,9 +42,9 @@ equip_classOutfits_weapons["Yacht"] = {
    {
       "FL21-U Lumina Gun",
       "FR11-U Razor Gun",
-      "FM22-U Crystal Gun",
+      "FC22-U Crystal Gun",
       "FK21-U Katana Gun",
-      "FC36-U Cutter Gun",
+      "FS36-U Spear Gun",
    },
 }
 equip_classOutfits_weapons["Light Fighter"] = {
@@ -56,9 +56,9 @@ equip_classOutfits_weapons["Light Fighter"] = {
       {
          "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
-         "FM22-U Crystal Gun",
+         "FC22-U Crystal Gun",
          "FK21-U Katana Gun",
-         "FC36-U Cutter Gun",
+         "FS36-U Spear Gun",
       },
 }
 equip_classOutfits_weapons["Fighter"] = {
@@ -69,16 +69,16 @@ equip_classOutfits_weapons["Fighter"] = {
    {
       "FL27-S Lumina Gun",
       "FR18-S Razor Gun",
-      "FM28-S Crystal Gun",
+      "FC28-S Crystal Gun",
       "FK27-S Katana Gun",
-      "FC46-S Cutter Gun",
+      "FS46-S Spear Gun",
    },
    {
       "FL21-U Lumina Gun",
       "FR11-U Razor Gun",
-      "FM22-U Crystal Gun",
+      "FC22-U Crystal Gun",
       "FK21-U Katana Gun",
-      "FC36-U Cutter Gun",
+      "FS36-U Spear Gun",
       "Unicorp Mace Launcher",
       "Unicorp Banshee Launcher",
    },
@@ -93,9 +93,9 @@ equip_classOutfits_weapons["Bomber"] = {
    {
       "FL27-S Lumina Gun",
       "FR18-S Razor Gun",
-      "FM28-S Crystal Gun",
+      "FC28-S Crystal Gun",
       "FK27-S Katana Gun",
-      "FC46-S Cutter Gun",
+      "FS46-S Spear Gun",
    },
 }
 equip_classOutfits_weapons["Corvette"] = {
@@ -115,27 +115,27 @@ equip_classOutfits_weapons["Corvette"] = {
       probability = {
          ["FL50-H Lumina Gun"] = 10,
          ["FR39-H Razor Gun"] = 10,
-         ["FM50-H Crystal Gun"] = 10,
+         ["FC50-H Crystal Gun"] = 10,
          ["FK50-H Katana Gun"] = 10,
       };
       "FL50-H Lumina Gun",
       "FR39-H Razor Gun",
-      "FM50-H Crystal Gun",
+      "FC50-H Crystal Gun",
       "FK50-H Katana Gun",
       "FL27-S Lumina Gun",
       "FR18-S Razor Gun",
-      "FM28-S Crystal Gun",
+      "FC28-S Crystal Gun",
       "FK27-S Katana Gun",
-      "FC46-S Cutter Gun",
+      "FS46-S Spear Gun",
    },
 }
 equip_classOutfits_weapons["Destroyer"] = {
    {
-      "FM66-L Crystal Gun",
+      "FC66-L Crystal Gun",
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
-      "TM110-L Crystal Turret",
-      "TC150-L Cutter Turret",
+      "TC110-L Crystal Turret",
+      "TS150-L Spear Turret",
    },
    {
       num = 1;
@@ -148,14 +148,14 @@ equip_classOutfits_weapons["Destroyer"] = {
    {
       num = 1;
       "FL55-M Lumina Gun",
-      "FM55-M Crystal Gun",
+      "FC55-M Crystal Gun",
       "FK55-M Katana Gun",
-      "FC78-M Cutter Gun",
+      "FS78-M Spear Gun",
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
-      "TM54-M Crystal Turret",
+      "TC54-M Crystal Turret",
       "TK54-M Katana Turret",
-      "TC81-M Cutter Turret",
+      "TS81-M Spear Turret",
       "Enygma Systems Turreted Fury Launcher",
       "Enygma Systems Turreted Headhunter Launcher",
       "Mini Hyena Fighter Bay",
@@ -164,14 +164,14 @@ equip_classOutfits_weapons["Destroyer"] = {
    },
    {
       "FL55-M Lumina Gun",
-      "FM55-M Crystal Gun",
+      "FC55-M Crystal Gun",
       "FK55-M Katana Gun",
-      "FC78-M Cutter Gun",
+      "FS78-M Spear Gun",
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
-      "TM54-M Crystal Turret",
+      "TC54-M Crystal Turret",
       "TK54-M Katana Turret",
-      "TC81-M Cutter Turret",
+      "TS81-M Spear Turret",
    },
 }
 equip_classOutfits_weapons["Light Cruiser"] = {
@@ -184,18 +184,18 @@ equip_classOutfits_weapons["Light Cruiser"] = {
       "Mini Lancelot Fighter Bay",
    },
    {
-      "FM66-L Crystal Gun",
+      "FC66-L Crystal Gun",
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
-      "TM110-L Crystal Turret",
-      "TC150-L Cutter Turret",
+      "TC110-L Crystal Turret",
+      "TS150-L Spear Turret",
    },
    {
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
-      "TM54-M Crystal Turret",
+      "TC54-M Crystal Turret",
       "TK54-M Katana Turret",
-      "TC81-M Cutter Turret",
+      "TS81-M Spear Turret",
    },
 }
 equip_classOutfits_weapons["Cruiser"] = {
@@ -208,18 +208,18 @@ equip_classOutfits_weapons["Cruiser"] = {
       "Lancelot Fighter Bay",
    },
    {
-      "FM66-L Crystal Gun",
+      "FC66-L Crystal Gun",
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
-      "TM110-L Crystal Turret",
-      "TC150-L Cutter Turret",
+      "TC110-L Crystal Turret",
+      "TS150-L Spear Turret",
    },
    {
       "TL54-M Lumina Turret",
       "TR42-M Razor Turret",
-      "TM54-M Crystal Turret",
+      "TC54-M Crystal Turret",
       "TK54-M Katana Turret",
-      "TC81-M Cutter Turret",
+      "TS81-M Spear Turret",
       "Mini Hyena Fighter Bay",
       "Mini Shark Fighter Bay",
       "Mini Lancelot Fighter Bay",
@@ -236,15 +236,15 @@ equip_classOutfits_weapons["Battleship"] = {
    },
    {
       "TL200-X Lumina Turret",
-      "TM200-X Crystal Turret",
-      "TC257-X Cutter Turret",
+      "TC200-X Crystal Turret",
+      "TS257-X Spear Turret",
    },
    {
-      "FM66-L Crystal Gun",
+      "FC66-L Crystal Gun",
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
-      "TM110-L Crystal Turret",
-      "TC150-L Cutter Turret",
+      "TC110-L Crystal Turret",
+      "TS150-L Spear Turret",
    },
 }
 equip_classOutfits_weapons["Carrier"] = {
@@ -256,14 +256,14 @@ equip_classOutfits_weapons["Carrier"] = {
    },
    {
       "TL200-X Lumina Turret",
-      "TM200-X Crystal Turret",
-      "TC257-X Cutter Turret",
+      "TC200-X Crystal Turret",
+      "TS257-X Spear Turret",
    },
    {
       "TL110-L Lumina Turret",
       "TK110-L Katana Turret",
-      "TM110-L Crystal Turret",
-      "TC150-L Cutter Turret",
+      "TC110-L Crystal Turret",
+      "TS150-L Spear Turret",
    },
 }
 

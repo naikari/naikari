@@ -20,21 +20,21 @@ equip_classCargo["Heavy Drone"] = .1
 
 equip_classOutfits_weapons["Yacht"] = {
    {
-      "FL21-U Lumina Gun", "FM22-U Crystal Gun", "FK21-U Katana Gun",
+      "FL21-U Lumina Gun", "FC22-U Crystal Gun", "FK21-U Katana Gun",
    },
 }
 
 equip_classOutfits_weapons["Courier"] = {
    {
-      "TL21-S Lumina Turret", "TM22-S Crystal Turret", "TK21-S Katana Turret",
+      "TL21-S Lumina Turret", "TC22-S Crystal Turret", "TK21-S Katana Turret",
    },
 }
 
 equip_classOutfits_weapons["Freighter"] = {
    {
       num = 1;
-      "TL54-M Lumina Turret", "TM54-M Crystal Turret", "TK54-M Katana Turret",
-      "TC81-M Cutter Turret",
+      "TL54-M Lumina Turret", "TC54-M Crystal Turret", "TK54-M Katana Turret",
+      "TS81-M Spear Turret",
    },
    {
       "Enygma Systems Turreted Fury Launcher",

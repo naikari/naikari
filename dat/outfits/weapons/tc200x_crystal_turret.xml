@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="TM200-X Crystal Turret">
+<outfit name="TC200-X Crystal Turret">
  <general>
   <slot>weapon</slot>
   <size>large</size>
   <mass>130</mass>
   <license>Heavy Weapon License</license>
   <price>155000</price>
-  <description>It is natural that one weapon turned to for adaptation to capital-class weaponry was the powerful FM66-L Crystal Gun. This effort culminated in the FM66-L Crystal Gun turret, a highly effective weapon perfectly suited to carriers.</description>
+  <description>It is natural that one weapon turned to for adaptation to capital-class weaponry was the powerful FC66-L Crystal Gun. This effort culminated in the FC66-L Crystal Gun turret, a highly effective weapon perfectly suited to carriers.</description>
   <gfx_store>railgunturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">

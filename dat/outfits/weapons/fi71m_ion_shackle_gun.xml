@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="FS71-M Shackle Gun">
+<outfit name="FI71-M Ion-Shackle Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
   <mass>45</mass>
   <price>90000</price>
-  <description>The FS71-M Shackle Gun does a far better job at disabling ships than the standard model, but it requires a medium mount. Most militaries employ these weapons on specialized capture teams, but the design is licensed for public use as well.</description>
+  <description>The FI71-M Ion-Shackle Gun does a far better job at disabling ships than the standard model, but it requires a medium mount. Most militaries employ these weapons on specialized capture teams, but the design is licensed for public use as well.</description>
   <gfx_store>ioncannon.webp</gfx_store>
  </general>
  <specific type="bolt">

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="FM50-H Crystal Gun">
+<outfit name="FC50-H Crystal Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <license>Medium Weapon License</license>
   <mass>30</mass>
   <price>32500</price>
-  <description>The FM50-H Crystal Gun quite lives up to the name its Dvaered manufacturers gave it. The sheer damage dealing capacity of this weapon makes Dvaered Corvettes dangerous to engage by ships that aren't substantially larger than they are.</description>
+  <description>The FC50-H Crystal Gun quite lives up to the name its Dvaered manufacturers gave it. The sheer damage dealing capacity of this weapon makes Dvaered Corvettes dangerous to engage by ships that aren't substantially larger than they are.</description>
   <gfx_store>shredder.webp</gfx_store>
  </general>
  <specific type="bolt">

@@ -6,7 +6,7 @@
   <license>Heavy Weapon License</license>
   <mass>150</mass>
   <price>175000</price>
-  <description>This special model of the TL200-X Lumina Turret is one of the heaviest weapons found in the galaxy, developed in response to House Dvaered's development of the FM66-L Crystal Gun during the Dvaered revolts. Imperial Capital ships use it to lay down devastating barrages against enemy vessels.</description>
+  <description>This special model of the TL200-X Lumina Turret is one of the heaviest weapons found in the galaxy, developed in response to House Dvaered's development of the FC66-L Crystal Gun during the Dvaered revolts. Imperial Capital ships use it to lay down devastating barrages against enemy vessels.</description>
   <gfx_store>tesla.webp</gfx_store>
  </general>
  <specific type="turret bolt">
