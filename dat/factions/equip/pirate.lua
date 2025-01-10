@@ -50,12 +50,12 @@ equip_typeOutfits_weapons["Vendetta"] = {
    {
       varied = true,
       probability = {
-         ["FI21-S Ion-Shackle Gun"] = 16,
+         ["Fi21-S Ion-Shackle Gun"] = 16,
       };
       "FL27-S Lumina Gun", "FC28-S Crystal Gun", "FK27-S Katana Gun",
       "FL21-U Lumina Gun", "FC22-U Crystal Gun", "FK21-U Katana Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
-      "FI21-S Ion-Shackle Gun",
+      "Fi21-S Ion-Shackle Gun",
    },
 }
 equip_typeOutfits_weapons["Ancestor"] = {
@@ -66,12 +66,12 @@ equip_typeOutfits_weapons["Ancestor"] = {
    {
       varied = true,
       probability = {
-         ["FI21-S Ion-Shackle Gun"] = 16,
+         ["Fi21-S Ion-Shackle Gun"] = 16,
       };
       "FL27-S Lumina Gun", "FC28-S Crystal Gun", "FK27-S Katana Gun",
       "FL21-U Lumina Gun", "FC22-U Crystal Gun", "FK21-U Katana Gun",
       "Unicorp Mace Launcher", "TeraCom Mace Launcher",
-      "FI21-S Ion-Shackle Gun",
+      "Fi21-S Ion-Shackle Gun",
    },
 }
 equip_typeOutfits_weapons["Phalanx"] = {
@@ -90,10 +90,10 @@ equip_typeOutfits_weapons["Rhino"] = {
    {
       varied = true,
       probability = {
-         ["TI193-X Ion-Shackle Turret"] = 6,
+         ["Ti193-X Ion-Shackle Turret"] = 6,
       };
       "TL110-L Lumina Turret", "TK110-L Katana Turret", "TC110-L Crystal Turret",
-      "TI193-X Ion-Shackle Turret",
+      "Ti193-X Ion-Shackle Turret",
    },
    {
       varied = true, num = 1;
@@ -113,10 +113,10 @@ equip_typeOutfits_weapons["Kestrel"] = {
    {
       varied = true,
       probability = {
-         ["TI193-X Ion-Shackle Turret"] = 6,
+         ["Ti193-X Ion-Shackle Turret"] = 6,
       };
       "TL110-L Lumina Turret", "TC200-X Crystal Turret", "TK110-L Katana Turret",
-      "TI193-X Ion-Shackle Turret",
+      "Ti193-X Ion-Shackle Turret",
    },
    {
       varied = true, num = 2;

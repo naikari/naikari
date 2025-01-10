@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="FI21-S Ion-Shackle Gun">
+<outfit name="Fi21-S Ion-Shackle Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <license>Light Weapon License</license>
   <mass>8</mass>
   <price>16000</price>
-  <description>FI21-S Ion-Shackle Guns are primarily nonlethal weapons designed to short out internal ship systems and rendering it disabled without killing the crew in the process. The standard FI21-S Ion-Shackle Gun is the most basic and compact design, which allows it to be mounted on small craft. This makes the FI21-S Ion-Shackle Gun one of the most popular weapons for weaker pirates.</description>
+  <description>Fi21-S Ion-Shackle Guns are primarily nonlethal weapons designed to short out internal ship systems and rendering it disabled without killing the crew in the process. The standard Fi21-S Ion-Shackle Gun is the most basic and compact design, which allows it to be mounted on small craft. This makes the Fi21-S Ion-Shackle Gun one of the most popular weapons for weaker pirates.</description>
   <gfx_store>ioncannon.webp</gfx_store>
  </general>
  <specific type="bolt">

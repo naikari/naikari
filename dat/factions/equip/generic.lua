@@ -316,7 +316,7 @@ equip_classOutfits_weapons = {
          "FC22-U Crystal Gun",
          "FK21-U Katana Gun",
          "FS36-U Spear Gun",
-         "FI21-S Ion-Shackle Gun",
+         "Fi21-S Ion-Shackle Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -324,7 +324,7 @@ equip_classOutfits_weapons = {
          "FC22-U Crystal Gun",
          "FK21-U Katana Gun",
          "FS36-U Spear Gun",
-         "FI21-S Ion-Shackle Gun",
+         "Fi21-S Ion-Shackle Gun",
       },
    },
    ["Luxury Yacht"] = {
@@ -336,7 +336,7 @@ equip_classOutfits_weapons = {
          "FC22-U Crystal Gun",
          "FK21-U Katana Gun",
          "FS36-U Spear Gun",
-         "FI21-S Ion-Shackle Gun",
+         "Fi21-S Ion-Shackle Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -344,7 +344,7 @@ equip_classOutfits_weapons = {
          "FC22-U Crystal Gun",
          "FK21-U Katana Gun",
          "FS36-U Spear Gun",
-         "FI21-S Ion-Shackle Gun",
+         "Fi21-S Ion-Shackle Gun",
       },
    },
    ["Scout"] = {
@@ -392,7 +392,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TC110-L Crystal Turret",
          "TS150-L Spear Turret",
-         "TI193-X Ion-Shackle Turret",
+         "Ti193-X Ion-Shackle Turret",
       },
       {
          num = 1;
@@ -435,7 +435,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TC110-L Crystal Turret",
          "TS150-L Spear Turret",
-         "TI193-X Ion-Shackle Turret",
+         "Ti193-X Ion-Shackle Turret",
       },
    },
    ["Light Fighter"] = {
@@ -450,7 +450,7 @@ equip_classOutfits_weapons = {
          "FC22-U Crystal Gun",
          "FK21-U Katana Gun",
          "FS36-U Spear Gun",
-         "FI21-S Ion-Shackle Gun",
+         "Fi21-S Ion-Shackle Gun",
       },
    },
    ["Fighter"] = {
@@ -464,7 +464,7 @@ equip_classOutfits_weapons = {
          "FC28-S Crystal Gun",
          "FK27-S Katana Gun",
          "FS46-S Spear Gun",
-         "FI21-S Ion-Shackle Gun",
+         "Fi21-S Ion-Shackle Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -490,7 +490,7 @@ equip_classOutfits_weapons = {
          "FC28-S Crystal Gun",
          "FK27-S Katana Gun",
          "FS46-S Spear Gun",
-         "FI21-S Ion-Shackle Gun",
+         "Fi21-S Ion-Shackle Gun",
       },
    },
    ["Corvette"] = {
@@ -534,7 +534,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TC110-L Crystal Turret",
          "TS150-L Spear Turret",
-         "TI193-X Ion-Shackle Turret",
+         "Ti193-X Ion-Shackle Turret",
       },
       {
          num = 1;
@@ -550,7 +550,7 @@ equip_classOutfits_weapons = {
          "FC55-M Crystal Gun",
          "FK55-M Katana Gun",
          "FS78-M Spear Gun",
-         "FI71-M Ion-Shackle Gun",
+         "Fi71-M Ion-Shackle Gun",
          "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TC54-M Crystal Turret",
@@ -568,7 +568,7 @@ equip_classOutfits_weapons = {
          "FC55-M Crystal Gun",
          "FK55-M Katana Gun",
          "FS78-M Spear Gun",
-         "FI71-M Ion-Shackle Gun",
+         "Fi71-M Ion-Shackle Gun",
          "TL54-M Lumina Turret",
          "TR42-M Razor Turret",
          "TC54-M Crystal Turret",
@@ -595,7 +595,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TC110-L Crystal Turret",
          "TS150-L Spear Turret",
-         "TI193-X Ion-Shackle Turret",
+         "Ti193-X Ion-Shackle Turret",
       },
       {
          "TL54-M Lumina Turret",
@@ -621,7 +621,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TC110-L Crystal Turret",
          "TS150-L Spear Turret",
-         "TI193-X Ion-Shackle Turret",
+         "Ti193-X Ion-Shackle Turret",
       },
       {
          "TL54-M Lumina Turret",
@@ -655,7 +655,7 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TC110-L Crystal Turret",
          "TS150-L Spear Turret",
-         "TI193-X Ion-Shackle Turret",
+         "Ti193-X Ion-Shackle Turret",
       },
    },
    ["Carrier"] = {
@@ -675,18 +675,18 @@ equip_classOutfits_weapons = {
          "TK110-L Katana Turret",
          "TC110-L Crystal Turret",
          "TS150-L Spear Turret",
-         "TI193-X Ion-Shackle Turret",
+         "Ti193-X Ion-Shackle Turret",
       },
    },
    ["Drone"] = {
       {
-         "Neutron Disruptor",
+         "FB42-U Breaker Gun",
       },
    },
    ["Heavy Drone"] = {
       {
          num = 2;
-         "Heavy Neutron Disruptor",
+         "FB42-U Breaker Gun",
       },
       {
          "Electron Burst Cannon",

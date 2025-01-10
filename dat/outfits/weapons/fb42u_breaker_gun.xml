@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Neutron Disruptor">
+<outfit name="FB42-U Breaker Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <mass>6</mass>
   <price>12000</price>
   <license>Light Weapon License</license>
-  <description>The Neutron Disruptor uses high-energy pulses that alter the base composition of molecules, causing heavy damage. This weapon was first popular with the Collective, whose drones were immune to early versions' lethal backscatter radiation.</description>
+  <description>The FB42-U Breaker Gun uses high-energy pulses that alter the base composition of molecules, causing heavy damage. This weapon was first popular with the Collective, whose drones were immune to early versions' lethal backscatter radiation.</description>
   <gfx_store>neutron.webp</gfx_store>
  </general>
  <specific type="bolt">

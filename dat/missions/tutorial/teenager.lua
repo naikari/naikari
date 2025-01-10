@@ -76,7 +76,7 @@ function create ()
 
     local ion_available = false
     for i, o in ipairs(planet.cur():outfitsSold()) do
-        if o == outfit.get("FI21-S Ion-Shackle Gun")
+        if o == outfit.get("Fi21-S Ion-Shackle Gun")
                 or o == outfit.get("Weapons Ionizer") then
             ion_available = true
             break

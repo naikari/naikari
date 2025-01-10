@@ -42,7 +42,7 @@ equip_typeOutfits_weapons["Virtuosity"] = {
 }
 equip_typeOutfits_weapons["Taciturnity"] = {
    {
-      "TL110-L Lumina Turret", "TS150-L Spear Turret", "TI193-X Ion-Shackle Turret",
+      "TL110-L Lumina Turret", "TS150-L Spear Turret", "Ti193-X Ion-Shackle Turret",
    },
    {
       num = 1;
@@ -57,7 +57,7 @@ equip_typeOutfits_weapons["Taciturnity"] = {
 }
 equip_typeOutfits_weapons["Apprehension"] = {
    {
-      "TL110-L Lumina Turret", "TS150-L Spear Turret", "TI193-X Ion-Shackle Turret",
+      "TL110-L Lumina Turret", "TS150-L Spear Turret", "Ti193-X Ion-Shackle Turret",
    },
    {
       num = 1;
@@ -80,7 +80,7 @@ equip_typeOutfits_weapons["Certitude"] = {
       "TL200-X Lumina Turret", "TS257-X Spear Turret",
    },
    {
-      "TL110-L Lumina Turret", "TS150-L Spear Turret", "TI193-X Ion-Shackle Turret",
+      "TL110-L Lumina Turret", "TS150-L Spear Turret", "Ti193-X Ion-Shackle Turret",
    },
 }
 
