@@ -128,8 +128,7 @@
   <item>Turret Conversion Module</item>
   <item>Ultra Map</item>
   <item>Local System Map</item>
-  <item>Unicorp Scrambler</item>
-  <item>Milspec Scrambler</item>
+  <item>Stealth Plating</item>
   <item>Unicorp Jammer</item>
   <item>Milspec Jammer</item>
   <item>Sensor Array</item>
@@ -298,7 +297,6 @@
   <item>Heavy Strong Fin Stage X</item>
   <item>Superheavy Strong Fin Stage X</item>
   <item>Weapons Ionizer</item>
-  <item>Turreted Weapons Ionizer</item>
   <item>Nebular Shielding Prototype</item>
  </tech>
  <tech name="All Ships">

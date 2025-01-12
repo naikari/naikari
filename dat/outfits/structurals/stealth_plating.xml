@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Stealth Plating">
+ <general>
+  <slot>structure</slot>
+  <size>small</size>
+  <mass>0</mass>
+  <price>40000</price>
+  <description>This plating distorts a ship's electromagnetic signature, making it harder for various sensors to pick it up. In effect, it reduces the distance at which the ship can be detected and scanned, and makes it harder for missiles to lock on.</description>
+  <gfx_store>nexus_stealth_coating.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <rdr_enemy_range_mod>-40</rdr_enemy_range_mod>
+ </specific>
+</outfit>
