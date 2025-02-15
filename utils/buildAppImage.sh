@@ -112,7 +112,6 @@ build_appdir(){
     fi
 
     "$MESON" setup "$BUILDPATH" "$SOURCEPATH" \
-    --native-file "$SOURCEPATH/utils/build/linux_steamruntime_scout.ini" \
     --buildtype "$BUILDTYPE" \
     --force-fallback-for=SuiteSparse \
     -Dprefix="/usr" \
