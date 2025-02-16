@@ -79,7 +79,7 @@ jobs:
 
       - name: Compile AppImage
         run: |
-          ./source/utils/buildAppImage.sh -n -s "source" -b "build"
+          ./source/utils/buildAppImage.sh -i -n -s "source" -b "build"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
