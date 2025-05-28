@@ -22,7 +22,7 @@
    <type>impact</type>
    <penetrate>90</penetrate>
    <physical>1000</physical>
-   <disable>20</disable>
+   <disable>250</disable>
   </damage>
   <ai>smart</ai>
  </specific>

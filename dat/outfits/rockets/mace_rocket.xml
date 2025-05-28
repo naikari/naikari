@@ -20,7 +20,7 @@
    <type>impact</type>
    <penetrate>12</penetrate>
    <physical>15</physical>
-   <disable>0</disable>
+   <disable>5</disable>
   </damage>
   <ai>unguided</ai>
  </specific>

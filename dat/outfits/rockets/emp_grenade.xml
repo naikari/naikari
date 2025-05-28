@@ -18,7 +18,7 @@
   <damage>
    <type>emp</type>
    <penetrate>48</penetrate>
-   <physical>8</physical>
+   <physical>16</physical>
    <disable>250</disable>
   </damage>
   <ai>unguided</ai>
