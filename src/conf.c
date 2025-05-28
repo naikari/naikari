@@ -188,7 +188,6 @@ void conf_setGameplayDefaults (void)
    conf.rightclick_follow = RIGHTCLICK_FOLLOW_DEFAULT;
    conf.compression_velocity = TIME_COMPRESSION_DEFAULT_VEL;
    conf.compression_mult = TIME_COMPRESSION_DEFAULT_MULT;
-   conf.save_compress = SAVE_COMPRESSION_DEFAULT;
    conf.mouse_doubleclick = MOUSE_DOUBLECLICK_TIME;
    conf.zoom_manual = MANUAL_ZOOM_DEFAULT;
    conf.dt_mod = DT_MOD_DEFAULT;
@@ -404,7 +403,6 @@ int conf_loadConfig ( const char* file )
       conf_loadFloat( lEnv, "compression_velocity", conf.compression_velocity );
       conf_loadFloat( lEnv, "compression_mult", conf.compression_mult );
       conf_loadBool( lEnv, "redirect_file", conf.redirect_file );
-      conf_loadBool( lEnv, "save_compress", conf.save_compress );
       conf_loadFloat( lEnv, "mouse_doubleclick", conf.mouse_doubleclick );
       conf_loadFloat( lEnv, "autonav_abort", conf.autonav_reset_speed );
       conf_loadInt(lEnv, "autonav_ignore_passive", conf.autonav_ignore_passive);
@@ -1009,10 +1007,6 @@ int conf_saveConfig ( const char* file )
 
    conf_saveComment(_("Redirects log and error output to files"));
    conf_saveBool("redirect_file",conf.redirect_file);
-   conf_saveEmptyLine();
-
-   conf_saveComment(_("Enables compression on saved games"));
-   conf_saveBool("save_compress",conf.save_compress);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Maximum interval to count as a double-click (0 disables)."));

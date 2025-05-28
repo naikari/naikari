@@ -105,7 +105,7 @@ int save_all (void)
       return 0;
 
    /* Create the writer. */
-   writer = xmlNewTextWriterDoc(&doc, conf.save_compress);
+   writer = xmlNewTextWriterDoc(&doc, 0);
    if (writer == NULL) {
       ERR(_("testXmlwriterDoc: Error creating the xml writer"));
       return -1;
@@ -219,7 +219,7 @@ int save_snapshot(const char *annotation)
    }
 
    /* Create the writer. */
-   writer = xmlNewTextWriterDoc(&doc, conf.save_compress);
+   writer = xmlNewTextWriterDoc(&doc, 0);
    if (writer == NULL) {
       ERR(_("testXmlwriterDoc: Error creating the xml writer"));
       return -1;

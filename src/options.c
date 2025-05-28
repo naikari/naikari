@@ -392,10 +392,6 @@ static void opt_gameplay( unsigned int wid )
    window_addCheckbox(wid, x, y, cw, 20,
          "chkFollow", _("Enable right-click pilot follow"), NULL,
          conf.rightclick_follow);
-   y -= 25;
-   window_addCheckbox(wid, x, y, cw, 20,
-         "chkCompress", _("Enable saved game compression"), NULL,
-         conf.save_compress);
    y -= 50;
 
    /* Autonav Time Compression Settings */
@@ -465,7 +461,6 @@ static int opt_gameplaySave( unsigned int wid, char *str )
    conf.zoom_manual = window_checkboxState(wid, "chkZoomManual");
    conf.doubletap_afterburn = window_checkboxState(wid, "chkAfterburn");
    conf.rightclick_follow = window_checkboxState(wid, "chkFollow");
-   conf.save_compress = window_checkboxState(wid, "chkCompress");
 
    /* Faders. */
    conf.dt_mod = window_getFaderValue(wid, "fadGameSpeed");
@@ -505,7 +500,6 @@ static void opt_gameplayDefaults( unsigned int wid, char *str )
    window_checkboxSet(wid, "chkZoomManual", MANUAL_ZOOM_DEFAULT);
    window_checkboxSet(wid, "chkAfterburn", DOUBLETAP_AFTERBURN_DEFAULT);
    window_checkboxSet(wid, "chkFollow", RIGHTCLICK_FOLLOW_DEFAULT);
-   window_checkboxSet(wid, "chkCompress", SAVE_COMPRESSION_DEFAULT);
 
    /* Faders. */
    window_faderSetBoundedValue(wid, "fadGameSpeed", DT_MOD_DEFAULT);
@@ -528,7 +522,6 @@ static void opt_gameplayUpdate( unsigned int wid, char *str )
    window_checkboxSet(wid, "chkZoomManual", conf.zoom_manual);
    window_checkboxSet(wid, "chkAfterburn", conf.doubletap_afterburn);
    window_checkboxSet(wid, "chkFollow", conf.rightclick_follow);
-   window_checkboxSet(wid, "chkCompress", conf.save_compress);
 
    /* Faders. */
    window_faderSetBoundedValue(wid, "fadGameSpeed", conf.dt_mod);
