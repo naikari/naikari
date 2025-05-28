@@ -25,7 +25,7 @@
    <type>impact</type>
    <penetrate>62</penetrate>
    <physical>38.5</physical>
-   <disable>1.05</disable>
+   <disable>9.8</disable>
   </damage>
  </specific>
 </outfit>
