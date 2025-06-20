@@ -28,7 +28,7 @@
  <slots>
   <weapon size="large" prop="bio_weapon" x="-15" y="-10" h="-10">BioPlasma Talon Stage 1</weapon>
   <weapon size="large" prop="bio_weapon" x="-15" y="10" h="-10">BioPlasma Talon Stage 1</weapon>
-  <weapon size="medium" prop="bio_weapon" x="20" y="0" h="-10">Enygma Systems Turreted Fury Launcher</weapon>
+  <weapon size="medium" prop="bio_weapon" x="20" y="0" h="-10">TMT40-M Tiger Missile Turret</weapon>
   <weapon size="medium" prop="bio_weapon" x="4" y="-5" h="-10" />
   <weapon size="medium" prop="bio_weapon" x="4" y="5" h="-10" />
   <utility size="medium" prop="bio_systems" exclusive="1" required="1">Medium-Heavy Heart Stage 1</utility>

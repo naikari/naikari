@@ -30,8 +30,8 @@
   <cargo>20</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" x="11" y="-4" h="1">Unicorp Fury Launcher</weapon>
-  <weapon size="medium" x="11" y="4" h="1">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" x="11" y="-4" h="1">FMT40-S Tiger Missile Gun</weapon>
+  <weapon size="medium" x="11" y="4" h="1">FMT40-S Tiger Missile Gun</weapon>
   <weapon size="small" x="11" y="0" h="1">FL27-S Lumina Gun</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>
   <utility size="small" />

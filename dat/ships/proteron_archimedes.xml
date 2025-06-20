@@ -38,7 +38,7 @@
   <weapon size="large" x="0" y="6" h="2">TL110-L Lumina Turret</weapon>
   <weapon size="large" x="40" y="0" h="0" />
   <weapon size="large" prop="fighter_bay" x="-25" y="-8" h="3" />
-  <weapon size="large" prop="fighter_bay" x="-25" y="8" h="3">Enygma Systems Turreted Fury Launcher</weapon>
+  <weapon size="large" prop="fighter_bay" x="-25" y="8" h="3">TMT40-M Tiger Missile Turret</weapon>
   <utility size="large" prop="systems" exclusive="1" required="1">Exacorp ET-900 APU</utility>
   <utility size="large" />
   <utility size="large" />

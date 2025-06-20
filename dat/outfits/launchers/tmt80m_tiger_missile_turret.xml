@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Enygma Systems Turreted Headhunter Launcher">
+<outfit name="TMT80-M Tiger Missile Turret">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -10,7 +10,7 @@
   <gfx_store>headhunterturret.webp</gfx_store>
  </general>
  <specific type="turret launcher" secondary="1">
-  <ammo>Headhunter Missile</ammo>
+  <ammo>MT80 Tiger Missile</ammo>
   <delay>3.5</delay>
   <reload_time>60</reload_time>
   <amount>45</amount>

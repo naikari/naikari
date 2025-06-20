@@ -25,10 +25,10 @@
   <cargo>20</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" x="15" y="1" h="2">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" x="15" y="1" h="2">FMT40-S Tiger Missile Gun</weapon>
   <weapon size="medium" x="15" y="-1" h="2" />
-  <weapon size="medium" x="-9" y="-10" h="2">Unicorp Headhunter Launcher</weapon>
-  <weapon size="medium" x="-9" y="10" h="2">Unicorp Headhunter Launcher</weapon>
+  <weapon size="medium" x="-9" y="-10" h="2">FMT80-S Tiger Missile Gun</weapon>
+  <weapon size="medium" x="-9" y="10" h="2">FMT80-S Tiger Missile Gun</weapon>
   <weapon size="small" x="-9" y="-3" h="2">FR39-H Razor Gun</weapon>
   <weapon size="small" x="-9" y="3" h="2">FR39-H Razor Gun</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-500 APU</utility>

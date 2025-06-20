@@ -368,8 +368,8 @@ equip_classOutfits_weapons = {
    ["Freighter"] = {
       {
          num = 1;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -380,7 +380,7 @@ equip_classOutfits_weapons = {
          "TC54-M Crystal Turret",
          "TK54-M Katana Turret",
          "TS81-M Spear Turret",
-         "EMP Grenade Launcher",
+         "TRV250-M Venom Grenade Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -396,8 +396,8 @@ equip_classOutfits_weapons = {
       },
       {
          num = 1;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -408,9 +408,9 @@ equip_classOutfits_weapons = {
          "TC54-M Crystal Turret",
          "TK54-M Katana Turret",
          "TS81-M Spear Turret",
-         "EMP Grenade Launcher",
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TRV250-M Venom Grenade Turret",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -419,8 +419,8 @@ equip_classOutfits_weapons = {
    ["Bulk Freighter"] = {
       {
          num = 2;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Hyena Fighter Bay",
          "Shark Fighter Bay",
          "Lancelot Fighter Bay",
@@ -441,8 +441,8 @@ equip_classOutfits_weapons = {
    ["Light Fighter"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher",
-         "Unicorp Mace Launcher",
+         "FRC80-U Claw Rocket Gun",
+         "FRS60-U Stinger Rocket Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -455,8 +455,8 @@ equip_classOutfits_weapons = {
    },
    ["Fighter"] = {
       {
-         "Unicorp Fury Launcher",
-         "Unicorp Headhunter Launcher",
+         "FMT40-S Tiger Missile Gun",
+         "FMT80-S Tiger Missile Gun",
       },
       {
          "FL27-S Lumina Gun",
@@ -472,17 +472,16 @@ equip_classOutfits_weapons = {
          "FC22-U Crystal Gun",
          "FK21-U Katana Gun",
          "FS36-U Spear Gun",
-         "Unicorp Mace Launcher",
-         "Unicorp Banshee Launcher",
+         "FRS60-U Stinger Rocket Gun",
+         "FRC80-U Claw Rocket Gun",
       },
    },
    ["Bomber"] = {
       {
          varied = true;
-         "Unicorp Fury Launcher",
-         "TeraCom Fury Launcher",
-         "Unicorp Headhunter Launcher",
-         "Unicorp Medusa Launcher",
+         "FMT40-S Tiger Missile Gun",
+         "FMT80-S Tiger Missile Gun",
+         "FMS300-H Spider Missile Gun",
       },
       {
          "FL27-S Lumina Gun",
@@ -496,18 +495,14 @@ equip_classOutfits_weapons = {
    ["Corvette"] = {
       {
          varied = true;
-         "Unicorp Fury Launcher",
-         "TeraCom Fury Launcher",
-         "Unicorp Headhunter Launcher",
-         "TeraCom Headhunter Launcher",
-         "Unicorp Medusa Launcher",
-         "TeraCom Medusa Launcher",
-         "Unicorp Vengeance Launcher",
-         "TeraCom Vengeance Launcher",
-         "Enygma Systems Spearhead Launcher",
-         "Unicorp Caesar IV Launcher",
-         "TeraCom Imperator Launcher",
-         "Enygma Systems Huntsman Launcher",
+         "FMT40-S Tiger Missile Gun",
+         "FMT80-S Tiger Missile Gun",
+         "FMS300-H Spider Missile Gun",
+         "FMT200-H Tiger Missile Gun",
+         "FMO200-H Orca Missile Gun",
+         "FMT800-H Tiger Torpedo Gun",
+         "FMT1000-H Tiger Torpedo Gun",
+         "FMS2000-H Spider Torpedo Gun",
       },
       {
          probability = {
@@ -538,8 +533,8 @@ equip_classOutfits_weapons = {
       },
       {
          num = 1;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -556,9 +551,9 @@ equip_classOutfits_weapons = {
          "TC54-M Crystal Turret",
          "TK54-M Katana Turret",
          "TS81-M Spear Turret",
-         "EMP Grenade Launcher",
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TRV250-M Venom Grenade Turret",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -574,7 +569,7 @@ equip_classOutfits_weapons = {
          "TC54-M Crystal Turret",
          "TK54-M Katana Turret",
          "TS81-M Spear Turret",
-         "EMP Grenade Launcher",
+         "TRV250-M Venom Grenade Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -583,8 +578,8 @@ equip_classOutfits_weapons = {
    ["Light Cruiser"] = {
       {
          num = 2;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -603,14 +598,14 @@ equip_classOutfits_weapons = {
          "TC54-M Crystal Turret",
          "TK54-M Katana Turret",
          "TS81-M Spear Turret",
-         "EMP Grenade Launcher",
+         "TRV250-M Venom Grenade Turret",
       },
    },
    ["Cruiser"] = {
       {
          num = 2;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Hyena Fighter Bay",
          "Shark Fighter Bay",
          "Lancelot Fighter Bay",
@@ -629,7 +624,7 @@ equip_classOutfits_weapons = {
          "TC54-M Crystal Turret",
          "TK54-M Katana Turret",
          "TS81-M Spear Turret",
-         "EMP Grenade Launcher",
+         "TRV250-M Venom Grenade Turret",
          "Mini Hyena Fighter Bay",
          "Mini Shark Fighter Bay",
          "Mini Lancelot Fighter Bay",
@@ -638,8 +633,8 @@ equip_classOutfits_weapons = {
    ["Battleship"] = {
       {
          num = 2;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
          "Hyena Fighter Bay",
          "Shark Fighter Bay",
          "Lancelot Fighter Bay",
@@ -689,7 +684,7 @@ equip_classOutfits_weapons = {
          "FB42-U Breaker Gun",
       },
       {
-         "Electron Burst Cannon",
+         "FRB50-U Buzzer Cell Gun",
       },
    },
    ["Station"] = {
@@ -1465,10 +1460,8 @@ equip_typeOutfits_weapons = {
    ["Brigand"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher",
-         "TeraCom Banshee Launcher",
-         "Unicorp Mace Launcher",
-         "TeraCom Mace Launcher",
+         "FRC80-U Claw Rocket Gun",
+         "FRS60-U Stinger Rocket Gun",
       },
       {
          varied = true, probability = {
@@ -1480,7 +1473,7 @@ equip_typeOutfits_weapons = {
    },
    ["Reaver"] = {
       {
-         "Unicorp Fury Launcher",
+         "FMT40-S Tiger Missile Gun",
       },
       {
          varied = true, probability = {
@@ -1501,8 +1494,8 @@ equip_typeOutfits_weapons = {
    ["Marauder"] = {
       {
          varied = true;
-         "Unicorp Fury Launcher", "TeraCom Fury Launcher",
-         "Unicorp Headhunter Launcher",
+         "FMT40-S Tiger Missile Gun",
+         "FMT80-S Tiger Missile Gun",
       },
       {
          varied = true, probability = {
@@ -1523,13 +1516,12 @@ equip_typeOutfits_weapons = {
    ["Odium"] = {
       {
          varied = true;
-         "TeraCom Fury Launcher",
-         "TeraCom Headhunter Launcher",
-         "Unicorp Vengeance Launcher",
-         "TeraCom Vengeance Launcher",
-         "Enygma Systems Spearhead Launcher",
-         "Unicorp Caesar IV Launcher",
-         "TeraCom Imperator Launcher",
+         "FMT40-S Tiger Missile Gun",
+         "FMT80-S Tiger Missile Gun",
+         "FMT200-H Tiger Missile Gun",
+         "FMO200-H Orca Missile Gun",
+         "FMT800-H Tiger Torpedo Gun",
+         "FMT1000-H Tiger Torpedo Gun",
       },
       {
          varied = true, probability = {
@@ -1560,7 +1552,7 @@ equip_typeOutfits_weapons = {
       },
       {
          num = 1;
-         "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
+         "FMT40-S Tiger Missile Gun", "FMT80-S Tiger Missile Gun",
       },
       {
          "FK55-M Katana Gun",
@@ -1577,10 +1569,10 @@ equip_typeOutfits_weapons = {
    ["Ira"] = {
       {
          num = 1;
-         "TeraCom Fury Launcher",
-         "TeraCom Headhunter Launcher",
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "FMT40-S Tiger Missile Gun",
+         "FMT80-S Tiger Missile Gun",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
       },
       {
          varied = true, probability = {
@@ -1612,8 +1604,8 @@ equip_typeOutfits_weapons = {
    ["Vox"] = {
       {
          num = 1;
-         "Enygma Systems Turreted Fury Launcher",
-         "Enygma Systems Turreted Headhunter Launcher",
+         "TMT40-M Tiger Missile Turret",
+         "TMT80-M Tiger Missile Turret",
       },
       {
          varied = true, probability = {

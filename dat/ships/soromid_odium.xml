@@ -27,9 +27,9 @@
   <cargo>25</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" prop="bio_weapon" x="15" y="0" h="2">Unicorp Fury Launcher</weapon>
-  <weapon size="medium" prop="bio_weapon" x="4" y="2" h="-5">Unicorp Headhunter Launcher</weapon>
-  <weapon size="medium" prop="bio_weapon" x="4" y="-2" h="-5">Unicorp Headhunter Launcher</weapon>
+  <weapon size="medium" prop="bio_weapon" x="15" y="0" h="2">FMT40-S Tiger Missile Gun</weapon>
+  <weapon size="medium" prop="bio_weapon" x="4" y="2" h="-5">FMT80-S Tiger Missile Gun</weapon>
+  <weapon size="medium" prop="bio_weapon" x="4" y="-2" h="-5">FMT80-S Tiger Missile Gun</weapon>
   <weapon size="small" prop="bio_weapon" x="-9" y="-5" h="-9">BioPlasma Fang Stage 1</weapon>
   <weapon size="small" prop="bio_weapon" x="-9" y="5" h="-9">BioPlasma Claw Stage 1</weapon>
   <utility size="medium" prop="bio_systems" exclusive="1" required="1">Medium Heart Stage 1</utility>

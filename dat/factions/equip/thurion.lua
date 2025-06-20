@@ -3,21 +3,21 @@ require "factions/equip/generic"
 
 equip_typeOutfits_weapons["Perspicacity"] = {
    {
-      "FL21-U Lumina Gun", "FR11-U Razor Gun", "TeraCom Mace Launcher",
-      "TeraCom Banshee Launcher", "Electron Burst Cannon",
+      "FL21-U Lumina Gun", "FR11-U Razor Gun", "FRS60-U Stinger Rocket Gun",
+      "FRC80-U Claw Rocket Gun", "FRB50-U Buzzer Cell Gun",
    },
 }
 equip_typeOutfits_weapons["Ingenuity"] = {
    {
-      "FL21-U Lumina Gun", "FR11-U Razor Gun", "TeraCom Mace Launcher",
-      "TeraCom Banshee Launcher", "Electron Burst Cannon",
+      "FL21-U Lumina Gun", "FR11-U Razor Gun", "FRS60-U Stinger Rocket Gun",
+      "FRC80-U Claw Rocket Gun", "FRB50-U Buzzer Cell Gun",
    },
 }
 equip_typeOutfits_weapons["Scintillation"] = {
    {
       varied = true;
-      "TeraCom Fury Launcher", "TeraCom Medusa Launcher",
-      "Unicorp Headhunter Launcher", "Convulsion Launcher",
+      "FMT40-S Tiger Missile Gun", "FMS300-H Spider Missile Gun",
+      "FMT80-S Tiger Missile Gun", "FMO75-S Orca Missile Gun",
    },
    {
       "FL27-S Lumina Gun", "FR18-S Razor Gun",
@@ -26,12 +26,10 @@ equip_typeOutfits_weapons["Scintillation"] = {
 equip_typeOutfits_weapons["Virtuosity"] = {
    {
       varied = true;
-      "Unicorp Fury Launcher", "Unicorp Headhunter Launcher",
-      "Unicorp Medusa Launcher", "Unicorp Vengeance Launcher",
-      "Enygma Systems Spearhead Launcher", "Unicorp Caesar IV Launcher",
-      "TeraCom Fury Launcher", "TeraCom Headhunter Launcher",
-      "TeraCom Medusa Launcher", "TeraCom Vengeance Launcher",
-      "TeraCom Imperator Launcher", "Convulsion Launcher",
+      "FMT40-S Tiger Missile Gun", "FMT80-S Tiger Missile Gun",
+      "FMS300-H Spider Missile Gun", "FMT200-H Tiger Missile Gun",
+      "FMO200-H Orca Missile Gun", "FMT800-H Tiger Torpedo Gun",
+      "FMT1000-H Tiger Torpedo Gun", "FMO75-S Orca Missile Gun",
    },
    {
       probability = {
@@ -46,13 +44,13 @@ equip_typeOutfits_weapons["Taciturnity"] = {
    },
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Turreted Convulsion Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMO75-M Orca Missile Turret",
    },
    {
       "TL54-M Lumina Turret", "TR42-M Razor Turret", "TS81-M Spear Turret",
-      "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
-      "Turreted Convulsion Launcher",
+      "TRV250-M Venom Grenade Turret", "TMT40-M Tiger Missile Turret",
+      "TMO75-M Orca Missile Turret",
    },
 }
 equip_typeOutfits_weapons["Apprehension"] = {
@@ -61,20 +59,20 @@ equip_typeOutfits_weapons["Apprehension"] = {
    },
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Turreted Convulsion Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMO75-M Orca Missile Turret",
    },
    {
       "TL54-M Lumina Turret", "TR42-M Razor Turret", "TS81-M Spear Turret",
-      "EMP Grenade Launcher", "Enygma Systems Turreted Fury Launcher",
-      "Turreted Convulsion Launcher",
+      "TRV250-M Venom Grenade Turret", "TMT40-M Tiger Missile Turret",
+      "TMO75-M Orca Missile Turret",
    },
 }
 equip_typeOutfits_weapons["Certitude"] = {
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Turreted Convulsion Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMO75-M Orca Missile Turret",
    },
    {
       "TL200-X Lumina Turret", "TS257-X Spear Turret",

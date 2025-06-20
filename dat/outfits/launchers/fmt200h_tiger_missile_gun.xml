@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="TeraCom Vengeance Launcher">
+<outfit name="FMT200-H Tiger Missile Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -10,7 +10,7 @@
   <gfx_store>vengeance_launcher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">
-  <ammo>Vengeance Missile</ammo>
+  <ammo>MT200 Tiger Missile</ammo>
   <delay>4</delay>
   <reload_time>60</reload_time>
   <amount>15</amount>

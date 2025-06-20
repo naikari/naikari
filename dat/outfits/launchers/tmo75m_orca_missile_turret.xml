@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Turreted Convulsion Launcher">
+<outfit name="TMO75-M Orca Missile Turret">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -12,7 +12,7 @@ This launcher is mounted on a turret and has more ammo capacity than the standar
   <gfx_store>turreted_convulsion_launcher.webp</gfx_store>
  </general>
  <specific type="turret launcher" secondary="1">
-  <ammo>Convulsion Missile</ammo>
+  <ammo>MO75 Orca Missile</ammo>
   <delay>2.5</delay>
   <reload_time>90</reload_time>
   <amount>35</amount>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Unicorp Caesar IV Launcher">
+<outfit name="FMT800-H Tiger Torpedo Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -10,7 +10,7 @@
   <gfx_store>caesarlauncher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">
-  <ammo>Caesar IV Torpedo</ammo>
+  <ammo>MT800 Tiger Torpedo</ammo>
   <delay>10</delay>
   <reload_time>90</reload_time>
   <lockon>9</lockon>

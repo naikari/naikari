@@ -54,14 +54,14 @@ equip_typeOutfits_weapons["Vendetta"] = {
       };
       "FL27-S Lumina Gun", "FC28-S Crystal Gun", "FK27-S Katana Gun",
       "FL21-U Lumina Gun", "FC22-U Crystal Gun", "FK21-U Katana Gun",
-      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "FRS60-U Stinger Rocket Gun",
       "Fi21-S Ion-Shackle Gun",
    },
 }
 equip_typeOutfits_weapons["Ancestor"] = {
    {
       varied = true;
-      "Unicorp Medusa Launcher",
+      "FMS300-H Spider Missile Gun",
    },
    {
       varied = true,
@@ -70,15 +70,15 @@ equip_typeOutfits_weapons["Ancestor"] = {
       };
       "FL27-S Lumina Gun", "FC28-S Crystal Gun", "FK27-S Katana Gun",
       "FL21-U Lumina Gun", "FC22-U Crystal Gun", "FK21-U Katana Gun",
-      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "FRS60-U Stinger Rocket Gun",
       "Fi21-S Ion-Shackle Gun",
    },
 }
 equip_typeOutfits_weapons["Phalanx"] = {
    {
       varied = true;
-      "Unicorp Medusa Launcher", "TeraCom Medusa Launcher", 
-      "Enygma Systems Huntsman Launcher",
+      "FMS300-H Spider Missile Gun", 
+      "FMS2000-H Spider Torpedo Gun",
    },
    {
       varied = true;
@@ -102,10 +102,10 @@ equip_typeOutfits_weapons["Rhino"] = {
    {
       varied = true,
       probability = {
-         ["EMP Grenade Launcher"] = 6,
+         ["TRV250-M Venom Grenade Turret"] = 6,
       };
       "TL54-M Lumina Turret", "TC54-M Crystal Turret", "TK54-M Katana Turret",
-      "EMP Grenade Launcher",
+      "TRV250-M Venom Grenade Turret",
       "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
    },
 }
@@ -125,10 +125,10 @@ equip_typeOutfits_weapons["Kestrel"] = {
    {
       varied = true,
       probability = {
-         ["EMP Grenade Launcher"] = 6,
+         ["TRV250-M Venom Grenade Turret"] = 6,
       };
       "TL54-M Lumina Turret", "TC54-M Crystal Turret", "TK54-M Katana Turret",
-      "EMP Grenade Launcher",
+      "TRV250-M Venom Grenade Turret",
    },
 }
 

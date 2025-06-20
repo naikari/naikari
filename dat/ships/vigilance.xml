@@ -31,7 +31,7 @@
   <weapon size="medium" x="10" y="-3" h="2" />
   <weapon size="medium" x="10" y="3" h="2" />
   <weapon size="medium" prop="fighter_bay" x="-22" y="-8" h="-0" />
-  <weapon size="medium" prop="fighter_bay" x="-22" y="8" h="-0">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" prop="fighter_bay" x="-22" y="8" h="-0">FMT40-S Tiger Missile Gun</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-600 APU</utility>
   <utility size="large" />
   <utility size="large" />

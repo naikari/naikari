@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Enygma Systems Spearhead Launcher">
+<outfit name="FMO200-H Orca Missile Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -10,7 +10,7 @@
   <gfx_store>spearhead_launcher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">
-  <ammo>Spearhead Missile</ammo>
+  <ammo>MO200 Orca Missile</ammo>
   <delay>4</delay>
   <reload_time>60</reload_time>
   <amount>8</amount>

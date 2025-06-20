@@ -24,8 +24,8 @@
   <rdr_jump_range>6000</rdr_jump_range>
  </characteristics>
  <slots>
-  <weapon size="medium" x="0" y="5" h="0">Unicorp Fury Launcher</weapon>
-  <weapon size="medium" x="0" y="-5" h="0">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" x="0" y="5" h="0">FMT40-S Tiger Missile Gun</weapon>
+  <weapon size="medium" x="0" y="-5" h="0">FMT40-S Tiger Missile Gun</weapon>
   <weapon size="small" x="" y="9" h="-2">FL27-S Lumina Gun</weapon>
   <weapon size="small" x="0" y="-9" h="-2">FL27-S Lumina Gun</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>

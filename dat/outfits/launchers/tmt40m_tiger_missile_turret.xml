@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Enygma Systems Turreted Fury Launcher">
+<outfit name="TMT40-M Tiger Missile Turret">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -10,7 +10,7 @@
   <gfx_store>turreted_fury_launcher.webp</gfx_store>
  </general>
  <specific type="turret launcher" secondary="1">
-  <ammo>Fury Missile</ammo>
+  <ammo>MT40 Tiger Missile</ammo>
   <delay>2</delay>
   <reload_time>60</reload_time>
   <amount>55</amount>

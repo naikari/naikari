@@ -25,7 +25,7 @@
   <cargo>15</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" prop="bio_weapon" x="12" y="0" h="0">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" prop="bio_weapon" x="12" y="0" h="0">FMT40-S Tiger Missile Gun</weapon>
   <weapon size="small" prop="bio_weapon" x="12" y="0" h="0">BioPlasma Claw Stage 1</weapon>
   <weapon size="small" prop="bio_weapon" x="-3" y="0" h="2">BioPlasma Stinger Stage 1</weapon>
   <weapon size="small" prop="bio_weapon" x="-3" y="0" h="2">BioPlasma Stinger Stage 1</weapon>

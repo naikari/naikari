@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="TeraCom Headhunter Launcher">
+<outfit name="FMT80-S Tiger Missile Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
   <license>Medium Weapon License</license>
   <mass>25</mass>
   <price>100000</price>
-  <description>The TeraCom Headhunter Launcher features patented tracking and missile arming technology which allows pilots to fire their missiles faster than other Headhunter launchers do. With its great compromise between agility and power, the Headhunter missiles launched are perfect for engagements with small to medium sized opponents.</description>
+  <description>The FMT80-S Tiger Missile Gun features patented tracking and missile arming technology which allows pilots to fire their missiles faster than other Headhunter launchers do. With its great compromise between agility and power, the Headhunter missiles launched are perfect for engagements with small to medium sized opponents.</description>
   <gfx_store>headhunterlauncher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">
-  <ammo>Headhunter Missile</ammo>
+  <ammo>MT80 Tiger Missile</ammo>
   <delay>2.5</delay>
   <reload_time>60</reload_time>
   <amount>35</amount>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="TeraCom Imperator Launcher">
+<outfit name="FMT1000-H Tiger Torpedo Gun">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -10,7 +10,7 @@
   <gfx_store>imperatorlauncher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">
-  <ammo>Imperator Torpedo</ammo>
+  <ammo>MT1000 Tiger Torpedo</ammo>
   <delay>11</delay>
   <reload_time>120</reload_time>
   <lockon>7</lockon>

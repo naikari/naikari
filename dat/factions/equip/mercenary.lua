@@ -50,8 +50,8 @@ equip_classOutfits_weapons["Yacht"] = {
 equip_classOutfits_weapons["Light Fighter"] = {
       {
          num = 1;
-         "Unicorp Banshee Launcher",
-         "Unicorp Mace Launcher",
+         "FRC80-U Claw Rocket Gun",
+         "FRS60-U Stinger Rocket Gun",
       },
       {
          "FL21-U Lumina Gun",
@@ -63,8 +63,8 @@ equip_classOutfits_weapons["Light Fighter"] = {
 }
 equip_classOutfits_weapons["Fighter"] = {
    {
-      "Unicorp Fury Launcher",
-      "Unicorp Headhunter Launcher",
+      "FMT40-S Tiger Missile Gun",
+      "FMT80-S Tiger Missile Gun",
    },
    {
       "FL27-S Lumina Gun",
@@ -79,16 +79,15 @@ equip_classOutfits_weapons["Fighter"] = {
       "FC22-U Crystal Gun",
       "FK21-U Katana Gun",
       "FS36-U Spear Gun",
-      "Unicorp Mace Launcher",
-      "Unicorp Banshee Launcher",
+      "FRS60-U Stinger Rocket Gun",
+      "FRC80-U Claw Rocket Gun",
    },
 }
 equip_classOutfits_weapons["Bomber"] = {
    {
       varied = true;
-      "Unicorp Fury Launcher",
-      "TeraCom Fury Launcher",
-      "Unicorp Headhunter Launcher",
+      "FMT40-S Tiger Missile Gun",
+      "FMT80-S Tiger Missile Gun",
    },
    {
       "FL27-S Lumina Gun",
@@ -101,15 +100,12 @@ equip_classOutfits_weapons["Bomber"] = {
 equip_classOutfits_weapons["Corvette"] = {
    {
       varied = true;
-      "Unicorp Fury Launcher",
-      "TeraCom Fury Launcher",
-      "Unicorp Headhunter Launcher",
-      "TeraCom Headhunter Launcher",
-      "Unicorp Vengeance Launcher",
-      "TeraCom Vengeance Launcher",
-      "Enygma Systems Spearhead Launcher",
-      "Unicorp Caesar IV Launcher",
-      "TeraCom Imperator Launcher",
+      "FMT40-S Tiger Missile Gun",
+      "FMT80-S Tiger Missile Gun",
+      "FMT200-H Tiger Missile Gun",
+      "FMO200-H Orca Missile Gun",
+      "FMT800-H Tiger Torpedo Gun",
+      "FMT1000-H Tiger Torpedo Gun",
    },
    {
       probability = {
@@ -139,8 +135,8 @@ equip_classOutfits_weapons["Destroyer"] = {
    },
    {
       num = 1;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMT80-M Tiger Missile Turret",
       "Mini Hyena Fighter Bay",
       "Mini Shark Fighter Bay",
       "Mini Lancelot Fighter Bay",
@@ -156,8 +152,8 @@ equip_classOutfits_weapons["Destroyer"] = {
       "TC54-M Crystal Turret",
       "TK54-M Katana Turret",
       "TS81-M Spear Turret",
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMT80-M Tiger Missile Turret",
       "Mini Hyena Fighter Bay",
       "Mini Shark Fighter Bay",
       "Mini Lancelot Fighter Bay",
@@ -177,8 +173,8 @@ equip_classOutfits_weapons["Destroyer"] = {
 equip_classOutfits_weapons["Light Cruiser"] = {
    {
       num = 2;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMT80-M Tiger Missile Turret",
       "Mini Hyena Fighter Bay",
       "Mini Shark Fighter Bay",
       "Mini Lancelot Fighter Bay",
@@ -201,8 +197,8 @@ equip_classOutfits_weapons["Light Cruiser"] = {
 equip_classOutfits_weapons["Cruiser"] = {
    {
       num = 2;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMT80-M Tiger Missile Turret",
       "Hyena Fighter Bay",
       "Shark Fighter Bay",
       "Lancelot Fighter Bay",
@@ -228,8 +224,8 @@ equip_classOutfits_weapons["Cruiser"] = {
 equip_classOutfits_weapons["Battleship"] = {
    {
       num = 2;
-      "Enygma Systems Turreted Fury Launcher",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT40-M Tiger Missile Turret",
+      "TMT80-M Tiger Missile Turret",
       "Hyena Fighter Bay",
       "Shark Fighter Bay",
       "Lancelot Fighter Bay",

@@ -25,8 +25,8 @@
   <cargo>15</cargo>
  </characteristics>
  <slots>
-  <weapon size="medium" x="-2" y="4" h="-1">Unicorp Fury Launcher</weapon>
-  <weapon size="medium" x="-2" y="-4" h="-1">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" x="-2" y="4" h="-1">FMT40-S Tiger Missile Gun</weapon>
+  <weapon size="medium" x="-2" y="-4" h="-1">FMT40-S Tiger Missile Gun</weapon>
   <weapon size="small" x="4" y="2" h="0">FR18-S Razor Gun</weapon>
   <weapon size="small" x="4" y="-2" h="0">FR18-S Razor Gun</weapon>
   <utility size="small" prop="systems" exclusive="1" required="1">Exacorp ET-300 APU</utility>

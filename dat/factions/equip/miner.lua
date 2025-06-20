@@ -37,7 +37,7 @@ equip_classOutfits_weapons["Freighter"] = {
       "TS81-M Spear Turret",
    },
    {
-      "Enygma Systems Turreted Fury Launcher",
+      "TMT40-M Tiger Missile Turret",
       "Mini Hyena Fighter Bay", "Mini Shark Fighter Bay",
       "Mini Lancelot Fighter Bay",
    },

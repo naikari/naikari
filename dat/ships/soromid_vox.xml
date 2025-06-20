@@ -36,7 +36,7 @@
   <weapon size="large" prop="bio_weapon" x="-20" y="0" h="0" />
   <weapon size="large" prop="bio_weapon" x="-20" y="0" h="0" />
   <weapon size="large" prop="bio_weapon" x="-40" y="0" h="0" />
-  <weapon size="large" prop="bio_weapon" x="-40" y="0" h="0">Enygma Systems Turreted Fury Launcher</weapon>
+  <weapon size="large" prop="bio_weapon" x="-40" y="0" h="0">TMT40-M Tiger Missile Turret</weapon>
   <utility size="large" prop="bio_systems" exclusive="1" required="1">Superheavy Heart Stage 1</utility>
   <utility size="large" />
   <utility size="large" />

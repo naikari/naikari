@@ -24,7 +24,7 @@
   <rdr_jump_range>6000</rdr_jump_range>
  </characteristics>
  <slots>
-  <weapon size="medium" x="8" y="1" h="-5">Unicorp Fury Launcher</weapon>
+  <weapon size="medium" x="8" y="1" h="-5">FMT40-S Tiger Missile Gun</weapon>
   <weapon size="medium" x="8" y="-1" h="-5" />
   <weapon size="small" x="5" y="5" h="-5">FB42-U Breaker Gun</weapon>
   <weapon size="small" x="5" y="-5" h="-5">FB42-U Breaker Gun</weapon>

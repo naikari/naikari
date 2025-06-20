@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Electron Burst Cannon">
+<outfit name="FRB50-U Buzzer Cell Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
@@ -10,7 +10,7 @@
   <gfx_store>weapon01.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">
-  <ammo>Electron Energy Cell</ammo>
+  <ammo>RB50 Buzzer Cell</ammo>
   <delay>0.3</delay>
   <reload_time>6</reload_time>
   <amount>50</amount>

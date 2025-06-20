@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="EMP Grenade Launcher">
+<outfit name="TRV250-M Venom Grenade Turret">
  <general>
   <slot>weapon</slot>
   <size>medium</size>
@@ -10,7 +10,7 @@
   <description>This launcher can fire EMP grenades in any direction using a unique internal guidance system. The grenades unleash an electromagnetic pulse, rapidly disabling the electronics of enemy ships. Useful for taking ships alive; the EM pulses rarely destroy the ship, leaving it floating disabled in space. These are favored by traders for keeping pirates at bay, but pirates themselves are avid users as well.</description>
  </general>
  <specific type="turret launcher">
-  <ammo>EMP Grenade</ammo>
+  <ammo>RV250 Venom Grenade</ammo>
   <delay>2</delay>
   <reload_time>40</reload_time>
   <amount>18</amount>

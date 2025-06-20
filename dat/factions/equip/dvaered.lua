@@ -23,42 +23,41 @@ equip_typeOutfits_weapons["Vendetta"] = {
          ["FC28-S Crystal Gun"] = 4, ["FC22-U Crystal Gun"] = 4,
       };
       "FC28-S Crystal Gun", "FC22-U Crystal Gun",
-      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "FRS60-U Stinger Rocket Gun",
    },
    {
       num = 2, probability = {
          ["FC28-S Crystal Gun"] = 4, ["FC22-U Crystal Gun"] = 4,
       };
       "FC28-S Crystal Gun", "FC22-U Crystal Gun",
-      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "FRS60-U Stinger Rocket Gun",
    },
    {
       probability = {
          ["FC28-S Crystal Gun"] = 4, ["FC22-U Crystal Gun"] = 4,
       };
       "FC28-S Crystal Gun", "FC22-U Crystal Gun",
-      "Unicorp Mace Launcher", "TeraCom Mace Launcher",
+      "FRS60-U Stinger Rocket Gun",
    },
 }
 equip_typeOutfits_weapons["Ancestor"] = {
    {
       varied = true;
-      "Unicorp Headhunter Launcher", "Unicorp Vengeance Launcher",
+      "FMT80-S Tiger Missile Gun", "FMT200-H Tiger Missile Gun",
    },
    {
       varied = true;
-      "FC28-S Crystal Gun", "TeraCom Mace Launcher",
+      "FC28-S Crystal Gun", "FRS60-U Stinger Rocket Gun",
    },
 }
 equip_typeOutfits_weapons["Phalanx"] = {
    {
       num = 1;
-      "Unicorp Caesar IV Launcher", "TeraCom Imperator Launcher",
+      "FMT800-H Tiger Torpedo Gun", "FMT1000-H Tiger Torpedo Gun",
    },
    {
       varied = true;
-      "Unicorp Headhunter Launcher", "Unicorp Vengeance Launcher",
-      "TeraCom Headhunter Launcher", "TeraCom Vengeance Launcher",
+      "FMT80-S Tiger Missile Gun", "FMT200-H Tiger Missile Gun",
    },
    {
       probability = {
@@ -73,12 +72,12 @@ equip_typeOutfits_weapons["Vigilance"] = {
    },
    {
       num = 1;
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT80-M Tiger Missile Turret",
    },
    {
       num = 1;
       "FC55-M Crystal Gun",
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT80-M Tiger Missile Turret",
    },
    {
       "FC55-M Crystal Gun",
@@ -87,7 +86,7 @@ equip_typeOutfits_weapons["Vigilance"] = {
 equip_typeOutfits_weapons["Goddard"] = {
    {
       num = 1;
-      "Enygma Systems Turreted Headhunter Launcher",
+      "TMT80-M Tiger Missile Turret",
    },
    {
       "FC200-X Crystal Gun",
