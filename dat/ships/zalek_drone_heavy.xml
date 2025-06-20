@@ -24,7 +24,7 @@
   <rdr_jump_range>6000</rdr_jump_range>
  </characteristics>
  <slots>
-  <weapon size="small" x="-12" y="8" h="0">Photon Dagger</weapon>
+  <weapon size="small" x="-12" y="8" h="0">FT80-U Talon Gun</weapon>
   <weapon size="small" x="-12" y="6" h="0" />
   <weapon size="small" x="15" y="-8" h="2">FL27-S Lumina Gun</weapon>
   <weapon size="small" x="15" y="-6" h="2">FL27-S Lumina Gun</weapon>

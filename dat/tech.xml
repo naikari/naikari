@@ -56,7 +56,7 @@
   <item>TeraCom Vengeance Launcher</item>
   <item>Unicorp Mace Launcher</item>
   <item>TeraCom Mace Launcher</item>
-  <item>Photon Dagger</item>
+  <item>FT80-U Talon Gun</item>
   <item>Unicorp Banshee Launcher</item>
   <item>TeraCom Banshee Launcher</item>
   <item>Unicorp Caesar IV Launcher</item>
@@ -399,7 +399,7 @@
  </tech>
  <tech name="Population Empire">
   <item>Population Generic</item>
-  <item>Photon Dagger</item>
+  <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>

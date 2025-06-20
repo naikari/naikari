@@ -310,7 +310,7 @@ equip_classOutfits_weapons = {
    ["Yacht"] = {
       {
          num = 1;
-         "Photon Dagger",
+         "FT80-U Talon Gun",
          "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FC22-U Crystal Gun",
@@ -330,7 +330,7 @@ equip_classOutfits_weapons = {
    ["Luxury Yacht"] = {
       {
          num = 1;
-         "Photon Dagger",
+         "FT80-U Talon Gun",
          "FL21-U Lumina Gun",
          "FR11-U Razor Gun",
          "FC22-U Crystal Gun",

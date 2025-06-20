@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Photon Dagger">
+<outfit name="FT80-U Talon Gun">
  <general>
   <slot>weapon</slot>
   <size>small</size>
   <priority>-3</priority>
   <mass>9</mass>
   <price>9600</price>
-  <description>The Photon Dagger is the most basic secondary weapon available, and often the one a pilot uses first. That said, it should not be underestimated. While it has a slow rate of fire and is difficult to aim due to its lack of swivel, it can be devastating in the hands of a skilled pilot.</description>
+  <description>The FT80-U Talon Gun is the most basic secondary weapon available, and often the one a pilot uses first. That said, it should not be underestimated. While it has a slow rate of fire and is difficult to aim due to its lack of swivel, it can be devastating in the hands of a skilled pilot.</description>
   <gfx_store>photon_dagger.png</gfx_store>
   </general>
  <specific type="bolt" secondary="1">

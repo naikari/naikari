@@ -37,7 +37,7 @@ equip_classOutfits_hulls["Yacht"] = {
 equip_classOutfits_weapons["Yacht"] = {
    {
       num = 1;
-      "Photon Dagger",
+      "FT80-U Talon Gun",
    },
    {
       "FL21-U Lumina Gun",
