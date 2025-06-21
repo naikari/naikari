@@ -6,7 +6,7 @@
   <license>Heavy Weapon License</license>
   <mass>120</mass>
   <price>140000</price>
-  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight and energy-efficient source of firepower, perfect for agile ships with energy or mass constraints. However, their ability to swivel to aim at the target is constrained. A Crystal Gun fires kinetic projectiles.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. A Crystal Gun fires kinetic projectiles.</description>
   <gfx_store>railgun.webp</gfx_store>
  </general>
  <specific type="bolt">
