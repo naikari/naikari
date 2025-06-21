@@ -6,7 +6,7 @@
   <license>Medium Weapon License</license>
   <mass>100</mass>
   <price>90000</price>
-  <description>This turret-mounted FC55-M Crystal Gun takes a crude approach to inflicting the large amounts of damage necessary in large-scale conflicts, showering its pilot's foes with relatively low-damage shells that start to add up rather quickly. Nonetheless, the approach is quite effective when used correctly and can give enemies of nearly any size a hard time.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size, mass, and energy usage. A Crystal Turret fires kinetic projectiles.</description>
   <gfx_store>weapon02.webp</gfx_store>
  </general>
  <specific type="turret bolt">

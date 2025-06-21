@@ -6,7 +6,7 @@
   <mass>60</mass>
   <license>Medium Weapon License</license>
   <price>50000</price>
-  <description>TC54-M Crystal Turrets pack the same caliber ammunition as their fixed mount brethren. Ships not nimble enough to evade its relentless stream of projectiles might find themselves riddled with hull punctures before long.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size, mass, and energy usage. A Crystal Turret fires kinetic projectiles.</description>
   <gfx_store>vulcanturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">

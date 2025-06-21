@@ -6,7 +6,7 @@
   <license>Light Weapon License</license>
   <mass>18</mass>
   <price>10000</price>
-  <description>The FC28-S Crystal Gun improves over the FC22-U Crystal Gun with increased range and damage, achieved by using a heavier caliber ammunition. A skilled pilot can wreak some serious havoc even to medium-sized vessels with a pair of FC28-S Crystal Guns installed on their ship.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight and energy-efficient source of firepower, perfect for agile ships with energy or mass constraints. However, their ability to swivel to aim at the target is constrained. A Crystal Gun fires kinetic projectiles.</description>
   <gfx_store>vulcangun.webp</gfx_store>
  </general>
  <specific type="bolt">

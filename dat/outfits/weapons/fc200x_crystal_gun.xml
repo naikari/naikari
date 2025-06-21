@@ -6,7 +6,7 @@
   <license>Heavy Weapon License</license>
   <mass>120</mass>
   <price>140000</price>
-  <description>While the FC66-L Crystal Gun was devastating in its effects, it wasn't quite devastating enough for Dvaered High Command. They had their engineers enhance the weapon into a heavier, faster firing variant that isn't so much a gun as it is a miniature meteor shower generator.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight and energy-efficient source of firepower, perfect for agile ships with energy or mass constraints. However, their ability to swivel to aim at the target is constrained. A Crystal Gun fires kinetic projectiles.</description>
   <gfx_store>railgun.webp</gfx_store>
  </general>
  <specific type="bolt">
