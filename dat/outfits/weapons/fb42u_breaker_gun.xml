@@ -6,7 +6,7 @@
   <mass>6</mass>
   <price>12000</price>
   <license>Light Weapon License</license>
-  <description>The FB42-U Breaker Gun uses high-energy pulses that alter the base composition of molecules, causing heavy damage. This weapon was first popular with the Collective, whose drones were immune to early versions' lethal backscatter radiation.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Breaker Guns fire short-range, but fast and highly damaging energy pulse projectiles.</description>
   <gfx_store>neutron.webp</gfx_store>
  </general>
  <specific type="bolt">

@@ -6,7 +6,7 @@
   <license>Medium Weapon License</license>
   <mass>40</mass>
   <price>58500</price>
-  <description>By modulating the frequency of the basic FL50-H Lumina Gun, the Empire military increased its range, accuracy and destructive power. After reworking the power conduits, their efforts culminated in the devastating FL55-M Lumina Gun. The main drawback to this model is its increased bulk, which makes it unsuitable for smaller ships. As such, it has largely fallen out of favor among Imperial ranks.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Lumina Guns fire standard photon projectiles.</description>
   <gfx_store>ripper.webp</gfx_store>
  </general>
  <specific type="bolt">

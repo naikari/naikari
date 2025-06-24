@@ -6,7 +6,7 @@
   <license>Light Weapon License</license>
   <mass>18</mass>
   <price>11000</price>
-  <description>A high-powered version of the Laser Cannon, the MK2 is usually found on Imperial law enforcement and military ships. Its superior firepower helps keep order among the civilian populace, and it is capable of dealing with larger Corvette vessels with some effort.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Lumina Guns fire standard photon projectiles.</description>
   <gfx_store>laser2.webp</gfx_store>
   </general>
  <specific type="bolt">

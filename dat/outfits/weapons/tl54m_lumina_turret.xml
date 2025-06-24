@@ -6,7 +6,7 @@
   <license>Medium Weapon License</license>
   <mass>60</mass>
   <price>62000</price>
-  <description>The TL54-M Lumina Turret is often found on Imperial fast response fleets, for use against fleets of small to medium ships. This weapon is one of the mainstays in the Imperial space forces.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Lumina Turrets fire standard photon projectiles.</description>
   <gfx_store>laserturret2.webp</gfx_store>
  </general>
  <specific type="turret bolt">

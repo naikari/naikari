@@ -6,7 +6,7 @@
   <license>Light Weapon License</license>
   <mass>18</mass>
   <price>17500</price>
-  <description>A pair of laser cannons mounted on a rotating turret. It functions just like a Laser Cannon, but automatically turns to aim at the pilot the player is targeting, providing excellent defensive capabilities for ships that would struggle to turn and face their targets manually.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Lumina Turrets fire standard photon projectiles.</description>
   <gfx_store>laserturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">

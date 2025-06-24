@@ -6,7 +6,7 @@
   <license>Heavy Weapon License</license>
   <mass>130</mass>
   <price>125000</price>
-  <description>The TL200-X Lumina Turret is more or less an upscaled version of the Lumina Turret, thô some fundamental mechanisms had to be redesigned to adapt to the increased energy thruput found in this weapon. Its energy efficiency leaves a lot to be desired, but capital ships and in particular Carriers which have a limited number of standard weapon slots often use these for their increased damage output.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Lumina Turrets fire standard photon projectiles.</description>
   <gfx_store>ripperturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">
