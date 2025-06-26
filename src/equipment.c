@@ -1697,7 +1697,7 @@ void equipment_updateShips( unsigned int wid, char* str )
          "#nAcceleration:#0 #%c%s%.0f#0 mAU/s²\n"
          "#nSpeed:#0 #%c%s%.0f#0 mAU/s (max %.0f mAU/s)\n"
          "#nTurn:#0 #%c%s%.0f#0 deg/s\n"
-         "#nTime Constant:#0 #%c%s%.0f%%#0\n"
+         "#nTime Passage Rate:#0 #%c%s%.0f%%#0\n"
          "\n"
          "#nAbsorption:#0 #%c%s%.0f%%\n"
          "#nShield:#0 #%c%s%.0f#0 GJ; #nRegeneration:#0 #%c%s%.1f#0 GW\n"

@@ -638,7 +638,7 @@ static void map_system_array_update( unsigned int wid, char* str ) {
                _("\n#nTurn:#0 %.0f deg/s"), ship->turn*180./M_PI);
 
       l += scnprintf(&infobuf[l], sizeof(infobuf) - l,
-            _("\n#nTime Constant:#0 %.0f%%"), ship->dt_default*100.);
+            _("\n#nTime Passage Rate:#0 %.0f%%"), ship->dt_default*100.);
 
       if (ship->dmg_absorb != 0.)
          l += scnprintf(&infobuf[l], sizeof(infobuf) - l,

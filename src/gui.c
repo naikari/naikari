@@ -926,8 +926,6 @@ void gui_cooldownEnd (void)
  *    @param right Right boundary in pixels
  *    @param bottom Bottom boundary in pixels
  *    @param left Left boundary in pixels
- *
- *    @return 0 on success
  */
 void gui_setMapOverlayBounds( int top, int right, int bottom, int left )
 {

@@ -376,7 +376,7 @@ static const ShipStatsLookup ss_lookup[] = {
       N_("%.0f%% Reverse Thrust"),
       0., 1.),
    DI_ELEM(SS_TYPE_D_TIME_MOD, time_mod,
-      N_("%+G%% Time Constant"),
+      N_("%+G%% Time Passage Rate"),
       NULL),
    D_ELEM(SS_TYPE_D_TIME_SPEEDUP, time_speedup,
       N_("%+G%% Time Dilation"),

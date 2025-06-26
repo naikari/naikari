@@ -569,7 +569,7 @@ static void ship_update( unsigned int wid )
          "#nAcceleration:#0 %.0f mAU/s²\n"
          "#nSpeed:#0 %.0f mAU/s (max %.0f mAU/s)\n"
          "#nTurn:#0 %.0f deg/s\n"
-         "#nTime Constant:#0 %.0f%%\n"
+         "#nTime Passage Rate:#0 %.0f%%\n"
          "\n"
          "#nAbsorption:#0 %.0f%%\n"
          "#nShield:#0 %.0f / %.0f GJ; #nRegeneration:#0 %.1f GW\n"

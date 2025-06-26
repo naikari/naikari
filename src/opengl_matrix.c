@@ -118,7 +118,6 @@ void gl_Matrix4_Translate(gl_Matrix4 *m, double x, double y, double z)
  *
  *    @param m Matrix to multiply.
  *    @param angle Angle in radians.
- *    @return New projection matrix.
  */
 void gl_Matrix4_Rotate2d(gl_Matrix4 *m, double angle)
 {
@@ -143,7 +142,6 @@ void gl_Matrix4_Rotate2d(gl_Matrix4 *m, double angle)
  *    @param m Matrix to multiply.
  *    @param c Angle cosine (or x coordinate of the vector).
  *    @param s Angle sine (or y coordinate of the vector).
- *    @return New projection matrix.
  */
 void gl_Matrix4_Rotate2dv(gl_Matrix4 *m, double c, double s)
 {
@@ -168,7 +166,6 @@ void gl_Matrix4_Rotate2dv(gl_Matrix4 *m, double c, double s)
  *    @param x X component of the axis of rotation.
  *    @param y Y component of the axis of rotation.
  *    @param z Z component of the axis of rotation.
- *    @return New projection matrix.
  */
 void gl_Matrix4_Rotate(gl_Matrix4 *m, double angle, double x, double y,
       double z)

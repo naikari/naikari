@@ -251,7 +251,7 @@ void shipyard_update( unsigned int wid, char* str )
             p_("ship_turn", "\n#nTurn:#0 %.0f deg/s"), ship->turn*180./M_PI);
 
    l += scnprintf(&buf[l], sizeof(buf) - l,
-         p_("ship_time_constant", "\n#nTime Constant:#0 %.0f%%\n"),
+         p_("ship_time_constant", "\n#nTime Passage Rate:#0 %.0f%%\n"),
          ship->dt_default * 100.);
 
    if (ship->dmg_absorb != 0.)
