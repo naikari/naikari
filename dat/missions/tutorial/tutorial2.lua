@@ -45,7 +45,7 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-local ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I could use some help with a charity drive. Don't worry, it's a simple job, and you will of course be given a fair payment of {credits} #n[{credits_conv}]#0 for your services. What do you say?"]])
+local ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I could use some help with a charity drive. Don't worry, it's a simple mission, and you will of course be given a fair payment of {credits} #n[{credits_conv}]#0 for your services. What do you say?"]])
 
 local ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise I won't bite, and the {credits} #n[{credits_conv}]#0 payment will be worth it!"]])
 
@@ -59,10 +59,10 @@ local reminder_text = _([[You ask Ian what cargo it was that he needed again, ap
 
 local finish_text = _([[You approach Ian and inform him that you have the cargo he needs. "Ah, perfect!" he responds. "Let's initiate that transfer, then.…" Ian Structure pushes a series of buttons on his datapad and you see that the cargo has been removed from your ship.
 
-"You saved me some time by doing that for me," Ian says. "Thank you. I have transferred the payment I promised into your account. If you would be willing to do it, I have another job for you. Talk to me here at the bar again when you're ready for it."]])
+"You saved me some time by doing that for me," Ian says. "Thank you. I have transferred the payment I promised into your account. If you would be willing to do it, I have another mission for you. Talk to me here at the bar again when you're ready for it."]])
 
 local misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
-local misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system}) for another job.]])
+local misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
 local credits = 2500
 

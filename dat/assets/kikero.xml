@@ -20,8 +20,13 @@
    <land>land_lowclass</land>
    <refuel/>
    <bar/>
+   <outfits/>
    <commodity/>
   </services>
   <commodities/>
  </general>
+ <tech>
+  <item>Population Generic</item>
+  <item>Population Empire</item>
+ </tech>
 </asset>

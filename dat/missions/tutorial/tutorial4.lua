@@ -48,7 +48,7 @@ require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
 
-local ask_text = _([["I have one last job for you, {player}, if you would be willing. This one is simple: I just need you to ferry me to a neighboring system, and I'll pay you {credits} for it. Are you willing to do it?"]])
+local ask_text = _([["I have one last mission for you, {player}, if you would be willing. This one is simple: I just need you to ferry me to a neighboring system, and I'll pay you {credits} for it. Are you willing to do it?"]])
 
 local accept_text = _([["Thank you very much. I'll be at your ship when you're ready for me. I'll show you where we need to go once we're in space."]])
 

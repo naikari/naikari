@@ -396,6 +396,7 @@
   <item>Llama</item>
   <item>Solar Panel</item>
   <item>Fuel Pod</item>
+  <item>Cargo Pod</item>
  </tech>
  <tech name="Population Empire">
   <item>Population Generic</item>

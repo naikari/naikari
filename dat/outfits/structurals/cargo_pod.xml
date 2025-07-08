@@ -4,7 +4,7 @@
   <slot>structure</slot>
   <size>small</size>
   <mass>3</mass>
-  <price>35000</price>
+  <price>7500</price>
   <description>Cargo pods are large containers that increase a ship's cargo capacity.</description>
   <gfx_store>cargopod.webp</gfx_store>
  </general>
