@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Hellburner">
+<outfit name="Heavy Afterburner">
  <general>
   <slot>utility</slot>
   <size>small</size>
   <mass>10</mass>
   <price>95000</price>
-  <description>The Hellburner is one of the best afterburners on the market. Thru proprietary pressurization ducts, the Hellburner is able to generate far more thrust than generic alternatives. Unfortunately, its energy conversion efficiency is significantly lower than common models, so it consumes energy more rapidly and overheats more quickly.</description>
+  <description>Afterburners provide your ship with an immediate boost to thrust and speed when activated. However, while the afterburner is active it will steadily drain the ship's energy and also generate heat. If the afterburner gets too hot its effect will diminish, and eventually it will shut off entirely.</description>
   <gfx_store>hellburner.webp</gfx_store>
   <limit>Afterburner</limit>
  </general>

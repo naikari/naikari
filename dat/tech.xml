@@ -102,8 +102,8 @@
   <item>Engine Reroute</item>
   <item>Improved Stabilizer</item>
   <item>Steering Thrusters</item>
-  <item>Generic Afterburner</item>
-  <item>Hellburner</item>
+  <item>Light Afterburner</item>
+  <item>Heavy Afterburner</item>
   <item>Emergency Shield Booster</item>
   <item>Reverse Thrusters</item>
   <item>Small Thrust Bracer</item>
@@ -128,7 +128,7 @@
   <item>Ultra Map</item>
   <item>Local System Map</item>
   <item>Stealth Plating</item>
-  <item>Unicorp Jammer</item>
+  <item>Basic Jammer</item>
   <item>Milspec Jammer</item>
   <item>Sensor Array</item>
   <item>Jump Scanner</item>
