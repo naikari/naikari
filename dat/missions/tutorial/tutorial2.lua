@@ -53,9 +53,9 @@ local accept_text = _([["Excellent! I look forward to working with you.
 
 "All I need you to do is buy 10 kt #n[10 kilotonnes]#0 of Food on my behalf." You begin to protest, but Ian holds up his hand to interrupt. "Have no fear, {player}. I wouldn't make you pay for it using your own credits, of course." He pulls out a credit chip and hands it to you. "That should be sufficient to pay for what I need. I put some extra on just to be absolutely sure it will cover the cost; you can keep the extra credits left over in addition to your payment.
 
-"You can buy the Food from the #bCommodity tab#0. Once you've picked it up, return here so we can transfer the Food to my storage unit."]])
+"You can buy the Food from the #bCommodity Exchange#0. Once you've picked it up, return here so we can transfer the Food to my storage unit."]])
 
-local reminder_text = _([[You ask Ian what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 kt #n[10 kilotonnes]#0 of Food. You should be able to find it in the #bCommodity tab#0. Let me know when you have it!"]])
+local reminder_text = _([[You ask Ian what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 kt #n[10 kilotonnes]#0 of Food. You should be able to find it at the #bCommodity Exchange#0. Let me know when you have it!"]])
 
 local finish_text = _([[You approach Ian and inform him that you have the cargo he needs. "Ah, perfect!" he responds. "Let's initiate that transfer, then.…" Ian Structure pushes a series of buttons on his datapad and you see that the cargo has been removed from your ship.
 
@@ -103,7 +103,7 @@ function accept()
       misn.setDesc(misn_desc)
 
       local osd_desc = {
-         fmt.f(_("Buy 10 kt of Food from the Commodity tab and then talk to Ian Structure at the bar on {planet} ({system})"),
+         fmt.f(_("Buy 10 kt of Food from the Commodity Exchange and then talk to Ian Structure at the Spaceport Bar on {planet} ({system})"),
             {planet=misplanet:name(), system=missys:name()}),
       }
       misn.osdCreate(_("Ian's Structure"), osd_desc)

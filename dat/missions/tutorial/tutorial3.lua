@@ -50,7 +50,7 @@ local ask_text = _([["Hello again, {player}! Are you ready for that other job I 
 
 local accept_text = _([["Perfect! Alright, this time we will be going into space; I will be joining you. I'll make my way to your ship now and wait for you there. When you're ready to begin, press the Take Off button."]])
 
-local overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Gold for me. Of course, I could buy it from the Commodity tab, but there happens to be a safe pure Gold asteroid field in this system, and that will be much cheaper than buying it.
+local overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Gold for me. Of course, I could buy it from the Commodity Exchange, but there happens to be a safe pure Gold asteroid field in this system, and that will be much cheaper than buying it.
 
 "I've marked the asteroid field on your ship's overlay map. Could you press {overlaykey} to open your overlay map so I can show you, please?"]])
 
