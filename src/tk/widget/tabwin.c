@@ -248,7 +248,7 @@ static int tab_mouse( Widget* tab, SDL_Event *event )
       if (x < p)
          break;
 
-      p += (TAB_HPADDING * 2) + tab->dat.tab.namelen[i];
+      p += (TAB_HPADDING * 2) + TAB_HMARGIN + tab->dat.tab.namelen[i];
 
       /* Too far right, try next tab. */
       if (x >= p)
