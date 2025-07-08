@@ -20,9 +20,11 @@
 #include "toolkit.h"
 
 
-#define TAB_HEIGHT   30
+#define TAB_HEIGHT 30
 #define TAB_HMARGIN 3
 #define TAB_HPADDING 15
+#define TAB_XOFFSET 2.
+#define TAB_YOFFSET 2.
 
 
 
@@ -88,10 +90,10 @@ unsigned int* window_addTabbedWindow( const unsigned int wid,
    wgt->dat.tab.font       = &gl_smallFont;
 
    /* position/size */
-   wgt->x = (double) (x<0) ? 0 : x;
-   wgt->y = (double) (y<0) ? 0 : y;
-   wgt->w = (double) (w<0) ? wdw->w : w;
-   wgt->h = (double) (h<0) ? wdw->h : h;
+   wgt->x = (double) (x<0) ? TAB_XOFFSET : x;
+   wgt->y = (double) (y<0) ? TAB_YOFFSET : y;
+   wgt->w = (double) (w<0) ? wdw->w - 2.*wgt->x : w;
+   wgt->h = (double) (h<0) ? wdw->h - wgt->y : h;
 
    /* Calculate window position and size. */
    wx = wdw->x + wgt->x;
@@ -380,8 +382,8 @@ static void tab_render( Widget* tab, double bx, double by )
    window_render( wdw );
 
    /* Render tabs ontop. */
-   x = bx+tab->x+1;
-   y = by+tab->y+1;
+   x = bx+tab->x;
+   y = by+tab->y;
    if (tab->dat.tab.tabpos == 1)
       y += tab->h-TAB_HEIGHT;
 
