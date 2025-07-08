@@ -163,36 +163,45 @@ int space_sysLoad( xmlNodePtr parent );
 const char* planet_getServiceName( int service )
 {
    switch (service) {
-      case PLANET_SERVICE_LAND:        return N_("Land");
-      case PLANET_SERVICE_INHABITED:   return N_("Inhabited");
-      case PLANET_SERVICE_REFUEL:      return N_("Refuel");
-      case PLANET_SERVICE_BAR:         return N_("Bar");
-      case PLANET_SERVICE_MISSIONS:    return N_("Missions");
-      case PLANET_SERVICE_COMMODITY:   return N_("Commodity");
-      case PLANET_SERVICE_OUTFITS:     return N_("Outfits");
-      case PLANET_SERVICE_SHIPYARD:    return N_("Shipyard");
-      case PLANET_SERVICE_BLACKMARKET: return N_("Black Market");
+      case PLANET_SERVICE_LAND:
+         return N_("Landing");
+      case PLANET_SERVICE_INHABITED:
+         return N_("Inhabited");
+      case PLANET_SERVICE_REFUEL:
+         return N_("Refueling");
+      case PLANET_SERVICE_BAR:
+         return N_("Spaceport Bar");
+      case PLANET_SERVICE_MISSIONS:
+         return N_("Mission Computer");
+      case PLANET_SERVICE_COMMODITY:
+         return N_("Commodity Exchange");
+      case PLANET_SERVICE_OUTFITS:
+         return N_("Outfit Shop");
+      case PLANET_SERVICE_SHIPYARD:
+         return N_("Ship Dealer");
+      case PLANET_SERVICE_BLACKMARKET:
+         return N_("Black Market");
    }
    return NULL;
 }
 
 int planet_getService( char *name )
 {
-   if (strcmp(name,"Land")==0)
+   if (strcmp(name,"Landing")==0)
       return PLANET_SERVICE_LAND;
    else if (strcmp(name,"Inhabited")==0)
       return PLANET_SERVICE_INHABITED;
-   else if (strcmp(name,"Refuel")==0)
+   else if (strcmp(name,"Refueling")==0)
       return PLANET_SERVICE_REFUEL;
-   else if (strcmp(name,"Bar")==0)
+   else if (strcmp(name,"Spaceport Bar")==0)
       return PLANET_SERVICE_BAR;
-   else if (strcmp(name,"Missions")==0)
+   else if (strcmp(name,"Mission Computer")==0)
       return PLANET_SERVICE_MISSIONS;
-   else if (strcmp(name,"Commodity")==0)
+   else if (strcmp(name,"Commodity Exchange")==0)
       return PLANET_SERVICE_COMMODITY;
-   else if (strcmp(name,"Outfits")==0)
+   else if (strcmp(name,"Outfit Shop")==0)
       return PLANET_SERVICE_OUTFITS;
-   else if (strcmp(name,"Shipyard")==0)
+   else if (strcmp(name,"Ship Dealer")==0)
       return PLANET_SERVICE_SHIPYARD;
    else if (strcmp(name,"Black Market")==0)
       return PLANET_SERVICE_BLACKMARKET;

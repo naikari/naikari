@@ -1242,7 +1242,7 @@ void land_genWindows( int load, int changetab )
    j = 0;
    /* Main. */
    land_windowsMap[LAND_WINDOW_MAIN] = j;
-   names[j++] = _("Landing Main");
+   names[j++] = _("Land Info");
    /* Bar. */
    if (planet_hasService(land_planet, PLANET_SERVICE_BAR)) {
       land_windowsMap[LAND_WINDOW_BAR] = j;
@@ -1251,28 +1251,28 @@ void land_genWindows( int load, int changetab )
    /* Missions. */
    if (planet_hasService(land_planet, PLANET_SERVICE_MISSIONS)) {
       land_windowsMap[LAND_WINDOW_MISSION] = j;
-      names[j++] = _("Missions");
+      names[j++] = _("Mission Computer");
    }
    /* Outfits. */
    if (planet_hasService(land_planet, PLANET_SERVICE_OUTFITS)) {
       land_windowsMap[LAND_WINDOW_OUTFITS] = j;
-      names[j++] = _("Outfits");
+      names[j++] = _("Outfit Shop");
    }
    /* Shipyard. */
    if (planet_hasService(land_planet, PLANET_SERVICE_SHIPYARD)) {
       land_windowsMap[LAND_WINDOW_SHIPYARD] = j;
-      names[j++] = _("Shipyard");
+      names[j++] = _("Ship Dealer");
    }
    /* Equipment. */
    if (planet_hasService(land_planet, PLANET_SERVICE_OUTFITS) ||
          planet_hasService(land_planet, PLANET_SERVICE_SHIPYARD)) {
       land_windowsMap[LAND_WINDOW_EQUIPMENT] = j;
-      names[j++] = _("Equipment");
+      names[j++] = _("Hangar");
    }
    /* Commodity. */
    if (planet_hasService(land_planet, PLANET_SERVICE_COMMODITY)) {
       land_windowsMap[LAND_WINDOW_COMMODITY] = j;
-      names[j++] = _("Commodity");
+      names[j++] = _("Commodity Exchange");
    }
 
    /* Create tabbed window. */
