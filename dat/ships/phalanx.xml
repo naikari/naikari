@@ -13,7 +13,6 @@
  <trail_generator x="-12" y="40" h="0">nebula</trail_generator>
  <trail_generator x="-12" y="-40" h="0">nebula</trail_generator>
  <fabricator>House Dvaered</fabricator>
- <license>Medium Combat Vessel License</license>
  <description>While somewhat technologically antiquated, the Phalanx's large energy capacity and heavy armor allow it to remain an effective combat vessel.</description>
  <health>
   <armour>210</armour>

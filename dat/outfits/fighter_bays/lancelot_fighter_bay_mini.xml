@@ -3,7 +3,6 @@
  <general>
   <slot prop="fighter_bay">weapon</slot>
   <size>medium</size>
-  <license>Light Combat Vessel License</license>
   <mass>45</mass>
   <price>420000</price>
   <gfx_store>lancelot_fighter.webp</gfx_store>

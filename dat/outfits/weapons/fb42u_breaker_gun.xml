@@ -5,7 +5,6 @@
   <size>small</size>
   <mass>6</mass>
   <price>12000</price>
-  <license>Light Weapon License</license>
   <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Breaker Guns fire short-range, but fast and highly damaging energy pulse projectiles.</description>
   <gfx_store>neutron.webp</gfx_store>
  </general>

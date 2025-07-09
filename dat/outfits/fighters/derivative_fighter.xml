@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Derivative Fighter">
  <general>
-  <license>Light Combat Vessel License</license>
   <mass>15</mass>
   <price>0</price>
   <gfx_store>proteron_derivative_fighter.webp</gfx_store>

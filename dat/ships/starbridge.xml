@@ -14,7 +14,6 @@
  <trail_generator x="-28" y="6" h="5" />
  <trail_generator x="-28" y="-6" h="5" />
  <fabricator>Shadow</fabricator>
- <license>Heavy Combat Vessel License</license>
  <description>The Starbridge is a mysterious ship of unknown origin and purpose. Despite its small size, it is an incredibly powerful vessel.</description>
  <health>
   <armour>1900</armour>

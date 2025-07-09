@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>large</size>
-  <license>Heavy Weapon License</license>
   <mass>1000</mass>
   <price>2000000</price>
   <description>This tremendously massive, high-power variant of the TL110-L Lumina Turret is far too massive and uses far too much processing power to fit on any ship, but is incredibly powerful. It is typically mounted onto armed stations as a defensive weapon.</description>

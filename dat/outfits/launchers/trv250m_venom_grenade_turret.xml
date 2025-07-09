@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>medium</size>
-  <license>Medium Weapon License</license>
   <mass>15</mass>
   <price>31000</price>
   <gfx_store>empgrenadelauncher_blue.webp</gfx_store>

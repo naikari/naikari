@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>medium</size>
-  <license>Medium Weapon License</license>
   <mass>60</mass>
   <price>65000</price>
   <description>The heavier Mark 2 Plasma Turret sees a lot more use than its smaller counterpart. It is often found on Destroyers as a supplementary weapon, particularly those deployed in task forces designed to take down larger vessels.</description>

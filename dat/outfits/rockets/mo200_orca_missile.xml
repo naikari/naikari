@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="MO200 Orca Missile">
  <general>
-  <license>Medium Weapon License</license>
   <mass>2</mass>
   <price>0</price>
   <description>The Spearhead class ion missile is one of Enygma Systems' more specialized pieces of hardware. Unlike conventional missiles, it primarily targets shielding; it uses a special energy discharge warhead that is quite effective at disrupting shields. The Spearhead's limited agility make it primarily suited to fighting corvette class ships or heavier.</description>

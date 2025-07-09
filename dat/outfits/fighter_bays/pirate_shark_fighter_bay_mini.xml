@@ -3,7 +3,6 @@
  <general>
   <slot prop="fighter_bay">weapon</slot>
   <size>medium</size>
-  <license>Light Combat Vessel License</license>
   <mass>35</mass>
   <price>300000</price>
   <gfx_store>shark_pirate_fighter.webp</gfx_store>

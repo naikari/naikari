@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>medium</size>
-  <license>Heavy Weapon License</license>
   <mass>60</mass>
   <price>200000</price>
   <description>Enygma Systems found that there was an unexploited niche in disabling weapons aimed at larger warships. Finding Medusa missiles and ion weaponry insufficient, they redisgned Unicorp's Caesar IV torpedo as a heavy EMP weapon, capable of rapidly frying the systems of even the largest warships.</description>

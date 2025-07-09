@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Heavy Drone Fighter">
  <general>
-  <license>Light Combat Vessel License</license>
   <mass>25</mass>
   <price>0</price>
   <gfx_store>drone_heavy_fighter.webp</gfx_store>

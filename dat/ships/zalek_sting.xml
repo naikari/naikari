@@ -14,7 +14,6 @@
  <trail_generator x="-25" y="7" h="7" always_under="1">zalek</trail_generator>
  <trail_generator x="-25" y="-7" h="-7" always_under="1">zalek</trail_generator>
  <fabricator>Za'lek Fabricators</fabricator>
- <license>Medium Combat Vessel License</license>
  <description>The Sting is the smallest Za'lek ship, capable of carrying only missile launchers and miniaturized bomb drones. Stings are regularly tasked with monitoring drones to ensure that they don't go haywire, and giving them fire support from a distance.</description>
  <health>
   <armour>230</armour>

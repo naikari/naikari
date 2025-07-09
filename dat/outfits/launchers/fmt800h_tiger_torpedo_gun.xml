@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>medium</size>
-  <license>Heavy Weapon License</license>
   <mass>55</mass>
   <price>200000</price>
   <description>Caesar IV class torpedoes are among the most common torpedo weapons available. Thô much slower than missiles and useless against mobile targets, they remain maneuverable enough to chase down light cruisers.</description>

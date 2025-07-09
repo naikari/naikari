@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>large</size>
-  <license>Heavy Weapon License</license>
   <mass>40</mass>
   <price>130000</price>
   <description>The TS150-L Spear Turret is a lighter, faster version of the TS257-X Spear Turret. It does not deal as much damage, but its lighter size and more forgiving CPU requirements makes it a competitive contender.</description>

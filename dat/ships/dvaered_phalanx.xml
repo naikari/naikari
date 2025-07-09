@@ -14,7 +14,6 @@
  <trail_generator x="-12" y="40" h="0">nebula</trail_generator>
  <trail_generator x="-12" y="-40" h="0">nebula</trail_generator>
  <fabricator>House Dvaered</fabricator>
- <license>Medium Combat Vessel License</license>
  <description>Not satisfied with the armor strength of the civilian grade Phalanx, the Dvaered military decided to thicken the ship's armor before deploying it for military service. The job required tearing out a reactor, making its energy regeneration even worse than a standard Phalanx, but this also had a nice side-effect of making it easier for heat to dissipate from the ship's forward-mounted weapons, and also lowering its mass.</description>
  <health>
   <armour>220</armour>

@@ -3,7 +3,6 @@
  <general>
   <slot prop="bio_weapon">weapon</slot>
   <size>small</size>
-  <license>Light Weapon License</license>
   <rarity>6</rarity>
   <mass>18</mass>
   <price>15000</price>

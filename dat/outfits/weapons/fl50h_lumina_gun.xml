@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>small</size>
-  <license>Medium Weapon License</license>
   <mass>30</mass>
   <price>37000</price>
   <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Lumina Guns fire standard photon projectiles.</description>

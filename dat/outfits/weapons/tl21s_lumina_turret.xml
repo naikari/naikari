@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>small</size>
-  <license>Light Weapon License</license>
   <mass>18</mass>
   <price>17500</price>
   <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Lumina Turrets fire standard photon projectiles.</description>

@@ -3,7 +3,6 @@
  <general>
   <slot>weapon</slot>
   <size>medium</size>
-  <license>Medium Weapon License</license>
   <mass>40</mass>
   <price>65000</price>
   <description>The FK55-M Katana Gun is a Soromid military refinement to the standard FK50-H Katana Gun. By confining a massive cluster of superheated plasma into a small space within a specialized "membrane shield", the impact creates large explosions which tear thru even the strongest hulls. The downside to this design is that a lot of space is required, which limits its use to medium mounts.</description>

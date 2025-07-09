@@ -13,7 +13,6 @@
  <trail_generator x="-2" y="-29" h="0">nebula</trail_generator>
  <trail_generator x="-10" y="0" h="0">fire</trail_generator>
  <fabricator>House Dvaered</fabricator>
- <license>Light Combat Vessel License</license>
  <description>The military version of the Ancestor is surprisingly similar to the civilian version, but unable to help themselves, House Dvaered boosted its armor. Knowing that too much weight could be a detriment to its core design, they compensated for this by using lighter, cheaper electronics which are less effective at keeping the ship's battery charged. While the ship is still slightly heavier, this was deemed an acceptable compromise.</description>
  <health>
   <armour>85</armour>
