@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>18</mass>
   <price>12500</price>
-  <description>The upgraded civilian Razor model packs increased overall effectiveness compared to its predecessor, and has less difficulty in overloading capital ship grade shielding. As with the basic model, the FR18-S Razor Gun is best used to drain a target's shields, paving the way for other weapons to deliver the finishing blow.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Razor Guns fire high-speed ionized photon projectiles.</description>
   <gfx_store>razor2.webp</gfx_store>
  </general>
  <specific type="bolt">

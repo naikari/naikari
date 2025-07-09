@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>100</mass>
   <price>110000</price>
-  <description>Not to be outdone by the Soromid, the Empire took the FK55-M Katana Gun and modified it further to operate as a turret with 365-degree rotation. While its overall damage output is hampered by a somewhat slow fire rate, its damage per shot rivals capital class weaponry and the hot plasma easily melts holes into even the strongest plating. That combined with its relatively low operational complexity makes it a common staple for Destroyers and light Cruisers.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Katana Turrets fire high-intensity hot plasma projectiles.</description>
   <gfx_store>plasma_turret2.webp</gfx_store>
  </general>
  <specific type="turret bolt">

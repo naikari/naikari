@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>30</mass>
   <price>78000</price>
-  <description>The FS78-M Spear Gun is one of the most powerful Lance weapons around. The technology behind it is poorly understood by everyone except the Za'lek, who use it as a standard weapon.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Spear Guns fire short-range, high-intensity continuous particle beams.</description>
   <gfx_store>grave_lance.webp</gfx_store>
  </general>
  <specific type="beam">

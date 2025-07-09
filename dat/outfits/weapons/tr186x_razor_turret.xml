@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>75</mass>
   <price>175000</price>
-  <description>House Sirius typically equips its heaviest vessels with TR186-X Razor Turrets. Where the standard razor turrets are ineffective, the heavy razor turret provides the necessary firepower to batter down virtually any shielding.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Razor Turrets fire high-speed ionized photon projectiles.</description>
   <gfx_store>razorturret3.webp</gfx_store>
  </general>
  <specific type="turret bolt">

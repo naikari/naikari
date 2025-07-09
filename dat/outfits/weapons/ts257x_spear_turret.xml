@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>55</mass>
   <price>220000</price>
-  <description>The TS257-X Spear Turret is one of the most powerful beam class weapons on the market. It's designed for capital ship combat, althô its extremely large payload makes it somewhat useful for clearing enemy fighters. Due to its high energy requirements, it is typically only used on capital ships, particularly Carriers, in an effort to increase damage output with a more limited number of weapon slots.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Spear Turrets fire short-range, high-intensity continuous particle beams.</description>
   <gfx_store>ragnarok_beam.webp</gfx_store>
  </general>
  <specific type="turret beam">

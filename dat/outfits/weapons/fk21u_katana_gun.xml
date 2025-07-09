@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>6</mass>
   <price>7000</price>
-  <description>The Plasma Blaster fires superheated plasma which is very effective at damaging armor, but less effective against shields. Plasma weapon technology was developed by the Soromid to enable the creation of the organic weaponry Soromid ships are equipped with, but it was such a hit with bounty hunters that the Soromid continue to manufacture synthetic plasma weaponry such as this as well.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Katana Guns fire high-intensity hot plasma projectiles.</description>
   <gfx_store>plasma.webp</gfx_store>
  </general>
  <specific type="bolt">

@@ -6,7 +6,7 @@
   <priority>-3</priority>
   <mass>9</mass>
   <price>9600</price>
-  <description>The FT80-U Talon Gun is the most basic secondary weapon available, and often the one a pilot uses first. That said, it should not be underestimated. While it has a slow rate of fire and is difficult to aim due to its lack of swivel, it can be devastating in the hands of a skilled pilot.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. The Talon Gun fires high-speed, high-intensity ionized photon projetiles. Unlike most guns, it is incabable of swiveling at all and has to be aimed manually.</description>
   <gfx_store>photon_dagger.png</gfx_store>
   </general>
  <specific type="bolt" secondary="1">

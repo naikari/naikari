@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>60</mass>
   <price>58000</price>
-  <description>The MK2 turreted version of the Razor sees a lot of application on medium escort ships. They are often mounted alongside laser or gauss turrets to assist in de-shielding incoming attackers before they are ripped to shreds.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Razor Turrets fire high-speed ionized photon projectiles.</description>
   <gfx_store>razorturret2.webp</gfx_store>
  </general>
  <specific type="turret bolt">

@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>18</mass>
   <price>14000</price>
-  <description>The FK27-S Katana Gun is a high-powered version of the Plasma Blaster, powerful enough to blow all but the heaviest pirate ships out of the sky. Its power is substantial enough that it would even be used by the Soromid military if it weren't for their preference for purpose-built organic weaponry.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Katana Guns fire high-intensity hot plasma projectiles.</description>
   <gfx_store>plasma2.webp</gfx_store>
  </general>
  <specific type="bolt">

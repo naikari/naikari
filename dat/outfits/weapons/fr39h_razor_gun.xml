@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>30</mass>
   <price>35000</price>
-  <description>The FR39-H Razor Gun is a high-powered version of the Razor, excellent at stripping the shields from those who would stand against House Sirius. It is commonly found on Sirius Preachers and other Corvettes.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Razor Guns fire high-speed ionized photon projectiles.</description>
   <gfx_store>razor3.webp</gfx_store>
  </general>
  <specific type="bolt">

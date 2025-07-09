@@ -5,7 +5,7 @@
   <size>large</size>
   <mass>110</mass>
   <price>115000</price>
-  <description>The Ti193-X Ion-Shackle Turret is the strongest less-than-lethal weapon in the galaxy, applying brute force to its target's internal systems. It is well-used by pirates all across the galaxy despite repeated attempts to restrict its sale.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Ion-Shackle Turrets fire less-than-lethal ionized projectiles.</description>
   <gfx_store>heavy_ionturret.webp</gfx_store>
  </general>
  <specific type="turret bolt">

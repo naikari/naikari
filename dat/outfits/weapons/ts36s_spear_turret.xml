@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>14</mass>
   <price>110000</price>
-  <description>This turret-mounted beam is highly sought after by traders for its incredible defensive capability. While its range is short, its ability to nearly instantly vaporize any persuing fighter more than makes up for it.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Spear Turrets fire short-range, high-intensity continuous particle beams.</description>
   <gfx_store>particle_beam.webp</gfx_store>
  </general>
  <specific type="turret beam">

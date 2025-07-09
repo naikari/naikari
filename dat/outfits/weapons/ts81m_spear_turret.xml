@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>24</mass>
   <price>72000</price>
-  <description>The turret-mounted edition of the Orion design offers mid-sized ships exceptional short-duration firepower, a potent deterrent against lighter vessels.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Spear Turrets fire short-range, high-intensity continuous particle beams.</description>
   <gfx_store>orion_beam.webp</gfx_store>
  </general>
  <specific type="turret beam">

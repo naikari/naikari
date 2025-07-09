@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>30</mass>
   <price>40000</price>
-  <description>The FK50-H Katana Gun is a scaled-up version of the Plasma Blaster for use on Corvettes. It manages to pack a markedly stronger punch, but the engineering complexities of fitting such a powerful weapon into a small slot lead to much higher dependence on guidance from the ship's central computer.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Katana Guns fire high-intensity hot plasma projectiles.</description>
   <gfx_store>plasma_cannon.webp</gfx_store>
  </general>
  <specific type="bolt">
