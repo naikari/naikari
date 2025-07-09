@@ -3,7 +3,7 @@
  <general>
   <mass>4</mass>
   <price>0</price>
-  <description>Caesar IV class torpedoes are among the most common torpedo weapons available. Thô much slower than missiles and useless against mobile targets, they remain maneuverable enough to chase down light cruisers.</description>
+  <description>(null)</description>
   <gfx_store>placeholder.webp</gfx_store>
  </general>
  <specific type="ammo">

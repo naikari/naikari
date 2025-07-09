@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>60</mass>
   <price>200000</price>
-  <description>Enygma Systems found that there was an unexploited niche in disabling weapons aimed at larger warships. Finding Medusa missiles and ion weaponry insufficient, they redisgned Unicorp's Caesar IV torpedo as a heavy EMP weapon, capable of rapidly frying the systems of even the largest warships.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Spider Missile Guns fire Spider class homing missiles, which cause a less-than-lethal electromagnetic pulse on contact with the target.</description>
   <gfx_store>caesarlauncher_blue.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">

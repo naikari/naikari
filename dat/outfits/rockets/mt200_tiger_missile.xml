@@ -3,7 +3,7 @@
  <general>
   <mass>1.5</mass>
   <price>0</price>
-  <description>Vengeance class interceptor missiles are the heaviest interceptor missiles currently in production. Almost half the missile hull is used for payload, which decreases its ability to catch fast targets.</description>
+  <description>(null)</description>
   <gfx_store>placeholder.webp</gfx_store>
  </general>
  <specific type="ammo">

@@ -6,7 +6,7 @@
   <mass>15</mass>
   <price>31000</price>
   <gfx_store>empgrenadelauncher_blue.webp</gfx_store>
-  <description>This launcher can fire EMP grenades in any direction using a unique internal guidance system. The grenades unleash an electromagnetic pulse, rapidly disabling the electronics of enemy ships. Useful for taking ships alive; the EM pulses rarely destroy the ship, leaving it floating disabled in space. These are favored by traders for keeping pirates at bay, but pirates themselves are avid users as well.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Venom Grenade Turrets fire Venom class grenades, which cause a less-than-lethal electromagnetic pulse on contact with the target.</description>
  </general>
  <specific type="turret launcher">
   <ammo>RV250 Venom Grenade</ammo>

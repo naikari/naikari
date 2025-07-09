@@ -3,7 +3,7 @@
  <general>
   <mass>2</mass>
   <price>0</price>
-  <description>The Spearhead class ion missile is one of Enygma Systems' more specialized pieces of hardware. Unlike conventional missiles, it primarily targets shielding; it uses a special energy discharge warhead that is quite effective at disrupting shields. The Spearhead's limited agility make it primarily suited to fighting corvette class ships or heavier.</description>
+  <description>(null)</description>
   <gfx_store>placeholder.webp</gfx_store>
  </general>
  <specific type="ammo">

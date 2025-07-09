@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>40</mass>
   <price>140000</price>
-  <description>These turreted launchers are sometimes employed by cruiser captains whose ships aren't maneuverable enough to effectively combat enemy fighters and bombers. The punch of the Headhunter missile combined with Enygma Systems' swivel mounted launcher can effectively compensate for any blind spots.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Tiger Missile Turrets fire Tiger class homing missiles, which cause a kinetic explosion on contact with the target.</description>
   <gfx_store>headhunterturret.webp</gfx_store>
  </general>
  <specific type="turret launcher" secondary="1">

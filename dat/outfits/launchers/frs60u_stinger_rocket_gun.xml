@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>10</mass>
   <price>30000</price>
-  <description>When it comes to delivering heavy damage at a devastating rate, many seasoned pilots know to trust TeraCom's high-performance Mace launcher. Featuring enhanced fire rate, improved tracking technology, and greater capacity, no other light weapon can deliver an unrelenting barrage like the FRS60-U Stinger Rocket Gun can.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Stinger Rocket Guns fire fast, low yield yield Stinger class unguided rockets, which cause a kinetic explosion on contact with the target.</description>
   <gfx_store>macelauncher.webp</gfx_store>
  </general>
  <specific type="launcher">

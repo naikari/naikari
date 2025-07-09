@@ -6,7 +6,7 @@
   <mass>15</mass>
   <price>45000</price>
   <gfx_store>bansheelauncher.webp</gfx_store>
-  <description>TeraCom has equipped its Banshee launcher model with high grade reload and tube cooling systems as well as AI-enhanced tracking technology, boosting reliability, accuracy, and rate of fire significantly. These unguided rockets, while slow, can do quite respectable damage even to fairly large ships and are an important staple for light fighters.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Claw Rocket Guns fire slow, high yield Claw class unguided rockets, which cause a kinetic explosion on contact with the target.</description>
  </general>
  <specific type="launcher" secondary="1">
   <ammo>RC80 Claw Rocket</ammo>

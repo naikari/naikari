@@ -5,9 +5,7 @@
   <size>medium</size>
   <mass>25</mass>
   <price>120000</price>
-  <description>The Thurion interceptor class missile focus on high agility rather than destructive power. While it does little damage to physical objects it is quite effective at disrupting shields.
-
-This launcher is mounted on a turret and has more ammo capacity than the standard launcher.</description>
+  <description>Turrets are weapons which automatically rotate to aim at your target, regardless of your ship's orientation. Their 360° firing radius offers the maximum possible protection for ships that can accommodate their size and mass. Orca Missile Turrets fire Orca class homing missiles, which cause an ionized explosion on contact with the target.</description>
   <gfx_store>turreted_convulsion_launcher.webp</gfx_store>
  </general>
  <specific type="turret launcher" secondary="1">

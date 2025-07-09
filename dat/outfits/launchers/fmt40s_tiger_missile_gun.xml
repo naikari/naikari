@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>17</mass>
   <price>40000</price>
-  <description>TeraCom's Fury Launcher is a high-performance missile launcher equipped with patented target tracking and missile arming technology, allowing pilots to get a lock on targets quickly and easily. While lacking in destructive power, the Fury missiles launched are nimble enough to easily strike even some of the fastest ships in the galaxy.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Tiger Missile Guns fire Tiger class homing missiles, which cause a kinetic explosion on contact with the target.</description>
   <gfx_store>teracom_fury_launcher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">

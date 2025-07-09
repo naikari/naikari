@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>16</mass>
   <price>60000</price>
-  <description>The Thurion interceptor class missile focus on high agility rather than destructive power. While it does little damage to physical objects it is quite effective at disrupting shields.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Orca Missile Guns fire Orca class homing missiles, which cause an ionized explosion on contact with the target.</description>
   <gfx_store>convulsion_launcher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">

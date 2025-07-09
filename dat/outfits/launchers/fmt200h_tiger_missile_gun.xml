@@ -5,7 +5,7 @@
   <size>medium</size>
   <mass>30</mass>
   <price>150000</price>
-  <description>TeraCom's patented Vengeance launcher hardware considerably reduces the time it takes to achieve a lock. Sometimes, those few seconds can make all the difference. With their destructive payload, these missiles will make short work of even quite large ships.</description>
+  <description>Guns are weapons mounted in a fixed forward position. They provide a lightweight source of firepower, perfect for agile ships. However, their ability to swivel to aim at the target is constrained. Tiger Missile Guns fire Tiger class homing missiles, which cause a kinetic explosion on contact with the target.</description>
   <gfx_store>vengeance_launcher.webp</gfx_store>
  </general>
  <specific type="launcher" secondary="1">

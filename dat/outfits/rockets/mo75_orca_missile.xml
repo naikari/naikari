@@ -3,7 +3,7 @@
  <general>
   <mass>0.2</mass>
   <price>0</price>
-  <description>The Thurion interceptor class missile focus on high agility rather than destructive power. While it does little damage to physical objects it is quite effective at disrupting shields.</description>
+  <description>(null)</description>
   <gfx_store>placeholder.webp</gfx_store>
  </general>
  <specific type="ammo">
