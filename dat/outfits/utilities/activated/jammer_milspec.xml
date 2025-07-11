@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>3</mass>
   <price>250000</price>
-  <description>Does your work require you to venture into dangerous territory? Are you facing opposition your shields can't handle? The Milspec U-9 "Magus" jammer is what you need! Throw the bloodhounds off your scent with a press of a button. While your enemies are still trying to make sense out of the garble they're getting on their sensors, you will already have made your escape! Fly safe, fly Milspec.</description>
+  <description>A Jammer is a manually activated outfit which dramatically reduces the range at which enemy radar can detect your ship, but also increases energy usage. This can be used to evade or escape detection in hostile space, or it can be used to sabotage the tracking capability of enemy homing missiles.</description>
   <gfx_store>flow_resonator_l.webp</gfx_store>
   <limit>Jammer</limit>
  </general>

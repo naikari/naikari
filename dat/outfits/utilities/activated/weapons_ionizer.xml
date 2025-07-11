@@ -5,7 +5,7 @@
   <size>small</size>
   <mass>3</mass>
   <price>200000</price>
-  <description>The weapons ionizer works on the principle of diverting massive amounts of weapon energy to an ion field generator. While energy usage increases and damage output significantly decreases, the ion field allows conventional weapons to deal ionizing damage while the outfit is active.</description>
+  <description>A Weapons Ionizer is a manually activated outfit which changes the characteristics of all weaponry to be non-lethal, but slightly decreases their power output and increases their energy usage. This can be used to more easily disable targets without the risk of destroying them, while still having fully lethal weaponry at your disposal when needed.</description>
   <gfx_store>pinpoint_combat_ai.webp</gfx_store>
   <limit>Ionizer</limit>
  </general>
