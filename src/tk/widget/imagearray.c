@@ -130,7 +130,7 @@ static void iar_getDim( Widget* iar, double* w, double* h, double* xspace, doubl
    if (w != NULL) *w = _w;
    if (h != NULL) *h = _h;
    if (xspace != NULL) *xspace = _space;
-   if (yspace != NULL) *yspace = _space;
+   if (yspace != NULL) *yspace = 1.;
 }
 
 
