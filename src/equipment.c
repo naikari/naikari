@@ -295,7 +295,7 @@ static void equipment_getDim( unsigned int wid, int *w, int *h,
 
    /* Calculate button dimensions. */
    if (bw != NULL)
-      *bw = (*w - 10 - (ow!=NULL?*ow:0) - (4*10) - 10) / 4;
+      *bw = (*w - 10 - ssw - (4*10) - 10) / 4;
    if (bh != NULL)
       *bh = BUTTON_HEIGHT;
 }
@@ -1491,10 +1491,12 @@ static void equipment_genShipList( unsigned int wid )
 
       /* Create the image array. */
       iconsize = 96;
-      window_addImageArray( wid, 10, -40,
-            sw, sh, EQUIPMENT_SHIPS, iconsize, iconsize,
-            cships, nships, equipment_updateShips, NULL, equipment_transChangeShip );
-      toolkit_setImageArrayAccept( wid, EQUIPMENT_SHIPS, equipment_transChangeShip );
+      window_addImageArray(
+         wid, 10, -40, sw, sh, EQUIPMENT_SHIPS, iconsize, iconsize,
+         cships, nships, equipment_updateShips, NULL,
+         equipment_transChangeShip);
+      toolkit_setImageArrayAccept(wid, EQUIPMENT_SHIPS,
+            equipment_transChangeShip);
    }
 }
 
@@ -1581,15 +1583,15 @@ static void equipment_genOutfitList( unsigned int wid )
 
 
    /* Create the actual image array. */
-   iw = ow - 6;
-   ih = oh - 37;
+   iw = ow;
+   ih = oh - 34;
    iconsize = 96;
-   window_addImageArray( wid, x + 4, y + 3, iw, ih,
+   window_addImageArray(wid, x, y, iw, ih,
          EQUIPMENT_OUTFITS, iconsize, iconsize,
          coutfits, noutfits,
          equipment_updateOutfits,
          equipment_rightClickOutfits,
-         equipment_rightClickOutfits );
+         equipment_rightClickOutfits);
 
    toolkit_setImageArrayAccept( wid, EQUIPMENT_OUTFITS, equipment_rightClickOutfits );
 }
