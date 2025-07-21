@@ -83,7 +83,8 @@ get_tools() {
     # Get linuxdeploy's AppImage
     linuxdeploy="$WORKPATH/utils/linuxdeploy.AppImage"
     if [ ! -f "$linuxdeploy" ]; then
-        curl -L -o "$linuxdeploy" "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-$ARCH.AppImage"
+        curl -L -o "$linuxdeploy" "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-$ARCH.AppImage" \
+            || { echo "Failed to download linuxdeploy"; exit 1; }
         #
         # This fiddles with some magic bytes in the ELF header. Don't ask me what this means.
         # For the layman: makes appimages run in docker containers properly again.
@@ -95,7 +96,8 @@ get_tools() {
     # Get appimagetool's AppImage
     appimagetool="$WORKPATH/utils/appimagetool.AppImage"
     if [ ! -f "$appimagetool" ]; then
-        curl -L -o "$appimagetool" "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
+        curl -L -o "$appimagetool" "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage" \
+            || { echo "Failed to download appimagetool"; exit 1; }
         #
         # This fiddles with some magic bytes in the ELF header. Don't ask me what this means.
         # For the layman: makes appimages run in docker containers properly again.
