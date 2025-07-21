@@ -93,7 +93,7 @@ get_tools(){
     # Get appimagetool's AppImage
     appimagetool="$WORKPATH/utils/appimagetool.AppImage"
     if [ ! -f "$appimagetool" ]; then
-        curl -L -o "$appimagetool" "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-$ARCH.AppImage"
+        curl -L -o "$appimagetool" "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-$ARCH.AppImage"
         #
         # This fiddles with some magic bytes in the ELF header. Don't ask me what this means.
         # For the layman: makes appimages run in docker containers properly again.
