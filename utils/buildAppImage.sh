@@ -159,14 +159,11 @@ build_appimage() {
         SUFFIX="$SUFFIX-unknown"
     fi
 
-    export OUTPUT="$WORKPATH/dist/naikari-$SUFFIX.AppImage"
+    OUTPUT="$WORKPATH/dist/naikari-$SUFFIX.AppImage"
+    UPDATE_INFORMATION="gh-releases-zsync|naikari|naikari|$TAG|naikari-*.AppImage.zsync"
 
-    # Disable appstream test
-    export NO_APPSTREAM=1
-
-    export UPDATE_INFORMATION="gh-releases-zsync|naikari|naikari|$TAG|naikari-*.AppImage.zsync"
     pushd "$WORKPATH/dist"
-    "$appimagetool" -n -v -u "$UPDATE_INFORMATION" "$APPDIRPATH" "$OUTPUT"
+    "$appimagetool" --comp zstd -v -u "$UPDATE_INFORMATION" "$APPDIRPATH" "$OUTPUT"
     popd
     echo "Completed."
 }
