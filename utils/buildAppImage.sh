@@ -15,7 +15,9 @@ SOURCEPATH="$(pwd)"
 BUILDTYPE="release"
 MAKEAPPIMAGE="false"
 PACKAGE="false"
+NIGHTLY="false"
 
+# Parse arguments
 while getopts dnipa:s:b: OPTION "$@"; do
     case $OPTION in
     d)
@@ -46,7 +48,7 @@ while getopts dnipa:s:b: OPTION "$@"; do
     esac
 done
 
-# Creates temp dir if needed
+# Setup working paths
 if [ -z "$BUILDPATH" ]; then
     BUILDPATH="$(mktemp -d)"
     WORKPATH=$(readlink -mf "$BUILDPATH")
@@ -63,7 +65,6 @@ fi
 BUILDPATH="$WORKPATH/builddir"
 
 # Output configured variables
-
 echo "SCRIPT WORKING PATH: $WORKPATH"
 echo "APPDIR PATH:         $APPDIRPATH"
 echo "SOURCE PATH:         $SOURCEPATH"
@@ -78,7 +79,7 @@ ARCH=$(arch)
 
 export ARCH
 
-get_tools(){
+get_tools() {
     # Get linuxdeploy's AppImage
     linuxdeploy="$WORKPATH/utils/linuxdeploy.AppImage"
     if [ ! -f "$linuxdeploy" ]; then
@@ -105,7 +106,7 @@ get_tools(){
     fi
 }
 
-build_appdir(){
+build_appdir() {
     # Honours the MESON variable set by the environment before setting it manually
 
     if [ -z "$MESON" ]; then
@@ -113,13 +114,13 @@ build_appdir(){
     fi
 
     "$MESON" setup "$BUILDPATH" "$SOURCEPATH" \
-    --buildtype "$BUILDTYPE" \
-    --force-fallback-for=SuiteSparse \
-    -Dprefix="/usr" \
-    -Db_lto=true \
-    -Dauto_features=enabled \
-    -Ddocs_c=disabled \
-    -Ddocs_lua=disabled
+        --buildtype "$BUILDTYPE" \
+        --force-fallback-for=SuiteSparse \
+        -Dprefix="/usr" \
+        -Db_lto=true \
+        -Dauto_features=enabled \
+        -Ddocs_c=disabled \
+        -Ddocs_lua=disabled
     # Compile and Install Naikari to DISTDIR
     DESTDIR=$APPDIRPATH "$MESON" install -C "$BUILDPATH"
     # Rename metainfo file
@@ -130,7 +131,7 @@ build_appdir(){
 
 }
 
-build_appimage(){
+build_appimage() {
     # Set VERSION and OUTPUT variables
     if [ -f "$APPDIRPATH/usr/share/naikari/dat/VERSION" ]; then
         VERSION="$(<"$APPDIRPATH/usr/share/naikari/dat/VERSION")"
@@ -165,14 +166,14 @@ build_appimage(){
     pushd "$WORKPATH/dist"
     "$appimagetool" -n -v -u "$UPDATE_INFORMATION" "$APPDIRPATH" "$OUTPUT"
     popd
-echo "Completed."
+    echo "Completed."
 }
 
 get_tools
+
 if [[ "$MAKEAPPIMAGE" =~ "true" ]]; then
     build_appdir
     build_appimage
-
 elif [[ "$PACKAGE" =~ "true" ]]; then
     build_appimage
 else
