@@ -8,6 +8,7 @@
 # Output destination is ${WORKPATH}/dist
 
 set -e
+set -o pipefail
 
 # Defaults
 SOURCEPATH="$(pwd)"
