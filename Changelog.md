@@ -13,6 +13,8 @@
 * Completely gutted CPU from the game; the only hard limit is now number
   of slots.
 * Added, removed, and changed several missions and events.
+* Replaced generic civilian NPCs with a single bartender NPC who
+  provides information in a more structured manner.
 
 ### Other Changes
 
@@ -31,7 +33,6 @@
   a water world).
 * Removed NPC "importance" markers; how important an NPC is now has to
   be determined by context.
-* Removed randomly generated generic NPCs.
 * Increased disable inflicted by lethal weapons significantly.
 * Renamed Time Constant to "Time Passage Rate".
 * Changed and normalized the display names of planet services, avoiding
