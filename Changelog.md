@@ -12,7 +12,7 @@
 * Started writing an entirely new plot, with some elements kept.
 * Completely gutted CPU from the game; the only hard limit is now number
   of slots.
-* Removed several missions and events.
+* Added, removed, and changed several missions and events.
 
 ### Other Changes
 
@@ -24,20 +24,31 @@
 * Adjusted sound balancing and changed default volume levels to match.
 * Renamed several stats.
 * Changed the default Ship Computer control to F1.
-* Renamed bioship brains to hearts (reflecting the removal of CPUs).
-* Renamed core systems to APUs (auxiliary power units).
 * Removed planet and bar descriptions.
 * Added a date display to the Spaceport tab of land windows.
-* "Empire" versions of ships now instead use the word "Imperial"
-  (e.g. "Imperial Shark").
-* "Melendez Corporation" and "Unicorp" (in ship fabricator designations
-  and outfit names) merged and renamed to "Exacorp".
 * Improved the method for selecting cargo missions (which should reduce
   the occurrence of odd scenarios like a desert world shipping water to
   a water world).
 * Removed NPC "importance" markers; how important an NPC is now has to
   be determined by context.
 * Removed randomly generated generic NPCs.
+* Increased disable inflicted by lethal weapons significantly.
+* Renamed Time Constant to "Time Passage Rate".
+* Changed and normalized the display names of planet services, avoiding
+  the need to use the word "tab" when talking about one of the planet
+  tabs in dialog, and making what the tabs display the same as what the
+  services list in space displays.
+* Removed all licenses which only served as a monetary hindrance to
+  buying ships and outfits (like the Medium Weapon License). Outfits and
+  ships which previously required these licenses no longer require them.
+* Renamed most outfits, several ships, and some ship fabricators.
+* Replaced outfit descriptions with fully technical ones that focus on
+  explaining their mechanics, rather than attempting worldbuilding with
+  them.
+
+### Bugfixes
+
+* Fixed an error in the way tabs handled mouse click positioning.
 
 ## 0.12.0
 
