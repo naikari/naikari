@@ -74,6 +74,10 @@ local dest_text = _([["That should do it! Good job! With those firing skills, ma
 
 local pay_text = _([[Ian steps out of your ship and stretches his arms, seemingly happy to be back in atmosphere. "Thank you for your service once again," he says as he hands you a credit chip with your payment. "You should sell any extra Gold you have at the Commodity Exchange; you can make a nice bit of credits that way. And if you like, I have one more mission for you. Meet me at the bar whenever you're ready and I'll tell you more."]])
 
+local bartender_here_text = _([["It looks like you're working for Mr. Ian Structure. He's right over there." The bartender points to Ian. "If you're not sure what you should be doing, you should probably ask him directly."]])
+
+local bartender_away_text = _([["It looks like you're working for Mr. Ian Structure. He should at the bar on {planet} ({system} system). If you're not sure what you should be doing, you should probably go there and ask him directly."]])
+
 local misn_desc = _("Ian Structure has hired you to mine Gold from some asteroids.")
 local misn_log = _([[You accepted another mission from Ian Structure, this time mining some Gold from asteroids for him. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
@@ -161,6 +165,7 @@ function accept()
 
       marker = misn.markerAdd(missys, "low")
 
+      hook.custom("bartender_mission", "bartender_clue")
       hook.enter("enter")
       hook.land("land")
       hook.load("land")
@@ -184,6 +189,19 @@ function approach()
    end
 
    tk.msg("", enough_space_text)
+end
+
+
+function bartender_clue()
+   if var.peek("_bartender_ready") then
+      var.pop("_bartender_ready")
+      if planet.cur() == startplanet then
+         tk.msg("", bartender_here_text)
+      else
+         tk.msg("", fmt.f(bartender_away_text,
+               {planet=startplanet, system=startsys}))
+      end
+   end
 end
 
 

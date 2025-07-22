@@ -5,7 +5,7 @@
   <priority>100</priority>
   <chance>100</chance>
   <cond>not player.misnActive("Combat Practice")</cond>
-  <location>Computer</location>
+  <location>none</location>
  </avail>
  <notes>
   <campaign>Tutorial</campaign>
@@ -57,6 +57,8 @@ function create()
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
    misn.setReward(_("None"))
+
+   accept()
 end
 
 

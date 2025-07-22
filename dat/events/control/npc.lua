@@ -2,6 +2,7 @@
 <?xml version='1.0' encoding='utf8'?>
 <event name="Spaceport Bar NPC">
  <trigger>land</trigger>
+ <priority>100</priority>
  <chance>100</chance>
 </event>
 --]]
@@ -15,6 +16,7 @@
 local fmt = require "fmt"
 local portrait = require "portrait"
 require "jumpdist"
+require "events/tutorial/tutorial_common"
 
 
 --[[
@@ -244,7 +246,7 @@ function create()
    end
 
    -- End event on takeoff.
-   hook.takeoff( "leave" )
+   hook.takeoff("leave")
 end
 
 
@@ -473,9 +475,13 @@ function talkBartender(id)
    local greeting = _([["Hi! How can I help you?"]])
 
    local choice_mission = p_("bartender", "Mission Guidance")
+   local choice_practice = p_("bartender", "Combat Practice")
+   local choice_nothing = p_("bartender", "Nothing")
 
    local choice_n, choice = tk.choice("", greeting,
-      choice_mission)
+      choice_mission,
+      choice_practice,
+      choice_nothing)
 
    if choice == choice_mission then
       -- To implement bartender advice in a mission: in the
@@ -483,10 +489,28 @@ function talkBartender(id)
       -- if so, show the advice message(s) and pop _bartender_ready.
       var.push("_bartender_ready", true)
       naik.hookTrigger("bartender_mission")
+      hook.safe("bartender_mission_safe")
+   elseif choice == choice_practice then
+      if not player.misnActive("Combat Practice") then
+         if tk.yesno("", _([["You want to start a combat session? I can launch some AI-powered drones in this system for you to practice against. There's no risk of death, and you can choose what you want to fight against."]])) then
+            naik.missionStart("Combat Practice")
+         end
+      else
+         local msg = fmt.f(_([["You've already started a combat practice session. If you want to change it, you can abort it from your Ship Computer. You can access that by pressing {infokey}."]]),
+            {infokey=tutGetKey("info")})
+         tk.msg("", msg)
+      end
+   end
+end
 
-      if var.peek("_bartender_ready") then
-         var.pop("_bartender_ready")
-         tk.msg("", _([["Hm, I'm sorry, I don't see anything in your active missions I'd be able to help you with right now. If you need to start a new mission and you don't see anything around the bar, why not take a look at the mission computer? You can find it on any planet with the Missions service by clicking on the Missions tab."]]))
+
+function bartender_mission_safe()
+   if var.peek("_bartender_ready") then
+      var.pop("_bartender_ready")
+      if planet.cur():services()["missions"] then
+         tk.msg("", _([["Hm, I'm sorry, I don't see anything in your active missions I'd be able to help you with right now. If you want to start a new mission, try looking around here at the #bSpaceport Bar#0, or you could take a look at the #bMission Computer#0."]]))
+      else
+         tk.msg("", _([["Hm, I'm sorry, I don't see anything in your active missions I'd be able to help you with right now. If you want to start a new mission, try looking around here at the #bSpaceport Bar#0. If you can't find one, you could search for a planet which has a #bMission Computer#0 and look there."]]))
       end
    end
 end

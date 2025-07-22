@@ -61,6 +61,10 @@ local finish_text = _([[You approach Ian and inform him that you have the cargo 
 
 "You saved me some time by doing that for me," Ian says. "Thank you. I have transferred the payment I promised into your account. If you would be willing to do it, I have another mission for you. Talk to me here at the bar again when you're ready for it."]])
 
+local bartender_here_text = _([["It looks like you're working for Mr. Ian Structure. He's right over there." The bartender points to Ian. "If you're not sure what you should be doing, you should probably ask him directly."]])
+
+local bartender_away_text = _([["It looks like you're working for Mr. Ian Structure. He should at the bar on {planet} ({system} system). If you're not sure what you should be doing, you should probably go there and ask him directly."]])
+
 local misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
 local misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
@@ -113,10 +117,24 @@ function accept()
 
       land()
 
+      hook.custom("bartender_mission", "bartender_clue")
       hook.land("land")
       hook.load("land")
    else
       misn.finish()
+   end
+end
+
+
+function bartender_clue()
+   if var.peek("_bartender_ready") then
+      var.pop("_bartender_ready")
+      if planet.cur() == misplanet then
+         tk.msg("", bartender_here_text)
+      else
+         tk.msg("", fmt.f(bartender_away_text,
+               {planet=misplanet, system=missys}))
+      end
    end
 end
 
