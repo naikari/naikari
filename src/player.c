@@ -95,11 +95,13 @@ static char **player_licenses = NULL; /**< Licenses player has. */
  */
 static int player_engine_group = -1; /**< Player engine sound group. */
 static int player_hyper_group = -1; /**< Player hyperspace sound group. */
-static int player_gui_group   = -1; /**< Player GUI sound group. */
-int snd_target                = -1; /**< Sound when targeting. */
-int snd_jump                  = -1; /**< Sound when can jump. */
-int snd_nav                   = -1; /**< Sound when changing nav computer. */
-int snd_hail                  = -1; /**< Sound when being hailed. */
+static int player_gui_group  = -1; /**< Player GUI sound group. */
+int snd_target = -1; /**< Sound when targeting. */
+int snd_jump = -1; /**< Sound when can jump. */
+int snd_nav = -1; /**< Sound when changing nav computer. */
+int snd_hail = -1; /**< Sound when being hailed. */
+int snd_comm = -1; /**< Sound when player recieves a comm. */
+int snd_broadcast = -1; /**< Sound when player recieves a broadcast. */
 /* Hyperspace sounds. */
 int snd_hypPowUp              = -1; /**< Hyperspace power up sound. */
 int snd_hypEng                = -1; /**< Hyperspace engine sound. */
@@ -809,15 +811,17 @@ static void player_initSound (void)
    player_soundReserved = 1;
 
    /* Get sounds. */
-   snd_target           = sound_get("target");
-   snd_jump             = sound_get("jump");
-   snd_nav              = sound_get("nav");
-   snd_hail             = sound_get("hail");
-   snd_hypPowUp         = sound_get("hyperspace_powerup");
-   snd_hypEng           = sound_get("hyperspace_engine");
-   snd_hypPowDown       = sound_get("hyperspace_powerdown");
-   snd_hypPowUpJump     = sound_get("hyperspace_powerupjump");
-   snd_hypJump          = sound_get("hyperspace_jump");
+   snd_target = sound_get("target");
+   snd_jump = sound_get("jump");
+   snd_nav = sound_get("nav");
+   snd_hail = sound_get("hail");
+   snd_comm = sound_get("comm");
+   snd_broadcast = sound_get("broadcast");
+   snd_hypPowUp = sound_get("hyperspace_powerup");
+   snd_hypEng = sound_get("hyperspace_engine");
+   snd_hypPowDown = sound_get("hyperspace_powerdown");
+   snd_hypPowUpJump = sound_get("hyperspace_powerupjump");
+   snd_hypJump = sound_get("hyperspace_jump");
 }
 
 

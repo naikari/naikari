@@ -145,6 +145,8 @@ extern int snd_target; /**< Sound when targeting. */
 extern int snd_jump; /**< Sound when can jump. */
 extern int snd_nav; /**< Sound when changing nav computer. */
 extern int snd_hail; /**< Hail sound. */
+extern int snd_comm; /**< Comm sound. */
+extern int snd_broadcast; /**< Broadcast sound. */
 extern int snd_hypPowUp; /**< Hyperspace power up sound. */
 extern int snd_hypEng; /**< Hyperspace engine sound. */
 extern int snd_hypPowDown; /**< Hyperspace power down sound. */

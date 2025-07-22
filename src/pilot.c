@@ -1248,9 +1248,7 @@ void pilot_message(Pilot *p, pilotId_t target, const char *msg,
    if (target == PLAYER_ID) {
       c = pilot_getFactionColourChar( p );
       player_message( _("#%cComm %s>#0 \"%s\""), c, p->name, msg );
-
-      /* TODO: Use a dedicated comm sound. */
-      player_soundPlayGUI(snd_target, 1);
+      player_soundPlayGUI(snd_comm, 1);
 
       /* Set comm message. */
       pilot_setCommMsg( p, msg );
@@ -1279,9 +1277,7 @@ void pilot_broadcast( Pilot *p, const char *msg, int ignore_int )
 
    c = pilot_getFactionColourChar( p );
    player_message( _("#%cBroadcast %s>#0 \"%s\""), c, p->name, msg );
-
-   /* TODO: Use a dedicated broadcast sound. */
-   player_soundPlayGUI(snd_target, 1);
+   player_soundPlayGUI(snd_broadcast, 1);
 
    /* Set comm message. */
    pilot_setCommMsg( p, msg );
