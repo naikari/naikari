@@ -217,7 +217,7 @@ function jumpout()
       if ptable.alive then
          if ptable.pilot ~= nil and ptable.pilot:exists() then
             ptable.temp = ptable.pilot:temp()
-            ptable.armor, ptable.shield, ptable.stress = ptable.pilot:health()
+            ptable.armor, ptable.shield, ptable.stress, ptable.disabled = ptable.pilot:health()
             ptable.energy = ptable.pilot:energy()
             ptable.pilot:rm()
          else
@@ -225,6 +225,7 @@ function jumpout()
             ptable.armor = nil
             ptable.shield = nil
             ptable.stress = nil
+            ptable.disabled = nil
             ptable.energy = nil
          end
          ptable.pilot = nil
@@ -263,11 +264,19 @@ function land()
       if ptable.land_dest ~= nil and ptable.land_dest ~= last_planet then
          ptable.alive = false
       end
+      if ptable.land_dest ~= nil and ptable.jump_dest ~= nil
+            and ptable.pilot ~= nil then
+         local armor, shield, stress, disabled = ptable.pilot:health()
+         if disabled then
+            ptable.alive = false
+         end
+      end
       ptable.pilot = nil
       ptable.temp = nil
       ptable.armor = nil
       ptable.shield = nil
       ptable.stress = nil
+      ptable.disabled = nil
       ptable.energy = nil
       ptable.jump_dest = nil
       ptable.land_dest = nil
@@ -334,6 +343,10 @@ function spawnConvoy(source)
       if ptable.jump_dest ~= nil and ptable.jump_dest ~= cursys then
          ptable.alive = false
       end
+      if ptable.land_dest ~= nil and ptable.jump_dest ~= nil
+            and ptable.disabled then
+         ptable.alive = false
+      end
 
       if ptable.alive then
          nspawned = nspawned + 1
@@ -364,9 +377,7 @@ function spawnConvoy(source)
             shield = ptable.shield
          end
          if ptable.stress ~= nil then
-            -- Limit this to 99 so we don't have the weirdness of a
-            -- disabled ship warping in.
-            stress = math.min(ptable.stress, 99)
+            stress = ptable.stress
          end
          if ptable.energy ~= nil then
             energy = ptable.energy
