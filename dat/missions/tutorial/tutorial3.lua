@@ -165,7 +165,7 @@ function accept()
 
       marker = misn.markerAdd(missys, "low")
 
-      hook.custom("bartender_mission", "bartender_clue")
+      bartender_hook = hook.custom("bartender_mission", "bartender_clue")
       hook.enter("enter")
       hook.land("land")
       hook.load("land")
@@ -218,6 +218,8 @@ function enter()
    if weapons_equipped < 1 then
       return
    end
+
+   hook.rm(bartender_hook)
 
    started = true
    player.allowLand(false)

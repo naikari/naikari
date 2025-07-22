@@ -74,6 +74,8 @@ After a few minutes, Ian calms down and hands you a credit chip. "Thank you, {pl
 
 "And thank you from me as well," Milo adds, handing you a second credit chip. "Thank you for keeping my boyfriend safe. As a token of my gratitude, I'd be willing to personally offer you a chance to climb the ranks of the Empire. Meet me at the bar if you're interested." He grabs Ian's hand, gives him a kiss, and walks off with him.]])
 
+local bartender_text = _([["Mr. Ian Structure went to your ship ahead of you. You should be all set to #bTake Off#0."]])
+
 local misn_desc = _("Ian Structure has hired you to give him transport to another planet.")
 local misn_log = _([[You helped transport Ian Structure to {planet} ({system}), fighting off an unexpected pirate along the way. He and his boyfriend, Milo, thanked you for keeping him safe. Milo also offered a chance to climb the ranks of the Empire; he said to meet him at the bar on {planet} ({system}) if you're interested.]])
 
@@ -121,6 +123,7 @@ function accept()
 
       marker = misn.markerAdd(missys, "plot", misplanet)
 
+      bartender_hook = hook.custom("bartender_mission", "bartender_clue")
       enter_hook = hook.enter("enter_start")
    else
       misn.finish()
@@ -128,7 +131,16 @@ function accept()
 end
 
 
+function bartender_clue()
+   if var.peek("_bartender_ready") then
+      var.pop("_bartender_ready")
+      tk.msg("", bartender_text)
+   end
+end
+
+
 function enter_start()
+   hook.rm(bartender_hook)
    hook.rm(enter_hook)
 
    misn.osdActive(2)
