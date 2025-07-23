@@ -291,8 +291,6 @@ function timer_police(pirates)
          {"Imperial Pacifier", "Imperial Lancelot", "Imperial Shark"},
          "Empire", system.get("Alpha Pyxidis"), nil, nil, true)
 
-   pilot.toggleSpawn(true)
-
    local msg = fmt.f(_("All citizens, evacuate this area immediately! Press {local_jump_key} to initiate an Escape Jump!"),
          {local_jump_key=tutGetKey("local_jump")})
    police[1]:broadcast(msg, true)
@@ -302,6 +300,8 @@ end
 
 
 function timer_rebroadcast(p)
+   pilot.toggleSpawn(true)
+
    if p == nil or not p:exists() then
       return
    end
