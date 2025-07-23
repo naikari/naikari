@@ -68,4 +68,42 @@ function misnhelper.showFailMsg(reason)
 end
 
 
+--[[--
+Sets a mission bartender hint message.
+
+Must be called from the custom "bartender_mission" hook. The code which
+triggers that hook is in dat/events/control/npc.lua.
+
+@usage setBarHint(_("Mission Name"), _("Advice for the mission"))
+   @tparam string name The name of the mission.
+   @tparam string hint The full text of the hint message given by the
+      bartender for the mission. This is displayed as-is and should be
+      formatted just like any other dialog, including quotation marks.
+--]]
+function misnhelper.setBarHint(name, hint)
+   local count = var.peek("_bartender_mission_count")
+   if count == nil then
+      error(string.format(
+            _("'%s' attempted bar hint outside bartender_mission hook"), name))
+      return
+   end
+   if name == nil then
+      error(_("name parameter not set for bar hint"))
+      return
+   end
+   if hint == nil then
+      error(string.format(_("hint paramater not set for '%s' bar hint"), name))
+      return
+   end
+
+   -- Increment the number of bartender missions.
+   count = count + 1
+   var.push("_bartender_mission_count", count)
+
+   -- Store the mission bartender hint.
+   var.push(string.format("_bartender_mission_name_%d", count), name)
+   var.push(string.format("_bartender_mission_hint_%d", count), hint)
+end
+
+
 return misnhelper

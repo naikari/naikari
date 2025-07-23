@@ -41,6 +41,7 @@
 --]]
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 require "proximity"
 require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
@@ -78,6 +79,7 @@ local bartender_here_text = _([["It looks like you're working for Mr. Ian Struct
 
 local bartender_away_text = _([["It looks like you're working for Mr. Ian Structure. He should at the bar on {planet} ({system} system). If you're not sure what you should be doing, you should probably go there and ask him directly."]])
 
+local misn_title = _("Ian's Supplies")
 local misn_desc = _("Ian Structure has hired you to mine Gold from some asteroids.")
 local misn_log = _([[You accepted another mission from Ian Structure, this time mining some Gold from asteroids for him. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
@@ -99,7 +101,7 @@ function accept()
          {player=player.name(), credits=fmt.credits(credits)})) then
       misn.accept()
 
-      misn.setTitle(_("Ian's Supplies"))
+      misn.setTitle(misn_title)
       misn.setReward(fmt.credits(credits))
       misn.setDesc(misn_desc)
 
@@ -193,14 +195,11 @@ end
 
 
 function bartender_clue()
-   if var.peek("_bartender_ready") then
-      var.pop("_bartender_ready")
-      if planet.cur() == startplanet then
-         tk.msg("", bartender_here_text)
-      else
-         tk.msg("", fmt.f(bartender_away_text,
-               {planet=startplanet, system=startsys}))
-      end
+   if planet.cur() == startplanet then
+      mh.setBarHint(misn_title, bartender_here_text)
+   else
+      mh.setBarHint(misn_title,
+         fmt.f(bartender_away_text, {planet=startplanet, system=startsys}))
    end
 end
 

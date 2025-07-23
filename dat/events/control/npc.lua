@@ -492,23 +492,48 @@ end
 
 
 function bartender_mission()
-   -- To implement bartender advice in a mission: in the
-   -- bartender_mission hook, check if _bartender_ready is true, and
-   -- if so, show the advice message(s) and pop _bartender_ready.
-   var.push("_bartender_ready", true)
+   -- Use misnhelper.setBarHint within the bartender_mission custom hook
+   -- to set a hint for a mission.
+   var.push("_bartender_mission_count", 0)
    naik.hookTrigger("bartender_mission")
    hook.safe("bartender_mission_safe")
 end
 
 
 function bartender_mission_safe()
-   if var.peek("_bartender_ready") then
+   local count = var.peek("_bartender_mission_count")
+   if count == 0 then
       var.pop("_bartender_ready")
       if planet.cur():services()["missions"] then
          tk.msg("", _([["Hm, I'm sorry, I don't see anything in your active missions I'd be able to help you with right now. If you want to start a new mission, try looking around here at the #bSpaceport Bar#0, or you could take a look at the #bMission Computer#0."]]))
       else
          tk.msg("", _([["Hm, I'm sorry, I don't see anything in your active missions I'd be able to help you with right now. If you want to start a new mission, try looking around here at the #bSpaceport Bar#0. If you can't find one, you could search for a planet which has a #bMission Computer#0 and look there."]]))
       end
+   elseif count == 1 then
+      local name = var.peek("_bartender_mission_name_1")
+      local hint = var.peek("_bartender_mission_hint_1")
+      tk.msg(name, hint)
+   else
+      local names = {}
+      local hints = {}
+      for i = 1, count do
+         names[i] = var.peek(string.format("_bartender_mission_name_%d", i))
+         hints[i] = var.peek(string.format("_bartender_mission_hint_%d", i))
+      end
+
+      local msg = _([["I'll do my best! Which mission would you like guidance on?"]])
+      local choice_n, choice = tk.list("", msg, table.unpack(names))
+
+      if choice_n ~= nil then
+         tk.msg(choice, hints[choice_n])
+      end
+   end
+
+   -- Pop all bartender mission hint variables.
+   var.pop("_bartender_mission_count")
+   for i = 1, count do
+      var.pop(string.format("_bartender_mission_name_%d", i))
+      var.pop(string.format("_bartender_mission_hint_%d", i))
    end
 end
 

@@ -44,6 +44,7 @@
 
 local fmt = require "fmt"
 local fleet = require "fleet"
+local mh = require "misnhelper"
 require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
@@ -76,6 +77,7 @@ After a few minutes, Ian calms down and hands you a credit chip. "Thank you, {pl
 
 local bartender_text = _([["Mr. Ian Structure went to your ship ahead of you. You should be all set to #bTake Off#0."]])
 
+local misn_title = _("Ian's Transport")
 local misn_desc = _("Ian Structure has hired you to give him transport to another planet.")
 local misn_log = _([[You helped transport Ian Structure to {planet} ({system}), fighting off an unexpected pirate along the way. He and his boyfriend, Milo, thanked you for keeping him safe. Milo also offered a chance to climb the ranks of the Empire; he said to meet him at the bar on {planet} ({system}) if you're interested.]])
 
@@ -103,7 +105,7 @@ function accept()
 
       misn.accept()
 
-      misn.setTitle(_("Ian's Transport"))
+      misn.setTitle(misn_title)
       misn.setReward(fmt.credits(credits))
       misn.setDesc(misn_desc)
 
@@ -132,10 +134,7 @@ end
 
 
 function bartender_clue()
-   if var.peek("_bartender_ready") then
-      var.pop("_bartender_ready")
-      tk.msg("", bartender_text)
-   end
+   mh.setBarHint(misn_title, bartender_text)
 end
 
 

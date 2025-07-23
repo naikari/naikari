@@ -41,6 +41,7 @@
 --]]
 
 local fmt = require "fmt"
+local mh = require "misnhelper"
 require "events/tutorial/tutorial_common"
 require "missions/neutral/common"
 
@@ -65,6 +66,7 @@ local bartender_here_text = _([["It looks like you're working for Mr. Ian Struct
 
 local bartender_away_text = _([["It looks like you're working for Mr. Ian Structure. He should at the bar on {planet} ({system} system). If you're not sure what you should be doing, you should probably go there and ask him directly."]])
 
+local misn_title = _("Ian Structure")
 local misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
 local misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
@@ -75,7 +77,7 @@ function create()
    misplanet, missys = planet.cur()
    talked = false
 
-   misn.setNPC(_("Ian Structure"),
+   misn.setNPC(misn_title,
          "neutral/unique/youngbusinessman.png",
          _("This must be the potential employer the Melendez salesperson referred you to."))
 end
@@ -127,14 +129,11 @@ end
 
 
 function bartender_clue()
-   if var.peek("_bartender_ready") then
-      var.pop("_bartender_ready")
-      if planet.cur() == misplanet then
-         tk.msg("", bartender_here_text)
-      else
-         tk.msg("", fmt.f(bartender_away_text,
-               {planet=misplanet, system=missys}))
-      end
+   if planet.cur() == misplanet then
+      mh.setBarHint(misn_title, bartender_here_text)
+   else
+      mh.setBarHint(misn_title,
+         fmt.f(bartender_away_text, {planet=misplanet, system=missys}))
    end
 end
 
