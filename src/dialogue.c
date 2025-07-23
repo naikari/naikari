@@ -671,7 +671,7 @@ int dialogue_listPanelRaw(const char* title, char **items, int nitems,
    font = dialogue_getSize( title, msg, &text_width, &text_height );
 
    /* Calculate size stuff. */
-   list_width = text_width;
+   list_width = 0;
    list_height = 0;
    for (i=0; i<nitems; i++) {
       list_width = MAX( list_width, gl_printWidthRaw( &gl_defFont, items[i] ) );
@@ -685,6 +685,7 @@ int dialogue_listPanelRaw(const char* title, char **items, int nitems,
 
    h = MIN((SCREEN_H*2)/3, h);
    w = MAX(list_width + 60, 500);
+   w = MAX(w, text_width + 40);
 
    winw = MAX(w, minwidth);
    winh = MAX(h, minheight);
