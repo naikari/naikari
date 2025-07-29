@@ -149,7 +149,7 @@ function enter()
 
         target = pilot.add("Gawain", "Civilian", location, _("Credence"),
             {naked=true})
-        target:outfitAdd("Milspec Aegis 3201 APU")
+        target:outfitAdd("Intek Aegis 3201 APU")
         target:outfitAdd("Beat Up Small Engine")
         target:outfitAdd("Exacorp D-2 Hull")
         target:outfitAdd("Small Shield Booster")

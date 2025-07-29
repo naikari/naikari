@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Milspec Hermes 6503 APU">
+<outfit name="Intek Orion 9901 APU">
  <general>
   <typename>APU</typename>
   <slot prop="systems">utility</slot>
-  <size>medium</size>
+  <size>large</size>
   <priority>7</priority>
-  <mass>180</mass>
-  <price>400030</price>
+  <mass>1400</mass>
+  <price>4000000</price>
   <description>The auxiliary power unit supplies a ship's power. Some power is allocated to shielding for protection of the hull from hostiles and space hazards, and some is allocated to the ship's general energy reserve, used by weapons, engines, and other outfits. Every ship must have an APU installed to be spaceworthy.</description>
-  <gfx_store>core_system_cpu_m2.webp</gfx_store>
+  <gfx_store>core_system_refined_l2.webp</gfx_store>
  </general>
  <specific type="modification">
-  <shield>1500</shield>
-  <shield_regen>10</shield_regen>
-  <energy>2160</energy>
-  <energy_regen>75</energy_regen>
+  <shield>1550</shield>
+  <shield_regen>18</shield_regen>
+  <energy>4800</energy>
+  <energy_regen>159</energy_regen>
  </specific>
 </outfit>

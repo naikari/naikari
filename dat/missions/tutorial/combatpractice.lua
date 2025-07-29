@@ -5,7 +5,7 @@
   <priority>100</priority>
   <chance>100</chance>
   <cond>not player.misnActive("Combat Practice")</cond>
-  <location>none</location>
+  <location>None</location>
  </avail>
  <notes>
   <campaign>Tutorial</campaign>

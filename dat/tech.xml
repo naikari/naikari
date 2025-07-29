@@ -129,7 +129,7 @@
   <item>Local System Map</item>
   <item>Stealth Plating</item>
   <item>Basic Jammer</item>
-  <item>Milspec Jammer</item>
+  <item>Enhanced Jammer</item>
   <item>Sensor Array</item>
   <item>Jump Scanner</item>
   <item>Hyena Fighter Bay</item>
@@ -156,36 +156,36 @@
   <item>Makeshift Small APU</item>
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp ET-300 APU</item>
-  <item>Milspec Aegis 2101 APU</item>
-  <item>Milspec Prometheus 2102 APU</item>
-  <item>Milspec Hermes 2103 APU</item>
-  <item>Milspec Orion 2201 APU</item>
-  <item>Milspec Aegis 3201 APU</item>
-  <item>Milspec Prometheus 3202 APU</item>
-  <item>Milspec Hermes 3203 APU</item>
-  <item>Milspec Orion 3301 APU</item>
+  <item>Intek Aegis 2101 APU</item>
+  <item>Intek Prometheus 2102 APU</item>
+  <item>Intek Hermes 2103 APU</item>
+  <item>Intek Orion 2201 APU</item>
+  <item>Intek Aegis 3201 APU</item>
+  <item>Intek Prometheus 3202 APU</item>
+  <item>Intek Hermes 3203 APU</item>
+  <item>Intek Orion 3301 APU</item>
   <item>Makeshift Medium APU</item>
   <item>Exacorp ET-500 APU</item>
   <item>Exacorp ET-600 APU</item>
-  <item>Milspec Aegis 5401 APU</item>
-  <item>Milspec Prometheus 5402 APU</item>
-  <item>Milspec Hermes 5403 APU</item>
-  <item>Milspec Orion 5501 APU</item>
-  <item>Milspec Aegis 6501 APU</item>
-  <item>Milspec Prometheus 6502 APU</item>
-  <item>Milspec Hermes 6503 APU</item>
-  <item>Milspec Orion 6601 APU</item>
+  <item>Intek Aegis 5401 APU</item>
+  <item>Intek Prometheus 5402 APU</item>
+  <item>Intek Hermes 5403 APU</item>
+  <item>Intek Orion 5501 APU</item>
+  <item>Intek Aegis 6501 APU</item>
+  <item>Intek Prometheus 6502 APU</item>
+  <item>Intek Hermes 6503 APU</item>
+  <item>Intek Orion 6601 APU</item>
   <item>Makeshift Large APU</item>
   <item>Exacorp ET-800 APU</item>
   <item>Exacorp ET-900 APU</item>
-  <item>Milspec Aegis 8701 APU</item>
-  <item>Milspec Prometheus 8702 APU</item>
-  <item>Milspec Hermes 8703 APU</item>
-  <item>Milspec Orion 8801 APU</item>
-  <item>Milspec Aegis 9801 APU</item>
-  <item>Milspec Prometheus 9802 APU</item>
-  <item>Milspec Hermes 9803 APU</item>
-  <item>Milspec Orion 9901 APU</item>
+  <item>Intek Aegis 8701 APU</item>
+  <item>Intek Prometheus 8702 APU</item>
+  <item>Intek Hermes 8703 APU</item>
+  <item>Intek Orion 8801 APU</item>
+  <item>Intek Aegis 9801 APU</item>
+  <item>Intek Prometheus 9802 APU</item>
+  <item>Intek Hermes 9803 APU</item>
+  <item>Intek Orion 9901 APU</item>
   <item>Beat Up Small Engine</item>
   <item>Exacorp HS-150 Engine</item>
   <item>NGL Caravan 225 Engine</item>
@@ -412,12 +412,12 @@
       * Σw (Warfare): Military upgrades.
  -->
 
- <!-- Spaceway – basic quality, widely available. -->
- <tech name="Spaceway Fuel Generic">
+ <!-- Spacemart – basic quality, widely available. -->
+ <tech name="Spacemart Fuel Generic">
   <item>Fuel Pod</item>
   <item>Bad Cores</item>
  </tech>
- <tech name="Spaceway Sports Generic">
+ <tech name="Spacemart Sports Generic">
   <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Reverse Thrusters</item>
@@ -432,7 +432,7 @@
   <item>Exacorp D-2 Hull</item>
   <item>Llama</item>
  </tech>
- <tech name="Spaceway Tourism Generic">
+ <tech name="Spacemart Tourism Generic">
   <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Jump Scanner</item>
@@ -449,7 +449,7 @@
   <item>Exacorp D-2 Hull</item>
   <item>Llama</item>
  </tech>
- <tech name="Spaceway Courier Generic">
+ <tech name="Spacemart Courier Generic">
   <item>TL21-S Lumina Turret</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
@@ -470,7 +470,7 @@
   <item>Exacorp D-4 Hull</item>
   <item>Llama</item>
  </tech>
- <tech name="Spaceway Bulk Generic">
+ <tech name="Spacemart Bulk Generic">
   <item>TL21-S Lumina Turret</item>
   <item>TL54-M Lumina Turret</item>
   <item>TMT40-M Tiger Missile Turret</item>
@@ -496,155 +496,157 @@
   <item>Koäla</item>
   <item>Mule</item>
  </tech>
- <tech name="Spaceway Hunting Generic">
+ <tech name="Spacemart Hunting Generic">
   <item>Bad Cores</item>
   <item>Llama</item>
  </tech>
- <tech name="Spaceway Police Generic">
+ <tech name="Spacemart Police Generic">
   <item>Bad Cores</item>
   <item>Llama</item>
  </tech>
- <tech name="Spaceway Warfare Generic">
+ <tech name="Spacemart Warfare Generic">
   <item>Bad Cores</item>
   <item>Llama</item>
  </tech>
- <tech name="Spaceway Fuel Empire">
-  <item>Spaceway Fuel Generic</item>
+ <tech name="Spacemart Fuel Empire">
+  <item>Spacemart Fuel Generic</item>
  </tech>
- <tech name="Spaceway Sports Empire">
-  <item>Spaceway Sports Generic</item>
+ <tech name="Spacemart Sports Empire">
+  <item>Spacemart Sports Generic</item>
  </tech>
- <tech name="Spaceway Tourism Empire">
-  <item>Spaceway Tourism Generic</item>
+ <tech name="Spacemart Tourism Empire">
+  <item>Spacemart Tourism Generic</item>
  </tech>
- <tech name="Spaceway Courier Empire">
-  <item>Spaceway Courier Generic</item>
+ <tech name="Spacemart Courier Empire">
+  <item>Spacemart Courier Generic</item>
  </tech>
- <tech name="Spaceway Bulk Empire">
-  <item>Spaceway Bulk Generic</item>
+ <tech name="Spacemart Bulk Empire">
+  <item>Spacemart Bulk Generic</item>
  </tech>
- <tech name="Spaceway Hunting Empire">
-  <item>Spaceway Hunting Generic</item>
+ <tech name="Spacemart Hunting Empire">
+  <item>Spacemart Hunting Generic</item>
  </tech>
- <tech name="Spaceway Police Empire">
-  <item>Spaceway Police Generic</item>
+ <tech name="Spacemart Police Empire">
+  <item>Spacemart Police Generic</item>
  </tech>
- <tech name="Spaceway Warfare Empire">
-  <item>Spaceway Warfare Generic</item>
+ <tech name="Spacemart Warfare Empire">
+  <item>Spacemart Warfare Generic</item>
  </tech>
- <tech name="Spaceway Fuel Frontier">
-  <item>Spaceway Fuel Generic</item>
+ <tech name="Spacemart Fuel Frontier">
+  <item>Spacemart Fuel Generic</item>
  </tech>
- <tech name="Spaceway Sports Frontier">
-  <item>Spaceway Sports Generic</item>
+ <tech name="Spacemart Sports Frontier">
+  <item>Spacemart Sports Generic</item>
  </tech>
- <tech name="Spaceway Tourism Frontier">
-  <item>Spaceway Tourism Generic</item>
+ <tech name="Spacemart Tourism Frontier">
+  <item>Spacemart Tourism Generic</item>
  </tech>
- <tech name="Spaceway Courier Frontier">
-  <item>Spaceway Courier Generic</item>
+ <tech name="Spacemart Courier Frontier">
+  <item>Spacemart Courier Generic</item>
  </tech>
- <tech name="Spaceway Bulk Frontier">
-  <item>Spaceway Bulk Generic</item>
+ <tech name="Spacemart Bulk Frontier">
+  <item>Spacemart Bulk Generic</item>
  </tech>
- <tech name="Spaceway Hunting Frontier">
-  <item>Spaceway Hunting Generic</item>
+ <tech name="Spacemart Hunting Frontier">
+  <item>Spacemart Hunting Generic</item>
  </tech>
- <tech name="Spaceway Police Frontier">
-  <item>Spaceway Police Generic</item>
+ <tech name="Spacemart Police Frontier">
+  <item>Spacemart Police Generic</item>
  </tech>
- <tech name="Spaceway Warfare Frontier">
-  <item>Spaceway Warfare Generic</item>
+ <tech name="Spacemart Warfare Frontier">
+  <item>Spacemart Warfare Generic</item>
  </tech>
- <tech name="Spaceway Fuel Coälition">
-  <item>Spaceway Fuel Generic</item>
+ <tech name="Spacemart Fuel Coälition">
+  <item>Spacemart Fuel Generic</item>
  </tech>
- <tech name="Spaceway Sports Coälition">
-  <item>Spaceway Sports Generic</item>
+ <tech name="Spacemart Sports Coälition">
+  <item>Spacemart Sports Generic</item>
  </tech>
- <tech name="Spaceway Tourism Coälition">
-  <item>Spaceway Tourism Generic</item>
+ <tech name="Spacemart Tourism Coälition">
+  <item>Spacemart Tourism Generic</item>
  </tech>
- <tech name="Spaceway Courier Coälition">
-  <item>Spaceway Courier Generic</item>
+ <tech name="Spacemart Courier Coälition">
+  <item>Spacemart Courier Generic</item>
  </tech>
- <tech name="Spaceway Bulk Coälition">
-  <item>Spaceway Bulk Generic</item>
+ <tech name="Spacemart Bulk Coälition">
+  <item>Spacemart Bulk Generic</item>
  </tech>
- <tech name="Spaceway Hunting Coälition">
-  <item>Spaceway Hunting Generic</item>
+ <tech name="Spacemart Hunting Coälition">
+  <item>Spacemart Hunting Generic</item>
  </tech>
- <tech name="Spaceway Police Coälition">
-  <item>Spaceway Police Generic</item>
+ <tech name="Spacemart Police Coälition">
+  <item>Spacemart Police Generic</item>
  </tech>
- <tech name="Spaceway Warfare Coälition">
-  <item>Spaceway Warfare Generic</item>
+ <tech name="Spacemart Warfare Coälition">
+  <item>Spacemart Warfare Generic</item>
  </tech>
 
- <!-- Allmart – high-quality civilian and trade goods. -->
- <tech name="Allmart Fuel Generic">
+ <!-- NGL – high-quality civilian and trade goods. -->
+ <tech name="NGL Fuel Generic">
   <item>Fuel Pod</item>
   <item>Medium Fuel Pod</item>
   <item>Large Fuel Pod</item>
   <item>Bad Cores</item>
  </tech>
- <tech name="Allmart Sports Generic">
+ <tech name="NGL Sports Generic">
   <item>Bad Cores</item>
  </tech>
- <tech name="Allmart Tourism Generic">
+ <tech name="NGL Tourism Generic">
   <item>Bad Cores</item>
  </tech>
- <tech name="Allmart Courier Generic">
+ <tech name="NGL Courier Generic">
   <item>Bad Cores</item>
  </tech>
- <tech name="Allmart Bulk Generic">
+ <tech name="NGL Bulk Generic">
   <item>Bad Cores</item>
  </tech>
- <tech name="Allmart Fuel Empire">
-  <item>Allmart Fuel Generic</item>
+ <tech name="NGL Fuel Empire">
+  <item>NGL Fuel Generic</item>
  </tech>
- <tech name="Allmart Sports Empire">
-  <item>Allmart Sports Generic</item>
+ <tech name="NGL Sports Empire">
+  <item>NGL Sports Generic</item>
  </tech>
- <tech name="Allmart Tourism Empire">
-  <item>Allmart Tourism Generic</item>
+ <tech name="NGL Tourism Empire">
+  <item>NGL Tourism Generic</item>
  </tech>
- <tech name="Allmart Courier Empire">
-  <item>Allmart Courier Generic</item>
+ <tech name="NGL Courier Empire">
+  <item>NGL Courier Generic</item>
  </tech>
- <tech name="Allmart Bulk Empire">
-  <item>Allmart Bulk Generic</item>
+ <tech name="NGL Bulk Empire">
+  <item>NGL Bulk Generic</item>
  </tech>
- <tech name="Allmart Fuel Frontier">
-  <item>Allmart Fuel Generic</item>
+ <tech name="NGL Fuel Frontier">
+  <item>NGL Fuel Generic</item>
  </tech>
- <tech name="Allmart Sports Frontier">
-  <item>Allmart Sports Generic</item>
+ <tech name="NGL Sports Frontier">
+  <item>NGL Sports Generic</item>
  </tech>
- <tech name="Allmart Tourism Frontier">
-  <item>Allmart Tourism Generic</item>
+ <tech name="NGL Tourism Frontier">
+  <item>NGL Tourism Generic</item>
  </tech>
- <tech name="Allmart Courier Frontier">
-  <item>Allmart Courier Generic</item>
+ <tech name="NGL Courier Frontier">
+  <item>NGL Courier Generic</item>
  </tech>
- <tech name="Allmart Bulk Frontier">
-  <item>Allmart Bulk Generic</item>
+ <tech name="NGL Bulk Frontier">
+  <item>NGL Bulk Generic</item>
  </tech>
- <tech name="Allmart Fuel Coälition">
-  <item>Allmart Fuel Generic</item>
+ <tech name="NGL Fuel Coälition">
+  <item>NGL Fuel Generic</item>
  </tech>
- <tech name="Allmart Sports Coälition">
-  <item>Allmart Sports Generic</item>
+ <tech name="NGL Sports Coälition">
+  <item>NGL Sports Generic</item>
  </tech>
- <tech name="Allmart Tourism Coälition">
-  <item>Allmart Tourism Generic</item>
+ <tech name="NGL Tourism Coälition">
+  <item>NGL Tourism Generic</item>
  </tech>
- <tech name="Allmart Courier Coälition">
-  <item>Allmart Courier Generic</item>
+ <tech name="NGL Courier Coälition">
+  <item>NGL Courier Generic</item>
  </tech>
- <tech name="Allmart Bulk Coälition">
-  <item>Allmart Bulk Generic</item>
+ <tech name="NGL Bulk Coälition">
+  <item>NGL Bulk Generic</item>
  </tech>
+
+ <!-- Evotech – high-end combat goods. -->
 
  <!-- Jolly's – outlaw stations. -->
  <tech name="Jolly's Fuel Generic">

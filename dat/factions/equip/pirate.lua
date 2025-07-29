@@ -22,22 +22,22 @@ equip_typeOutfits_coreSystems["Hyena"] = equip_shipOutfits_coreSystems["Pirate S
 equip_typeOutfits_coreSystems["Shark"] = equip_shipOutfits_coreSystems["Pirate Shark"]
 equip_typeOutfits_coreSystems["Vendetta"] = {
    "Exacorp ET-300 APU",
-   "Milspec Prometheus 3202 APU",
+   "Intek Prometheus 3202 APU",
 }
 equip_typeOutfits_coreSystems["Lancelot"] = equip_typeOutfits_coreSystems["Vendetta"]
 equip_typeOutfits_coreSystems["Ancestor"] = equip_typeOutfits_coreSystems["Vendetta"]
 equip_typeOutfits_coreSystems["Phalanx"] = {
    "Exacorp ET-500 APU",
-   "Milspec Prometheus 5402 APU",
+   "Intek Prometheus 5402 APU",
 }
 equip_typeOutfits_coreSystems["Admonisher"] = equip_typeOutfits_coreSystems["Phalanx"]
 equip_typeOutfits_coreSystems["Pacifier"] = {
    "Exacorp ET-600 APU",
-   "Milspec Prometheus 6502 APU",
+   "Intek Prometheus 6502 APU",
 }
 equip_typeOutfits_coreSystems["Kestrel"] = {
    "Exacorp ET-800 APU",
-   "Milspec Prometheus 8702 APU",
+   "Intek Prometheus 8702 APU",
 }
 
 equip_typeOutfits_engines["Rhino"] = {
