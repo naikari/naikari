@@ -423,6 +423,7 @@
   <item>Reverse Thrusters</item>
   <item>Solar Panel</item>
   <item>Light Afterburner</item>
+  <item>Fuel Pod</item>
   <item>Battery</item>
   <item>Steering Thrusters</item>
   <item>Engine Reroute</item>
@@ -497,8 +498,24 @@
   <item>Mule</item>
  </tech>
  <tech name="Spacemart Hunting Generic">
+  <item>FT80-U Talon Gun</item>
+  <item>FL21-U Lumina Gun</item>
+  <item>Fi21-S Ion-Shackle Gun</item>
+  <item>Solar Panel</item>
+  <item>Forward Shock Absorbers</item>
+  <item>Sensor Array</item>
+  <item>Basic Jammer</item>
+  <item>Light Afterburner</item>
+  <item>Fuel Pod</item>
+  <item>Stealth Plating</item>
+  <item>Battery</item>
+  <item>Shield Capacitor</item>
   <item>Bad Cores</item>
+  <item>Exacorp ET-200 APU</item>
+  <item>Exacorp HS-150 Engine</item>
+  <item>Exacorp D-2 Hull</item>
   <item>Llama</item>
+  <item>Hyena</item>
  </tech>
  <tech name="Spacemart Police Generic">
   <item>Bad Cores</item>
@@ -581,134 +598,144 @@
   <item>Spacemart Warfare Generic</item>
  </tech>
 
- <!-- NGL – high-quality civilian and trade goods. -->
- <tech name="NGL Fuel Generic">
-  <item>Fuel Pod</item>
-  <item>Medium Fuel Pod</item>
-  <item>Large Fuel Pod</item>
-  <item>Bad Cores</item>
- </tech>
- <tech name="NGL Sports Generic">
-  <item>Bad Cores</item>
- </tech>
- <tech name="NGL Tourism Generic">
-  <item>Bad Cores</item>
- </tech>
- <tech name="NGL Courier Generic">
-  <item>Bad Cores</item>
- </tech>
- <tech name="NGL Bulk Generic">
-  <item>Bad Cores</item>
- </tech>
- <tech name="NGL Fuel Empire">
-  <item>NGL Fuel Generic</item>
- </tech>
- <tech name="NGL Sports Empire">
-  <item>NGL Sports Generic</item>
- </tech>
- <tech name="NGL Tourism Empire">
-  <item>NGL Tourism Generic</item>
- </tech>
- <tech name="NGL Courier Empire">
-  <item>NGL Courier Generic</item>
- </tech>
- <tech name="NGL Bulk Empire">
-  <item>NGL Bulk Generic</item>
- </tech>
- <tech name="NGL Fuel Frontier">
-  <item>NGL Fuel Generic</item>
- </tech>
- <tech name="NGL Sports Frontier">
-  <item>NGL Sports Generic</item>
- </tech>
- <tech name="NGL Tourism Frontier">
-  <item>NGL Tourism Generic</item>
- </tech>
- <tech name="NGL Courier Frontier">
-  <item>NGL Courier Generic</item>
- </tech>
- <tech name="NGL Bulk Frontier">
-  <item>NGL Bulk Generic</item>
- </tech>
- <tech name="NGL Fuel Coälition">
-  <item>NGL Fuel Generic</item>
- </tech>
- <tech name="NGL Sports Coälition">
-  <item>NGL Sports Generic</item>
- </tech>
- <tech name="NGL Tourism Coälition">
-  <item>NGL Tourism Generic</item>
- </tech>
- <tech name="NGL Courier Coälition">
-  <item>NGL Courier Generic</item>
- </tech>
- <tech name="NGL Bulk Coälition">
-  <item>NGL Bulk Generic</item>
- </tech>
-
- <!-- Evotech – high-end combat goods. -->
+ <!-- Evotech – high-end goods, very uncommon. -->
  <tech name="Evotech Fuel Generic">
-  <item>Fuel Pod</item>
+  <item>Spacemart Fuel Generic</item>
   <item>Medium Fuel Pod</item>
   <item>Large Fuel Pod</item>
-  <item>Bad Cores</item>
  </tech>
  <tech name="Evotech Sports Generic">
-  <item>Bad Cores</item>
+  <item>Spacemart Sports Generic</item>
+  <item>Small Thrust Bracer</item>
+  <item>Reactor Class I</item>
+  <item>Heavy Afterburner</item>
+  <item>Improved Stabilizer</item>
+  <item>Intek Prometheus 2102 APU</item>
+  <item>Intek Hermes 2103 APU</item>
+  <item>Intek Orion 2201 APU</item>
+  <item>Flex Tornado 150X Engine</item>
+  <item>Flex Vortex 200N Engine</item>
+  <item>Exacorp X-2 Hull</item>
+  <item>SHL Ultralight Stealth Hull</item>
+  <item>Gawain</item>
  </tech>
  <tech name="Evotech Tourism Generic">
-  <item>Bad Cores</item>
+  <item>Spacemark Tourism Generic</item>
+  <item>TL21-S Lumina Turret</item>
+  <item>Small Thrust Bracer</item>
+  <item>Rotary Turbo Modulator</item>
+  <item>Schroedinger</item>
  </tech>
  <tech name="Evotech Courier Generic">
-  <item>Bad Cores</item>
+  <item>Spacemart Courier Generic</item>
  </tech>
  <tech name="Evotech Bulk Generic">
-  <item>Bad Cores</item>
+  <item>Spacemart Bulk Generic</item>
+ </tech>
+ <tech name="Evotech Hunting Generic">
+  <item>Spacemart Hunting Generic</item>
+ </tech>
+ <tech name="Evotech Police Generic">
+  <item>Spacemart Police Generic</item>
+ </tech>
+ <tech name="Evotech Warfare Generic">
+  <item>Spacemart Warfare Generic</item>
  </tech>
  <tech name="Evotech Fuel Empire">
   <item>Evotech Fuel Generic</item>
+  <item>Spacemart Fuel Empire</item>
  </tech>
  <tech name="Evotech Sports Empire">
   <item>Evotech Sports Generic</item>
+  <item>Spacemart Sports Empire</item>
  </tech>
  <tech name="Evotech Tourism Empire">
   <item>Evotech Tourism Generic</item>
+  <item>Spacemart Tourism Empire</item>
  </tech>
  <tech name="Evotech Courier Empire">
   <item>Evotech Courier Generic</item>
+  <item>Spacemart Courier Empire</item>
  </tech>
  <tech name="Evotech Bulk Empire">
   <item>Evotech Bulk Generic</item>
+  <item>Spacemart Bulk Empire</item>
+ </tech>
+ <tech name="Evotech Hunting Empire">
+  <item>Evotech Hunting Generic</item>
+  <item>Spacemart Hunting Empire</item>
+ </tech>
+ <tech name="Evotech Police Empire">
+  <item>Evotech Police Generic</item>
+  <item>Spacemart Police Empire</item>
+ </tech>
+ <tech name="Evotech Warfare Empire">
+  <item>Evotech Warfare Generic</item>
+  <item>Spacemart Warfare Empire</item>
  </tech>
  <tech name="Evotech Fuel Frontier">
   <item>Evotech Fuel Generic</item>
+  <item>Spacemart Fuel Frontier</item>
  </tech>
  <tech name="Evotech Sports Frontier">
   <item>Evotech Sports Generic</item>
+  <item>Spacemart Sports Frontier</item>
  </tech>
  <tech name="Evotech Tourism Frontier">
   <item>Evotech Tourism Generic</item>
+  <item>Spacemart Tourism Frontier</item>
  </tech>
  <tech name="Evotech Courier Frontier">
   <item>Evotech Courier Generic</item>
+  <item>Spacemart Courier Frontier</item>
  </tech>
  <tech name="Evotech Bulk Frontier">
   <item>Evotech Bulk Generic</item>
+  <item>Spacemart Bulk Frontier</item>
+ </tech>
+ <tech name="Evotech Hunting Frontier">
+  <item>Evotech Hunting Generic</item>
+  <item>Spacemart Hunting Frontier</item>
+ </tech>
+ <tech name="Evotech Police Frontier">
+  <item>Evotech Police Generic</item>
+  <item>Spacemart Police Frontier</item>
+ </tech>
+ <tech name="Evotech Warfare Frontier">
+  <item>Evotech Warfare Generic</item>
+  <item>Spacemart Warfare Frontier</item>
  </tech>
  <tech name="Evotech Fuel Coälition">
   <item>Evotech Fuel Generic</item>
+  <item>Spacemart Fuel Coälition</item>
  </tech>
  <tech name="Evotech Sports Coälition">
   <item>Evotech Sports Generic</item>
+  <item>Spacemart Sports Coälition</item>
  </tech>
  <tech name="Evotech Tourism Coälition">
   <item>Evotech Tourism Generic</item>
+  <item>Spacemart Tourism Coälition</item>
  </tech>
  <tech name="Evotech Courier Coälition">
   <item>Evotech Courier Generic</item>
+  <item>Spacemart Courier Coälition</item>
  </tech>
  <tech name="Evotech Bulk Coälition">
   <item>Evotech Bulk Generic</item>
+  <item>Spacemart Bulk Coälition</item>
+ </tech>
+ <tech name="Evotech Hunting Coälition">
+  <item>Evotech Hunting Generic</item>
+  <item>Spacemart Hunting Coälition</item>
+ </tech>
+ <tech name="Evotech Police Coälition">
+  <item>Evotech Police Generic</item>
+  <item>Spacemart Police Coälition</item>
+ </tech>
+ <tech name="Evotech Warfare Coälition">
+  <item>Evotech Warfare Generic</item>
+  <item>Spacemart Warfare Coälition</item>
  </tech>
 
  <!-- Jolly's – outlaw stations. -->
