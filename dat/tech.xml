@@ -647,6 +647,69 @@
  </tech>
 
  <!-- Evotech – high-end combat goods. -->
+ <tech name="Evotech Fuel Generic">
+  <item>Fuel Pod</item>
+  <item>Medium Fuel Pod</item>
+  <item>Large Fuel Pod</item>
+  <item>Bad Cores</item>
+ </tech>
+ <tech name="Evotech Sports Generic">
+  <item>Bad Cores</item>
+ </tech>
+ <tech name="Evotech Tourism Generic">
+  <item>Bad Cores</item>
+ </tech>
+ <tech name="Evotech Courier Generic">
+  <item>Bad Cores</item>
+ </tech>
+ <tech name="Evotech Bulk Generic">
+  <item>Bad Cores</item>
+ </tech>
+ <tech name="Evotech Fuel Empire">
+  <item>Evotech Fuel Generic</item>
+ </tech>
+ <tech name="Evotech Sports Empire">
+  <item>Evotech Sports Generic</item>
+ </tech>
+ <tech name="Evotech Tourism Empire">
+  <item>Evotech Tourism Generic</item>
+ </tech>
+ <tech name="Evotech Courier Empire">
+  <item>Evotech Courier Generic</item>
+ </tech>
+ <tech name="Evotech Bulk Empire">
+  <item>Evotech Bulk Generic</item>
+ </tech>
+ <tech name="Evotech Fuel Frontier">
+  <item>Evotech Fuel Generic</item>
+ </tech>
+ <tech name="Evotech Sports Frontier">
+  <item>Evotech Sports Generic</item>
+ </tech>
+ <tech name="Evotech Tourism Frontier">
+  <item>Evotech Tourism Generic</item>
+ </tech>
+ <tech name="Evotech Courier Frontier">
+  <item>Evotech Courier Generic</item>
+ </tech>
+ <tech name="Evotech Bulk Frontier">
+  <item>Evotech Bulk Generic</item>
+ </tech>
+ <tech name="Evotech Fuel Coälition">
+  <item>Evotech Fuel Generic</item>
+ </tech>
+ <tech name="Evotech Sports Coälition">
+  <item>Evotech Sports Generic</item>
+ </tech>
+ <tech name="Evotech Tourism Coälition">
+  <item>Evotech Tourism Generic</item>
+ </tech>
+ <tech name="Evotech Courier Coälition">
+  <item>Evotech Courier Generic</item>
+ </tech>
+ <tech name="Evotech Bulk Coälition">
+  <item>Evotech Bulk Generic</item>
+ </tech>
 
  <!-- Jolly's – outlaw stations. -->
  <tech name="Jolly's Fuel Generic">
