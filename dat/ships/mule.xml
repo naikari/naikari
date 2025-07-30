@@ -13,7 +13,7 @@
  <!--<trail_generator x="-20" y="0" h="-25">nebula</trail_generator>
  <trail_generator x="-25" y="0" h="25">nebula</trail_generator>-->
  <trail_generator x="-33" y="0" h="0">fire</trail_generator>
- <fabricator>Exacorp</fabricator>
+ <fabricator>Nova Shipyards</fabricator>
  <description>A heavy freighter specialized in transporting cargo thruout the galaxy. Also has sufficient accommodations for passengers depending on the model, allowing for enjoyable cruises. The Mule is a favorite target of pirates, so avoiding dangerous systems is strongly advised.</description>
  <health>
   <armour>350</armour>

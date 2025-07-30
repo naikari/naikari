@@ -452,6 +452,7 @@
  </tech>
  <tech name="Exacorp Courier Generic">
   <item>TL21-S Lumina Turret</item>
+  <item>Jump Scanner</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
@@ -477,6 +478,7 @@
   <item>TL21-S Lumina Turret</item>
   <item>TL54-M Lumina Turret</item>
   <item>TMT40-M Tiger Missile Turret</item>
+  <item>Jump Scanner</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
@@ -491,21 +493,16 @@
   <item>Battery II</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-300 APU</item>
-  <item>Exacorp ET-600 APU</item>
   <item>Exacorp HS-300 Engine</item>
-  <item>Exacorp HS-1200 Engine</item>
   <item>Exacorp D-4 Hull</item>
   <item>Exacorp X-4 Hull</item>
-  <item>Exacorp D-24 Hull</item>
-  <item>Exacorp X-24 Hull</item>
-  <item>Koäla</item>
-  <item>Mule</item>
-  <item>Rhino</item>
+  <item>Llama</item>
  </tech>
  <tech name="Exacorp Hunting Generic">
   <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Fi21-S Ion-Shackle Gun</item>
+  <item>Jump Scanner</item>
   <item>Solar Panel</item>
   <item>Forward Shock Absorbers</item>
   <item>Sensor Array</item>
@@ -636,6 +633,119 @@
  </tech>
  <tech name="Exacorp Warfare Coälition">
   <item>Exacorp Warfare Generic</item>
+ </tech>
+
+ <!-- Nova Shipyards – high-end trade goods. -->
+ <tech name="Nova Courier Generic">
+  <item>TL21-S Lumina Turret</item>
+  <item>Jump Scanner</item>
+  <item>Asteroid Scanner</item>
+  <item>Solar Panel</item>
+  <item>Small Thrust Bracer</item>
+  <item>Rotary Turbo Modulator</item>
+  <item>Small Shield Booster</item>
+  <item>Reactor Class I</item>
+  <item>Basic Jammer</item>
+  <item>Light Afterburner</item>
+  <item>Heavy Afterburner</item>
+  <item>Fuel Pod</item>
+  <item>Cargo Pod</item>
+  <item>Stealth Plating</item>
+  <item>Battery</item>
+  <item>Shield Capacitor</item>
+  <item>Engine Reroute</item>
+  <item>Improved Stabilizer</item>
+  <item>Bad Cores</item>
+  <item>Exacorp ET-200 APU</item>
+  <item>Exacorp ET-300 APU</item>
+  <item>Intek Aegis 3201 APU</item>
+  <item>Intek Prometheus 3202 APU</item>
+  <item>Intek Hermes 3203 APU</item>
+  <item>Intek Orion 3301 APU</item>
+  <item>Flex Vortex 200N Engine</item>
+  <item>NGL Caravan 225 Engine</item>
+  <item>Exacorp HS-300 Engine</item>
+  <item>Flex Cyclone 300X Engine</item>
+  <item>NGL Hauler 400F Engine</item>
+  <item>Exacorp D-2 Hull</item>
+  <item>Exacorp D-4 Hull</item>
+  <item>NGL Small Cargo Hull</item>
+  <item>Llama</item>
+  <item>Quicksilver</item>
+ </tech>
+ <tech name="Nova Bulk Generic">
+  <item>TL21-S Lumina Turret</item>
+  <item>TL54-M Lumina Turret</item>
+  <item>TL110-L Lumina Turret</item>
+  <item>TMT40-M Tiger Missile Turret</item>
+  <item>Jump Scanner</item>
+  <item>Asteroid Scanner</item>
+  <item>Solar Panel</item>
+  <item>Small Thrust Bracer</item>
+  <item>Rotary Turbo Modulator</item>
+  <item>Small Shield Booster</item>
+  <item>Reactor Class I</item>
+  <item>Medium Shield Booster</item>
+  <item>Targeting Array</item>
+  <item>Medium Thrust Bracer</item>
+  <item>Improved Power Regulator</item>
+  <item>Rotary Power Accelerator</item>
+  <item>Droid Repair Crew</item>
+  <item>Reactor Class II</item>
+  <item>Basic Jammer</item>
+  <item>Emergency Shield Booster</item>
+  <item>Heavy Afterburner</item>
+  <item>Fuel Pod</item>
+  <item>Cargo Pod</item>
+  <item>Battery</item>
+  <item>Shield Capacitor</item>
+  <item>Medium Fuel Pod</item>
+  <item>Medium Cargo Pod</item>
+  <item>Shield Capacitor II</item>
+  <item>Battery II</item>
+  <item>Bad Cores</item>
+  <item>Exacorp ET-300 APU</item>
+  <item>Intek Aegis 3201 APU</item>
+  <item>Intek Prometheus 3202 APU</item>
+  <item>Intek Hermes 3203 APU</item>
+  <item>Intek Orion 3301 APU</item>
+  <item>Exacorp ET-600 APU</item>
+  <item>Intek Aegis 6501 APU</item>
+  <item>Intek Prometheus 6502 APU</item>
+  <item>Intek Hermes 6503 APU</item>
+  <item>Intek Orion 6601 APU</item>
+  <item>Exacorp HS-300 Engine</item>
+  <item>Flex Cyclone 300X Engine</item>
+  <item>NGL Hauler 400F Engine</item>
+  <item>Exacorp HS-1200 Engine</item>
+  <item>Exacorp D-4 Hull</item>
+  <item>Exacorp D-24 Hull</item>
+  <item>NGL Small Cargo Hull</item>
+  <item>Koäla</item>
+  <item>Mule</item>
+  <item>Rhino</item>
+ </tech>
+ <tech name="Nova Courier Empire">
+  <item>Nova Courier Generic</item>
+ </tech>
+ <tech name="Nova Bulk Empire">
+  <item>Nova Bulk Generic</item>
+ </tech>
+ <tech name="Nova Courier Frontier">
+  <item>Nova Courier Generic</item>
+ </tech>
+ <tech name="Nova Bulk Frontier">
+  <item>Nova Bulk Generic</item>
+ </tech>
+ <tech name="Nova Courier Coälition">
+  <item>Nova Courier Generic</item>
+  <item>TC22-S Cyrstal Turret</item>
+ </tech>
+ <tech name="Nova Bulk Coälition">
+  <item>Nova Bulk Generic</item>
+  <item>TC22-S Cyrstal Turret</item>
+  <item>TC54-M Crystal Turret</item>
+  <item>TC110-L Crystal Turret</item>
  </tech>
 
  <!-- Evotech – high-end goods, very uncommon. -->
