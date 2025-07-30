@@ -9,7 +9,7 @@
   <description>This armor plating does not provide any protection, instead it makes the ship harder to detect. It has integrated sensors that measure the ambient radiation around the ship and is able to emit space-resolved the right amount of radiation to appear invisible for passive sensors.</description>
  </general>
  <specific type="modification">
-  <rdr_enemy_range_mod>-20</rdr_enemy_range_mod>
+  <rdr_enemy_range_mod>-70</rdr_enemy_range_mod>
   <mass_mod>3</mass_mod>
  </specific>
 </outfit>

@@ -402,7 +402,7 @@
 
  <!-- Specialty stations, separated by class, merchant, and faction. -->
  <!-- Station classes are as follows:
-      * Σf (Fuel): Basic refuelling station.
+      * Σf (Fuel): Basic refueling station.
       * Σr (Sports): Civilian upgrades for sports/recreation.
       * Σt (Tourism): Civilian upgrades for tourism.
       * Σc (Courier): Trader upgrades for time-sensitive cargo.
@@ -412,12 +412,8 @@
       * Σw (Warfare): Military upgrades.
  -->
 
- <!-- Spacemart – basic quality, widely available. -->
- <tech name="Spacemart Fuel Generic">
-  <item>Fuel Pod</item>
-  <item>Bad Cores</item>
- </tech>
- <tech name="Spacemart Sports Generic">
+ <!-- Exacorp – basic quality, widely available. -->
+ <tech name="Exacorp Sports Generic">
   <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Reverse Thrusters</item>
@@ -431,9 +427,11 @@
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
   <item>Exacorp D-2 Hull</item>
+  <item>Exacorp X-2 Hull</item>
   <item>Llama</item>
+  <item>Gawain</item>
  </tech>
- <tech name="Spacemart Tourism Generic">
+ <tech name="Exacorp Tourism Generic">
   <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Jump Scanner</item>
@@ -448,9 +446,11 @@
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
   <item>Exacorp D-2 Hull</item>
+  <item>Exacorp X-2 Hull</item>
   <item>Llama</item>
+  <item>Schroedinger</item>
  </tech>
- <tech name="Spacemart Courier Generic">
+ <tech name="Exacorp Courier Generic">
   <item>TL21-S Lumina Turret</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
@@ -468,10 +468,12 @@
   <item>Exacorp HS-150 Engine</item>
   <item>Exacorp HS-300 Engine</item>
   <item>Exacorp D-2 Hull</item>
+  <item>Exacorp X-2 Hull</item>
   <item>Exacorp D-4 Hull</item>
+  <item>Exacorp X-4 Hull</item>
   <item>Llama</item>
  </tech>
- <tech name="Spacemart Bulk Generic">
+ <tech name="Exacorp Bulk Generic">
   <item>TL21-S Lumina Turret</item>
   <item>TL54-M Lumina Turret</item>
   <item>TMT40-M Tiger Missile Turret</item>
@@ -493,11 +495,14 @@
   <item>Exacorp HS-300 Engine</item>
   <item>Exacorp HS-1200 Engine</item>
   <item>Exacorp D-4 Hull</item>
+  <item>Exacorp X-4 Hull</item>
   <item>Exacorp D-24 Hull</item>
+  <item>Exacorp X-24 Hull</item>
   <item>Koäla</item>
   <item>Mule</item>
+  <item>Rhino</item>
  </tech>
- <tech name="Spacemart Hunting Generic">
+ <tech name="Exacorp Hunting Generic">
   <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Fi21-S Ion-Shackle Gun</item>
@@ -514,98 +519,128 @@
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
   <item>Exacorp D-2 Hull</item>
+  <item>Exacorp X-2 Hull</item>
   <item>Llama</item>
   <item>Hyena</item>
  </tech>
- <tech name="Spacemart Police Generic">
+ <tech name="Exacorp Police Generic">
+  <item>FT80-U Talon Gun</item>
+  <item>FL21-U Lumina Gun</item>
+  <item>Fi21-S Ion-Shackle Gun</item>
+  <item>FRC80-U Claw Rocket Gun</item>
+  <item>Solar Panel</item>
+  <item>Forward Shock Absorbers</item>
+  <item>Sensor Array</item>
+  <item>Small Shield Booster</item>
+  <item>Reactor Class I</item>
+  <item>Basic Jammer</item>
+  <item>Weapons Ionizer</item>
+  <item>Light Afterburner</item>
+  <item>Fuel Pod</item>
+  <item>Battery</item>
+  <item>Shield Capacitor</item>
   <item>Bad Cores</item>
+  <item>Exacorp ET-200 APU</item>
+  <item>Exacorp HS-150 Engine</item>
+  <item>Exacorp D-2 Hull</item>
+  <item>Exacorp X-2 Hull</item>
   <item>Llama</item>
+  <item>Hyena</item>
  </tech>
- <tech name="Spacemart Warfare Generic">
+ <tech name="Exacorp Warfare Generic">
+  <item>FT80-U Talon Gun</item>
+  <item>FL21-U Lumina Gun</item>
+  <item>Fi21-S Ion-Shackle Gun</item>
+  <item>FRC80-U Claw Rocket Gun</item>
+  <item>Solar Panel</item>
+  <item>Forward Shock Absorbers</item>
+  <item>Sensor Array</item>
+  <item>Small Shield Booster</item>
+  <item>Reactor Class I</item>
+  <item>Basic Jammer</item>
+  <item>Weapons Ionizer</item>
+  <item>Light Afterburner</item>
+  <item>Fuel Pod</item>
+  <item>Stealth Plating</item>
+  <item>Battery</item>
+  <item>Shield Capacitor</item>
+  <item>Steering Thrusters</item>
+  <item>Engine Reroute</item>
   <item>Bad Cores</item>
+  <item>Exacorp ET-200 APU</item>
+  <item>Exacorp HS-150 Engine</item>
+  <item>Exacorp D-2 Hull</item>
+  <item>Exacorp X-2 Hull</item>
   <item>Llama</item>
+  <item>Hyena</item>
  </tech>
- <tech name="Spacemart Fuel Empire">
-  <item>Spacemart Fuel Generic</item>
+ <tech name="Exacorp Sports Empire">
+  <item>Exacorp Sports Generic</item>
  </tech>
- <tech name="Spacemart Sports Empire">
-  <item>Spacemart Sports Generic</item>
+ <tech name="Exacorp Tourism Empire">
+  <item>Exacorp Tourism Generic</item>
  </tech>
- <tech name="Spacemart Tourism Empire">
-  <item>Spacemart Tourism Generic</item>
+ <tech name="Exacorp Courier Empire">
+  <item>Exacorp Courier Generic</item>
  </tech>
- <tech name="Spacemart Courier Empire">
-  <item>Spacemart Courier Generic</item>
+ <tech name="Exacorp Bulk Empire">
+  <item>Exacorp Bulk Generic</item>
  </tech>
- <tech name="Spacemart Bulk Empire">
-  <item>Spacemart Bulk Generic</item>
+ <tech name="Exacorp Hunting Empire">
+  <item>Exacorp Hunting Generic</item>
  </tech>
- <tech name="Spacemart Hunting Empire">
-  <item>Spacemart Hunting Generic</item>
+ <tech name="Exacorp Police Empire">
+  <item>Exacorp Police Generic</item>
  </tech>
- <tech name="Spacemart Police Empire">
-  <item>Spacemart Police Generic</item>
+ <tech name="Exacorp Warfare Empire">
+  <item>Exacorp Warfare Generic</item>
  </tech>
- <tech name="Spacemart Warfare Empire">
-  <item>Spacemart Warfare Generic</item>
+ <tech name="Exacorp Sports Frontier">
+  <item>Exacorp Sports Generic</item>
  </tech>
- <tech name="Spacemart Fuel Frontier">
-  <item>Spacemart Fuel Generic</item>
+ <tech name="Exacorp Tourism Frontier">
+  <item>Exacorp Tourism Generic</item>
  </tech>
- <tech name="Spacemart Sports Frontier">
-  <item>Spacemart Sports Generic</item>
+ <tech name="Exacorp Courier Frontier">
+  <item>Exacorp Courier Generic</item>
  </tech>
- <tech name="Spacemart Tourism Frontier">
-  <item>Spacemart Tourism Generic</item>
+ <tech name="Exacorp Bulk Frontier">
+  <item>Exacorp Bulk Generic</item>
  </tech>
- <tech name="Spacemart Courier Frontier">
-  <item>Spacemart Courier Generic</item>
+ <tech name="Exacorp Hunting Frontier">
+  <item>Exacorp Hunting Generic</item>
  </tech>
- <tech name="Spacemart Bulk Frontier">
-  <item>Spacemart Bulk Generic</item>
+ <tech name="Exacorp Police Frontier">
+  <item>Exacorp Police Generic</item>
  </tech>
- <tech name="Spacemart Hunting Frontier">
-  <item>Spacemart Hunting Generic</item>
+ <tech name="Exacorp Warfare Frontier">
+  <item>Exacorp Warfare Generic</item>
  </tech>
- <tech name="Spacemart Police Frontier">
-  <item>Spacemart Police Generic</item>
+ <tech name="Exacorp Sports Coälition">
+  <item>Exacorp Sports Generic</item>
  </tech>
- <tech name="Spacemart Warfare Frontier">
-  <item>Spacemart Warfare Generic</item>
+ <tech name="Exacorp Tourism Coälition">
+  <item>Exacorp Tourism Generic</item>
  </tech>
- <tech name="Spacemart Fuel Coälition">
-  <item>Spacemart Fuel Generic</item>
+ <tech name="Exacorp Courier Coälition">
+  <item>Exacorp Courier Generic</item>
  </tech>
- <tech name="Spacemart Sports Coälition">
-  <item>Spacemart Sports Generic</item>
+ <tech name="Exacorp Bulk Coälition">
+  <item>Exacorp Bulk Generic</item>
  </tech>
- <tech name="Spacemart Tourism Coälition">
-  <item>Spacemart Tourism Generic</item>
+ <tech name="Exacorp Hunting Coälition">
+  <item>Exacorp Hunting Generic</item>
  </tech>
- <tech name="Spacemart Courier Coälition">
-  <item>Spacemart Courier Generic</item>
+ <tech name="Exacorp Police Coälition">
+  <item>Exacorp Police Generic</item>
  </tech>
- <tech name="Spacemart Bulk Coälition">
-  <item>Spacemart Bulk Generic</item>
- </tech>
- <tech name="Spacemart Hunting Coälition">
-  <item>Spacemart Hunting Generic</item>
- </tech>
- <tech name="Spacemart Police Coälition">
-  <item>Spacemart Police Generic</item>
- </tech>
- <tech name="Spacemart Warfare Coälition">
-  <item>Spacemart Warfare Generic</item>
+ <tech name="Exacorp Warfare Coälition">
+  <item>Exacorp Warfare Generic</item>
  </tech>
 
  <!-- Evotech – high-end goods, very uncommon. -->
- <tech name="Evotech Fuel Generic">
-  <item>Spacemart Fuel Generic</item>
-  <item>Medium Fuel Pod</item>
-  <item>Large Fuel Pod</item>
- </tech>
  <tech name="Evotech Sports Generic">
-  <item>Spacemart Sports Generic</item>
+  <item>Exacorp Sports Generic</item>
   <item>Small Thrust Bracer</item>
   <item>Reactor Class I</item>
   <item>Heavy Afterburner</item>
@@ -615,127 +650,112 @@
   <item>Intek Orion 2201 APU</item>
   <item>Flex Tornado 150X Engine</item>
   <item>Flex Vortex 200N Engine</item>
-  <item>Exacorp X-2 Hull</item>
   <item>SHL Ultralight Stealth Hull</item>
-  <item>Gawain</item>
  </tech>
  <tech name="Evotech Tourism Generic">
-  <item>Spacemark Tourism Generic</item>
+  <item>Exacorp Tourism Generic</item>
   <item>TL21-S Lumina Turret</item>
   <item>Small Thrust Bracer</item>
   <item>Rotary Turbo Modulator</item>
-  <item>Schroedinger</item>
  </tech>
  <tech name="Evotech Courier Generic">
-  <item>Spacemart Courier Generic</item>
+  <item>Exacorp Courier Generic</item>
  </tech>
  <tech name="Evotech Bulk Generic">
-  <item>Spacemart Bulk Generic</item>
+  <item>Exacorp Bulk Generic</item>
  </tech>
  <tech name="Evotech Hunting Generic">
-  <item>Spacemart Hunting Generic</item>
+  <item>Exacorp Hunting Generic</item>
  </tech>
  <tech name="Evotech Police Generic">
-  <item>Spacemart Police Generic</item>
+  <item>Exacorp Police Generic</item>
  </tech>
  <tech name="Evotech Warfare Generic">
-  <item>Spacemart Warfare Generic</item>
- </tech>
- <tech name="Evotech Fuel Empire">
-  <item>Evotech Fuel Generic</item>
-  <item>Spacemart Fuel Empire</item>
+  <item>Exacorp Warfare Generic</item>
  </tech>
  <tech name="Evotech Sports Empire">
   <item>Evotech Sports Generic</item>
-  <item>Spacemart Sports Empire</item>
+  <item>Exacorp Sports Empire</item>
  </tech>
  <tech name="Evotech Tourism Empire">
   <item>Evotech Tourism Generic</item>
-  <item>Spacemart Tourism Empire</item>
+  <item>Exacorp Tourism Empire</item>
  </tech>
  <tech name="Evotech Courier Empire">
   <item>Evotech Courier Generic</item>
-  <item>Spacemart Courier Empire</item>
+  <item>Exacorp Courier Empire</item>
  </tech>
  <tech name="Evotech Bulk Empire">
   <item>Evotech Bulk Generic</item>
-  <item>Spacemart Bulk Empire</item>
+  <item>Exacorp Bulk Empire</item>
  </tech>
  <tech name="Evotech Hunting Empire">
   <item>Evotech Hunting Generic</item>
-  <item>Spacemart Hunting Empire</item>
+  <item>Exacorp Hunting Empire</item>
  </tech>
  <tech name="Evotech Police Empire">
   <item>Evotech Police Generic</item>
-  <item>Spacemart Police Empire</item>
+  <item>Exacorp Police Empire</item>
  </tech>
  <tech name="Evotech Warfare Empire">
   <item>Evotech Warfare Generic</item>
-  <item>Spacemart Warfare Empire</item>
- </tech>
- <tech name="Evotech Fuel Frontier">
-  <item>Evotech Fuel Generic</item>
-  <item>Spacemart Fuel Frontier</item>
+  <item>Exacorp Warfare Empire</item>
  </tech>
  <tech name="Evotech Sports Frontier">
   <item>Evotech Sports Generic</item>
-  <item>Spacemart Sports Frontier</item>
+  <item>Exacorp Sports Frontier</item>
  </tech>
  <tech name="Evotech Tourism Frontier">
   <item>Evotech Tourism Generic</item>
-  <item>Spacemart Tourism Frontier</item>
+  <item>Exacorp Tourism Frontier</item>
  </tech>
  <tech name="Evotech Courier Frontier">
   <item>Evotech Courier Generic</item>
-  <item>Spacemart Courier Frontier</item>
+  <item>Exacorp Courier Frontier</item>
  </tech>
  <tech name="Evotech Bulk Frontier">
   <item>Evotech Bulk Generic</item>
-  <item>Spacemart Bulk Frontier</item>
+  <item>Exacorp Bulk Frontier</item>
  </tech>
  <tech name="Evotech Hunting Frontier">
   <item>Evotech Hunting Generic</item>
-  <item>Spacemart Hunting Frontier</item>
+  <item>Exacorp Hunting Frontier</item>
  </tech>
  <tech name="Evotech Police Frontier">
   <item>Evotech Police Generic</item>
-  <item>Spacemart Police Frontier</item>
+  <item>Exacorp Police Frontier</item>
  </tech>
  <tech name="Evotech Warfare Frontier">
   <item>Evotech Warfare Generic</item>
-  <item>Spacemart Warfare Frontier</item>
- </tech>
- <tech name="Evotech Fuel Coälition">
-  <item>Evotech Fuel Generic</item>
-  <item>Spacemart Fuel Coälition</item>
+  <item>Exacorp Warfare Frontier</item>
  </tech>
  <tech name="Evotech Sports Coälition">
   <item>Evotech Sports Generic</item>
-  <item>Spacemart Sports Coälition</item>
+  <item>Exacorp Sports Coälition</item>
  </tech>
  <tech name="Evotech Tourism Coälition">
   <item>Evotech Tourism Generic</item>
-  <item>Spacemart Tourism Coälition</item>
+  <item>Exacorp Tourism Coälition</item>
  </tech>
  <tech name="Evotech Courier Coälition">
   <item>Evotech Courier Generic</item>
-  <item>Spacemart Courier Coälition</item>
+  <item>Exacorp Courier Coälition</item>
  </tech>
  <tech name="Evotech Bulk Coälition">
   <item>Evotech Bulk Generic</item>
-  <item>Spacemart Bulk Coälition</item>
+  <item>Exacorp Bulk Coälition</item>
  </tech>
  <tech name="Evotech Hunting Coälition">
   <item>Evotech Hunting Generic</item>
-  <item>Spacemart Hunting Coälition</item>
+  <item>Exacorp Hunting Coälition</item>
  </tech>
  <tech name="Evotech Police Coälition">
   <item>Evotech Police Generic</item>
-  <item>Spacemart Police Coälition</item>
+  <item>Exacorp Police Coälition</item>
  </tech>
  <tech name="Evotech Warfare Coälition">
   <item>Evotech Warfare Generic</item>
-  <item>Spacemart Warfare Coälition</item>
+  <item>Exacorp Warfare Coälition</item>
  </tech>
 
  <!-- Jolly's – outlaw stations. -->
