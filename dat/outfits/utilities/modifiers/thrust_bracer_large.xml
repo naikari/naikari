@@ -3,14 +3,14 @@
  <general>
   <slot>utility</slot>
   <size>large</size>
-  <mass>20</mass>
+  <mass>0</mass>
   <price>375000</price>
-  <description>This thrust bracer is the largest and most impactful of its type and, while its increase to mass limit is typically of no interest to pilots of the largest ships, it can prove to be invaluable for pilots of Destroyers and light Cruisers who need a bit of an edge in speed.</description>
+  <description>In addition to rerouting some of the ship's power, a Thrust Bracer provides an extra buffer to the engine's cooling and matter-antimatter circulation system and redirects steering thrust to the main engines, enabling the engine to more easily propel loads above its weight class.</description>
   <gfx_store>mass_limit_large.png</gfx_store>
  </general>
  <specific type="modification">
   <engine_limit>750</engine_limit>
-  <turn_mod>-20</turn_mod>
+  <turn_mod>-40</turn_mod>
   <energy_regen_malus>13</energy_regen_malus>
  </specific>
 </outfit>

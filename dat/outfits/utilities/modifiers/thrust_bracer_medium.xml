@@ -3,14 +3,14 @@
  <general>
   <slot>utility</slot>
   <size>medium</size>
-  <mass>10</mass>
+  <mass>0</mass>
   <price>225000</price>
-  <description>This is essentially just a scaled-up variant of the more popular small thrust bracer. While it is too large to fit on small ships and generally not powerful enough to attract Destroyer pilots, it has found a niche for use in particularly aggressive heavy Corvette builds.</description>
+  <description>In addition to rerouting some of the ship's power, a Thrust Bracer provides an extra buffer to the engine's cooling and matter-antimatter circulation system and redirects steering thrust to the main engines, enabling the engine to more easily propel loads above its weight class.</description>
   <gfx_store>mass_limit_medium.png</gfx_store>
  </general>
  <specific type="modification">
   <engine_limit>200</engine_limit>
-  <turn_mod>-15</turn_mod>
+  <turn_mod>-30</turn_mod>
   <energy_regen_malus>4</energy_regen_malus>
  </specific>
 </outfit>
