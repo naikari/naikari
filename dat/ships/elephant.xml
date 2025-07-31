@@ -16,7 +16,7 @@
  <trail_generator x="-46" y="10" h="-6" />
  <trail_generator x="-46" y="-10" h="6" />
  <trail_generator x="-46" y="-10" h="-6" />
- <fabricator>Exacorp</fabricator>
+ <fabricator>Nova Shipyards</fabricator>
  <description>The Elephant at its core is essentially an upscaled Mule. It's the largest cargo ship money can buy, capable of easily turning a substantial profit in the commodity trading business.</description>
  <health>
   <armour>600</armour>
