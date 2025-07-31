@@ -114,7 +114,7 @@
   <item>Forward Shock Absorbers</item>
   <item>Power Regulation Override</item>
   <item>Improved Power Regulator</item>
-  <item>Rotary Turbo Modulator</item>
+  <item>Turbo Modulator</item>
   <item>Power Amplification Circuit</item>
   <item>Rotary Power Accelerator</item>
   <item>Power Overdrive Module</item>
@@ -632,7 +632,7 @@
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
-  <item>Rotary Turbo Modulator</item>
+  <item>Turbo Modulator</item>
   <item>Basic Jammer</item>
   <item>Light Afterburner</item>
   <item>Heavy Afterburner</item>
@@ -670,7 +670,7 @@
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
-  <item>Rotary Turbo Modulator</item>
+  <item>Turbo Modulator</item>
   <item>Targeting Array</item>
   <item>Medium Thrust Bracer</item>
   <item>Improved Power Regulator</item>
@@ -750,7 +750,7 @@
   <item>Exacorp Tourism Generic</item>
   <item>TL21-S Lumina Turret</item>
   <item>Small Thrust Bracer</item>
-  <item>Rotary Turbo Modulator</item>
+  <item>Turbo Modulator</item>
  </tech>
  <tech name="Evotech Courier Generic">
   <item>Exacorp Courier Generic</item>

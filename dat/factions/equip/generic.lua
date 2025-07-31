@@ -726,7 +726,7 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Rotary Turbo Modulator",
+         "Turbo Modulator",
          "Jump Scanner",
          "Light Afterburner",
          "Basic Jammer",
@@ -738,7 +738,7 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Rotary Turbo Modulator",
+         "Turbo Modulator",
          "Jump Scanner",
          "Heavy Afterburner",
       },
@@ -752,7 +752,7 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Enhanced Jammer",
-         "Rotary Turbo Modulator",
+         "Turbo Modulator",
       },
    },
    ["Armored Transport"] = {
@@ -765,7 +765,7 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Enhanced Jammer",
-         "Rotary Turbo Modulator",
+         "Turbo Modulator",
       },
    },
    ["Bulk Freighter"] = {
@@ -897,7 +897,7 @@ equip_classOutfits_utilities = {
          "Large Thrust Bracer",
          "Power Overdrive Module",
          "Droid Repair Crew",
-         "Rotary Turbo Modulator",
+         "Turbo Modulator",
          "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
