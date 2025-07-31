@@ -1623,7 +1623,8 @@ static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
    /* Stat modifiers. */
    range = w->outfit->u.blt.range * parent->stats.blt_range;
    speed = w->outfit->u.blt.speed * parent->stats.blt_speed;
-   spread = w->outfit->u.blt.spread + parent->stats.blt_spread;
+   spread = w->outfit->u.blt.spread;
+   spread += parent->stats.blt_spread * M_PI / 180.;
    w->dam_mod *= parent->stats.blt_damage;
    w->dam_mod *= (slot->charge+w->outfit->u.blt.delay) / w->outfit->u.blt.delay;
    w->dam_as_dis_mod = parent->stats.blt_dam_as_dis;
@@ -1634,7 +1635,7 @@ static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
          || parent->stats.turret_conversion) {
       range *= parent->stats.tur_range;
       speed *= parent->stats.tur_speed;
-      spread += parent->stats.tur_spread;
+      spread += parent->stats.tur_spread * M_PI / 180.;
       w->dam_mod *= parent->stats.tur_damage;
       w->dam_as_dis_mod += parent->stats.tur_dam_as_dis;
       w->dis_as_dam_mod += parent->stats.tur_dis_as_dam;
@@ -1644,7 +1645,7 @@ static void weapon_createBolt(Weapon *w, const PilotOutfitSlot *slot,
    else {
       range *= parent->stats.fwd_range;
       speed *= parent->stats.fwd_speed;
-      spread += parent->stats.fwd_spread;
+      spread += parent->stats.fwd_spread * M_PI / 180.;
       w->dam_mod *= parent->stats.fwd_damage;
       w->dam_as_dis_mod += parent->stats.fwd_dam_as_dis;
       w->dis_as_dam_mod += parent->stats.fwd_dis_as_dam;
@@ -1751,7 +1752,8 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
    duration = w->outfit->u.amm.duration * parent->stats.launch_range;
    duration /= parent->stats.launch_speed;
    speed = w->outfit->u.amm.speed * parent->stats.launch_speed;
-   spread = launcher->u.lau.spread + parent->stats.launch_spread;
+   spread = launcher->u.lau.spread;
+   spread += parent->stats.launch_spread * M_PI / 180.;
    w->dam_mod *= parent->stats.launch_damage;
    w->dam_as_dis_mod = parent->stats.launch_dam_as_dis;
    w->dis_as_dam_mod = parent->stats.launch_dis_as_dam;
@@ -1762,7 +1764,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
       duration *= parent->stats.tur_range;
       duration /= parent->stats.tur_speed;
       speed *= parent->stats.tur_speed;
-      spread += parent->stats.tur_spread;
+      spread += parent->stats.tur_spread * M_PI / 180.;
       w->dam_mod *= parent->stats.tur_damage;
       w->dam_as_dis_mod += parent->stats.tur_dam_as_dis;
       w->dis_as_dam_mod += parent->stats.tur_dis_as_dam;
@@ -1773,7 +1775,7 @@ static void weapon_createAmmo( Weapon *w, const Outfit* launcher, double T,
       duration *= parent->stats.fwd_range;
       duration /= parent->stats.fwd_speed;
       speed *= parent->stats.fwd_speed;
-      spread += parent->stats.fwd_spread;
+      spread += parent->stats.fwd_spread * M_PI / 180.;
       w->dam_mod *= parent->stats.fwd_damage;
       w->dam_as_dis_mod += parent->stats.fwd_dam_as_dis;
       w->dis_as_dam_mod += parent->stats.fwd_dis_as_dam;

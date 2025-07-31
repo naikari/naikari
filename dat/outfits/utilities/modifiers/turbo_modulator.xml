@@ -5,17 +5,13 @@
   <size>small</size>
   <mass>0</mass>
   <price>75000</price>
-  <description>This device forces a surge of power thru weapons beyond what they're designed to handle, creating a boost in fire rate. The process causes the weapons to vibrate, reducing base accuracy and generating heat.</description>
+  <description>This device forces a surge of power thru bolt weapons beyond what they're designed to handle, creating a boost in fire rate. The process causes the weapons to vibrate, reducing base accuracy and generating heat.</description>
   <gfx_store>firerate_turret.webp</gfx_store>
  </general>
  <specific type="modification">
-  <fwd_firerate>100</fwd_firerate>
-  <fwd_spread>5</fwd_spread>
-  <fwd_energy>30</fwd_energy>
-  <fwd_heat>5</fwd_heat>
-  <tur_firerate>100</tur_firerate>
-  <tur_spread>5</tur_spread>
-  <tur_energy>30</tur_energy>
-  <tur_heat>5</tur_heat>
+  <blt_firerate>100</blt_firerate>
+  <blt_spread>5</blt_spread>
+  <blt_energy>5</blt_energy>
+  <blt_heat>5</blt_heat>
  </specific>
 </outfit>
