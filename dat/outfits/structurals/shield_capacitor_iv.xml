@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Shield Capacitor IV">
+<outfit name="Dense Shield Capacitor">
  <general>
   <slot>structure</slot>
   <size>large</size>
@@ -10,5 +10,6 @@
  </general>
  <specific type="modification">
   <shield>280</shield>
+  <shield_regen>8</shield_regen>
  </specific>
 </outfit>

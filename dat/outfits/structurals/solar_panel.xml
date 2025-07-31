@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Solar Panel">
  <general>
-  <slot>utility</slot>
+  <slot>structure</slot>
   <size>small</size>
-  <mass>3</mass>
+  <mass>0</mass>
   <price>25000</price>
   <description>A large panel that generates energy by collecting light and converting it into electricity. This will allow your ship to regenerate its energy supplies more quickly.</description>
   <gfx_store>photovoltaic_nanobot_coating.webp</gfx_store>
  </general>
  <specific type="modification">
-  <energy_regen>2.5</energy_regen>
+  <energy_regen>5</energy_regen>
  </specific>
 </outfit>

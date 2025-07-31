@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Battery">
+<outfit name="Small Battery">
  <general>
   <slot>structure</slot>
   <size>small</size>
-  <mass>4</mass>
-  <price>40000</price>
+  <mass>10</mass>
+  <price>65000</price>
   <description>A battery unit designed to hold 200 GJ of energy. Small enough to mount on many light vessels.</description>
   <gfx_store>capacitor-g.webp</gfx_store>
  </general>
  <specific type="modification">
   <energy>200</energy>
+  <energy_regen>5</energy_regen>
  </specific>
 </outfit>

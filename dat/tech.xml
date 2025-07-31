@@ -79,20 +79,14 @@
   <item>BioPlasma Talon Stage X</item>
   <item>BioPlasma Tentacle Stage 1</item>
   <item>BioPlasma Tentacle Stage X</item>
-  <item>Battery</item>
-  <item>Battery II</item>
-  <item>Battery III</item>
+  <item>Small Battery</item>
+  <item>Medium Battery</item>
+  <item>Large Battery</item>
   <item>Solar Panel</item>
-  <item>Reactor Class I</item>
-  <item>Reactor Class II</item>
-  <item>Reactor Class III</item>
-  <item>Shield Capacitor</item>
-  <item>Shield Capacitor II</item>
-  <item>Shield Capacitor III</item>
-  <item>Shield Capacitor IV</item>
-  <item>Small Shield Booster</item>
-  <item>Medium Shield Booster</item>
-  <item>Large Shield Booster</item>
+  <item>Small Shield Capacitor</item>
+  <item>Medium Shield Capacitor</item>
+  <item>Large Shield Capacitor</item>
+  <item>Dense Shield Capacitor</item>
   <item>Adaptive Stealth Plating</item>
   <item>Plasteel Plating</item>
   <item>Active Plating</item>
@@ -109,10 +103,10 @@
   <item>Small Thrust Bracer</item>
   <item>Medium Thrust Bracer</item>
   <item>Large Thrust Bracer</item>
-  <item>Fuel Pod</item>
+  <item>Small Fuel Pod</item>
   <item>Medium Fuel Pod</item>
   <item>Large Fuel Pod</item>
-  <item>Cargo Pod</item>
+  <item>Small Cargo Pod</item>
   <item>Medium Cargo Pod</item>
   <item>Large Cargo Pod</item>
   <item>Targeting Array</item>
@@ -388,8 +382,8 @@
   <item>FT80-U Talon Gun</item>
   <item>FL21-U Lumina Gun</item>
   <item>Solar Panel</item>
-  <item>Fuel Pod</item>
-  <item>Cargo Pod</item>
+  <item>Small Fuel Pod</item>
+  <item>Small Cargo Pod</item>
   <item>Bad Cores</item>
   <item>Llama</item>
  </tech>
@@ -419,8 +413,8 @@
   <item>Reverse Thrusters</item>
   <item>Solar Panel</item>
   <item>Light Afterburner</item>
-  <item>Fuel Pod</item>
-  <item>Battery</item>
+  <item>Small Fuel Pod</item>
+  <item>Small Battery</item>
   <item>Steering Thrusters</item>
   <item>Engine Reroute</item>
   <item>Bad Cores</item>
@@ -438,10 +432,10 @@
   <item>Solar Panel</item>
   <item>Sensor Array</item>
   <item>Basic Jammer</item>
-  <item>Fuel Pod</item>
+  <item>Small Fuel Pod</item>
   <item>Stealth Plating</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
@@ -457,11 +451,11 @@
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
   <item>Basic Jammer</item>
-  <item>Fuel Pod</item>
-  <item>Cargo Pod</item>
+  <item>Small Fuel Pod</item>
+  <item>Small Cargo Pod</item>
   <item>Stealth Plating</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Improved Stabilizer</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-200 APU</item>
@@ -483,14 +477,14 @@
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
   <item>Medium Thrust Bracer</item>
-  <item>Fuel Pod</item>
-  <item>Cargo Pod</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Fuel Pod</item>
+  <item>Small Cargo Pod</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Medium Fuel Pod</item>
   <item>Medium Cargo Pod</item>
-  <item>Shield Capacitor II</item>
-  <item>Battery II</item>
+  <item>Medium Shield Capacitor</item>
+  <item>Medium Battery</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-300 APU</item>
   <item>Exacorp HS-300 Engine</item>
@@ -508,10 +502,10 @@
   <item>Sensor Array</item>
   <item>Basic Jammer</item>
   <item>Light Afterburner</item>
-  <item>Fuel Pod</item>
+  <item>Small Fuel Pod</item>
   <item>Stealth Plating</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
@@ -528,14 +522,12 @@
   <item>Solar Panel</item>
   <item>Forward Shock Absorbers</item>
   <item>Sensor Array</item>
-  <item>Small Shield Booster</item>
-  <item>Reactor Class I</item>
   <item>Basic Jammer</item>
   <item>Weapons Ionizer</item>
   <item>Light Afterburner</item>
-  <item>Fuel Pod</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Fuel Pod</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-200 APU</item>
   <item>Exacorp HS-150 Engine</item>
@@ -552,15 +544,13 @@
   <item>Solar Panel</item>
   <item>Forward Shock Absorbers</item>
   <item>Sensor Array</item>
-  <item>Small Shield Booster</item>
-  <item>Reactor Class I</item>
   <item>Basic Jammer</item>
   <item>Weapons Ionizer</item>
   <item>Light Afterburner</item>
-  <item>Fuel Pod</item>
+  <item>Small Fuel Pod</item>
   <item>Stealth Plating</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Steering Thrusters</item>
   <item>Engine Reroute</item>
   <item>Bad Cores</item>
@@ -643,16 +633,14 @@
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
   <item>Rotary Turbo Modulator</item>
-  <item>Small Shield Booster</item>
-  <item>Reactor Class I</item>
   <item>Basic Jammer</item>
   <item>Light Afterburner</item>
   <item>Heavy Afterburner</item>
-  <item>Fuel Pod</item>
-  <item>Cargo Pod</item>
+  <item>Small Fuel Pod</item>
+  <item>Small Cargo Pod</item>
   <item>Stealth Plating</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Engine Reroute</item>
   <item>Improved Stabilizer</item>
   <item>Bad Cores</item>
@@ -683,26 +671,22 @@
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
   <item>Rotary Turbo Modulator</item>
-  <item>Small Shield Booster</item>
-  <item>Reactor Class I</item>
-  <item>Medium Shield Booster</item>
   <item>Targeting Array</item>
   <item>Medium Thrust Bracer</item>
   <item>Improved Power Regulator</item>
   <item>Rotary Power Accelerator</item>
   <item>Droid Repair Crew</item>
-  <item>Reactor Class II</item>
   <item>Basic Jammer</item>
   <item>Emergency Shield Booster</item>
   <item>Heavy Afterburner</item>
-  <item>Fuel Pod</item>
-  <item>Cargo Pod</item>
-  <item>Battery</item>
-  <item>Shield Capacitor</item>
+  <item>Small Fuel Pod</item>
+  <item>Small Cargo Pod</item>
+  <item>Small Battery</item>
+  <item>Small Shield Capacitor</item>
   <item>Medium Fuel Pod</item>
   <item>Medium Cargo Pod</item>
-  <item>Shield Capacitor II</item>
-  <item>Battery II</item>
+  <item>Medium Shield Capacitor</item>
+  <item>Medium Battery</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-300 APU</item>
   <item>Intek Aegis 3201 APU</item>
@@ -753,7 +737,6 @@
  <tech name="Evotech Sports Generic">
   <item>Exacorp Sports Generic</item>
   <item>Small Thrust Bracer</item>
-  <item>Reactor Class I</item>
   <item>Heavy Afterburner</item>
   <item>Improved Stabilizer</item>
   <item>Intek Prometheus 2102 APU</item>
@@ -871,7 +854,7 @@
 
  <!-- Jolly's – outlaw stations. -->
  <tech name="Jolly's Fuel Generic">
-  <item>Fuel Pod</item>
+  <item>Small Fuel Pod</item>
   <item>Medium Fuel Pod</item>
   <item>Large Fuel Pod</item>
   <item>Bad Cores</item>

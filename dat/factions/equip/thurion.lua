@@ -85,9 +85,9 @@ equip_typeOutfits_weapons["Certitude"] = {
 equip_typeOutfits_structurals["Perspicacity"] = {
    {
       varied = true, probability = {
-         ["Fuel Pod"] = 4, ["Improved Stabilizer"] = 2
+         ["Small Fuel Pod"] = 4, ["Improved Stabilizer"] = 2
       };
-      "Fuel Pod", "Improved Stabilizer", "Shield Capacitor",
+      "Small Fuel Pod", "Improved Stabilizer", "Small Shield Capacitor",
       "Adaptive Stealth Plating",
    },
 }
@@ -96,42 +96,42 @@ equip_typeOutfits_structurals["Ingenuity"] = {
       varied = true, probability = {
          ["Steering Thrusters"] = 4, ["Engine Reroute"] = 4,
       };
-      "Fuel Pod", "Steering Thrusters", "Engine Reroute", "Battery",
-      "Shield Capacitor", "Adaptive Stealth Plating",
+      "Small Fuel Pod", "Steering Thrusters", "Engine Reroute", "Small Battery",
+      "Small Shield Capacitor", "Adaptive Stealth Plating",
    },
 }
 equip_typeOutfits_structurals["Scintillation"] = {
    {
       varied = true;
-      "Fuel Pod", "Steering Thrusters", "Engine Reroute", "Shield Capacitor",
+      "Small Fuel Pod", "Steering Thrusters", "Engine Reroute", "Small Shield Capacitor",
       "Adaptive Stealth Plating",
    },
 }
 equip_typeOutfits_structurals["Virtuosity"] = {
    {
       varied = true;
-      "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+      "Medium Fuel Pod", "Medium Battery", "Medium Shield Capacitor",
       "Plasteel Plating", "Adaptive Stealth Plating",
    },
 }
 equip_typeOutfits_structurals["Taciturnity"] = {
    {
       varied = true, probability = {
-         ["Cargo Pod"] = 15, ["Medium Fuel Pod"] = 3,
+         ["Small Cargo Pod"] = 15, ["Medium Fuel Pod"] = 3,
       };
-      "Cargo Pod", "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+      "Small Cargo Pod", "Medium Fuel Pod", "Medium Battery", "Medium Shield Capacitor",
       "Plasteel Plating", "Adaptive Stealth Plating",
    },
 }
 equip_typeOutfits_structurals["Apprehension"] = {
    {
       varied = true;
-      "Large Fuel Pod", "Battery III", "Shield Capacitor IV",
-      "Shield Capacitor III", "Nanobond Plating",
+      "Large Fuel Pod", "Large Battery", "Dense Shield Capacitor",
+      "Large Shield Capacitor", "Nanobond Plating",
    },
    {
       varied = true;
-      "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+      "Medium Fuel Pod", "Medium Battery", "Medium Shield Capacitor",
       "Plasteel Plating", "Adaptive Stealth Plating",
    },
 }

@@ -99,19 +99,19 @@ equip_typeOutfits_weapons["Goddard"] = {
 equip_typeOutfits_structurals["Phalanx"] = {
    {
       varied = true;
-      "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+      "Medium Fuel Pod", "Medium Battery", "Medium Shield Capacitor",
       "Plasteel Plating", "Active Plating",
    },
 }
 equip_typeOutfits_structurals["Vigilance"] = {
    {
       varied = true;
-      "Large Fuel Pod", "Battery III", "Shield Capacitor IV",
-      "Shield Capacitor III", "Nanobond Plating",
+      "Large Fuel Pod", "Large Battery", "Dense Shield Capacitor",
+      "Large Shield Capacitor", "Nanobond Plating",
    },
    {
       varied = true;
-      "Medium Fuel Pod", "Battery II", "Shield Capacitor II",
+      "Medium Fuel Pod", "Medium Battery", "Medium Shield Capacitor",
       "Plasteel Plating", "Active Plating",
    },
 }

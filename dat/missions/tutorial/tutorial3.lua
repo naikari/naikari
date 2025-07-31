@@ -125,7 +125,7 @@ function accept()
       local equipped_outfits = player.pilot():outfits("structure")
       for i = 1, #equipped_outfits do
          local o = equipped_outfits[i]
-         if o == outfit.get("Cargo Pod")
+         if o == outfit.get("Small Cargo Pod")
                or o == outfit.get("Medium Cargo Pod")
                or o == outfit.get("Large Cargo Pod") then
             has_pod = true

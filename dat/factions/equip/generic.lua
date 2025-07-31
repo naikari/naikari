@@ -702,11 +702,8 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Reactor Class I",
          "Jump Scanner",
          "Light Afterburner",
-         "Small Shield Booster",
-         "Solar Panel",
          "Sensor Array",
       },
    },
@@ -714,18 +711,14 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Reactor Class I",
          "Jump Scanner",
          "Light Afterburner",
-         "Small Shield Booster",
-         "Solar Panel",
          "Sensor Array",
       },
    },
    ["Scout"] = {
       {
          varied = true;
-         "Medium Shield Booster",
          "Rotary Power Accelerator",
          "Droid Repair Crew",
          "Targeting Array",
@@ -733,11 +726,9 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Reactor Class I",
          "Rotary Turbo Modulator",
          "Jump Scanner",
          "Light Afterburner",
-         "Solar Panel",
          "Basic Jammer",
          "Reverse Thrusters",
          "Sensor Array",
@@ -747,20 +738,15 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Reactor Class I",
-         "Small Shield Booster",
          "Rotary Turbo Modulator",
          "Jump Scanner",
          "Heavy Afterburner",
-         "Solar Panel",
       },
    },
    ["Freighter"] = {
       {
          varied = true;
          "Medium Thrust Bracer",
-         "Reactor Class II",
-         "Medium Shield Booster",
          "Droid Repair Crew",
          "Emergency Shield Booster",
          "Targeting Array",
@@ -773,8 +759,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Medium Thrust Bracer",
-         "Reactor Class II",
-         "Medium Shield Booster",
          "Rotary Power Accelerator",
          "Droid Repair Crew",
          "Emergency Shield Booster",
@@ -788,8 +772,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Large Thrust Bracer",
-         "Reactor Class III",
-         "Large Shield Booster",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -801,10 +783,7 @@ equip_classOutfits_utilities = {
    ["Light Fighter"] = {
       {
          varied = true;
-         "Reactor Class I",
          "Light Afterburner",
-         "Small Shield Booster",
-         "Solar Panel",
          "Forward Shock Absorbers",
          "Power Regulation Override",
          "Weapons Ionizer",
@@ -816,10 +795,7 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Reactor Class I",
          "Heavy Afterburner",
-         "Small Shield Booster",
-         "Solar Panel",
          "Forward Shock Absorbers",
          "Power Regulation Override",
          "Weapons Ionizer",
@@ -831,10 +807,7 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Reactor Class I",
          "Heavy Afterburner",
-         "Small Shield Booster",
-         "Solar Panel",
          "Forward Shock Absorbers",
          "Power Regulation Override",
          "Enhanced Jammer",
@@ -847,15 +820,12 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Medium Thrust Bracer",
-         "Reactor Class II",
-         "Medium Shield Booster",
          "Droid Repair Crew",
          "Emergency Shield Booster",
          "Forward Shock Absorbers",
          "Power Regulation Override",
          "Enhanced Jammer",
          "Weapons Ionizer",
-         "Solar Panel",
          "Reverse Thrusters",
          "Heavy Afterburner",
          "Sensor Array",
@@ -864,13 +834,9 @@ equip_classOutfits_utilities = {
    ["Destroyer"] = {
       {
          varied = true;
-         "Reactor Class III",
-         "Large Shield Booster",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Medium Thrust Bracer",
-         "Reactor Class II",
-         "Medium Shield Booster",
          "Power Amplification Circuit",
          "Rotary Power Accelerator",
          "Droid Repair Crew",
@@ -880,7 +846,6 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
-         "Solar Panel",
          "Sensor Array",
       },
    },
@@ -888,8 +853,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Large Thrust Bracer",
-         "Reactor Class III",
-         "Large Shield Booster",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -897,7 +860,6 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
-         "Solar Panel",
          "Sensor Array",
       },
    },
@@ -905,8 +867,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Large Thrust Bracer",
-         "Reactor Class III",
-         "Large Shield Booster",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -914,7 +874,6 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
-         "Solar Panel",
          "Sensor Array",
       },
    },
@@ -922,8 +881,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Large Thrust Bracer",
-         "Reactor Class III",
-         "Large Shield Booster",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -931,7 +888,6 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
-         "Solar Panel",
          "Sensor Array",
       },
    },
@@ -939,30 +895,23 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Large Thrust Bracer",
-         "Reactor Class III",
-         "Large Shield Booster",
          "Power Overdrive Module",
          "Droid Repair Crew",
          "Rotary Turbo Modulator",
          "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
-         "Solar Panel",
          "Sensor Array",
       },
    },
    ["Drone"] = {
       {
-         "Solar Panel",
+         "Sensor Array",
       },
    },
    ["Heavy Drone"] = {
       {
-         num = 1;
          "Sensor Array"
-      },
-      {
-         "Reactor Class I"
       },
    }
 }
@@ -976,10 +925,11 @@ equip_classOutfits_structurals = {
          "Improved Stabilizer",
          "Engine Reroute",
          "Steering Thrusters",
-         "Battery",
-         "Shield Capacitor",
-         "Cargo Pod",
-         "Fuel Pod",
+         "Small Battery",
+         "Small Shield Capacitor",
+         "Small Cargo Pod",
+         "Small Fuel Pod",
+         "Solar Panel",
       },
    },
    ["Luxury Yacht"] = {
@@ -988,28 +938,30 @@ equip_classOutfits_structurals = {
          "Improved Stabilizer",
          "Engine Reroute",
          "Steering Thrusters",
-         "Battery",
+         "Small Battery",
+         "Solar Panel",
       },
    },
    ["Scout"] = {
       {
          varied = true, probability = {
-            ["Fuel Pod"] = 4, ["Improved Stabilizer"] = 2
+            ["Small Fuel Pod"] = 4,
+            ["Improved Stabilizer"] = 2,
          };
-         "Fuel Pod",
+         "Small Fuel Pod",
          "Stealth Plating",
          "Improved Stabilizer",
          "Engine Reroute",
-         "Shield Capacitor",
+         "Small Shield Capacitor",
       },
    },
    ["Courier"] = {
       {
          varied = true, probability = {
-            ["Cargo Pod"] = 4,
+            ["Small Cargo Pod"] = 4,
          };
-         "Cargo Pod",
-         "Fuel Pod",
+         "Small Cargo Pod",
+         "Small Fuel Pod",
          "Improved Stabilizer",
       },
    },
@@ -1025,13 +977,13 @@ equip_classOutfits_structurals = {
    ["Armored Transport"] = {
       {
          varied = true, probability = {
-            ["Cargo Pod"] = 15,
+            ["Small Cargo Pod"] = 15,
             ["Medium Fuel Pod"] = 3,
          };
-         "Cargo Pod",
+         "Small Cargo Pod",
          "Medium Fuel Pod",
-         "Battery II",
-         "Shield Capacitor II",
+         "Medium Battery",
+         "Medium Shield Capacitor",
          "Plasteel Plating",
       },
    },
@@ -1052,10 +1004,11 @@ equip_classOutfits_structurals = {
          };
          "Steering Thrusters",
          "Engine Reroute",
-         "Battery",
-         "Shield Capacitor",
-         "Fuel Pod",
+         "Small Battery",
+         "Small Shield Capacitor",
+         "Small Fuel Pod",
          "Stealth Plating",
+         "Solar Panel",
       },
    },
    ["Fighter"] = {
@@ -1066,10 +1019,11 @@ equip_classOutfits_structurals = {
          };
          "Steering Thrusters",
          "Engine Reroute",
-         "Battery",
-         "Shield Capacitor",
-         "Fuel Pod",
+         "Small Battery",
+         "Small Shield Capacitor",
+         "Small Fuel Pod",
          "Stealth Plating",
+         "Solar Panel",
       },
    },
    ["Bomber"] = {
@@ -1077,40 +1031,42 @@ equip_classOutfits_structurals = {
          varied = true;
          "Steering Thrusters",
          "Engine Reroute",
-         "Shield Capacitor",
-         "Fuel Pod",
+         "Small Shield Capacitor",
+         "Small Fuel Pod",
          "Stealth Plating",
+         "Solar Panel",
       },
    },
    ["Corvette"] = {
       {
          varied = true;
-         "Battery II",
-         "Shield Capacitor II",
+         "Medium Battery",
+         "Medium Shield Capacitor",
          "Plasteel Plating",
          "Medium Fuel Pod",
          "Steering Thrusters",
          "Engine Reroute",
          "Stealth Plating",
+         "Solar Panel",
       },
    },
    ["Destroyer"] = {
       {
          varied = true, probability = {
-            ["Battery III"] = 3,
-            ["Shield Capacitor III"] = 3,
+            ["Large Battery"] = 3,
+            ["Large Shield Capacitor"] = 3,
             ["Large Fuel Pod"] = 3,
          };
-         "Battery III",
-         "Shield Capacitor III",
+         "Large Battery",
+         "Large Shield Capacitor",
          "Large Fuel Pod",
          "Nanobond Plating",
-         "Shield Capacitor IV",
+         "Dense Shield Capacitor",
       },
       {
          varied = true;
-         "Battery II",
-         "Shield Capacitor II",
+         "Medium Battery",
+         "Medium Shield Capacitor",
          "Plasteel Plating",
          "Medium Fuel Pod",
       },
@@ -1118,37 +1074,37 @@ equip_classOutfits_structurals = {
    ["Light Cruiser"] = {
       {
          varied = true, probability = {
-            ["Battery III"] = 3,
-            ["Shield Capacitor III"] = 3,
+            ["Large Battery"] = 3,
+            ["Large Shield Capacitor"] = 3,
             ["Large Fuel Pod"] = 3,
          };
-         "Battery III",
-         "Shield Capacitor III",
+         "Large Battery",
+         "Large Shield Capacitor",
          "Large Fuel Pod",
          "Biometal Armor",
          "Nanobond Plating",
-         "Shield Capacitor IV",
+         "Dense Shield Capacitor",
       },
       {
          varied = true;
-         "Battery II",
-         "Shield Capacitor II",
+         "Medium Battery",
+         "Medium Shield Capacitor",
          "Plasteel Plating",
       },
    },
    ["Cruiser"] = {
       {
          varied = true, probability = {
-            ["Battery III"] = 3,
-            ["Shield Capacitor III"] = 3,
+            ["Large Battery"] = 3,
+            ["Large Shield Capacitor"] = 3,
             ["Large Fuel Pod"] = 3,
          };
-         "Battery III",
-         "Shield Capacitor III",
+         "Large Battery",
+         "Large Shield Capacitor",
          "Large Fuel Pod",
          "Biometal Armor",
          "Nanobond Plating",
-         "Shield Capacitor IV",
+         "Dense Shield Capacitor",
       },
    },
    ["Battleship"] = {
@@ -1156,15 +1112,15 @@ equip_classOutfits_structurals = {
          varied = true, probability = {
             ["Biometal Armor"] = 2,
             ["Nanobond Plating"] = 6,
-            ["Shield Capacitor IV"] = 4,
+            ["Dense Shield Capacitor"] = 4,
             ["Large Fuel Pod"] = 3,
          };
          "Biometal Armor",
          "Nanobond Plating",
-         "Shield Capacitor IV",
+         "Dense Shield Capacitor",
          "Large Fuel Pod",
-         "Battery III",
-         "Shield Capacitor III",
+         "Large Battery",
+         "Large Shield Capacitor",
       },
    },
    ["Carrier"] = {
@@ -1172,15 +1128,15 @@ equip_classOutfits_structurals = {
          varied = true, probability = {
             ["Biometal Armor"] = 2,
             ["Nanobond Plating"] = 6,
-            ["Shield Capacitor IV"] = 4,
+            ["Dense Shield Capacitor"] = 4,
             ["Large Fuel Pod"] = 3,
          };
          "Biometal Armor",
          "Nanobond Plating",
-         "Shield Capacitor IV",
+         "Dense Shield Capacitor",
          "Large Fuel Pod",
-         "Battery III",
-         "Shield Capacitor III",
+         "Large Battery",
+         "Large Shield Capacitor",
       },
    },
    ["Drone"] = {
@@ -1630,11 +1586,11 @@ equip_typeOutfits_structurals = {
    ["Koäla"] = {
       {
          varied = true, probability = {
-            ["Cargo Pod"] = 9,
-            ["Fuel Pod"] = 2
+            ["Small Cargo Pod"] = 9,
+            ["Small Fuel Pod"] = 2
          };
-         "Cargo Pod",
-         "Fuel Pod",
+         "Small Cargo Pod",
+         "Small Fuel Pod",
       },
    },
 }
