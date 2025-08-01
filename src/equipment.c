@@ -1347,36 +1347,43 @@ int equipment_shipStats( char *buf, int max_len,  const Pilot *s, int dpseps )
             continue;
          switch (o->type) {
             case OUTFIT_TYPE_BOLT:
-               mod_energy = s->stats.fwd_energy;
-               mod_damage = s->stats.fwd_damage;
-               mod_shots  = 1. / s->stats.fwd_firerate;
+               mod_energy = s->stats.blt_energy * s->stats.fwd_energy;
+               mod_damage = s->stats.blt_damage * s->stats.fwd_damage;
+               mod_shots = 1. / (s->stats.blt_firerate*s->stats.fwd_firerate);
                break;
             case OUTFIT_TYPE_TURRET_BOLT:
-               mod_energy = s->stats.tur_energy;
-               mod_damage = s->stats.tur_damage;
-               mod_shots  = 1. / s->stats.tur_firerate;
+               mod_energy = s->stats.blt_energy * s->stats.tur_energy;
+               mod_damage = s->stats.blt_damage * s->stats.tur_damage;
+               mod_shots = 1. / (s->stats.blt_firerate*s->stats.tur_firerate);
                break;
             case OUTFIT_TYPE_LAUNCHER:
+               mod_energy = 1.;
+               mod_damage = s->stats.launch_damage * s->stats.fwd_damage;
+               mod_shots = 1. / (s->stats.launch_rate*s->stats.fwd_firerate);
+               break;
             case OUTFIT_TYPE_TURRET_LAUNCHER:
                mod_energy = 1.;
-               mod_damage = s->stats.launch_damage;
-               mod_shots  = 1. / s->stats.launch_rate;
+               mod_damage = s->stats.launch_damage * s->stats.tur_damage;
+               mod_shots = 1. / (s->stats.launch_rate*s->stats.tur_firerate);
                break;
             case OUTFIT_TYPE_BEAM:
             case OUTFIT_TYPE_TURRET_BEAM:
                /* Special case due to continuous fire. */
+               mod_energy = s->stats.bem_energy;
+               mod_damage = s->stats.bem_damage;
+               mod_shots = s->stats.bem_cooldown;
                if (o->type == OUTFIT_TYPE_BEAM) {
-                  mod_energy = s->stats.fwd_energy;
-                  mod_damage = s->stats.fwd_damage;
-                  mod_shots  = 1. / s->stats.fwd_firerate;
+                  mod_energy *= s->stats.fwd_energy;
+                  mod_damage *= s->stats.fwd_damage;
+                  mod_shots *= 1. / s->stats.fwd_firerate;
                }
                else {
-                  mod_energy = s->stats.tur_energy;
-                  mod_damage = s->stats.tur_damage;
-                  mod_shots  = 1. / s->stats.tur_firerate;
+                  mod_energy *= s->stats.tur_energy;
+                  mod_damage *= s->stats.tur_damage;
+                  mod_shots *= 1. / s->stats.tur_firerate;
                }
-               shots = outfit_duration(o);
-               mod_shots = shots / (shots + mod_shots * outfit_delay(o));
+               shots = s->stats.bem_duration * outfit_duration(o);
+               mod_shots = shots / (shots + mod_shots*outfit_delay(o));
                dps += mod_shots * mod_damage * outfit_damage(o)->damage;
                eps += mod_shots * mod_energy * outfit_energy(o);
                continue;

@@ -12,5 +12,6 @@
   <blt_damage>100</blt_damage>
   <blt_firerate>-45</blt_firerate>
   <blt_energy>100</blt_energy>
+  <blt_heat>100</blt_heat>
  </specific>
 </outfit>
