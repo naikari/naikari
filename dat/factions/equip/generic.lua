@@ -726,7 +726,7 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Turbo Modulator",
+         "Turbofire Module",
          "Jump Scanner",
          "Light Afterburner",
          "Basic Jammer",
@@ -738,7 +738,7 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Small Thrust Bracer",
-         "Turbo Modulator",
+         "Turbofire Module",
          "Jump Scanner",
          "Heavy Afterburner",
       },
@@ -752,7 +752,7 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Enhanced Jammer",
-         "Turbo Modulator",
+         "Turbofire Module",
       },
    },
    ["Armored Transport"] = {
@@ -765,13 +765,12 @@ equip_classOutfits_utilities = {
          "Targeting Array",
          "Improved Power Regulator",
          "Enhanced Jammer",
-         "Turbo Modulator",
+         "Turbofire Module",
       },
    },
    ["Bulk Freighter"] = {
       {
          varied = true;
-         "Large Thrust Bracer",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -794,7 +793,6 @@ equip_classOutfits_utilities = {
    ["Fighter"] = {
       {
          varied = true;
-         "Small Thrust Bracer",
          "Heavy Afterburner",
          "Forward Shock Absorbers",
          "Power Regulation Override",
@@ -806,7 +804,6 @@ equip_classOutfits_utilities = {
    ["Bomber"] = {
       {
          varied = true;
-         "Small Thrust Bracer",
          "Heavy Afterburner",
          "Forward Shock Absorbers",
          "Power Regulation Override",
@@ -819,7 +816,6 @@ equip_classOutfits_utilities = {
    ["Corvette"] = {
       {
          varied = true;
-         "Medium Thrust Bracer",
          "Droid Repair Crew",
          "Emergency Shield Booster",
          "Forward Shock Absorbers",
@@ -836,7 +832,6 @@ equip_classOutfits_utilities = {
          varied = true;
          "Power Overdrive Module",
          "Turret Conversion Module",
-         "Medium Thrust Bracer",
          "Power Amplification Circuit",
          "Rotary Power Accelerator",
          "Droid Repair Crew",
@@ -852,7 +847,6 @@ equip_classOutfits_utilities = {
    ["Light Cruiser"] = {
       {
          varied = true;
-         "Large Thrust Bracer",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -866,7 +860,6 @@ equip_classOutfits_utilities = {
    ["Cruiser"] = {
       {
          varied = true;
-         "Large Thrust Bracer",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -880,7 +873,6 @@ equip_classOutfits_utilities = {
    ["Battleship"] = {
       {
          varied = true;
-         "Large Thrust Bracer",
          "Power Overdrive Module",
          "Turret Conversion Module",
          "Droid Repair Crew",
@@ -894,10 +886,9 @@ equip_classOutfits_utilities = {
    ["Carrier"] = {
       {
          varied = true;
-         "Large Thrust Bracer",
          "Power Overdrive Module",
          "Droid Repair Crew",
-         "Turbo Modulator",
+         "Turbofire Module",
          "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",

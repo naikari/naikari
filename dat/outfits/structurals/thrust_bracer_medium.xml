@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<outfit name="Small Thrust Bracer">
+<outfit name="Medium Thrust Bracer">
  <general>
-  <slot>utility</slot>
-  <size>small</size>
+  <slot>structure</slot>
+  <size>medium</size>
   <mass>0</mass>
-  <price>75000</price>
+  <price>225000</price>
   <description>In addition to rerouting some of the ship's power, a Thrust Bracer provides an extra buffer to the engine's cooling and matter-antimatter circulation system and redirects steering thrust to the main engines, enabling the engine to more easily propel loads above its weight class.</description>
-  <gfx_store>mass_limit_small.png</gfx_store>
+  <gfx_store>mass_limit_medium.png</gfx_store>
  </general>
  <specific type="modification">
-  <engine_limit>50</engine_limit>
-  <turn_mod>-20</turn_mod>
-  <energy_regen_malus>2</energy_regen_malus>
+  <engine_limit>400</engine_limit>
+  <turn_mod>-15</turn_mod>
+  <energy_regen_malus>4</energy_regen_malus>
  </specific>
 </outfit>

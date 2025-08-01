@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Large Thrust Bracer">
  <general>
-  <slot>utility</slot>
+  <slot>structure</slot>
   <size>large</size>
   <mass>0</mass>
   <price>375000</price>
@@ -9,8 +9,8 @@
   <gfx_store>mass_limit_large.png</gfx_store>
  </general>
  <specific type="modification">
-  <engine_limit>750</engine_limit>
-  <turn_mod>-40</turn_mod>
+  <engine_limit>1500</engine_limit>
+  <turn_mod>-20</turn_mod>
   <energy_regen_malus>13</energy_regen_malus>
  </specific>
 </outfit>

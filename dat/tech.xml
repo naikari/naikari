@@ -114,7 +114,7 @@
   <item>Forward Shock Absorbers</item>
   <item>Power Regulation Override</item>
   <item>Improved Power Regulator</item>
-  <item>Turbo Modulator</item>
+  <item>Turbofire Module</item>
   <item>Power Amplification Circuit</item>
   <item>Rotary Power Accelerator</item>
   <item>Power Overdrive Module</item>
@@ -449,13 +449,13 @@
   <item>Jump Scanner</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
-  <item>Small Thrust Bracer</item>
   <item>Basic Jammer</item>
   <item>Small Fuel Pod</item>
   <item>Small Cargo Pod</item>
   <item>Stealth Plating</item>
   <item>Small Battery</item>
   <item>Small Shield Capacitor</item>
+  <item>Small Thrust Bracer</item>
   <item>Improved Stabilizer</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-200 APU</item>
@@ -475,16 +475,16 @@
   <item>Jump Scanner</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
-  <item>Small Thrust Bracer</item>
-  <item>Medium Thrust Bracer</item>
   <item>Small Fuel Pod</item>
   <item>Small Cargo Pod</item>
-  <item>Small Battery</item>
   <item>Small Shield Capacitor</item>
+  <item>Small Battery</item>
+  <item>Small Thrust Bracer</item>
   <item>Medium Fuel Pod</item>
   <item>Medium Cargo Pod</item>
   <item>Medium Shield Capacitor</item>
   <item>Medium Battery</item>
+  <item>Medium Thrust Bracer</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-300 APU</item>
   <item>Exacorp HS-300 Engine</item>
@@ -632,7 +632,7 @@
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
   <item>Small Thrust Bracer</item>
-  <item>Turbo Modulator</item>
+  <item>Turbofire Module</item>
   <item>Basic Jammer</item>
   <item>Light Afterburner</item>
   <item>Heavy Afterburner</item>
@@ -669,10 +669,8 @@
   <item>Jump Scanner</item>
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
-  <item>Small Thrust Bracer</item>
-  <item>Turbo Modulator</item>
+  <item>Turbofire Module</item>
   <item>Targeting Array</item>
-  <item>Medium Thrust Bracer</item>
   <item>Improved Power Regulator</item>
   <item>Rotary Power Accelerator</item>
   <item>Droid Repair Crew</item>
@@ -681,12 +679,14 @@
   <item>Heavy Afterburner</item>
   <item>Small Fuel Pod</item>
   <item>Small Cargo Pod</item>
-  <item>Small Battery</item>
   <item>Small Shield Capacitor</item>
+  <item>Small Battery</item>
+  <item>Small Thrust Bracer</item>
   <item>Medium Fuel Pod</item>
   <item>Medium Cargo Pod</item>
   <item>Medium Shield Capacitor</item>
   <item>Medium Battery</item>
+  <item>Medium Thrust Bracer</item>
   <item>Bad Cores</item>
   <item>Exacorp ET-300 APU</item>
   <item>Intek Aegis 3201 APU</item>
@@ -750,7 +750,7 @@
   <item>Exacorp Tourism Generic</item>
   <item>TL21-S Lumina Turret</item>
   <item>Small Thrust Bracer</item>
-  <item>Turbo Modulator</item>
+  <item>Turbofire Module</item>
  </tech>
  <tech name="Evotech Courier Generic">
   <item>Exacorp Courier Generic</item>
