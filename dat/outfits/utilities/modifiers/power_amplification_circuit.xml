@@ -5,12 +5,12 @@
   <size>small</size>
   <mass>0</mass>
   <price>95000</price>
-  <description>A Power Amplification Circuit modifies bolt weapons to fire a smaller number of higher-payload bolts.</description>
+  <description>A Power Amplification Circuit reroutes the power supply to fire a smaller number of higher-payload bolts.</description>
   <gfx_store>power_amplification_circuit.png</gfx_store>
  </general>
  <specific type="modification">
-  <blt_damage>110</blt_damage>
-  <blt_firerate>-50</blt_firerate>
+  <blt_damage>100</blt_damage>
+  <blt_firerate>-45</blt_firerate>
   <blt_energy>100</blt_energy>
  </specific>
 </outfit>
