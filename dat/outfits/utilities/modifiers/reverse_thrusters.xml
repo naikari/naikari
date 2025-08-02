@@ -7,7 +7,6 @@
   <price>20000</price>
   <description>Most ships can only thrust in one direction, because mounting engines on all sides of the ship tends to be impractical. However, it can be helpful to be able to thrust backwards to some, and for those people there is a solution: hull-mounted reverse thrusters. These thrusters can't propel the ship quite as well as real engines, due to their limited output.</description>
   <gfx_store>neural_accelerator_interface.webp</gfx_store>
-  <limit>Reverse Thrusters</limit>
  </general>
  <specific type="modification">
   <reverse_thrust>40</reverse_thrust>
