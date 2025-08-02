@@ -4,7 +4,7 @@
   <slot>utility</slot>
   <size>small</size>
   <mass>0</mass>
-  <price>95000</price>
+  <price>80000</price>
   <description>A Power Amplification Circuit reroutes the power supply to fire a smaller number of higher-payload bolts.</description>
   <gfx_store>power_amplification_circuit.png</gfx_store>
  </general>
