@@ -46,6 +46,8 @@
 * Replaced outfit descriptions with fully technical ones that focus on
   explaining their mechanics, rather than attempting worldbuilding with
   them.
+* Weapon aim lines are now shown for targeted asteroids as well as
+  targeted pilots.
 
 ### Bugfixes
 
