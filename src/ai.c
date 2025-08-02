@@ -1935,7 +1935,7 @@ static int aiL_aim( lua_State *L )
    /* Only acceptable parameter is pilot */
    p = luaL_validpilot(L,1);
 
-   angle = pilot_aimAngle( cur_pilot, p );
+   angle = pilot_aimAngle(cur_pilot, &p->solid->pos, &p->solid->vel);
 
    /* Calculate what we need to turn */
    diff = pilot_face(cur_pilot, angle);

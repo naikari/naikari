@@ -946,7 +946,9 @@ credits_t player_modCredits( credits_t amount )
  */
 void player_render( double dt )
 {
-   double a, b, d, x1, y1, x2, y2, r, theta;
+   double d, x1, y1, x2, y2, r, theta;
+   double aim_best;
+   double aim_cur;
    int zero_swivel;
    double time;
    int i;
@@ -954,6 +956,10 @@ void player_render( double dt )
    const Outfit *o;
    glColour c;
    Pilot *target;
+   AsteroidAnchor *field;
+   Asteroid *ast;
+   const Vector2d *tpos = NULL;
+   const Vector2d *tvel = NULL;
 
    /*
     * Check to see if the death menu should pop up.
@@ -972,19 +978,32 @@ void player_render( double dt )
          !pilot_isFlag( player.p, PILOT_HIDE)) {
 
       /* Render the aiming lines. */
-      if ((player.p->target != PLAYER_ID) && player.p->aimLines
+      if (player.p->aimLines
             && !pilot_isFlag(player.p, PILOT_HYPERSPACE)
             && !pilot_isFlag(player.p, PILOT_DISABLED)
             && !pilot_isFlag(player.p, PILOT_LANDING)
             && !pilot_isFlag(player.p, PILOT_TAKEOFF)
             && !player_isFlag(PLAYER_CINEMATICS_GUI)) {
-         target = pilot_get(player.p->target);
-         if (target != NULL) {
+         if (player.p->target != PLAYER_ID) {
+            target = pilot_get(player.p->target);
+            if (target != NULL) {
+               tpos = &target->solid->pos;
+               tvel = &target->solid->vel;
+            }
+         }
+         else if (player.p->nav_asteroid != -1) {
+            field = &cur_system->asteroids[player.p->nav_anchor];
+            ast = &field->asteroids[player.p->nav_asteroid];
+            tpos = &ast->pos;
+            tvel = &ast->vel;
+         }
+
+         if ((tpos != NULL) && (tvel != NULL)) {
             r = 200.;
             gl_gameToScreenCoords( &x1, &y1, player.p->solid->pos.x, player.p->solid->pos.y );
 
-            b = pilot_aimAngle( player.p, target );
-            a = b;
+            aim_best = pilot_aimAngle(player.p, tpos, tvel);
+            aim_cur = aim_best;
 
             inrange = 0;
 
@@ -1001,8 +1020,7 @@ void player_render( double dt )
                if (outfit_isFighterBay(o))
                   continue;
 
-               time = pilot_weapFlyTime(o, player.p, &target->solid->pos,
-                     &target->solid->vel);
+               time = pilot_weapFlyTime(o, player.p, tpos, tvel);
                if (outfit_duration(o) < time)
                   continue;
 
@@ -1039,30 +1057,30 @@ void player_render( double dt )
             c.a = 1.;
 
             if ((theta < 2*M_PI) && (theta != 0)) {
-               a = player.p->solid->dir;
+               aim_cur = player.p->solid->dir;
 
                /* The angular error will give the exact colour that is used. */
-               d = ABS(angle_diff(a,b) / (2*theta));
+               d = ABS(angle_diff(aim_cur,aim_best) / (2*theta));
                d = MIN(1, d);
 
                c = cInert;
                c.a = 0.3;
                gl_gameToScreenCoords(&x2, &y2,
-                     player.p->solid->pos.x + r*cos(a+theta),
-                     player.p->solid->pos.y + r*sin(a+theta));
+                     player.p->solid->pos.x + r*cos(aim_cur+theta),
+                     player.p->solid->pos.y + r*sin(aim_cur+theta));
                gl_drawLine(x1, y1, x2, y2, &c);
                gl_gameToScreenCoords(&x2, &y2,
-                     player.p->solid->pos.x + r*cos(a-theta),
-                     player.p->solid->pos.y + r*sin(a-theta));
+                     player.p->solid->pos.x + r*cos(aim_cur-theta),
+                     player.p->solid->pos.y + r*sin(aim_cur-theta));
                gl_drawLine(x1, y1, x2, y2, &c);
             }
             else if (zero_swivel) {
-               a = player.p->solid->dir;
+               aim_cur = player.p->solid->dir;
 
                /* A swivel of zero means that only exactly perfect
                 * aiming is sufficient, within a margin of error. We'll
                 * treat that margin of error as pi/360, or 0.5°. */
-               d = (ABS(angle_diff(a, b)) < M_PI / 360.) ? 0. : 1.;
+               d = (ABS(angle_diff(aim_cur, aim_best)) < M_PI / 360.) ? 0. : 1.;
 
                c = cInert;
                c.a = 0.3;
@@ -1073,8 +1091,9 @@ void player_render( double dt )
                c.g = d*.2 + (1-d)*.8;
                c.b = (1-d)*.2;
                c.a = 0.9;
-               gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( a ),
-                                      player.p->solid->pos.y + r*sin( a ) );
+               gl_gameToScreenCoords(
+                  &x2, &y2, player.p->solid->pos.x + r*cos(aim_cur),
+                  player.p->solid->pos.y + r*sin(aim_cur));
 
                gl_drawLine( x1, y1, x2, y2, &c );
 
@@ -1084,15 +1103,16 @@ void player_render( double dt )
                      &cWhite, 1);
             }
 
-            gl_gameToScreenCoords( &x2, &y2, player.p->solid->pos.x + r*cos( b ),
-                                   player.p->solid->pos.y + r*sin( b ) );
+            gl_gameToScreenCoords(
+               &x2, &y2, player.p->solid->pos.x + r*cos(aim_best),
+               player.p->solid->pos.y + r*sin(aim_best));
 
             c.a = .4;
-            gl_drawLine( x1, y1, x2, y2, &c );
+            gl_drawLine(x1, y1, x2, y2, &c);
 
-            gl_drawCircle( x2, y2, 8., &cBlack, 0 );
-            gl_drawCircle( x2, y2, 10., &cBlack, 0 );
-            gl_drawCircle( x2, y2, 9., &cWhite, 0 );
+            gl_drawCircle(x2, y2, 8., &cBlack, 0);
+            gl_drawCircle(x2, y2, 10., &cBlack, 0);
+            gl_drawCircle(x2, y2, 9., &cWhite, 0);
          }
       }
 

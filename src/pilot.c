@@ -1020,9 +1020,10 @@ void pilot_cooldownEnd( Pilot *p, const char *reason )
  * @brief Returns the angle for a pilot to aim at an other pilot
  *
  *    @param p Pilot that aims.
- *    @param target Pilot that is being aimed at.
+ *    @param tpos Position of the object being aimed at.
+ *    @param tvel Velocity of the object being aimed at.
  */
-double pilot_aimAngle( Pilot *p, const Pilot *target )
+double pilot_aimAngle(Pilot *p, const Vector2d *tpos, const Vector2d *tvel)
 {
    double x,y;
    double t;
@@ -1033,10 +1034,10 @@ double pilot_aimAngle( Pilot *p, const Pilot *target )
    double orthoradial_speed;
 
    /* Get the distance */
-   dist = vect_dist( &p->solid->pos, &target->solid->pos );
+   dist = vect_dist(&p->solid->pos, tpos);
 
    /* Check if should recalculate weapon speed with secondary weapon. */
-   speed = pilot_weapSetSpeed( p, p->active_set, -1 );
+   speed = pilot_weapSetSpeed(p, p->active_set, -1);
 
    /* determine the radial, or approach speed */
    /*
@@ -1048,9 +1049,12 @@ double pilot_aimAngle( Pilot *p, const Pilot *target )
     *
     *Va dot Vr + ShotSpeed is the net closing velocity for the shot, and is used to compute the time of flight for the shot.
     */
-   vect_cset(&approach_vector, VX(p->solid->vel) - VX(target->solid->vel), VY(p->solid->vel) - VY(target->solid->vel) );
-   vect_cset(&relative_location, VX(target->solid->pos) -  VX(p->solid->pos),  VY(target->solid->pos) - VY(p->solid->pos) );
-   vect_cset(&orthoradial_vector, VY(p->solid->pos) - VY(target->solid->pos), VX(target->solid->pos) -  VX(p->solid->pos) );
+   vect_cset(&approach_vector, VX(p->solid->vel) - VX(*tvel),
+         VY(p->solid->vel) - VY(*tvel));
+   vect_cset(&relative_location, VX(*tpos) - VX(p->solid->pos),
+         VY(*tpos) - VY(p->solid->pos));
+   vect_cset(&orthoradial_vector, VY(p->solid->pos) - VY(*tpos),
+         VX(*tpos) -  VX(p->solid->pos));
 
    radial_speed = vect_dot(&approach_vector, &relative_location);
    radial_speed = radial_speed / VMOD(relative_location);
@@ -1069,18 +1073,18 @@ double pilot_aimAngle( Pilot *p, const Pilot *target )
 
    /* if t < 0, try the other solution*/
    if (t < 0)
-      t = - dist * (sqrt( speed*speed - orthoradial_speed*orthoradial_speed ) + radial_speed) /
-            (speed*speed - VMOD(approach_vector)*VMOD(approach_vector));
+      t = (-dist
+            * (sqrt(speed*speed - orthoradial_speed*orthoradial_speed)
+               + radial_speed)
+            / (speed*speed - VMOD(approach_vector)*VMOD(approach_vector)));
 
    /* if t still < 0, no solution*/
    if (t < 0)
       t = 0;
 
    /* Position is calculated on where it should be */
-   x = target->solid->pos.x + target->solid->vel.x*t
-      - (p->solid->pos.x + p->solid->vel.x*t);
-   y = target->solid->pos.y + target->solid->vel.y*t
-      - (p->solid->pos.y + p->solid->vel.y*t);
+   x = tpos->x + tvel->x*t - (p->solid->pos.x + p->solid->vel.x*t);
+   y = tpos->y + tvel->y*t - (p->solid->pos.y + p->solid->vel.y*t);
    vect_cset( &tv, x, y );
 
    return VANGLE(tv);
