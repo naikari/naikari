@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Weapons Deionizer">
+ <general>
+  <slot>utility</slot>
+  <size>small</size>
+  <mass>0</mass>
+  <price>210000</price>
+  <description>A Weapons Deionizer is a manually activated outfit which changes the characteristics of all weaponry to be fully lethal, but slightly increases their energy usage. This can be used to more easily kill targets, while still having less than lethal weaponry at your disposal when needed.</description>
+  <gfx_store>hive_combat_ai.webp</gfx_store>
+  <limit>Ionization Toggle</limit>
+ </general>
+ <specific type="modification" group="9">
+  <active />
+  <sound_on>outfit-activation</sound_on>
+  <sound_off>outfit-deactivation</sound_off>
+  <fwd_dis_as_dam>100</fwd_dis_as_dam>
+  <fwd_energy>20</fwd_energy>
+  <fwd_heat>20</fwd_heat>
+  <tur_dis_as_dam>100</tur_dis_as_dam>
+  <tur_energy>20</tur_energy>
+  <tur_heat>20</tur_heat>
+  <launch_range>-10</launch_range>
+ </specific>
+</outfit>
