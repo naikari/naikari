@@ -76,6 +76,22 @@ end
 
 
 --[[--
+Wrapper for naik.keyGet() which adds a color hilight to the return
+string.
+
+@usage bindname = fmt.keyGetH("accel")
+
+   @tparam string keyname  Name of the keybinding to get value of. Valid
+      values are listed in src/input.c: keybind_info.
+   @treturn string Human-readable display of the bound key, hilighted
+      with a color.
+--]]
+function fmt.keyGetH(keyname)
+   return "#b" .. naik.keyGet(keyname) .. "#0"
+end
+
+
+--[[--
 String interpolation function.
 
 Inspired by

@@ -155,7 +155,9 @@ static int naikL_ticks(lua_State *L)
  *
  * @usage bindname = naik.keyGet("accel")
  *
- *    @luatparam string keyname Name of the keybinding to get value of. Valid values are listed in src/input.c: keybind_info.
+ *    @luatparam string keyname Name of the keybinding to get value of.
+ *       Valid values are listed in src/input.c: keybind_info.
+ *    @luatreturn string Human-readable name for the bound key.
  * @luafunc keyGet
  */
 static int naikL_keyGet(lua_State *L)

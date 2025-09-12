@@ -15,28 +15,74 @@
 --]]
 --[[
 
-   Tutorial Mission
+   This mission is a tutorial for players, but is also written to be a
+   tutorial for mission writers.
 
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
+   Naikari missions are written in the Lua programming language.
+   There is documentation on Naikari's Lua API on the Naikari website:
 
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
+      https://naikari.github.io/lua/
 
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   At the top of each mission is an embedded XML tag. This is necessary
+   to tell the game meta-information about the mission, such as where it
+   should appear, what priority it should have compared to other
+   missions, and whether it is "unique" (that is, a mission that the
+   player can only complete once). It also identifies the unique name
+   used internally by the game to keep track of the different missions.
+
+   In the case of this mission, it will never appear on its own under
+   any circumstances, has maximum priority, and is unique. It is started
+   by dat/events/start.lua.
+
+   MISSION: Point of Sale
+   DESCRIPTION:
+      Basic introduction presented to the player at the start of the
+      game, teaching basic controls and directing the player to Ian
+      Structure to begin the story and continue learning how to play the
+      game.
 
 --]]
 
+--[[
+   require statements go here. Most missions should include the fmt
+   module, which provides useful functions for formatting text.
+--]]
 local fmt = require "fmt"
-require "events/tutorial/tutorial_common"
-require "missions/neutral/common"
 
 
+--[[
+Multi-paragraph or long dialog strings should go here, each with an
+identifiable name. You can see here that we wrap strings that are
+displayed to the player with `_()`. This is a call to gettext, which
+enables localization. The _() call should be used directly on the
+string, as shown here, instead of on a variable, so that the script
+which figures out what all the translatable text is can find it.
+(Alternatively, you can store the untranslated version while still
+allowing gettext to know about the string by using `N_()` around the
+string and then later usin `_()` on the variable that contains it.)
+
+Note the local keyword used on these variables; this means that the
+variable will not be persisted between game sessions, which is useful
+for these kinds of text variables since it ensures the player won't be
+shown outdated text.
+
+When writing dialog, write it like a book (in the present-tense), with
+paragraphs and quotations and all that good stuff. Use a double line
+break, as shown below, for new paragraphs. Use quotation marks as would
+be standard in a book. However, do *not* quote the player speaking;
+instead, paraphrase what the player generally says, as shown below.
+
+In most cases, you should use double-brackets for your multi-paragraph
+dialog strings, as shown below.
+
+One thing to keep in mind: the player can be any gender, so keep all
+references to the player gender-neutral. If you need to use a
+third-person pronoun for the player, singular "they" is the best choice.
+
+You may notice instances of words within curly braces ({}) sprinkled
+throughout the text. These are portions that will be filled in later by
+the mission via the `fmt.f()` function.
+--]]
 local intro_text  = _([["Welcome to space, {player}, and congratulations on your purchase," the salesperson who sold you the {shipname} says over the radio. "I am sure your new ship will serve you well! Here at Exacorp, our ships are prized for their reliability and affordability. I promise, you won't be disappointed!" You barely resist the temptation to roll your eyes at the remark; you really only bought this ship because it was the only one you could afford. Still, you tactfully thank the salesperson.]])
 
 local movement_text = _([["Now, so that your test flight goes as smoothly as possible, I will explain the controls of your state-of-the art Exacorp starship! There are two basic modes: keyboard flight, and mouse flight.
@@ -61,25 +107,47 @@ local finish_text = _([[The salesperson makes you sign dozens of forms: tax form
 
 You figure you might as well meet this man the salesperson mentioned at the #bSpaceport Bar#0 and see if the job is worthwhile.]])
 
-misn_title = _("Point of Sale")
-misn_desc = _("You have purchased a new ship from Exacorp and are in the process of finalizing the sale.")
+local misn_title = _("Point of Sale")
+local misn_desc = _("You have purchased a new ship from Exacorp and are in the process of finalizing the sale.")
 
 
+--[[ 
+The create() function runs immediately when the mission is created. It
+is responsible for setting the mission up to be initially presented to
+the player, generally by either spawning an NPC or by spawning an entry
+in the Mission Computer. Regardless of what it does, it is mandatory for
+this function to be defined.
+--]]
 function create()
+   -- Set our mission parameters. These are global variables which will
+   -- be persisted even if the game is reloaded.
    start_planet, missys = planet.get("Kikero")
+   stage = 1
+
+   -- Immediately call accept()
+   accept()
+end
+
+--[[
+The accept() function runs when the player approaches the mission's NPC,
+or when the player selects the mission in the Mission Computer and
+clicks the "Accept" button. It is responsible for actually adding the
+mission to the player's missions in the Ship Computer, and in many
+cases, it is also responsible for checking whether the player really
+wants to accept it, and whether they actually can.
+
+If the mission is truly accepted by the player and can be accepted by
+the player, run misn.accept() to transfer the mission into the player's
+active missions. Otherwise, run misn.finish() to keep the mission
+available for the player to attempt to accept the mission again.
+--]]
+function accept()
+   misn.accept()
 
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
    misn.setReward(_("None"))
 
-   accept()
-end
-
-
-function accept ()
-   misn.accept()
-
-   stage = 1
    create_osd()
 
    misn.markerAdd(missys, "low", start_planet)
@@ -112,9 +180,9 @@ function timer_greeting()
    tk.msg("", fmt.f(intro_text,
          {player=player.name(), shipname=player.pilot():name()}))
    tk.msg("", fmt.f(movement_text,
-         {leftkey=tutGetKey("left"), rightkey=tutGetKey("right"),
-            accelkey=tutGetKey("accel"), reversekey=tutGetKey("reverse"),
-            mouseflykey=tutGetKey("mousefly"), planet=start_planet:name()}))
+         {leftkey=fmt.keyGetH("left"), rightkey=fmt.keyGetH("right"),
+            accelkey=fmt.keyGetH("accel"), reversekey=fmt.keyGetH("reverse"),
+            mouseflykey=fmt.keyGetH("mousefly"), planet=start_planet:name()}))
 end
 
 
@@ -131,8 +199,8 @@ function timer()
 
       tk.msg("", fmt.f(landing_text,
             {planet=start_planet:name(),
-               target_planet_key=tutGetKey("target_planet"),
-               landkey=tutGetKey("land")}))
+               target_planet_key=fmt.keyGetH("target_planet"),
+               landkey=fmt.keyGetH("land")}))
       create_osd()
    end
 end
