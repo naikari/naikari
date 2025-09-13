@@ -142,16 +142,31 @@ active missions. Otherwise, run misn.finish() to keep the mission
 available for the player to attempt to accept the mission again.
 --]]
 function accept()
-   misn.accept()
+   -- This mission needs no checks, so we immediately accept the
+   -- mission. However, since it is started by an event, there is a slim
+   -- chance of this call failing, so if that happens, we abort the
+   -- mission.
+   if not misn.accept() then
+      misn.finish(false)
+   end
 
+   -- Set the mission's title, description, and reward.
    misn.setTitle(misn_title)
    misn.setDesc(misn_desc)
    misn.setReward(_("None"))
 
+   -- Create the OSD. In this case, we do this in a separate function
+   -- called create_osd(), defined further below.
    create_osd()
 
+   -- Create a marker, which shows the target system and planet on the
+   -- map.
    misn.markerAdd(missys, "low", start_planet)
 
+   -- Define hooks. Each hook is bound to a function which we define
+   -- further down below. Hooks enable timing of code in reaction to
+   -- certain events. See the hooked functions for an explanation of
+   -- each.
    timer_greeting_hook = hook.timer(1, "timer_greeting")
    timer_hook = hook.timer(5, "timer")
    hook.land("land")
@@ -159,6 +174,11 @@ function accept()
 end
 
 
+--[[
+Creates or recreates the OSD. This enables the OSD to be periodically
+recreated so that key binding changes made while the mission is running
+show up in the OSD.
+--]]
 function create_osd()
    local osd_desc = {
       fmt.f(_("Fly to {planet} ({system} system) with the movement keys ({accelkey}, {leftkey}, {reversekey}, {rightkey}) or with mouse flight (enabled with {mouseflykey})"),
