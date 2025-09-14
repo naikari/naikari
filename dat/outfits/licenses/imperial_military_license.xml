@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Imperial Military License">
+ <general>
+  <mass>0</mass>
+  <price>750000</price>
+  <gfx_store>license.webp</gfx_store>
+  <description>This license will authorize you to buy Imperial military-grade ships and outfits.</description>
+ </general>
+ <specific type="license" />
+</outfit>

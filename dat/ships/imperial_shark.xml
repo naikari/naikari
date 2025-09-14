@@ -15,6 +15,7 @@
  <trail_generator x="-15" y="-7" h="7" />
  <trail_generator x="-15" y="0" h="-5" always_under="1" />
  <fabricator>Nexus Shipyards</fabricator>
+ <license>Imperial Military License</license>
  <description>Not quite satisfied with the maneuverability and detection of the standard Shark, the Imperial military stripped it of some of its armor, replacing it with comparatively more lightweight shield generators, and installed integrated steering thrusters and state-of-the art radar sensors. The resulting ship ensures that enemies of the Empire have no chance of escape.</description>
  <health>
   <armour>40</armour>

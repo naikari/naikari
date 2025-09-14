@@ -16,6 +16,7 @@
  <trail_generator x="-20" y="5" h="-5" always_under="1" />
  <trail_generator x="-20" y="-5" h="-5" always_under="1" />
  <fabricator>Nexus Shipyards</fabricator>
+ <license>Imperial Military License</license>
  <description>This Imperial military grade version of the Admonisher sacrifices some of its armor and cargo space to make room for radar amplification circuitry. While not exactly a game-changer, it does lead to Imperial missile barrages and torpedoes hitting their marks more easily.</description>
  <health>
   <armour>180</armour>

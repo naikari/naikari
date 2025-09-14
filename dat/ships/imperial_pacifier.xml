@@ -14,6 +14,7 @@
  <trail_generator x="-25" y="8" h="0" />
  <trail_generator x="-25" y="-8" h="0" />
  <fabricator>Nexus Shipyards</fabricator>
+ <license>Imperial Military License</license>
  <description>The Pacifier has a long history with the Empire. Its performance has only been slightly enhanced compared to the civilian-grade Pacifier, but the Empire believes the design to be hard to beat. The military grade version replaces some of its built-in armor with enhanced shielding and enhanced heat dissipation systems.</description>
  <health>
   <armour>460</armour>

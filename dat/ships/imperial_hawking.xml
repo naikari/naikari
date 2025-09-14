@@ -17,6 +17,7 @@
  <trail_generator x="-21" y="10" h="-10" always_under="1" >nebula</trail_generator>
  <trail_generator x="-21" y="-10" h="-10" always_under="1" >nebula</trail_generator>
  <fabricator>Nexus Shipyards</fabricator>
+ <license>Imperial Military License</license>
  <description>The Imperial military grade Hawking is well-known for its weapon amplification sub-system. It makes the vessel somewhat less maneuverable and less armored than the standard Hawking, but that small concession is no comfort to those exposed to its seemingly unstoppable barrage of turreted weapons.</description>
  <health>
   <armour>1400</armour>
