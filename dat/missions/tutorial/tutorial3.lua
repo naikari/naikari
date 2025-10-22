@@ -51,7 +51,15 @@ local ask_text = _([["Hello again, {player}! Are you ready for that other missio
 
 local accept_text = _([["I appreciate it! Now, for this mission, you'll need {needed} kt of cargo capacity. Let's see, how much cargo capacity does your ship have?" Ian does some checks on his palmtop.]])
 
-local space_needed_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. Oh, make sure you also sell off any cargo you might be carrying at the Commodity Exchange. I'll wait here while you get that taken care of."]])
+local space_needed_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. I'll wait here while you get that taken care of."]])
+
+local space_needed_havecargo_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. I'll wait here while you get that taken care of.
+
+"Oh! I see you're already carrying some cargo, so be sure to sell that at the #bCommodity Exchange#0, as well."]])
+
+local space_needed_havemisn_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. I'll wait here while you get that taken care of.
+
+"Oh! I see you're carrying some cargo for another mission, so you might also have to finish or abort that mission first if the Cargo Pod isn't enough."]])
 
 local weapons_needed_text = _([["It looks like you've got plenty of cargo capacity! But wait, where are your weapons? I'm sorry, I forgot to mention that you do need weapons for this mission, as well. Would you re-equip your weapons at the #bHangar#0? The weapons your ship came with should be fine. If you sold them, you can buy them again them at the #bOutfit Shop#0. Come back to me here when you're done."]])
 
@@ -180,6 +188,23 @@ end
 function approach()
    local cargo_free = player.pilot():cargoFree()
    if cargo_free < cargo_needed then
+      local have_misn_cargo = false
+      for i, c in ipairs(player.pilot():cargoList()) do
+         if c.q > 0 then
+            if c.m then
+               have_misn_cargo = true
+            else
+               tk.msg("", fmt.f(space_needed_havecargo_text,
+                     {available=cargo_free}))
+               return
+            end
+         end
+      end
+      if have_misn_cargo then
+         tk.msg("", fmt.f(space_needed_havemisn_text, {available=cargo_free}))
+         return
+      end
+
       tk.msg("", fmt.f(space_needed_text, {available=cargo_free}))
       return
    end
