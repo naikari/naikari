@@ -51,15 +51,21 @@ local ask_text = _([["Hello again, {player}! Are you ready for that other missio
 
 local accept_text = _([["I appreciate it! Now, for this mission, you'll need {needed} kt of cargo capacity. Let's see, how much cargo capacity does your ship have?" Ian does some checks on his palmtop.]])
 
-local space_needed_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. I'll wait here while you get that taken care of."]])
+local space_needed_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. I'll wait here while you get that taken care of.
+
+"Remember, you need {needed} kt of cargo capacity."]])
 
 local space_needed_havecargo_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. I'll wait here while you get that taken care of.
 
-"Oh! I see you're already carrying some cargo, so be sure to sell that at the #bCommodity Exchange#0, as well."]])
+"Oh! I see you're already carrying some cargo, so be sure to sell that at the #bCommodity Exchange#0, as well.
+
+"Remember, you need {needed} kt of cargo capacity."]])
 
 local space_needed_havemisn_text = _([["It looks like you've got {available} kt of cargo capacity available right now. That falls a bit short, but no worries! You should be able to make up the difference by purchasing a #bCargo Pod#0 at the #bOutfit Shop#0, and then equipping it to your ship at the #bHangar#0. I'll wait here while you get that taken care of.
 
-"Oh! I see you're carrying some cargo for another mission, so you might also have to finish or abort that mission first if the Cargo Pod isn't enough."]])
+"Oh! I see you're carrying some cargo for another mission, so you might also have to finish or abort that mission first if the Cargo Pod isn't enough.
+
+"Remember, you need {needed} kt of cargo capacity."]])
 
 local weapons_needed_text = _([["It looks like you've got plenty of cargo capacity! But wait, where are your weapons? I'm sorry, I forgot to mention that you do need weapons for this mission, as well. Would you re-equip your weapons at the #bHangar#0? The weapons your ship came with should be fine. If you sold them, you can buy them again them at the #bOutfit Shop#0. Come back to me here when you're done."]])
 
@@ -113,6 +119,7 @@ function accept()
       misn.setReward(fmt.credits(credits))
       misn.setDesc(misn_desc)
 
+      ready = false
       started = false
       finished = false
 
@@ -157,6 +164,7 @@ function accept()
       local osd_desc = {
          fmt.f(_("Land on {planet} ({system}), equip your ship with a weapon and {needed} kt of cargo capacity, and talk to Ian Structure at the bar"),
             {planet=startplanet, system=startsys, needed=cargo_needed}),
+         fmt.f(_("Fly to {system} with Ian Structure"), {system=startsys}),
          fmt.f(_("Press {overlaykey} to open your overlay map"),
             {overlaykey=naik.keyGet("overlay")}),
          _("Fly to Asteroid Field indicated on overlay map by right-clicking the area"),
@@ -195,17 +203,19 @@ function approach()
                have_misn_cargo = true
             else
                tk.msg("", fmt.f(space_needed_havecargo_text,
-                     {available=cargo_free}))
+                     {available=cargo_free, needed=cargo_needed}))
                return
             end
          end
       end
       if have_misn_cargo then
-         tk.msg("", fmt.f(space_needed_havemisn_text, {available=cargo_free}))
+         tk.msg("", fmt.f(space_needed_havemisn_text,
+               {available=cargo_free, needed=cargo_needed}))
          return
       end
 
-      tk.msg("", fmt.f(space_needed_text, {available=cargo_free}))
+      tk.msg("", fmt.f(space_needed_text,
+            {available=cargo_free, needed=cargo_needed}))
       return
    end
 
@@ -215,6 +225,8 @@ function approach()
       return
    end
 
+   ready = true
+   misn.osdActive(2)
    tk.msg("", enough_space_text)
 end
 
@@ -230,6 +242,18 @@ end
 
 
 function enter()
+   -- Reset mission objective to start with (simplifies the checks here)
+   misn.osdActive(1)
+
+   if not ready then
+      return
+   end
+
+   local cargo_free = player.pilot():cargoFree()
+   if cargo_free < cargo_needed then
+      return
+   end
+
    if started or finished then
       return
    end
@@ -242,6 +266,10 @@ function enter()
    if weapons_equipped < 1 then
       return
    end
+
+   -- Ready for the mission; return the objective to objective 2 until
+   -- the timer advances it to objective 3.
+   misn.osdActive(2)
 
    hook.rm(bartender_hook)
 
@@ -258,7 +286,7 @@ function timer_enter()
    tk.msg("", fmt.f(overlay_text,
             {player=player.name(), overlaykey=tutGetKey("overlay")}))
 
-   misn.osdActive(2)
+   misn.osdActive(3)
 
    local pos = vec2.new(0, 0)
    mark = system.mrkAdd(_("Asteroid Field"), pos)
@@ -285,7 +313,7 @@ end
 
 function safe_overlay()
    tk.msg("", autonav_text)
-   misn.osdActive(3)
+   misn.osdActive(4)
 end
 
 
@@ -297,7 +325,7 @@ function asteroid_proximity()
          {primarykey=tutGetKey("primary"),
             secondarykey=tutGetKey("secondary"),
             needed=cargo_needed}))
-   misn.osdActive(4)
+   misn.osdActive(5)
 
    -- Ensure the player has weapons.
    local p = player.pilot()
@@ -333,7 +361,7 @@ function timer_mining()
    player.pilot():setNoJump(false)
 
    tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
-   misn.osdActive(9)
+   misn.osdActive(10)
 
    misn.markerMove(marker, missys, misplanet)
 end
