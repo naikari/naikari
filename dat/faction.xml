@@ -125,6 +125,7 @@
   <known />
   <logo>empire</logo>
   <colour>green</colour>
+  <longname>First Galactic Empire</longname>
   <player>1</player>
   <spawn>empire</spawn>
   <standing>empire</standing>
@@ -144,7 +145,7 @@
   <known />
   <logo>dvaered</logo>
   <colour>brown</colour>
-  <longname>Coälition</longname>
+  <longname>Coälition of Warlords</longname>
   <player>1</player>
   <spawn>dvaered</spawn>
   <standing>dvaered</standing>
