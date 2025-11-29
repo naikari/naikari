@@ -150,23 +150,25 @@ static int camL_get( lua_State *L )
  */
 static int camL_setZoom( lua_State *L )
 {
-   double zoom = luaL_optnumber(L,1,-1.0);
-   int hard_over = lua_toboolean(L,2);
+   double zoom = luaL_optnumber(L, 1, -1.);
+   int hard_over = lua_toboolean(L, 2);
 
    NLUA_CHECKRW(L);
 
    /* Handle arguments. */
    if (zoom > 0) {
-      zoom = 1.0 / zoom;
-      cam_zoomOverride( 1 );
+      cam_zoomOverride(1);
       if (hard_over)
-         cam_setZoom( zoom );
+         cam_setZoom(zoom);
       else
-         cam_setZoomTarget( zoom );
+         cam_setZoomTarget(zoom);
    }
    else {
-      cam_zoomOverride( 0 );
-      cam_setZoomTarget( 1. );
+      cam_zoomOverride(0);
+      if (hard_over)
+         cam_setZoom(CLAMP(conf.zoom_far, conf.zoom_near, 1.));
+      else
+         cam_setZoomTarget(CLAMP(conf.zoom_far, conf.zoom_near, 1.));
    }
    return 0;
 }
@@ -176,15 +178,15 @@ static int camL_setZoom( lua_State *L )
  * @brief Gets the camera zoom.
  *
  *    @luatreturn number Zoom level of the camera.
- *    @luatreturn number Maximum zoom level of the camera (furthest).
- *    @luatreturn number Minimum zoom level of the camera (closest).
+ *    @luatreturn number Minimum zoom level of the camera (furthest).
+ *    @luatreturn number Maximum zoom level of the camera (closest).
  * @luafunc getZoom
  */
 static int camL_getZoom( lua_State *L )
 {
-   lua_pushnumber( L, 1.0/cam_getZoom() );
-   lua_pushnumber( L, 1.0/conf.zoom_far );
-   lua_pushnumber( L, 1.0/conf.zoom_near );
+   lua_pushnumber(L, cam_getZoom());
+   lua_pushnumber(L, conf.zoom_far);
+   lua_pushnumber(L, conf.zoom_near);
    return 3;
 }
 

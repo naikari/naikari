@@ -232,8 +232,8 @@ static void player_newSetup()
    space_init( start_system() );
    start_position( &x, &y );
 
-   cam_setTargetPos( x, y, 0 );
-   cam_setZoom( conf.zoom_far );
+   cam_setTargetPos(x, y, 0);
+   cam_setZoom(conf.zoom_near);
 
    /* Clear the init message for new game. */
    gui_clearMessages();
@@ -785,7 +785,7 @@ void player_cleanup (void)
    pause_setSpeed(1.);
    sound_setSpeed(1.);
 
-   free( player.loaded_version );
+   free(player.loaded_version);
    player.loaded_version = NULL;
 
    /* Clean up. */

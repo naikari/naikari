@@ -204,7 +204,7 @@ extern double player_right; /**< player.c */
  * Prototypes.
  */
 static void input_key( int keynum, double value, double kabs, int repeat );
-static void input_clickZoom( double modifier );
+static void input_clickZoom(int scroll);
 static void input_clickevent( SDL_Event* event );
 static void input_mouseMove( SDL_Event* event );
 
@@ -1367,10 +1367,16 @@ static void input_keyevent( const int event, SDL_Keycode key, const SDL_Keymod m
 /**
  * @brief Handles zoom.
  */
-static void input_clickZoom( double modifier )
+static void input_clickZoom(int scroll)
 {
-   if (player.p != NULL)
-      cam_setZoomTarget( cam_getZoomTarget() * modifier );
+   double modifier = 1. + 0.05*scroll;
+
+   if (player.p != NULL) {
+      cam_setZoomTarget(
+         CLAMP(conf.zoom_far, conf.zoom_near, cam_getZoom() * modifier));
+      cam_setZoom(
+         CLAMP(conf.zoom_far, conf.zoom_near, cam_getZoom() * modifier));
+   }
 }
 
 /**
@@ -1900,10 +1906,8 @@ void input_handle( SDL_Event* event )
          break;
 
       case SDL_MOUSEWHEEL:
-         if (event->wheel.y > 0)
-            input_clickZoom( 1.1 );
-         else if (event->wheel.y < 0)
-            input_clickZoom( 0.9 );
+         if ((conf.zoom_manual) && (event->wheel.y != 0))
+            input_clickZoom(event->wheel.y);
          break;
 
       case SDL_MOUSEMOTION:

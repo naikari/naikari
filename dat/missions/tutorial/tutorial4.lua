@@ -196,7 +196,7 @@ function enter_ambush()
    pilot.toggleSpawn(false)
    pilot.clear()
 
-   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(2000, 0)
+   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(2500, -1000)
    local pirate = pilot.add("Hyena", "Pirate", pos, _("Pirate Hyena"),
          {ai="pirate_norun", naked=true})
 
@@ -272,7 +272,7 @@ function timer_pirate_death()
    player.pilot():setNoJump(false)
    player.pilot():setVisible(false)
 
-   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(1200, 1500)
+   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(1200, 2500)
    local civs = fleet.add(2, "Llama", "Trader", pos,
          nil, {naked=true}, true)
    for i = 1, #civs do

@@ -46,6 +46,7 @@
 #define MAP_OVERLAY_OPACITY_DEFAULT 0.55 /**< conf.map_overlay_opacity */
 #define ZOOM_FAR_DEFAULT 0.5 /**< conf.zoom_far */
 #define ZOOM_NEAR_DEFAULT 1. /**< conf.zoom_near */
+#define ZOOM_SPEED_DEFAULT 0.25 /**< conf.zoom_speed */
 /* Audio option defaults */
 #define MUTE_SOUND_DEFAULT 0 /**< conf.nosound */
 #define USE_EFX_DEFAULT 1 /**< conf.al_efx */

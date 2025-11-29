@@ -235,7 +235,7 @@ tech_group_t *tech_groupCreate( void )
 {
    tech_group_t *tech;
 
-   tech = calloc( sizeof(tech_group_t), 1 );
+   tech = calloc(1, sizeof(tech_group_t));
    return tech;
 }
 

@@ -26,19 +26,19 @@
 
 
 static unsigned int camera_followpilot = 0; /**< Pilot to follow. */
-static int zoom_override   = 0; /**< Whether or not to override the zoom. */
+static int zoom_override = 0; /**< Whether or not to override the zoom. */
 /* Current camera position. */
-static double camera_Z     = 1.; /**< Current in-game zoom. */
-static double camera_X     = 0.; /**< X position of camera. */
-static double camera_Y     = 0.; /**< Y position of camera. */
+static double camera_Z = 1.; /**< Current in-game zoom. */
+static double camera_X = 0.; /**< X position of camera. */
+static double camera_Y = 0.; /**< Y position of camera. */
 /* Old is used to compensate pilot movement. */
-static double old_X        = 0.; /**< Old X positiion. */
-static double old_Y        = 0.; /**< Old Y position. */
+static double old_X = 0.; /**< Old X positiion. */
+static double old_Y = 0.; /**< Old Y position. */
 /* Target is used why flying over with a target set. */
-static double target_Z     = 0.; /**< Target zoom. */
-static double target_X     = 0.; /**< Target X position. */
-static double target_Y     = 0.; /**< Target Y position. */
-static int camera_fly      = 0; /**< Camera is flying to target. */
+static double target_Z = 1.; /**< Target zoom. */
+static double target_X = 0.; /**< Target X position. */
+static double target_Y = 0.; /**< Target Y position. */
+static int camera_fly = 0; /**< Camera is flying to target. */
 static double camera_flyspeed = 0.; /**< Speed when flying. */
 
 
@@ -69,9 +69,9 @@ void cam_zoomOverride( int enable )
  *
  *    @param zoom Zoom to set to.
  */
-void cam_setZoom( double zoom )
+void cam_setZoom(double zoom)
 {
-   camera_Z = CLAMP( conf.zoom_far, conf.zoom_near, zoom );
+   camera_Z = zoom;
 }
 
 
@@ -82,9 +82,9 @@ void cam_setZoom( double zoom )
  *
  *    @param zoom Zoom to try to set camera to.
  */
-void cam_setZoomTarget( double zoom )
+void cam_setZoomTarget(double zoom)
 {
-   target_Z = CLAMP( conf.zoom_far, conf.zoom_near, zoom );
+   target_Z = zoom;
 }
 
 
@@ -378,11 +378,11 @@ static void cam_updateManualZoom( double dt )
       return;
 
    /* Gradually zoom in/out. */
-   d  = CLAMP( -conf.zoom_speed, conf.zoom_speed, target_Z - camera_Z);
+   d = CLAMP(-conf.zoom_speed, conf.zoom_speed, target_Z - camera_Z);
    d *= dt / dt_mod; /* Remove dt dependence. */
    if (d < 0) /** Speed up if needed. */
       d *= 2.;
-   camera_Z =  CLAMP( conf.zoom_far, conf.zoom_near, camera_Z + d );
+   camera_Z =  camera_Z + d;
 }
 
 
@@ -439,7 +439,7 @@ static void cam_updatePilotZoom( const Pilot *follow, const Pilot *target, doubl
    d *= dt / dt_mod; /* Remove dt dependence. */
    if (d < 0) /** Speed up if needed. */
       d *= 2.;
-   camera_Z =  CLAMP( zfar, znear, z + d);
+   camera_Z = CLAMP(zfar, znear, z + d);
 }
 
 

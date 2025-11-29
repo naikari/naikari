@@ -18,6 +18,7 @@
 #include "load.h"
 
 #include "array.h"
+#include "camera.h"
 #include "credits.h"
 #include "dialogue.h"
 #include "economy.h"
@@ -799,6 +800,9 @@ static int load_gameInternal( const char* file, const char* version )
    /* Sanitize the GUI. */
    gui_setCargo();
    gui_setShip();
+
+   /* Set initial zoom level. */
+   cam_setZoom(CLAMP(conf.zoom_far, conf.zoom_near, 1.));
 
    xmlFreeDoc(doc);
 

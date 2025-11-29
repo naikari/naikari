@@ -139,17 +139,17 @@ void conf_setDefaults (void)
    conf.repeat_freq  = 30;
 
    /* Dynamic zoom. */
-   conf.zoom_manual  = MANUAL_ZOOM_DEFAULT;
-   conf.zoom_far     = ZOOM_FAR_DEFAULT;
-   conf.zoom_near    = ZOOM_NEAR_DEFAULT;
-   conf.zoom_speed   = 0.25;
-   conf.zoom_stars   = 1.;
+   conf.zoom_manual = MANUAL_ZOOM_DEFAULT;
+   conf.zoom_far = ZOOM_FAR_DEFAULT;
+   conf.zoom_near = ZOOM_NEAR_DEFAULT;
+   conf.zoom_speed = ZOOM_SPEED_DEFAULT;
+   conf.zoom_stars = 1.;
 
    /* Font sizes. */
    conf.font_size_console = FONT_SIZE_CONSOLE_DEFAULT;
-   conf.font_size_intro   = FONT_SIZE_INTRO_DEFAULT;
-   conf.font_size_def     = FONT_SIZE_DEF_DEFAULT;
-   conf.font_size_small   = FONT_SIZE_SMALL_DEFAULT;
+   conf.font_size_intro = FONT_SIZE_INTRO_DEFAULT;
+   conf.font_size_def = FONT_SIZE_DEF_DEFAULT;
+   conf.font_size_small = FONT_SIZE_SMALL_DEFAULT;
 
    /* Misc. */
    conf.redirect_file = 1;
@@ -387,11 +387,11 @@ int conf_loadConfig ( const char* file )
       conf_loadInt( lEnv, "repeat_freq", conf.repeat_freq );
 
       /* Zoom. */
-      conf_loadBool( lEnv, "zoom_manual", conf.zoom_manual );
-      conf_loadFloat( lEnv, "zoom_far", conf.zoom_far );
-      conf_loadFloat( lEnv, "zoom_near", conf.zoom_near );
-      conf_loadFloat( lEnv, "zoom_speed", conf.zoom_speed );
-      conf_loadFloat( lEnv, "zoom_stars", conf.zoom_stars );
+      conf_loadBool(lEnv, "zoom_manual", conf.zoom_manual);
+      conf_loadFloat(lEnv, "zoom_far", conf.zoom_far);
+      conf_loadFloat(lEnv, "zoom_near", conf.zoom_near);
+      conf_loadFloat(lEnv, "zoom_speed", conf.zoom_speed);
+      conf_loadFloat(lEnv, "zoom_stars", conf.zoom_stars);
 
       /* Font size. */
       conf_loadInt( lEnv, "font_size_console", conf.font_size_console );
@@ -971,13 +971,13 @@ int conf_saveConfig ( const char* file )
    conf_saveComment(_("Minimum and maximum zoom factor to use in-game"));
    conf_saveComment(_("At 1.0, no sprites are scaled"));
    conf_saveComment(_("zoom_far should be less then zoom_near"));
-   conf_saveBool("zoom_manual",conf.zoom_manual);
-   conf_saveFloat("zoom_far",conf.zoom_far);
-   conf_saveFloat("zoom_near",conf.zoom_near);
+   conf_saveBool("zoom_manual", conf.zoom_manual);
+   conf_saveFloat("zoom_far", conf.zoom_far);
+   conf_saveFloat("zoom_near", conf.zoom_near);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Zooming speed in factor increments per second"));
-   conf_saveFloat("zoom_speed",conf.zoom_speed);
+   conf_saveFloat("zoom_speed", conf.zoom_speed);
    conf_saveEmptyLine();
 
    conf_saveComment(_("Zooming modulation factor for the starry background"));
