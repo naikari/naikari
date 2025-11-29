@@ -51,7 +51,7 @@ function spawn_capship ()
    local pilots = {}
 
    -- Generate the capship
-   scom.addPilot(pilots, "Coälition Goddard", 145)
+   scom.addPilot(pilots, "Coälition Legion", 145)
 
    -- Generate the escorts
    r = rnd.rnd()

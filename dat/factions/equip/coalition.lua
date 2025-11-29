@@ -13,7 +13,7 @@ equip_typeOutfits_hulls["Phalanx"] = {
 equip_typeOutfits_hulls["Vigilance"] = {
    "SHL Medium-Heavy Combat Hull",
 }
-equip_typeOutfits_hulls["Goddard"] = {
+equip_typeOutfits_hulls["Legion"] = {
    "SHL Superheavy Combat Hull",
 }
 
@@ -83,7 +83,7 @@ equip_typeOutfits_weapons["Vigilance"] = {
       "FC55-M Crystal Gun",
    },
 }
-equip_typeOutfits_weapons["Goddard"] = {
+equip_typeOutfits_weapons["Legion"] = {
    {
       num = 1;
       "TMT80-M Tiger Missile Turret",

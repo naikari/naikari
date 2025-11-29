@@ -135,7 +135,7 @@ function attack()
    f1:dynEnemy(f2)
    f2:dynEnemy(f1)
 
-   goda = pilot.add("Coälition Goddard", f1, source_system,
+   goda = pilot.add("Coälition Legion", f1, source_system,
          _("Invading Warlord"))
    attackers = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
@@ -161,7 +161,7 @@ function attack()
    attnum = #attackers
    attdamage = 0
 
-   godd = pilot.add("Coälition Goddard", f2, source_planet, _("Local Warlord"))
+   godd = pilot.add("Coälition Legion", f2, source_planet, _("Local Warlord"))
    defenders = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
          {"Coälition Vigilance", "Coälition Phalanx", "Coälition Ancestor",

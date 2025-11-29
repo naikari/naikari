@@ -83,7 +83,7 @@ function accept()
       "Proteron Kahan",
       "Kestrel",
       "Hawking",
-      "Goddard",
+      "Legion",
       "Proteron Archimedes",
       "Proteron Watson",
       true,
@@ -108,7 +108,7 @@ function accept()
       _("Kahan (destroyer)"),
       _("Kestrel (light cruiser)"),
       _("Hawking (cruiser)"),
-      _("Goddard (heavy cruiser)"),
+      _("Legion (heavy cruiser)"),
       _("Archimedes (heavy cruiser)"),
       _("Watson (carrier)"),
       p_("ship_type", "Random"),
@@ -301,7 +301,7 @@ function start_hook()
          else
             drones = fleet.add(amt, "Lancelot", fac, pos, nil, nil, boss_p)
          end
-      elseif boss == "Goddard" then
+      elseif boss == "Legion" then
          local corvette_t = {"Admonisher", "Phalanx"}
          local corvette = corvette_t[rnd.rnd(1, #corvette_t)]
          local destroyer_t = {"Pacifier", "Vigilance"}
