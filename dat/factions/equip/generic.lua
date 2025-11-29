@@ -1700,7 +1700,9 @@ function equip_set(p, set)
       i = 1
       while #choices > 0 and (num == nil or i <= num) do
          i = i + 1
-         if varied then c = rnd.rnd(1, #choices) end
+         if varied then
+            c = rnd.rnd(1, #choices)
+         end
 
          equipped = p:outfitAdd(choices[c])
          if equipped <= 0 then

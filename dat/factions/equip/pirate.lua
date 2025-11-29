@@ -44,18 +44,50 @@ equip_typeOutfits_engines["Rhino"] = {
    "Exacorp HS-1200 Engine",
 }
 
-equip_typeOutfits_weapons["Hyena"] = equip_shipOutfits_weapons["Pirate Shark"]
-equip_typeOutfits_weapons["Shark"] = equip_shipOutfits_weapons["Pirate Shark"]
-equip_typeOutfits_weapons["Vendetta"] = {
+equip_typeOutfits_weapons["Hyena"] = {
+   {
+      varied = true,
+      probability = {
+         ["Fi21-S Ion-Shackle Gun"] = 12,
+      };
+      "Fi21-S Ion-Shackle Gun",
+      "FL21-U Lumina Gun",
+      "FC22-U Crystal Gun",
+      "FK21-U Katana Gun",
+   },
+}
+equip_typeOutfits_weapons["Shark"] = {
+   {
+      varied = true, num = 1;
+      "FRC80-U Claw Rocket Gun",
+      "Fi21-S Ion-Shackle Gun",
+   },
    {
       varied = true,
       probability = {
          ["Fi21-S Ion-Shackle Gun"] = 16,
       };
-      "FL27-S Lumina Gun", "FC28-S Crystal Gun", "FK27-S Katana Gun",
-      "FL21-U Lumina Gun", "FC22-U Crystal Gun", "FK21-U Katana Gun",
-      "FRS60-U Stinger Rocket Gun",
       "Fi21-S Ion-Shackle Gun",
+      "FL21-U Lumina Gun",
+      "FC22-U Crystal Gun",
+      "FK21-U Katana Gun",
+      "FRS60-U Stinger Rocket Gun",
+   },
+}
+equip_typeOutfits_weapons["Vendetta"] = {
+   {
+      varied = true,
+      probability = {
+         ["Fi21-S Ion-Shackle Gun"] = 28,
+      };
+      "Fi21-S Ion-Shackle Gun",
+      "FL27-S Lumina Gun",
+      "FC28-S Crystal Gun",
+      "FK27-S Katana Gun",
+      "FL21-U Lumina Gun",
+      "FC22-U Crystal Gun",
+      "FK21-U Katana Gun",
+      "FRS60-U Stinger Rocket Gun",
    },
 }
 equip_typeOutfits_weapons["Ancestor"] = {
@@ -68,10 +100,11 @@ equip_typeOutfits_weapons["Ancestor"] = {
       probability = {
          ["Fi21-S Ion-Shackle Gun"] = 16,
       };
-      "FL27-S Lumina Gun", "FC28-S Crystal Gun", "FK27-S Katana Gun",
-      "FL21-U Lumina Gun", "FC22-U Crystal Gun", "FK21-U Katana Gun",
-      "FRS60-U Stinger Rocket Gun",
       "Fi21-S Ion-Shackle Gun",
+      "FL27-S Lumina Gun",
+      "FC28-S Crystal Gun",
+      "FK27-S Katana Gun",
+      "FRS60-U Stinger Rocket Gun",
    },
 }
 equip_typeOutfits_weapons["Phalanx"] = {
@@ -82,18 +115,21 @@ equip_typeOutfits_weapons["Phalanx"] = {
    },
    {
       varied = true;
-      "FL50-H Lumina Gun", "FC50-H Crystal Gun", "FK50-H Katana Gun",
-      "FL27-S Lumina Gun", "FC28-S Crystal Gun", "FK27-S Katana Gun",
+      "FL50-H Lumina Gun",
+      "FC50-H Crystal Gun",
+      "FK50-H Katana Gun",
    },
 }
 equip_typeOutfits_weapons["Rhino"] = {
    {
       varied = true,
       probability = {
-         ["Ti193-X Ion-Shackle Turret"] = 6,
+         ["Ti193-X Ion-Shackle Turret"] = 12,
       };
-      "TL110-L Lumina Turret", "TK110-L Katana Turret", "TC110-L Crystal Turret",
       "Ti193-X Ion-Shackle Turret",
+      "TL110-L Lumina Turret",
+      "TK110-L Katana Turret",
+      "TC110-L Crystal Turret",
    },
    {
       varied = true, num = 1;
