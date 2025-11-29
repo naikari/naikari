@@ -107,6 +107,19 @@ equip_typeOutfits_weapons["Ancestor"] = {
       "FRS60-U Stinger Rocket Gun",
    },
 }
+equip_typeOutfits_weapons["Admonisher"] = {
+   {
+      varied = true;
+      "FMS300-H Spider Missile Gun", 
+      "FMS2000-H Spider Torpedo Gun",
+   },
+   {
+      varied = true;
+      "FL50-H Lumina Gun",
+      "FC50-H Crystal Gun",
+      "FK50-H Katana Gun",
+   },
+}
 equip_typeOutfits_weapons["Phalanx"] = {
    {
       varied = true;
