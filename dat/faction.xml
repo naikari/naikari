@@ -71,23 +71,6 @@
   </enemies>
  </faction>
  <faction>
-  <name>Proteron Dissident</name>
-  <ai>proteron_dissident</ai>
-  <display>Civilian</display>
-  <invisible />
-  <known />
-  <player>0</player>
-  <colour>black</colour>
-  <spawn>proteron_dissident</spawn>
-  <standing>civilian</standing>
-  <allies>
-  </allies>
-  <enemies>
-   <enemy>Pirate</enemy>
-   <enemy>Proteron</enemy>
-  </enemies>
- </faction>
- <faction>
   <name>Pirate</name>
   <ai>pirate</ai>
   <known />
@@ -110,8 +93,6 @@
    <enemy>Goddard</enemy>
    <enemy>Independent</enemy>
    <enemy>Miner</enemy>
-   <enemy>Proteron</enemy>
-   <enemy>Proteron Dissident</enemy>
    <enemy>Sirius</enemy>
    <enemy>Soromid</enemy>
    <enemy>Thurion</enemy>
@@ -153,22 +134,6 @@
   <allies/>
   <enemies>
    <enemy>Pirate</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Proteron</name>
-  <ai>proteron</ai>
-  <logo>proteron</logo>
-  <longname>Proteron</longname>
-  <player>3</player>
-  <colour>purple</colour>
-  <spawn>proteron</spawn>
-  <standing>proteron</standing>
-  <allies>
-  </allies>
-  <enemies>
-   <enemy>Pirate</enemy>
-   <enemy>Proteron Dissident</enemy>
   </enemies>
  </faction>
  <faction>

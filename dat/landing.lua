@@ -149,15 +149,6 @@ function flf_sindbad( pnt )
          _("\"I'm not interested in your dirty money.\""))
 end
 
--- Proteron military assets.
-function ptn_mil_restricted( pnt )
-   return land_military(pnt, 50,
-         _("Permission to land granted."),
-         _("You are not authorized to land here."),
-         _("Landing request denied."),
-         _("\"We Proteron don't take kindly to bribery.\""))
-end
-
 -- Thurion military assets.
 function thr_mil_restricted( pnt )
    return land_military(pnt, 50,

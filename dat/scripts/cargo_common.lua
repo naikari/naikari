@@ -161,8 +161,6 @@ function cargoValidDest( targetplanet )
    local hidden = {
       faction.get("FLF"),
       faction.get("Pirate"),
-      faction.get("Proteron"),
-      faction.get("Thurion"),
    }
    for i, f in ipairs(hidden) do
       if targetplanet:faction() == f and planet.cur():faction() ~= f then
@@ -172,8 +170,6 @@ function cargoValidDest( targetplanet )
 
    -- Factions which cannot deliver to factions other than themselves
    local insular = {
-      faction.get("Proteron"),
-      faction.get("Thurion"),
    }
    for i, f in ipairs(insular) do
       if planet.cur():faction() == f and targetplanet:faction() ~= f then

@@ -6,13 +6,8 @@
   <cond>player.numOutfit("Mercenary License") &gt; 0</cond>
   <chance>450</chance>
   <location>Computer</location>
-  <faction>Dvaered</faction>
   <faction>Empire</faction>
-  <faction>Goddard</faction>
   <faction>Independent</faction>
-  <faction>Sirius</faction>
-  <faction>Soromid</faction>
-  <faction>Za'lek</faction>
  </avail>
 </mission>
 --]]

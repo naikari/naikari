@@ -177,15 +177,6 @@ end
 function cleanup_articles()
    local f = planet.cur():faction()
 
-   -- Proteron don't get generic articles.
-   if f == faction.get("Proteron") then
-      for i, a in ipairs(news.get()) do
-         if a:faction() == "Generic" then
-            a:rm()
-         end
-      end
-   end
-
    -- Remove mission hints that aren't relevant anymore.
    for i, at in ipairs(cond_articles) do
       if (at.mission ~= nil and player.misnDone(at.mission))

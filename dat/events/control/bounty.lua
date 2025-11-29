@@ -36,7 +36,6 @@ local fmt = require "fmt"
 local pay_msg_default = _("{credits} {faction} bounty paid for killing {pilot}.")
 local pay_msg_faction = {
    Empire = _("{credits} Imperial official bounty awarded for dispatching {pilot}."),
-   Dvaered = _("{credits} paid by local Dvaered warlord for killing {pilot}."),
    Pirate = _("{credits} paid by local crime lord for eliminating {pilot}."),
 }
 
@@ -44,12 +43,9 @@ local nopay_factions = {
    "Civilian",
    "Trader",
    "Miner",
-   "Proteron Dissident",
    "Mercenary",
    "Frontier",
    "FLF",
-   "Thurion",
-   "Collective",
 }
 
 

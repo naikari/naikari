@@ -5,14 +5,9 @@
   <priority>50</priority>
   <chance>15</chance>
   <location>Bar</location>
-  <faction>Dvaered</faction>
   <faction>Empire</faction>
   <faction>Frontier</faction>
-  <faction>Goddard</faction>
   <faction>Independent</faction>
-  <faction>Sirius</faction>
-  <faction>Soromid</faction>
-  <faction>Za'lek</faction>
   <cond>
    (not planet.cur():restriction() or planet.cur():restriction() == "lowclass"
       or planet.cur():restriction() == "hiclass")
@@ -198,9 +193,8 @@ function avail_planets()
                   and pl:canLand()
                   and (not pl:restriction() or pl:restriction() == "lowclass"
                      or pl:restriction() == "hiclass")
-                  and f ~= faction.get("FLF") and f ~= faction.get("Pirate")
-                  and f ~= faction.get("Proteron")
-                  and f ~= faction.get("Thurion") then
+                  and f ~= faction.get("FLF")
+                  and f ~= faction.get("Pirate") then
                planets[#planets + 1] = {pla=pl, sys=s}
             end
          end

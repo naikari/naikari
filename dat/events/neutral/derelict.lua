@@ -53,14 +53,7 @@ function create()
       ["Carrier"] = 0.01,
    }
    local faction_chances = {
-      ["Collective"] = 0.01,
-      ["Dvaered"] = 0.4,
       ["Empire"] = 0.2,
-      ["Proteron"] = 0.1,
-      ["Sirius"] = 0.3,
-      ["Soromid"] = 0.3,
-      ["Thurion"] = 0.5,
-      ["Za'lek"] = 0.01,
    }
 
    local pilots = {}

@@ -154,17 +154,6 @@ function createPilotNPCs ()
       fac = faction.get("Thurion")
       def_ai = "thurion"
       portrait_arg = "Thurion"
-   elseif planet.cur():faction() == faction.get("Proteron") then
-      fac = faction.get("Proteron")
-      def_ai = "proteron"
-      portrait_arg = "Proteron"
-      if pr == "ptn_mil_restricted" then
-         portrait_func = portrait.getMil
-         ship_choices = {
-            {ship = "Proteron Derivative", royalty = 0.075, deposit_mod = 1/10},
-            {ship = "Proteron Kahan", royalty = 0.3, deposit_mod = 1/4},
-         }
-      end
    elseif pr == "emp_mil_restricted" or pr == "emp_mil_omega"
          or pr == "emp_mil_eye" then
       ship_choices = {

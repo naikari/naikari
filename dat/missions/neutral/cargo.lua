@@ -5,16 +5,9 @@
   <priority>78</priority>
   <chance>960</chance>
   <location>Computer</location>
-  <faction>Dvaered</faction>
   <faction>Empire</faction>
   <faction>Frontier</faction>
-  <faction>Goddard</faction>
   <faction>Independent</faction>
-  <faction>Proteron</faction>
-  <faction>Sirius</faction>
-  <faction>Soromid</faction>
-  <faction>Thurion</faction>
-  <faction>Za'lek</faction>
  </avail>
 </mission>
 --]]

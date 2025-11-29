@@ -42,10 +42,6 @@ local paying_factions = {
    "Empire",
    "Frontier",
    "Independent",
-   "Proteron",
-   "Sirius",
-   "Soromid",
-   "Za'lek",
 }
 
 
