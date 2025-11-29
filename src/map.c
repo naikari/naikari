@@ -2266,7 +2266,7 @@ static void map_buttonCommodity( unsigned int wid, char* str )
          listMapModeVisible = 0;
          window_destroyWidget( wid, "lstMapMode" );
       } else { /* show the list widget */
-         this_map_modes = calloc( sizeof(char*), array_size(map_modes) );
+         this_map_modes = calloc(array_size(map_modes), sizeof(char*));
          for (int i=0; i<array_size(map_modes); i++) {
             this_map_modes[i]=strdup(map_modes[i]);
          }

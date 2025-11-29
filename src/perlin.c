@@ -179,7 +179,7 @@ perlin_data_t* noise_new( int dim, float hurst, float lacunarity )
    float f;
 
    /* Create the data. */
-   pdata = calloc(sizeof(perlin_data_t),1);
+   pdata = calloc(1, sizeof(perlin_data_t));
    pdata->ndim = dim;
 
    /* Create the buffer and map. */

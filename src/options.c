@@ -143,7 +143,8 @@ void opt_menu (void)
    window_setCancel( opt_wid, opt_close );
 
    /* Create tabbed window. */
-   names = calloc( sizeof(char*), sizeof(opt_names)/sizeof(char*) );
+   /* XXX: Really don't like this way of getting the array length. */
+   names = calloc(sizeof(opt_names)/sizeof(char*), sizeof(char*));
    for (i=0; i<sizeof(opt_names)/sizeof(char*); i++)
       names[i] = _(opt_names[i]);
    opt_windows = window_addTabbedWindow( opt_wid, -1, -1, -1, -1, "tabOpt",

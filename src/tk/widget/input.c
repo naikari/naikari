@@ -496,6 +496,7 @@ static int inp_rangeToWidth( Widget *inp, int start_pos, int end_pos )
    char c;
    int w;
 
+   c = 0; /**< Reassure the compiler. This never gets used. */
    if (end_pos >= 0) {
       if (end_pos <= start_pos)
          return 0;

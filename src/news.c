@@ -92,7 +92,7 @@ news_t* new_article(char* title, char* content, const char* faction, ntime_t dat
    news_t *article_ptr, *n_article;
 
    /* make new article */
-   n_article = calloc(sizeof(news_t), 1);
+   n_article = calloc(1, sizeof(news_t));
 
    n_article->id = next_id++;
 
@@ -181,7 +181,7 @@ int news_init (void)
    if (news_list != NULL)
       news_exit();
 
-   news_list = calloc(sizeof(news_t), 1);
+   news_list = calloc(1, sizeof(news_t));
    news_lines = array_create( char* );
    news_restores = array_create( glFontRestore );
 
