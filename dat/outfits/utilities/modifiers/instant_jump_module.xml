@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Instant Jump Module">
+ <general>
+  <slot>utility</slot>
+  <size>medium</size>
+  <mass>12</mass>
+  <price>520000</price>
+  <description>Normally, it takes time for a ship's hyperdrive to synchronize with a Jump Point and initiate a jump, leaving occupants vulnerable for a short period of time. For pilots venturing into dangerous territory who can't afford to stop for even a moment, an Instant Jump Module is a must. This dedicated module works in real-time to pre-prepare the hyperdrive for synchronization with any potential jump point, rendering the process instantaneous.</description>
+  <gfx_store>instant_jump_module.png</gfx_store>
+  <limit>Jump Module</limit>
+ </general>
+ <specific type="modification">
+  <misc_instant_jump/>
+ </specific>
+</outfit>
