@@ -79,7 +79,7 @@ function create()
    nextstop = 1
    targsys = getsysatdistance(nil, 3) -- Populate the array
    targsys = getlandablesystems(targsys)
-   if #targsys == 0 then targsys = {system.get("Apez")} end -- In case no systems were found.
+   if #targsys == 0 then targsys = {system.get("Liwia")} end -- In case no systems were found.
    destsys = targsys[rnd.rnd(1, #targsys)]
    destplanet = getlandable(destsys) -- pick a landable planet in the destination system
    tk.msg("", fmt.f(directions[nextstop],

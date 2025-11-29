@@ -118,10 +118,10 @@ equip_typeOutfits_structurals["Vigilance"] = {
 
 
 --[[
--- @brief Does Dvaered pilot equipping
+-- @brief Does Coälition pilot equipping
 --
 --    @param p Pilot to equip
 --]]
-function equip( p )
-   equip_generic( p )
+function equip(p)
+   equip_generic(p)
 end

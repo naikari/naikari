@@ -11,12 +11,7 @@
  <planet_modifier type="M">1.3</planet_modifier>
  <period>50</period>
  <population_modifier>0.5</population_modifier>
- <faction_modifier type="Dvaered">0.6</faction_modifier>
  <faction_modifier type="Empire">1.2</faction_modifier>
  <faction_modifier type="FLF">0.6</faction_modifier>
  <faction_modifier type="Frontier">0.6</faction_modifier>
- <faction_modifier type="Proteron">1.2</faction_modifier>
- <faction_modifier type="Sirius">1.8</faction_modifier>
- <faction_modifier type="Thurion">0.8</faction_modifier>
- <faction_modifier type="Za'lek">0.5</faction_modifier>
 </commodity>

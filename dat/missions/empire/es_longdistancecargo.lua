@@ -185,14 +185,15 @@ function land()
       local n = var.peek("es_misn") or 0
       n = n + 1
       var.push("es_misn", n)
+      --[[
       if n >= 3 and faction.playerStanding("Empire") >= 10
-            and faction.playerStanding("Dvaered") >= 0
             and not player.misnDone("Undercover in Hakoi")
             and not player.misnActive("Undercover in Hakoi") then
          cargo_land = {
             _("As the crates of {cargotype} are unloaded, the Imperial worker in charge relays a message from an Imperial Commander inviting you to #bEmperor's Fist (Gamma Polaris system)#0 for an advancement opportunity."),
          }
       end
+      --]]
 
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
                {cargotype=_(cargo)}))

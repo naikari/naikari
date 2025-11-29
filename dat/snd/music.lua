@@ -14,9 +14,8 @@ factional = {
    Collective = {"collective1", "automat", "ambient4", "terminal", "eureka"},
    Pirate = {"pirate1_theme1", "pirates_orchestra", "ambient4", "terminal"},
    Empire = {"empire1", "empire2", "intro"; add_neutral = true},
-   Goddard = {"empire1", "empire2"; add_neutral = true},
    Sirius = {"sirius1", "sirius2"; add_neutral = true},
-   Dvaered = {"dvaered1", "dvaered2"; add_neutral = true},
+   ["Coälition"] = {"dvaered1", "dvaered2"; add_neutral = true},
    ["Za'lek"] = {"zalek1", "zalek2"; add_neutral = true},
    Thurion = {"motherload", "dark_city", add_neutral = true},
    Proteron = {"heartofmachine", "imminent_threat", "ambient4", "intro"},
@@ -297,16 +296,29 @@ end
 
 -- Faction-specific combat songs
 factional_combat = {
-   Collective = { "collective2", "galacticbattle", "battlesomething1", "combat3" },
-   Pirate     = { "battlesomething2", "blackmoor_tides", add_neutral = true },
-   Empire     = { "galacticbattle", "battlesomething2"; add_neutral = true },
-   Goddard    = { "flf_battle1", "battlesomething1"; add_neutral = true },
-   Dvaered    = { "flf_battle1", "battlesomething1", "battlesomething2"; add_neutral = true },
-   ["FLF"]    = { "flf_battle1", "battlesomething2"; add_neutral = true },
-   Frontier   = { "flf_battle1"; add_neutral = true },
-   Sirius     = { "galacticbattle", "battlesomething1"; add_neutral = true },
-   Soromid    = { "galacticbattle", "battlesomething2"; add_neutral = true },
-   ["Za'lek"] = { "collective2", "galacticbattle", "battlesomething1", add_neutral = true }
+   ["Collective"] = {
+      "collective2", "galacticbattle", "battlesomething1", "combat3",
+      },
+   ["Pirate"] = {
+      add_neutral = true;
+      "battlesomething2", "blackmoor_tides",
+   },
+   ["Empire"] = {
+      add_neutral = true;
+      "galacticbattle", "battlesomething2",
+   },
+   ["Coälition"] = {
+      add_neutral = true;
+      "flf_battle1", "battlesomething1", "battlesomething2",
+      },
+   ["FLF"] = {
+      add_neutral = true;
+      "flf_battle1", "battlesomething2",
+      },
+   ["Frontier"] = {
+      add_neutral = true;
+      "flf_battle1",
+      },
 }
 
 --[[

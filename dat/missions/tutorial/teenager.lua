@@ -7,13 +7,10 @@
  <avail>
   <priority>20</priority>
   <chance>100</chance>
-  <done>Outfitter Tutorial</done>
+  <done>Tutorial Part 4</done>
   <location>Bar</location>
-  <faction>Dvaered</faction>
   <faction>Empire</faction>
-  <faction>Goddard</faction>
   <faction>Independent</faction>
-  <faction>Sirius</faction>
   <cond>
    player.numOutfit("Mercenary License") &gt; 0
    and planet.cur():class() ~= "0" and planet.cur():class() ~= "1"

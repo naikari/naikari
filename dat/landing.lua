@@ -82,24 +82,6 @@ function srs_mil_mutris( pnt )
          _("\"The faithful will never be swayed by money.\""))
 end
 
--- Dvaered military assets.
-function dv_mil_restricted( pnt )
-   return land_military(pnt, 50,
-         _("Permission to land granted."),
-         _("Your rank is too low, citizen. Access denied."),
-         _("Landing request denied."),
-         _("\"Money won't buy you access to our restricted facilities, citizen.\""))
-end
-
--- Dvaered High Command.
-function dv_mil_command( pnt )
-   return land_military(pnt, 70,
-         _("Permission to land granted, captain."),
-         _("Only high ranking personnel allowed. Landing request denied."),
-         _("Landing request denied."),
-         _("\"Money won't buy you access to our restricted facilities, citizen.\""))
-end
-
 -- Soromid military assets.
 function srm_mil_restricted( pnt )
    return land_military(pnt, 50,
@@ -207,14 +189,8 @@ function land_civilian(pnt, land_floor, bribe_floor, rate)
    local can_land = fct:playerStanding() >= land_floor or pnt:getLandOverride()
 
    -- Modify rate by faction.
-   if fct == faction.get("Dvaered") then
+   if fct == faction.get("Coälition") then
       rate = rate / 2
-   elseif fct == faction.get("Sirius") then
-      rate = rate * 2
-   elseif fct == faction.get("Goddard") then
-      rate = rate * 2
-   elseif fct == faction.get("Soromid") then
-      rate = rate * 3
    end
 
    -- Get land message

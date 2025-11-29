@@ -81,7 +81,7 @@ portraits_f["Thief"] = {
    "neutral/thief_female6.png",
 }
 
-portraits_m["Dvaered"] = {
+portraits_m["Coälition"] = {
    "dvaered/dv_civilian_m1.png",
    "dvaered/dv_civilian_m2.png",
    "dvaered/dv_civilian_m3.png",
@@ -94,7 +94,7 @@ portraits_m["Dvaered"] = {
    "dvaered/dv_civilian_m10.png",
    "dvaered/dv_civilian_m11.png",
 }
-portraits_f["Dvaered"] = {
+portraits_f["Coälition"] = {
    "dvaered/dv_civilian_f1.png",
    "dvaered/dv_civilian_f2.png",
    "dvaered/dv_civilian_f3.png",
@@ -193,7 +193,7 @@ portraits_mil_f["Empire"] = {
    "empire/empire_mil_f5.png",
 }
 
-portraits_mil_m["Dvaered"] = {
+portraits_mil_m["Coälition"] = {
    "dvaered/dv_military_m1.png",
    "dvaered/dv_military_m2.png",
    "dvaered/dv_military_m3.png",
@@ -203,7 +203,7 @@ portraits_mil_m["Dvaered"] = {
    "dvaered/dv_military_m7.png",
    "dvaered/dv_military_m8.png",
 }
-portraits_mil_f["Dvaered"] = {
+portraits_mil_f["Coälition"] = {
    "dvaered/dv_military_f1.png",
    "dvaered/dv_military_f2.png",
    "dvaered/dv_military_f3.png",
@@ -281,7 +281,7 @@ end
 --[[--
 Choose a random female military portrait.
 
-@usage misn.setNPC("Sam", getFemaleMil("Dvaered"), description)
+@usage misn.setNPC("Sam", getFemaleMil("Coälition"), description)
    @tparam[opt="neutral"] string faction Name of faction to get a portrait for, or nil for neutral.
 --]]
 function portrait.getFemaleMil(faction)

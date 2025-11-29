@@ -51,7 +51,7 @@ cond_articles = {
       tag = "mhint_Tutorial Part 2",
       mission = "Tutorial Part 2",
       cond = function()
-         return planet.cur() ~= planet.get("Em 1")
+         return planet.cur() ~= planet.get("Kikero")
       end,
    },
    {
@@ -61,60 +61,18 @@ cond_articles = {
       mission = "Tutorial Part 3",
       done = "Tutorial Part 2",
       cond = function()
-         return planet.cur() ~= planet.get("Em 1")
+         return planet.cur() ~= planet.get("Kikero")
       end,
    },
    {
       title = _("Em 5 Experiences New Growth"),
-      text = _([[Economists note an uptick in economic activity and recommend all pilots seek out new opportunities on Em 5 (Hakoi system). Safe but prosperous, the Hakoi system is tough to beat, and its prosperity is expected to continue for the foreseeable future.]]),
+      text = _([[Economists note an uptick in economic activity and recommend all pilots seek out new opportunities on Octawius (Alpha Pyxidis system). Safe but prosperous, the Alpha Pyxidis system is tough to beat, and its prosperity is expected to continue for the foreseeable future.]]),
       tag = "mhint_Tutorial Part 4",
       mission = "Tutorial Part 4",
       done = "Tutorial Part 3",
       cond = function()
-         return planet.cur() ~= planet.get("Em 5")
+         return planet.cur() ~= planet.get("Octawius")
       end,
-   },
-   {
-      title = _("Empire Seeks New Recruits"),
-      text = _([[The Empire is on the lookout for talented new recruits into its shipping division. "The Empire offers good pay and fantastic opportunities," a spokesperson said. "It doesn't hurt to approach one of the Empire Lieutenants seeking talent. Join the Empire today!"]]),
-      tag = "mhint_Empire Recruitment",
-      mission = "Empire Recruitment",
-      done = "Tutorial Part 4",
-   },
-   {
-      title = _("Imperial Investigation Rumors"),
-      text = _([[Rumors abound that the Imperial investigation into the sudden appearance of pirates in the Hakoi system is headquartered at Emperor's Fist (Gamma Polaris system), the capital of the Empire. Many interpret this as an indication that the pirates may be a small part of a larger problem that could threaten intergalactic stability. Imperial officials have declined to comment.]]),
-      tag = "mhint_Undercover in Hakoi",
-      mission = "Undercover in Hakoi",
-      done = "Empire Recruitment",
-      cond = function()
-         return (faction.playerStanding("Empire") >= 10
-            and faction.playerStanding("Dvaered") >= 0
-            and var.peek("es_misn") ~= nil
-            and var.peek("es_misn") >= 3)
-      end,
-      delcond = function()
-         return (faction.playerStanding("Empire") < 10
-            or faction.playerStanding("Dvaered") < 0)
-      end,
-   },
-   {
-      title = _("Salvador Asserts Independence"),
-      text = _([[Amid the ongoing investigation into the recent appearance of pirates in the Hakoi system, Imperial investigators report that pirates may be passing thru the Salvador system for some unknown reason. However, Salvador residents have refused to allow the Imperial investigation from Emperor's Fist to intrude on the system's independence.]]),
-      tag = "mhint_Hakoi and Salvador",
-      mission = "Hakoi and Salvador",
-      done = "Hakoi's Hidden Jumps",
-      cond = function()
-         return (faction.playerStanding("Empire") >= 10
-            and faction.playerStanding("Dvaered") >= 0
-            and player.numOutfit("Mercenary License") > 0
-            and player.misnDone("The macho teenager"))
-      end,
-      delcond = function()
-         return (faction.playerStanding("Empire") < 10
-            or faction.playerStanding("Dvaered") < 0)
-      end,
-      
    },
    {
       title = _("Enthusiasts Organize Racing"),

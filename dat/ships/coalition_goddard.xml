@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ship name="Dvaered Goddard">
+<ship name="Coälition Goddard">
  <base_type>Goddard</base_type>
  <GFX size="125" sx="12" sy="12">goddard_dvaered</GFX>
  <GUI>neo</GUI>
@@ -15,8 +15,8 @@
  <trail_generator x="-30" y="-39" h="0" />
  <trail_generator x="-24" y="-60" h="0">nebula</trail_generator>
  <trail_generator x="-24" y="60" h="0">nebula</trail_generator>
- <fabricator>House Goddard</fabricator>
- <description>Once, the Goddard Battlecruiser was commissioned by the Empire for military service. However, during the Dvaered Revolts most Goddard captains sided with the insurgents, and after the establishment of House Dvaered the Empire ceded the license for the aging vessel to them. Today, House Dvaered is House Goddard's biggest client, and this military grade version has been developed which features better armor and weapon damage at the cost of increased mass and energy consumption.</description>
+ <fabricator>Crimson Corporation</fabricator>
+ <description>(null)</description>
  <health>
   <armour>2000</armour>
   <armour_regen>0</armour_regen>

@@ -1,4 +1,4 @@
-require("ai/dvaered")
+require "ai/coalition"
 
 mem.norun = true
 mem.noleave = true

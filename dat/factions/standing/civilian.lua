@@ -7,14 +7,9 @@ _fdelta_kill = {-10, 0} -- Maximum change constraints
 
 -- List of possible proxy factions for a given civilian.
 local proxy_factions = {
+   "Coälition",
    "Empire",
-   "Dvaered",
-   "Za'lek",
-   "Sirius",
-   "Soromid",
-   "Goddard",
    "Frontier",
-   "Thurion",
 }
 
 

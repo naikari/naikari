@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<ship name="Dvaered Phalanx">
+<ship name="Coälition Phalanx">
  <base_type>Phalanx</base_type>
  <GFX size="95" sx="10" sy="10">phalanx_dvaered</GFX>
  <GUI>neo</GUI>
@@ -13,8 +13,8 @@
  <trail_generator x="-10" y="3" h="0" always_over="1" >fire</trail_generator>
  <trail_generator x="-12" y="40" h="0">nebula</trail_generator>
  <trail_generator x="-12" y="-40" h="0">nebula</trail_generator>
- <fabricator>House Dvaered</fabricator>
- <description>Not satisfied with the armor strength of the civilian grade Phalanx, the Dvaered military decided to thicken the ship's armor before deploying it for military service. The job required tearing out a reactor, making its energy regeneration even worse than a standard Phalanx, but this also had a nice side-effect of making it easier for heat to dissipate from the ship's forward-mounted weapons, and also lowering its mass.</description>
+ <fabricator>Crimson Corporation</fabricator>
+ <description>(null)</description>
  <health>
   <armour>220</armour>
   <armour_regen>1</armour_regen>

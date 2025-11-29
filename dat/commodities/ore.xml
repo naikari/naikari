@@ -22,7 +22,5 @@
  <planet_modifier type="Y">0.25</planet_modifier>
  <period>100</period>
  <population_modifier>-0.5</population_modifier>
- <faction_modifier type="Dvaered">0.5</faction_modifier>
  <faction_modifier type="FLF">1.2</faction_modifier>
- <faction_modifier type="Soromid">0.8</faction_modifier>
 </commodity>

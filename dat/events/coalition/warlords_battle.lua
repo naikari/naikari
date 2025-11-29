@@ -135,12 +135,12 @@ function attack()
    f1:dynEnemy(f2)
    f2:dynEnemy(f1)
 
-   goda = pilot.add("Dvaered Goddard", f1, source_system,
+   goda = pilot.add("Coälition Goddard", f1, source_system,
          _("Invading Warlord"))
    attackers = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
-         {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
-            "Dvaered Vendetta"}, f1, source_system,
+         {"Coälition Vigilance", "Coälition Phalanx", "Coälition Ancestor",
+            "Coälition Vendetta"}, f1, source_system,
          _("Invading Warlord Force"), nil, goda)
 
    form = formation.random_key()
@@ -161,11 +161,11 @@ function attack()
    attnum = #attackers
    attdamage = 0
 
-   godd = pilot.add("Dvaered Goddard", f2, source_planet, _("Local Warlord"))
+   godd = pilot.add("Coälition Goddard", f2, source_planet, _("Local Warlord"))
    defenders = fleet.add({rnd.rnd(1, 2), rnd.rnd(2, 3), rnd.rnd(3, 6),
             rnd.rnd(3, 10)},
-         {"Dvaered Vigilance", "Dvaered Phalanx", "Dvaered Ancestor",
-            "Dvaered Vendetta"}, f2, source_planet,
+         {"Coälition Vigilance", "Coälition Phalanx", "Coälition Ancestor",
+            "Coälition Vendetta"}, f2, source_planet,
          _("Local Warlord Force"), nil, godd)
 
    form = formation.random_key()

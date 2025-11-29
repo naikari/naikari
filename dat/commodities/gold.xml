@@ -15,10 +15,7 @@
  <planet_modifier type="Z">1.2</planet_modifier>
  <period>40</period>
  <population_modifier>0.5</population_modifier>
- <faction_modifier type="Dvaered">0.8</faction_modifier>
  <faction_modifier type="FLF">0.5</faction_modifier>
  <faction_modifier type="Frontier">0.5</faction_modifier>
  <faction_modifier type="Pirate">1.5</faction_modifier>
- <faction_modifier type="Sirius">1.7</faction_modifier>
- <faction_modifier type="Soromid">0.7</faction_modifier>
 </commodity>

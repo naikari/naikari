@@ -144,70 +144,18 @@ function createPilotNPCs ()
       fac = faction.get("FLF")
       def_ai = "flf"
       portrait_arg = "FLF"
-   elseif pf == faction.get("Thurion") then
-      ship_choices = {
-         {ship = "Thurion Ingenuity", royalty = 0.075, deposit_mod = 1/10},
-         {ship = "Thurion Scintillation", royalty = 0.15, deposit_mod = 1/6},
-         {ship = "Thurion Virtuosity", royalty = 0.2, deposit_mod = 1/5},
-         {ship = "Thurion Apprehension", royalty = 0.3, deposit_mod = 1/4},
-      }
-      fac = faction.get("Thurion")
-      def_ai = "thurion"
-      portrait_arg = "Thurion"
    elseif pr == "emp_mil_restricted" or pr == "emp_mil_omega"
          or pr == "emp_mil_eye" then
       ship_choices = {
-         {ship = "Empire Shark", royalty = 0.075, deposit_mod = 1/10},
-         {ship = "Empire Lancelot", royalty = 0.1, deposit_mod = 1/7},
-         {ship = "Empire Admonisher", royalty = 0.2, deposit_mod = 1/5},
-         {ship = "Empire Pacifier", royalty = 0.3, deposit_mod = 1/4},
+         {ship = "Imperial Shark", royalty = 0.075, deposit_mod = 1/10},
+         {ship = "Imperial Lancelot", royalty = 0.1, deposit_mod = 1/7},
+         {ship = "Imperial Admonisher", royalty = 0.2, deposit_mod = 1/5},
+         {ship = "Imperial Pacifier", royalty = 0.3, deposit_mod = 1/4},
       }
       fac = faction.get("Empire")
       def_ai = "empire"
       portrait_func = portrait.getMil
       portrait_arg = "Empire"
-   elseif pr == "dv_mil_restricted" or pr == "dv_mil_command" then
-      ship_choices = {
-         {ship = "Dvaered Vendetta", royalty = 0.1, deposit_mod = 1/7},
-         {ship = "Dvaered Ancestor", royalty = 0.15, deposit_mod = 1/6},
-         {ship = "Dvaered Phalanx", royalty = 0.2, deposit_mod = 1/5},
-         {ship = "Dvaered Vigilance", royalty = 0.3, deposit_mod = 1/4},
-      }
-      fac = faction.get("Dvaered")
-      def_ai = "dvaered"
-      portrait_func = portrait.getMil
-      portrait_arg = "Dvaered"
-   elseif pr == "srs_mil_restricted" or pr == "srs_mil_mutris" then
-      ship_choices = {
-         {ship = "Sirius Fidelity", royalty = 0.075, deposit_mod = 1/10},
-         {ship = "Sirius Shaman", royalty = 0.15, deposit_mod = 1/6},
-         {ship = "Sirius Preacher", royalty = 0.2, deposit_mod = 1/5},
-      }
-      fac = faction.get("Sirius")
-      def_ai = "sirius"
-      portrait_func = portrait.getMil
-      portrait_arg = "Sirius"
-   elseif pr == "zlk_mil_restricted" or pr == "zlk_ruadan" then
-      ship_choices = {
-         {ship = "Za'lek Sting", royalty = 0.2, deposit_mod = 1/5},
-         {ship = "Za'lek Demon", royalty = 0.3, deposit_mod = 1/4},
-      }
-      fac = faction.get("Za'lek")
-      def_ai = "zalek"
-      portrait_func = portrait.getMil
-      portrait_arg = "Za'lek"
-   elseif pr == "srm_mil_restricted" or pr == "srm_mil_kataka" then
-      ship_choices = {
-         {ship = "Soromid Brigand", royalty = 0.075, deposit_mod = 1/10},
-         {ship = "Soromid Reaver", royalty = 0.1, deposit_mod = 1/7},
-         {ship = "Soromid Marauder", royalty = 0.15, deposit_mod = 1/6},
-         {ship = "Soromid Odium", royalty = 0.2, deposit_mod = 1/5},
-         {ship = "Soromid Nyx", royalty = 0.3, deposit_mod = 1/4},
-      }
-      fac = faction.get("Soromid")
-      def_ai = "soromid"
-      portrait_func = portrait.getMil
-      portrait_arg = "Soromid"
    end
 
    if fac == nil or fac:playerStanding() < 0 then
