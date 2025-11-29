@@ -89,7 +89,6 @@
    <enemy>Collective</enemy>
    <enemy>Empire</enemy>
    <enemy>Frontier</enemy>
-   <enemy>Goddard</enemy>
    <enemy>Independent</enemy>
    <enemy>Miner</enemy>
    <enemy>Sirius</enemy>
@@ -111,7 +110,6 @@
   <standing>empire</standing>
   <equip>empire</equip>
   <allies>
-   <ally>Goddard</ally>
   </allies>
   <enemies>
    <enemy>Pirate</enemy>
@@ -234,24 +232,6 @@
   <spawn>sirius</spawn>
   <standing>sirius</standing>
   <allies>
-  </allies>
-  <enemies>
-   <enemy>Pirate</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>Goddard</name>
-  <ai>goddard</ai>
-  <known />
-  <logo>goddard</logo>
-  <colour>blue</colour>
-  <longname>House Goddard</longname>
-  <player>2</player>
-  <spawn>goddard</spawn>
-  <standing>goddard</standing>
-  <equip>empire</equip>
-  <allies>
-   <ally>Empire</ally>
   </allies>
   <enemies>
    <enemy>Pirate</enemy>
