@@ -16,7 +16,7 @@ local formation = require "formation"
 
 local explain_text = _([["Hey, you," the captain of the ship says. "You don't seem to know what's going to happen here. A mighty warlord from {system} is going to attack {planet}. You shouldn't stay here, unless you are a mercenary. Do you know how it works? If you attack a warlord's ship and they lose the battle, the other warlord will reward you. But if the warlord you attacked wins, you will be hunted down."]])
 
-local reward_text = _([["Hello captain," a Crimson soldier from the ship that hailed you says. "You helped us in this battle. I am authorized to give you {credits} as a reward."]])
+local reward_text = _([["Hello captain," a Coälition soldier from the ship that hailed you says. "You helped us in this battle. I am authorized to give you {credits} as a reward."]])
 
 
 function create()

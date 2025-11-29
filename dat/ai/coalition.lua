@@ -70,8 +70,11 @@ function taunt(target, offense)
    }
    if faction.get("Coälition"):playerStanding() < 0 then
       taunts[#taunts + 1] = p_("taunt", "Now you must pay for your crimes!")
-      taunts[#taunts + 1] = p_("taunt", "You're no match for the Crimson Coälition!")
+      taunts[#taunts + 1] = p_("taunt", "You're no match for the Coälition!")
       taunts[#taunts + 1] = p_("taunt", "Criminal scum! You die!")
+      if ai.pilot():ship():class() ~= "Battleship" then
+         taunts[#taunts + 1] = p_("taunt", "My warlord will reward me greatfly for your death!")
+      end
    end
    ai.pilot():comm(target, taunts[rnd.rnd(1, #taunts)])
 end
