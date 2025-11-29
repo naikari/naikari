@@ -65,7 +65,11 @@ local fight_text = _([[You see that the control you engaged automatically sets y
 
 "P-please," Ian urges, "whatever you do, don't let that pirate kill us! Shoot them down or something!" As Ian continues to panic, you grab your ship's combat controls, telling yourself against your own instincts that this will be just like the asteroid mining you did previously.]])
 
-local dest_text = _([[With the pirate now defeated, you see Ian visibly relax. "Th-thank you," he stutters. "Now we just need to land on {planet} and… oh, shit! Shit, shit, shit!" You look at your radar and see the source of Ian's newfound panic: a large fleet of pirates. "There's too many of them! Oh, I knew I should've never come out here! We're gonna die! I don't wanna die!"]])
+local dest_text = _([[With the pirate now defeated, you see Ian visibly relax. "Th-thank you," he stutters. "Now we just need to land on {planet} and… what's going on over there?"]])
+
+local escape_text = _([[You see panic begin to overwhelm Ian Structure as he apparently notices something. "Oh, shit! Shit, shit, shit! There's more of them! There's so many! We're gonna die! I don't want to die!"
+
+Unable to console Ian and fly your ship at the same time, you scan your display and see that Imperial officers have been barking orders on the broadcast frequency to use your #bEscape Jump#0, which you can use by pressing {local_jump_key}. Perhaps that maneuver can give you the chance you need to reach {planet} safely.]])
 
 local pay_text = _([[As you finish the landing procedures and arrive on the surface of {planet}, you notice an Imperial Lieutenant waiting for you. Unsure what to think, you step outside of your ship and begin to salute him, as is the custom, but are interrupted by the sound of Ian's voice behind you. "Milo! Oh, Milo, I'm so happy to s-see you."
 
@@ -268,40 +272,154 @@ function timer_pirate_death()
    player.pilot():setNoJump(false)
    player.pilot():setVisible(false)
 
-   -- Spawn the pirates as mercenaries to given them lethal weapons,
-   -- then change faction to pirate.
-   local pirates = fleet.add(1,
-         {"Pirate Kestrel", "Pirate Admonisher", "Pirate Phalanx",
-            "Pirate Ancestor", "Pirate Ancestor", "Pirate Vendetta",
-            "Pirate Vendetta", "Pirate Shark", "Pirate Shark", "Pirate Shark",
-            "Pirate Shark"},
-         "Mercenary", system.get("Alpha Pyxidis"), nil, nil, true)
-   for i = 1, #pirates do
-      pirates[i]:setFaction("Pirate")
+   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(1200, 1500)
+   local civs = fleet.add(2, "Llama", "Trader", pos,
+         nil, {naked=true}, true)
+   for i = 1, #civs do
+      local civ = civs[i]
+      civ:outfitAdd("Makeshift Small APU")
+      civ:outfitAdd("Beat Up Small Engine")
+      civ:outfitAdd("Patchwork Light Hull")
+      civ:setNoDisable() -- Make sure the victim is killed
    end
+   local victim = civs[1]
+   local survivor = civs[2]
+   victim:setHealth(rnd.uniform(4, 7), 0)
+   victim:setFuel(0)
+   victim:cargoAdd("Food", victim:cargoFree())
+   victim:setSpeedLimit(50)
+   survivor:setHealth(100, rnd.uniform(70, 100))
+   survivor:setFuel(100)
+   survivor:setSpeedLimit(100)
 
-   police_hook = hook.timer(5, "timer_police", pirates)
+   victim:control()
+   victim:land()
+
+   player.pilot():setInvincible()
+   player.pilot():control()
+   player.pilot():setVel(vec2.new(0, 0))
+   player.cinematics()
+   camera.set(victim, true)
+   camera.setZoom(0.5)
+
+   killer_hook = hook.timer(3, "timer_killer", survivor)
+   hook.pilot(survivor, "attacked", "hook_survivor_attacked", victim)
+   hook.pilot(victim, "death", "hook_victim_death")
+
    hook.jumpout("delete_policehook_timer")
    hook.land("land")
 end
 
 
-function timer_police(pirates)
+function timer_killer(victim)
+   local killer = pilot.add("Pirate Vendetta", "Pirate",
+         system.get("Alpha Pyxidis"), nil, {naked=true})
+   killer:outfitAdd("Exacorp ET-300 APU")
+   killer:outfitAdd("Exacorp HS-300 Engine")
+   killer:outfitAdd("Patchwork Light Hull")
+   killer:outfitAdd("FK27-S Katana Gun", 4)
+   killer:outfitAdd("FRS60-U Stinger Rocket Gun", 2)
+   killer:outfitAdd("Solar Panel")
+   killer:setHealth(rnd.uniform(1, 3), 0)
+   killer:setEnergy(100)
+   killer:setHostile()
+   killer:setNoDisable() -- Make sure the killer is killed
+
+   killer:control()
+   killer:attack(victim)
+end
+
+
+function hook_survivor_attacked(survivor, killer, damage, victim)
+   survivor:control()
+   survivor:localjump()
+
+   switch_target_hook = hook.timer(2, "timer_switch_target",
+         {killer, victim, survivor})
+end
+
+
+function timer_switch_target(combatants)
+   local killer, victim, survivor = table.unpack(combatants)
+
+   if victim ~= nil and victim:exists() then
+      killer:taskClear()
+      killer:attack(victim)
+   end
+
+   if survivor ~= nil and survivor:exists() then
+      survivor:taskClear()
+      survivor:land()
+   end
+end
+
+
+function hook_victim_death(victim, killer)
+   center_killer_hook = hook.timer(0.5, "timer_center_killer", killer)
+   police_hook = hook.timer(2, "timer_police", killer)
+end
+
+
+function timer_center_killer(killer)
+   camera.set(killer, true)
+end
+
+
+function timer_police(killer)
    local police = fleet.add(1,
          {"Imperial Pacifier", "Imperial Lancelot", "Imperial Shark"},
          "Empire", system.get("Alpha Pyxidis"), nil, nil, true)
 
+   for i = 1, #police do
+      local officer = police[i]
+      officer:control()
+      officer:attack(killer)
+   end
+   local leader = police[1]
+   leader:setNoDeath()
+   leader:setNoDisable()
+
+   killer:taskClear()
+   killer:attack(leader)
+
+   hook.pilot(killer, "death", "hook_killer_death", police)
+end
+
+
+function hook_killer_death(killer, officer, police)
+   for i = 1, #police do
+      local officer = police[i]
+      officer:setNoDeath(false)
+      officer:setNoDisable(false)
+      officer:control(false)
+   end
+
+   center_police_hook = hook.timer(0.5, "timer_center_police", police[1])
+   cinematics_end_hook = hook.timer(2.5, "timer_cinematics_end")
+   police_broadcast_hook = hook.timer(7.5, "timer_rebroadcast", police[1])
+   pirate_swarm_hook = hook.timer(8, "timer_pirate_swarm", police)
+end
+
+
+function timer_center_police(leader)
+   camera.set(leader, true)
+
    local msg = fmt.f(_("All citizens, evacuate this area immediately! Press {local_jump_key} to initiate an Escape Jump!"),
          {local_jump_key=tutGetKey("local_jump")})
-   police[1]:broadcast(msg, true)
+   leader:broadcast(msg, true)
+end
 
-   police_broadcast_hook = hook.timer(5, "timer_rebroadcast", police[1])
+
+function timer_cinematics_end()
+   camera.set(nil, true)
+   camera.setZoom()
+   player.cinematics(false)
+   player.pilot():setInvincible(false)
+   player.pilot():control(false)
 end
 
 
 function timer_rebroadcast(p)
-   pilot.toggleSpawn(true)
-
    if p == nil or not p:exists() then
       return
    end
@@ -309,6 +427,30 @@ function timer_rebroadcast(p)
    local msg = fmt.f(_("I repeat: all citizens, initiate an Escape Jump by pressing {local_jump_key} and evacuate immediately!"),
          {local_jump_key=tutGetKey("local_jump")})
    p:broadcast(msg, true)
+
+   restore_spawn_hook = hook.timer(120, "timer_restore_spawn")
+end
+
+
+function timer_pirate_swarm(police)
+   local pirates = fleet.add(1,
+         {"Pirate Kestrel", "Pirate Admonisher", "Pirate Phalanx",
+            "Pirate Ancestor", "Pirate Ancestor", "Pirate Vendetta",
+            "Pirate Vendetta", "Pirate Shark", "Pirate Shark", "Pirate Shark",
+            "Pirate Shark"},
+         "Pirate", system.get("Alpha Pyxidis"), nil, nil, true)
+   for i = 1, #pirates do
+      local pirate = pirates[i]
+      pirate:setHostile()
+   end
+
+   tk.msg("", fmt.f(escape_text,
+         {local_jump_key=tutGetKey("local_jump"), planet=misplanet:name()}))
+end
+
+
+function timer_restore_spawn()
+   pilot.toggleSpawn(true)
 end
 
 
