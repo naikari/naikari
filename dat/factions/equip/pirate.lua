@@ -145,39 +145,32 @@ equip_typeOutfits_weapons["Rhino"] = {
       "TC110-L Crystal Turret",
    },
    {
-      varied = true, num = 1;
-      "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
-   },
-   {
       varied = true,
       probability = {
-         ["TRV250-M Venom Grenade Turret"] = 6,
+         ["TRV250-M Venom Grenade Turret"] = 4,
       };
-      "TL54-M Lumina Turret", "TC54-M Crystal Turret", "TK54-M Katana Turret",
       "TRV250-M Venom Grenade Turret",
-      "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
+      "TMO75-M Orca Missile Turret",
    },
 }
 equip_typeOutfits_weapons["Kestrel"] = {
    {
       varied = true,
       probability = {
-         ["Ti193-X Ion-Shackle Turret"] = 6,
+         ["Ti193-X Ion-Shackle Turret"] = 12,
       };
-      "TL110-L Lumina Turret", "TC200-X Crystal Turret", "TK110-L Katana Turret",
       "Ti193-X Ion-Shackle Turret",
-   },
-   {
-      varied = true, num = 2;
-      "Mini Hyena Fighter Bay", "Mini Pirate Shark Fighter Bay",
+      "TL110-L Lumina Turret",
+      "TC110-L Crystal Turret",
+      "TK110-L Katana Turret",
    },
    {
       varied = true,
       probability = {
-         ["TRV250-M Venom Grenade Turret"] = 6,
+         ["TRV250-M Venom Grenade Turret"] = 4,
       };
-      "TL54-M Lumina Turret", "TC54-M Crystal Turret", "TK54-M Katana Turret",
       "TRV250-M Venom Grenade Turret",
+      "TMO75-M Orca Missile Turret",
    },
 }
 
