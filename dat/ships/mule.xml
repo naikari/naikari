@@ -28,8 +28,8 @@
  </characteristics>
  <slots>
   <weapon size="medium" x="25" y="0" h="0">TL54-M Lumina Turret</weapon>
-  <weapon size="medium" prop="fighter_bay" x="15" y="0" h="4">TL54-M Lumina Turret</weapon>
-  <weapon size="medium" prop="fighter_bay" x="-15" y="0" h="4">TMT40-M Tiger Missile Turret</weapon>
+  <weapon size="medium" x="15" y="0" h="4">TL54-M Lumina Turret</weapon>
+  <weapon size="medium" x="-15" y="0" h="4">TMT40-M Tiger Missile Turret</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-600 APU</utility>
   <utility size="medium" />
   <utility size="medium" />

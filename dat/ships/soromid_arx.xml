@@ -31,11 +31,11 @@
   <cargo>110</cargo>
  </characteristics>
  <slots>
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="40" y="0" h="0">Brigand Fighter Bay</weapon>
   <weapon size="large" prop="bio_weapon" x="20" y="0" h="0">TK110-L Katana Turret</weapon>
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="20" y="0" h="0" />
   <weapon size="large" prop="bio_weapon" x="-20" y="0" h="0" />
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="-40" y="0" h="0" />
+  <weapon size="large" prop="bio_weapon" x="40" y="0" h="0">Brigand Fighter Bay</weapon>
+  <weapon size="large" prop="bio_weapon" x="-40" y="0" h="0" />
+  <weapon size="large" prop="bio_weapon" x="20" y="0" h="0" />
   <utility size="large" prop="bio_systems" exclusive="1" required="1">Superheavy Heart Stage 1</utility>
   <utility size="large" />
   <utility size="large" />

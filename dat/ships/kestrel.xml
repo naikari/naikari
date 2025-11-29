@@ -29,8 +29,8 @@
   <weapon size="large" x="-23" y="15" h="5">FC66-L Crystal Gun</weapon>
   <weapon size="large" x="-24" y="-8" h="8">FC66-L Crystal Gun</weapon>
   <weapon size="large" x="-24" y="8" h="8">FC66-L Crystal Gun</weapon>
-  <weapon size="medium" prop="fighter_bay" x="-6" y="0" h="12" />
-  <weapon size="medium" prop="fighter_bay" x="44" y="0" h="0">FMT40-S Tiger Missile Gun</weapon>
+  <weapon size="medium" x="-6" y="0" h="12" />
+  <weapon size="medium" x="44" y="0" h="0">FMT40-S Tiger Missile Gun</weapon>
   <utility size="large" prop="systems" exclusive="1" required="1">Exacorp ET-800 APU</utility>
   <utility size="large" />
   <utility size="large" />

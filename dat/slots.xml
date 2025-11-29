@@ -40,8 +40,4 @@
   <display>Bioship Weapon</display>
   <description>In addition to standard weapons, this slot can be used for special organic weapons which can only be equipped to bioships. Organic weapons are generally similar to their synthetic counterparts, but more efficient, which is important to compensate for the reduced CPU capacity of the brain in comparison to synthetic constructs.</description>
  </slot>
- <slot name="fighter_bay">
-  <display>Fighter Bay</display>
-  <description>This slot can be used for fighter bays.</description>
- </slot>
 </Slots>

@@ -33,8 +33,8 @@
   <weapon size="large" x="-15" y="-25" h="3">FC66-L Crystal Gun</weapon>
   <weapon size="large" x="-15" y="25" h="3">FC66-L Crystal Gun</weapon>
   <weapon size="large" x="16" y="0" h="3" />
-  <weapon size="large" prop="fighter_bay" x="0" y="0" h="5" />
-  <weapon size="large" prop="fighter_bay" x="-20" y="0" h="5">TMT40-M Tiger Missile Turret</weapon>
+  <weapon size="large" x="0" y="0" h="5" />
+  <weapon size="large" x="-20" y="0" h="5">TMT40-M Tiger Missile Turret</weapon>
   <utility size="large" prop="systems" exclusive="1" required="1">Exacorp ET-900 APU</utility>
   <utility size="large" />
   <utility size="large" />

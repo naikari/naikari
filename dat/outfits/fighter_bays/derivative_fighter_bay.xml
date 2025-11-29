@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Derivative Fighter Bay">
  <general>
-  <slot prop="fighter_bay">weapon</slot>
+  <slot>weapon</slot>
   <size>large</size>
   <mass>240</mass>
   <price>930000</price>

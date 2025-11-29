@@ -31,8 +31,8 @@
   <weapon size="large" x="-15" y="-10" h="-10">TL110-L Lumina Turret</weapon>
   <weapon size="large" x="-15" y="10" h="-10">TL110-L Lumina Turret</weapon>
   <weapon size="medium" x="20" y="0" h="-10" />
-  <weapon size="medium" prop="fighter_bay" x="4" y="-5" h="-10" />
-  <weapon size="medium" prop="fighter_bay" x="4" y="5" h="-10">TMT40-M Tiger Missile Turret</weapon>
+  <weapon size="medium" x="4" y="-5" h="-10" />
+  <weapon size="medium" x="4" y="5" h="-10">TMT40-M Tiger Missile Turret</weapon>
   <utility size="medium" prop="systems" exclusive="1" required="1">Exacorp ET-600 APU</utility>
   <utility size="large" />
   <utility size="large" />

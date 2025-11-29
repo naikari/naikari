@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <outfit name="Mini Fidelity Fighter Bay">
  <general>
-  <slot prop="fighter_bay">weapon</slot>
+  <slot>weapon</slot>
   <size>medium</size>
   <mass>30</mass>
   <price>470000</price>

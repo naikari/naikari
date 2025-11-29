@@ -27,14 +27,14 @@
   <rdr_jump_range>6000</rdr_jump_range>
  </characteristics>
  <slots>
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="40" y="-20" h="0">Za'lek Light Drone Fighter Bay</weapon>
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="40" y="20" h="0">Za'lek Light Drone Fighter Bay</weapon>
   <weapon size="large" x="0" y="-20" h="0">TS257-X Spear Turret</weapon>
   <weapon size="large" x="0" y="20" h="0">TS257-X Spear Turret</weapon>
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="-20" y="-20" h="0" />
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="-20" y="20" h="0" />
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="-40" y="-20" h="0" />
-  <weapon size="large" prop="fighter_bay" exclusive="1" x="-40" y="20" h="0" />
+  <weapon size="large" x="40" y="-20" h="0">Za'lek Light Drone Fighter Bay</weapon>
+  <weapon size="large" x="40" y="20" h="0">Za'lek Light Drone Fighter Bay</weapon>
+  <weapon size="large" x="-20" y="-20" h="0" />
+  <weapon size="large" x="-20" y="20" h="0" />
+  <weapon size="large" x="-40" y="-20" h="0" />
+  <weapon size="large" x="-40" y="20" h="0" />
   <utility size="large" prop="systems" exclusive="1" required="1">Exacorp ET-900 APU</utility>
   <utility size="large" />
   <utility size="large" />
