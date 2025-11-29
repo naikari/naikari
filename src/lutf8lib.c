@@ -28,6 +28,7 @@ SOFTWARE.
 
 /** @cond */
 #include <assert.h>
+#include <limits.h>
 #include <string.h>
 /** @endcond */
 
