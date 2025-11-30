@@ -1337,6 +1337,8 @@ int equipment_shipStats( char *buf, int max_len,  const Pilot *s, int dpseps )
    double eps, dps, shots;
    const Damage *dmg;
 
+   /* FIXME: Doesn't take salvo shots into account for DPS */
+
    dps = 0.;
    eps = 0.;
    /* Calculate damage and energy per second. */

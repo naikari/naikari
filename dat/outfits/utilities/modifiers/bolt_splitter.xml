@@ -9,8 +9,8 @@
   <gfx_store>accuracy_turret.webp</gfx_store>
  </general>
  <specific type="modification">
-  <blt_salvo>2</blt_salvo>
-  <blt_spread>15</blt_spread>
-  <blt_damage>-60</blt_damage>
+  <blt_salvo_mod>100</blt_salvo_mod>
+  <blt_spread>10</blt_spread>
+  <blt_damage>-45</blt_damage>
  </specific>
 </outfit>
