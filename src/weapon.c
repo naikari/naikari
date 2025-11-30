@@ -2022,9 +2022,17 @@ void weapon_add(const PilotOutfitSlot *slot, const double dir,
       if ((slot->outfit->type == OUTFIT_TYPE_TURRET_BOLT)
             || parent->stats.turret_conversion) {
          salvo += parent->stats.tur_salvo;
+         salvo = (int)ceil(
+            (double)salvo
+            * parent->stats.blt_salvo_mod
+            * parent->stats.tur_salvo_mod);
       }
       else {
          salvo += parent->stats.fwd_salvo;
+         salvo = (int)ceil(
+            (double)salvo
+            * parent->stats.blt_salvo_mod
+            * parent->stats.fwd_salvo_mod);
       }
    }
    else if (outfit_isLauncher(slot->outfit)) {
@@ -2032,9 +2040,17 @@ void weapon_add(const PilotOutfitSlot *slot, const double dir,
       if ((slot->outfit->type == OUTFIT_TYPE_TURRET_BOLT)
             || parent->stats.turret_conversion) {
          salvo += parent->stats.tur_salvo;
+         salvo = (int)ceil(
+            (double)salvo
+            * parent->stats.launch_salvo_mod
+            * parent->stats.tur_salvo_mod);
       }
       else {
          salvo += parent->stats.fwd_salvo;
+         salvo = (int)ceil(
+            (double)salvo
+            * parent->stats.launch_salvo_mod
+            * parent->stats.fwd_salvo_mod);
       }
    }
 
