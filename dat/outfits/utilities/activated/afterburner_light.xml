@@ -4,7 +4,7 @@
   <slot>utility</slot>
   <size>small</size>
   <mass>6</mass>
-  <price>20000</price>
+  <price>10000</price>
   <description>An Afterburner is a manually activated outfit which increases thrust and speed, but also increases energy usage and generates heat. The increase in thrust is diminished as the Afterburner gets hotter, and if it reaches its maximum operating temperature, it automatically shuts off entirely.</description>
   <gfx_store>afterburner.webp</gfx_store>
   <limit>Afterburner</limit>

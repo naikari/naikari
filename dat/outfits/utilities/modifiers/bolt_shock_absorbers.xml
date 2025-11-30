@@ -9,7 +9,7 @@
   <gfx_store>accuracy_forward.webp</gfx_store>
  </general>
  <specific type="modification">
-  <blt_spread>-10</blt_spread>
+  <blt_spread>-5</blt_spread>
   <blt_heat>-65</blt_heat>
   <blt_firerate>-5</blt_firerate>
  </specific>

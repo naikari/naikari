@@ -70,7 +70,7 @@ local misn_title = _("Ian Structure")
 local misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
 local misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
-local credits = 2500
+local credits = 20000
 
 
 function create()

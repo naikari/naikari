@@ -88,7 +88,7 @@ local misn_log = _([[You helped transport Ian Structure to {planet} ({system}), 
 
 function create()
    misplanet, missys = planet.get("Liwia")
-   credits = 5000
+   credits = 25000
 
    -- Must claim the system to disable spawning (and make sure no Empire
    -- ships come to the player's rescue).

@@ -97,7 +97,7 @@ local misn_title = _("Ian's Supplies")
 local misn_desc = _("Ian Structure has hired you to mine Gold from some asteroids.")
 local misn_log = _([[You accepted another mission from Ian Structure, this time mining some Gold from asteroids for him. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
-local credits = 5000
+local credits = 20000
 
 
 function create()

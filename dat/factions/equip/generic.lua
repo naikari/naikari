@@ -779,7 +779,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Light Afterburner",
-         "Power Regulation Override",
          "Weapons Ionizer",
          "Reverse Thrusters",
          "Sensor Array",
@@ -789,7 +788,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Heavy Afterburner",
-         "Power Regulation Override",
          "Weapons Ionizer",
          "Reverse Thrusters",
          "Sensor Array",
@@ -799,7 +797,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Heavy Afterburner",
-         "Power Regulation Override",
          "Enhanced Jammer",
          "Weapons Ionizer",
          "Reverse Thrusters",
@@ -811,7 +808,6 @@ equip_classOutfits_utilities = {
          varied = true;
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Power Regulation Override",
          "Enhanced Jammer",
          "Weapons Ionizer",
          "Reverse Thrusters",
@@ -828,7 +824,6 @@ equip_classOutfits_utilities = {
          "Rotary Power Accelerator",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Power Regulation Override",
          "Improved Power Regulator",
          "Weapons Ionizer",
          "Sensor Array",
