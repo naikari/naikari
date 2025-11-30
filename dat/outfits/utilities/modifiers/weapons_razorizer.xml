@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Weapons Razorizer">
+ <general>
+  <slot>utility</slot>
+  <size>small</size>
+  <mass>0</mass>
+  <price>44000</price>
+  <description>A Weapons Razorizer changes the characteristics of all weaponry to be significantly more effective against shields, but less effective against armor.</description>
+  <gfx_store>efficiency_combat_ai.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <fwd_dam_armor_as_shield>25</fwd_dam_armor_as_shield>
+  <tur_dam_armor_as_shield>25</tur_dam_armor_as_shield>
+  <fwd_damage>5</fwd_damage>
+  <tur_damage>5</tur_damage>
+ </specific>
+</outfit>

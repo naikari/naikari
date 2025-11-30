@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Absorption Dynamo Circuit">
+ <general>
+  <slot>utility</slot>
+  <size>large</size>
+  <mass>40</mass>
+  <price>750000</price>
+  <description>An Absorption Dynamo Circuit attempts to recapture energy which is normally dissipated as heat when damage is absorbed by the hull, using the captured energy to recharge the battery.</description>
+  <gfx_store>hunting_combat_ai.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <absorb_dynamo>20</absorb_dynamo>
+ </specific>
+</outfit>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Bolt Splitter">
+ <general>
+  <slot>utility</slot>
+  <size>small</size>
+  <mass>0</mass>
+  <price>85000</price>
+  <description>A Bolt Splitter converts each bolt into a larger number of lower-energy bolts fired simultaneously in each salvo.</description>
+  <gfx_store>accuracy_turret.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <blt_salvo>2</blt_salvo>
+  <blt_spread>15</blt_spread>
+  <blt_damage>-60</blt_damage>
+ </specific>
+</outfit>

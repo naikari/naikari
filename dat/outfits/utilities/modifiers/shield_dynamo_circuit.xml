@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Shield Dynamo Circuit">
+ <general>
+  <slot>utility</slot>
+  <size>medium</size>
+  <mass>5</mass>
+  <price>450000</price>
+  <description>A Shield Dynamo Circuit attempts to capture energy which is normally dissipated into space when shields are damaged, using the captured energy to recharge the battery.</description>
+  <gfx_store>scanning_combat_ai.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <shield_dynamo>25</shield_dynamo>
+ </specific>
+</outfit>

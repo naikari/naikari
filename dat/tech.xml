@@ -110,9 +110,9 @@
   <item>Small Cargo Pod</item>
   <item>Medium Cargo Pod</item>
   <item>Large Cargo Pod</item>
-  <item>Targeting Array</item>
+  <item>Bolt Splitter</item>
   <item>Asteroid Scanner</item>
-  <item>Forward Shock Absorbers</item>
+  <item>Bolt Shock Absorbers</item>
   <item>Power Regulation Override</item>
   <item>Improved Power Regulator</item>
   <item>Turbofire Module</item>
@@ -284,7 +284,12 @@
   <item>Superheavy Strong Fin Stage X</item>
   <item>Weapons Ionizer</item>
   <item>Weapons Deionizer</item>
+  <item>Weapons Razorizer</item>
+  <item>Weapons Crystallizer</item>
   <item>Nebular Shielding Prototype</item>
+  <item>Shield Dynamo Circuit</item>
+  <item>Armor Dynamo Circuit</item>
+  <item>Absorption Dynamo Circuit</item>
  </tech>
  <tech name="All Ships">
   <item>Llama</item>
@@ -499,7 +504,7 @@
   <item>Fi21-S Ion-Shackle Gun</item>
   <item>Jump Scanner</item>
   <item>Solar Panel</item>
-  <item>Forward Shock Absorbers</item>
+  <item>Bolt Shock Absorbers</item>
   <item>Sensor Array</item>
   <item>Basic Jammer</item>
   <item>Light Afterburner</item>
@@ -521,7 +526,7 @@
   <item>Fi21-S Ion-Shackle Gun</item>
   <item>FRC80-U Claw Rocket Gun</item>
   <item>Solar Panel</item>
-  <item>Forward Shock Absorbers</item>
+  <item>Bolt Shock Absorbers</item>
   <item>Sensor Array</item>
   <item>Basic Jammer</item>
   <item>Weapons Ionizer</item>
@@ -543,7 +548,7 @@
   <item>Fi21-S Ion-Shackle Gun</item>
   <item>FRC80-U Claw Rocket Gun</item>
   <item>Solar Panel</item>
-  <item>Forward Shock Absorbers</item>
+  <item>Bolt Shock Absorbers</item>
   <item>Sensor Array</item>
   <item>Basic Jammer</item>
   <item>Weapons Ionizer</item>
@@ -671,7 +676,7 @@
   <item>Asteroid Scanner</item>
   <item>Solar Panel</item>
   <item>Turbofire Module</item>
-  <item>Targeting Array</item>
+  <item>Bolt Splitter</item>
   <item>Improved Power Regulator</item>
   <item>Rotary Power Accelerator</item>
   <item>Droid Repair Crew</item>

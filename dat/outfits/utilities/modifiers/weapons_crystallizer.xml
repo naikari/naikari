@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Weapons Crystallizer">
+ <general>
+  <slot>utility</slot>
+  <size>small</size>
+  <mass>0</mass>
+  <price>46000</price>
+  <description>A Weapons Crystallizer changes the characteristics of all weaponry to be significantly more effective against armor, but less effective against shields.</description>
+  <gfx_store>cyclic_combat_ai.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <fwd_dam_shield_as_armor>25</fwd_dam_shield_as_armor>
+  <tur_dam_shield_as_armor>25</tur_dam_shield_as_armor>
+  <fwd_damage>5</fwd_damage>
+  <tur_damage>5</tur_damage>
+ </specific>
+</outfit>

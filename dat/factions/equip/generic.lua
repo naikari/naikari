@@ -721,7 +721,6 @@ equip_classOutfits_utilities = {
          varied = true;
          "Rotary Power Accelerator",
          "Droid Repair Crew",
-         "Targeting Array",
       },
       {
          varied = true;
@@ -749,7 +748,6 @@ equip_classOutfits_utilities = {
          "Medium Thrust Bracer",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Targeting Array",
          "Improved Power Regulator",
          "Enhanced Jammer",
          "Turbofire Module",
@@ -762,7 +760,6 @@ equip_classOutfits_utilities = {
          "Rotary Power Accelerator",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Targeting Array",
          "Improved Power Regulator",
          "Enhanced Jammer",
          "Turbofire Module",
@@ -775,7 +772,6 @@ equip_classOutfits_utilities = {
          "Turret Conversion Module",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Targeting Array",
          "Improved Power Regulator",
       },
    },
@@ -783,7 +779,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Light Afterburner",
-         "Forward Shock Absorbers",
          "Power Regulation Override",
          "Weapons Ionizer",
          "Reverse Thrusters",
@@ -794,7 +789,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Heavy Afterburner",
-         "Forward Shock Absorbers",
          "Power Regulation Override",
          "Weapons Ionizer",
          "Reverse Thrusters",
@@ -805,7 +799,6 @@ equip_classOutfits_utilities = {
       {
          varied = true;
          "Heavy Afterburner",
-         "Forward Shock Absorbers",
          "Power Regulation Override",
          "Enhanced Jammer",
          "Weapons Ionizer",
@@ -818,7 +811,6 @@ equip_classOutfits_utilities = {
          varied = true;
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Forward Shock Absorbers",
          "Power Regulation Override",
          "Enhanced Jammer",
          "Weapons Ionizer",
@@ -836,9 +828,7 @@ equip_classOutfits_utilities = {
          "Rotary Power Accelerator",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Forward Shock Absorbers",
          "Power Regulation Override",
-         "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
          "Sensor Array",
@@ -851,7 +841,6 @@ equip_classOutfits_utilities = {
          "Turret Conversion Module",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
          "Sensor Array",
@@ -864,7 +853,6 @@ equip_classOutfits_utilities = {
          "Turret Conversion Module",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
          "Sensor Array",
@@ -877,7 +865,6 @@ equip_classOutfits_utilities = {
          "Turret Conversion Module",
          "Droid Repair Crew",
          "Emergency Shield Booster",
-         "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
          "Sensor Array",
@@ -889,7 +876,6 @@ equip_classOutfits_utilities = {
          "Power Overdrive Module",
          "Droid Repair Crew",
          "Turbofire Module",
-         "Targeting Array",
          "Improved Power Regulator",
          "Weapons Ionizer",
          "Sensor Array",

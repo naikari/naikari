@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<outfit name="Bolt Shock Absorbers">
+ <general>
+  <slot>utility</slot>
+  <size>small</size>
+  <mass>0</mass>
+  <price>35000</price>
+  <description>These Shock Absorbers are attached to all bolt weapons, isolating them from the hull and providing increased accuracy.</description>
+  <gfx_store>accuracy_forward.webp</gfx_store>
+ </general>
+ <specific type="modification">
+  <blt_spread>-10</blt_spread>
+  <blt_heat>-65</blt_heat>
+  <blt_firerate>-5</blt_firerate>
+ </specific>
+</outfit>
