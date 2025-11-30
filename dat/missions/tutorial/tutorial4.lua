@@ -273,7 +273,7 @@ function timer_pirate_death()
    player.pilot():setVisible(false)
 
    local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(1200, 2500)
-   local civs = fleet.add(2, "Llama", "Trader", pos,
+   local civs = fleet.add(2, "Llama", "Civilian", pos,
          nil, {naked=true}, true)
    for i = 1, #civs do
       local civ = civs[i]
@@ -434,10 +434,11 @@ end
 
 function timer_pirate_swarm(police)
    local pirates = fleet.add(1,
-         {"Pirate Kestrel", "Pirate Admonisher", "Pirate Phalanx",
-            "Pirate Ancestor", "Pirate Ancestor", "Pirate Vendetta",
-            "Pirate Vendetta", "Pirate Shark", "Pirate Shark", "Pirate Shark",
-            "Pirate Shark"},
+         {"Pirate Kestrel", "Pirate Admonisher", "Pirate Admonisher",
+            "Pirate Phalanx", "Pirate Phalanx",
+            "Pirate Ancestor", "Pirate Ancestor", "Pirate Ancestor",
+            "Pirate Vendetta", "Pirate Vendetta", "Pirate Vendetta",
+            "Pirate Shark", "Pirate Shark", "Pirate Shark", "Pirate Shark"},
          "Pirate", system.get("Alpha Pyxidis"), nil, nil, true)
    for i = 1, #pirates do
       local pirate = pirates[i]
