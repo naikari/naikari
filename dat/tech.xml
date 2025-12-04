@@ -380,6 +380,54 @@
   <item>Patchwork Medium Hull</item>
   <item>Patchwork Light Hull</item>
  </tech>
+ <tech name="Basic APUs">
+  <item>Exacorp ET-900 APU</item>
+  <item>Exacorp ET-800 APU</item>
+  <item>Exacorp ET-600 APU</item>
+  <item>Exacorp ET-500 APU</item>
+  <item>Exacorp ET-300 APU</item>
+  <item>Exacorp ET-200 APU</item>
+ </tech>
+ <tech name="Aegis APUs">
+  <item>Intek Aegis 9801 APU</item>
+  <item>Intek Aegis 8701 APU</item>
+  <item>Intek Aegis 6501 APU</item>
+  <item>Intek Aegis 5401 APU</item>
+  <item>Intek Aegis 3201 APU</item>
+  <item>Intek Aegis 2101 APU</item>
+ </tech>
+ <tech name="Prometheus APUs">
+  <item>Intek Prometheus 9802 APU</item>
+  <item>Intek Prometheus 8702 APU</item>
+  <item>Intek Prometheus 6502 APU</item>
+  <item>Intek Prometheus 5402 APU</item>
+  <item>Intek Prometheus 3202 APU</item>
+  <item>Intek Prometheus 2102 APU</item>
+ </tech>
+ <tech name="Hermes APUs">
+  <item>Intek Hermes 9803 APU</item>
+  <item>Intek Hermes 8703 APU</item>
+  <item>Intek Hermes 6503 APU</item>
+  <item>Intek Hermes 5403 APU</item>
+  <item>Intek Hermes 3203 APU</item>
+  <item>Intek Hermes 2103 APU</item>
+ </tech>
+ <tech name="Orion APUs">
+  <item>Intek Orion 9901 APU</item>
+  <item>Intek Orion 8801 APU</item>
+  <item>Intek Orion 6601 APU</item>
+  <item>Intek Orion 5501 APU</item>
+  <item>Intek Orion 3301 APU</item>
+  <item>Intek Orion 2201 APU</item>
+ </tech>
+ <tech name="Basic Engines">
+  <item>Exacorp HS-6500 Engine</item>
+  <item>Exacorp HS-4500 Engine</item>
+  <item>Exacorp HS-1200 Engine</item>
+  <item>Exacorp HS-700 Engine</item>
+  <item>Exacorp HS-300 Engine</item>
+  <item>Exacorp HS-150 Engine</item>
+ </tech>
 
 
  <!-- Population centers (mostly planets), separated by faction. These
