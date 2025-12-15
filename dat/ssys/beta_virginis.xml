@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ssys name="Beta Pyxidis">
+<ssys name="Beta Virginis">
  <general>
   <radius>22000.000000</radius>
   <stars>400</stars>
@@ -13,7 +13,7 @@
   <asset>Liwia</asset>
  </assets>
  <jumps>
-  <jump target="Alpha Pyxidis">
+  <jump target="Alpha Virginis">
    <autopos/>
    <express/>
   </jump>

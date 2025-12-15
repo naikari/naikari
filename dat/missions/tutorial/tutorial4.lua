@@ -196,7 +196,7 @@ function enter_ambush()
    pilot.toggleSpawn(false)
    pilot.clear()
 
-   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(2500, -1000)
+   local pos = jump.get("Beta Virginis", "Alpha Virginis"):pos() + vec2.new(2500, -1000)
    local pirate = pilot.add("Hyena", "Pirate", pos, _("Pirate Hyena"),
          {ai="pirate_norun", naked=true})
 
@@ -272,7 +272,7 @@ function timer_pirate_death()
    player.pilot():setNoJump(false)
    player.pilot():setVisible(false)
 
-   local pos = jump.get("Beta Pyxidis", "Alpha Pyxidis"):pos() + vec2.new(1200, 2500)
+   local pos = jump.get("Beta Virginis", "Alpha Virginis"):pos() + vec2.new(1200, 2500)
    local civs = fleet.add(2, "Llama", "Civilian", pos,
          nil, {naked=true}, true)
    for i = 1, #civs do
@@ -313,7 +313,7 @@ end
 
 function timer_killer(victim)
    local killer = pilot.add("Pirate Vendetta", "Pirate",
-         system.get("Alpha Pyxidis"), nil, {naked=true})
+         system.get("Alpha Virginis"), nil, {naked=true})
    killer:outfitAdd("Exacorp ET-300 APU")
    killer:outfitAdd("Exacorp HS-300 Engine")
    killer:outfitAdd("Patchwork Light Hull")
@@ -368,7 +368,7 @@ end
 function timer_police(killer)
    local police = fleet.add(1,
          {"Imperial Pacifier", "Imperial Lancelot", "Imperial Shark"},
-         "Empire", system.get("Alpha Pyxidis"), nil, nil, true)
+         "Empire", system.get("Alpha Virginis"), nil, nil, true)
 
    for i = 1, #police do
       local officer = police[i]
@@ -439,7 +439,7 @@ function timer_pirate_swarm(police)
             "Pirate Ancestor", "Pirate Ancestor", "Pirate Ancestor",
             "Pirate Vendetta", "Pirate Vendetta", "Pirate Vendetta",
             "Pirate Shark", "Pirate Shark", "Pirate Shark", "Pirate Shark"},
-         "Pirate", system.get("Alpha Pyxidis"), nil, nil, true)
+         "Pirate", system.get("Alpha Virginis"), nil, nil, true)
    for i = 1, #pirates do
       local pirate = pirates[i]
       pirate:setHostile()
@@ -474,8 +474,8 @@ function land()
    diff.apply("hakoi_pirates")
 
    local exp = time.get() + time.create(0, 250, 0)
-   news.add("Empire", _("Pirates in Pyxidis"),
-         _([[Residents of the previously peaceful Pyxidis constellation are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling in the area to be cautious. An investigation is underway.]]),
+   news.add("Empire", _("Pirates in Virginis"),
+         _([[Residents of the previously peaceful Virginis constellation are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling in the area to be cautious. An investigation is underway.]]),
          exp)
 
    addMiscLog(fmt.f(misn_log, {planet=misplanet:name(), system=missys:name()}))

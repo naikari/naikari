@@ -47,7 +47,7 @@ A list of conditional articles. Each is a table with the following keys:
 cond_articles = {
    {
       title = _("Kikero Offers Business Opportunities"),
-      text = _([[Analysts have noted tremendous opportunities on Kikero (Alpha Pyxidis system). "It's a great start for new pilots," a top analyst said. "Safe, and with many business opportunities."]]),
+      text = _([[Analysts have noted tremendous opportunities on Kikero (Alpha Virginis system). "It's a great start for new pilots," a top analyst said. "Safe, and with many business opportunities."]]),
       tag = "mhint_Tutorial Part 2",
       mission = "Tutorial Part 2",
       cond = function()
@@ -56,7 +56,7 @@ cond_articles = {
    },
    {
       title = _("Kikero Remains a Great Start"),
-      text = _([[Analysts continue to proudly recommend Kikero (Alpha Pyxidis system) to new pilots seeking good payment. "What better way to start your piloting journey than in a safe, prosperous system like Alpha Pyxidis?" a top analyst noted.]]),
+      text = _([[Analysts continue to proudly recommend Kikero (Alpha Virginis system) to new pilots seeking good payment. "What better way to start your piloting journey than in a safe, prosperous system like Alpha Virginis?" a top analyst noted.]]),
       tag = "mhint_Tutorial Part 3",
       mission = "Tutorial Part 3",
       done = "Tutorial Part 2",
@@ -66,7 +66,7 @@ cond_articles = {
    },
    {
       title = _("Em 5 Experiences New Growth"),
-      text = _([[Economists note an uptick in economic activity and recommend all pilots seek out new opportunities on Octawius (Alpha Pyxidis system). Safe but prosperous, the Alpha Pyxidis system is tough to beat, and its prosperity is expected to continue for the foreseeable future.]]),
+      text = _([[Economists note an uptick in economic activity and recommend all pilots seek out new opportunities on Octawius (Alpha Virginis system). Safe but prosperous, the Alpha Virginis system is tough to beat, and its prosperity is expected to continue for the foreseeable future.]]),
       tag = "mhint_Tutorial Part 4",
       mission = "Tutorial Part 4",
       done = "Tutorial Part 3",
