@@ -109,6 +109,141 @@ equip_typeOutfits_hulls["Kestrel"] = {
    "SHL Heavy Combat Hull",
 }
 
+equip_typeOutfits_utilities["Hyena"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Basic Jammer",
+      "Jump Scanner",
+   },
+}
+equip_typeOutfits_utilities["Shark"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Basic Jammer",
+      "Jump Scanner",
+   },
+}
+equip_typeOutfits_utilities["Vendetta"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Basic Jammer",
+      "Jump Scanner",
+   },
+}
+equip_typeOutfits_utilities["Ancestor"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Basic Jammer",
+      "Jump Scanner",
+   },
+}
+equip_typeOutfits_utilities["Admonisher"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Shield Dynamo Circuit",
+      "Armor Dynamo Circuit",
+      "Basic Jammer",
+      "Jump Scanner",
+   },
+}
+equip_typeOutfits_utilities["Phalanx"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Shield Dynamo Circuit",
+      "Armor Dynamo Circuit",
+      "Basic Jammer",
+      "Jump Scanner",
+   },
+}
+equip_typeOutfits_utilities["Rhino"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Shield Dynamo Circuit",
+      "Armor Dynamo Circuit",
+      "Jump Scanner",
+   },
+}
+equip_typeOutfits_utilities["Kestrel"] = {
+   {
+      num = 1;
+      "Weapons Razorizer",
+   },
+   {
+      varied = true;
+      "Weapons Razorizer",
+      "Bolt Splitter",
+      "Power Amplification Circuit",
+      "Turbofire Module",
+      "Bolt Shock Absorbers",
+      "Shield Dynamo Circuit",
+      "Armor Dynamo Circuit",
+      "Jump Scanner",
+   },
+}
+
 equip_typeOutfits_weapons["Hyena"] = {
    {
       varied = true,
