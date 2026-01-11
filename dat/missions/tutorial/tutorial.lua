@@ -121,7 +121,7 @@ this function to be defined.
 function create()
    -- Set our mission parameters. These are global variables which will
    -- be persisted even if the game is reloaded.
-   start_planet, missys = planet.get("Kikero")
+   start_planet, start_system = planet.get("Kikero")
    stage = 1
 
    -- Immediately call accept()
@@ -161,7 +161,7 @@ function accept()
 
    -- Create a marker, which shows the target system and planet on the
    -- map.
-   misn.markerAdd(missys, "low", start_planet)
+   misn.markerAdd(start_system, "low", start_planet)
 
    -- Define hooks. Each hook is bound to a function which we define
    -- further down below. Hooks enable timing of code in reaction to
@@ -175,24 +175,48 @@ end
 
 
 --[[
-Creates or recreates the OSD. This enables the OSD to be periodically
-recreated so that key binding changes made while the mission is running
-show up in the OSD.
+Creates or recreates the OSD, updating it to show the current set of
+mission objectives. This should be done as infrequently as possible. In
+this case, we recreate the OSD on a 1 second repeating timer to account
+for possible changes to the game's controls.
 --]]
 function create_osd()
-   local osd_desc = {
-      fmt.f(_("Fly to {planet} ({system} system) with the movement keys ({accelkey}, {leftkey}, {reversekey}, {rightkey}) or with mouse flight (enabled with {mouseflykey})"),
-         {planet=start_planet:name(), system=missys:name(),
-            accelkey=naik.keyGet("accel"), leftkey=naik.keyGet("left"),
-            reversekey=naik.keyGet("reverse"), rightkey=naik.keyGet("right"),
-            mouseflykey=naik.keyGet("mousefly")}),
-      fmt.f(_("Land on {planet} ({system} system) by double-clicking it or pressing {landkey}"),
-         {planet=start_planet:name(), system=missys:name(),
-            landkey=naik.keyGet("land")}),
-   }
+   -- Create the OSD list which will be used for misn.osdCreate(). We
+   -- create a different list depending on what stage of the mission
+   -- the player is currently on.
+   local osd_desc
+   if stage == 1 then
+      osd_desc = {
+         -- The first objective is the current objective. Here, we use
+         -- the implicit conversion of planets and systems to strings in
+         -- the fmt.f() function, which is equivalent to the
+         -- planet.name() and system.name() functions.
+         fmt.f(_("Fly to {planet} ({system} system)"),
+            {planet=start_planet, system=start_system}),
+         -- Here, we add sub-objectives after the current objectives to
+         -- add additional information. Sub-objectives are created by
+         -- starting them with a tab character, and are subordinate to
+         -- the main objective above them.
+         "\t" .. fmt.f(_("Keyboard flight: {accelkey}, {reversekey}, {leftkey}, {rightkey}"),
+            {accelkey=naik.keyGet("accel"), reversekey=naik.keyGet("reverse"),
+               leftkey=naik.keyGet("left"), rightkey=naik.keyGet("right")}),
+         "\t" .. fmt.f(_("Mouse flight: toggle with {mouseflykey}, then turn by pointing the mouse pointer and accelerate with middle mouse button, extra mouse button, or {accelkey}"),
+            {mouseflykey=naik.keyGet("mousefly"),
+               accelkey=naik.keyGet("accel")}),
+      }
+   else
+      osd_desc = {
+         fmt.f(_("Land on {planet} ({system} system)"),
+            {planet=start_planet, system=start_system}),
+         "\t" .. fmt.f(_("Mouse land control: double-click on {planet}"),
+            {planet=start_planet}),
+         "\t" .. fmt.f(_("Keyboard land control: press {landkey}"),
+            {landkey=naik.keyGet("land")}),
+      }
+   end
 
+   -- Actually create the OSD, using the osd_desc variable we defined.
    misn.osdCreate(misn_title, osd_desc)
-   misn.osdActive(stage)
 end
 
 
@@ -213,7 +237,7 @@ function timer()
    -- Recreate OSD in case key binds have changed.
    create_osd()
 
-   if stage == 1 and system.cur() == missys
+   if stage == 1 and system.cur() == start_system
          and player.pos():dist(start_planet:pos()) <= start_planet:radius() then
       stage = 2
 

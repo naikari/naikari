@@ -867,7 +867,7 @@ static int hook_renderfg( lua_State *L )
  *       triggered.
  *    @luaparam[opt] arg Argument to pass to hook.
  *    @luatreturn number Hook identifier.
- * @luasee naev.hookTrigger
+ * @luasee naik.hookTrigger
  * @luafunc custom
  */
 static int hook_custom( lua_State *L )
