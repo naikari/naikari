@@ -23,7 +23,32 @@
    <bar/>
    <missions/>
    <commodity/>
+   <outfits/>
   </services>
   <commodities/>
  </general>
+ <tech>
+  <item>Bad Cores</item>
+  <item>APU: Basic</item>
+  <item>Engine: Basic</item>
+  <item>Engine: Heavy</item>
+  <item>Hull: Basic</item>
+  <item>Hull: Mid</item>
+  <item>Hull: Cargo</item>
+  <item>Weapon: Lumina</item>
+  <item>Weapon: Ion-Shackle</item>
+  <item>Weapon: Tiger Missile</item>
+  <item>Weapon: Spider Missile</item>
+  <item>Utility: Radar</item>
+  <item>Utility: Mobility</item>
+  <item>Utility: Health</item>
+  <item>Utility: Energy</item>
+  <item>Utility: Weapon Conversion</item>
+  <item>Structure: Energy</item>
+  <item>Structure: Speed</item>
+  <item>Structure: Cargo</item>
+  <item>Structure: Fuel</item>
+  <item>Structure: Mass Limit</item>
+  <item>License: Mercenary</item>
+ </tech>
 </asset>

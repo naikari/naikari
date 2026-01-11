@@ -20,13 +20,27 @@
    <land>land_lowclass</land>
    <refuel/>
    <bar/>
-   <outfits/>
    <commodity/>
+   <outfits/>
   </services>
   <commodities/>
  </general>
  <tech>
-  <item>Population Generic</item>
-  <item>Population Empire</item>
+  <item>Bad Cores</item>
+  <item>APU: Basic</item>
+  <item>Engine: Basic</item>
+  <item>Hull: Basic</item>
+  <item>Weapon: Lumina</item>
+  <item>Weapon: Claw Rocket</item>
+  <item>Utility: Radar</item>
+  <item>Utility: Mobility</item>
+  <item>Utility: Damage Type</item>
+  <item>Utility: Bolt Modifier</item>
+  <item>Structure: Shield</item>
+  <item>Structure: Energy</item>
+  <item>Structure: Speed</item>
+  <item>Structure: Cargo</item>
+  <item>Structure: Fuel</item>
+  <item>Structure: Mass Limit</item>
  </tech>
 </asset>

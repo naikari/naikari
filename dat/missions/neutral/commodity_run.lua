@@ -116,7 +116,7 @@ function accept()
 
    local osd_msg = {
       fmt.f(_("Buy as much {commodity} as possible"), {commodity=comm:name()}),
-      fmt.f(_("Take the {commodity} to {planet} ({system} system)"),
+      fmt.f(_("Take the {commodity} to {planet} ({system})"),
             {commodity=comm:name(), planet=misplanet:name(),
                system=missys:name()}),
    }
