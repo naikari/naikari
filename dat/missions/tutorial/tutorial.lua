@@ -155,13 +155,9 @@ function accept()
    misn.setDesc(misn_desc)
    misn.setReward(_("None"))
 
-   -- Create the OSD. In this case, we do this in a separate function
-   -- called create_osd(), defined further below.
-   create_osd()
-
-   -- Create a marker, which shows the target system and planet on the
-   -- map.
-   misn.markerAdd(start_system, "low", start_planet)
+   -- Normally we would create the OSD and set the mission marker here,
+   -- but in this case, we do so in the timer_greeting() function, since
+   -- that is when the mission visually starts.
 
    -- Define hooks. Each hook is bound to a function which we define
    -- further down below. Hooks enable timing of code in reaction to
@@ -221,12 +217,25 @@ end
 
 
 function timer_greeting()
+   -- The vast majority of dialog is conveyed via the tk.msg() function,
+   -- which displays a simple text box. For story text, we set the title
+   -- to an empty string, i.e. no title, as a matter of style. This
+   -- avoids burdening ourselves by trying to title every minute mission
+   -- detail.
    tk.msg("", fmt.f(intro_text,
          {player=player.name(), shipname=player.pilot():name()}))
    tk.msg("", fmt.f(movement_text,
          {leftkey=fmt.keyGetH("left"), rightkey=fmt.keyGetH("right"),
             accelkey=fmt.keyGetH("accel"), reversekey=fmt.keyGetH("reverse"),
             mouseflykey=fmt.keyGetH("mousefly"), planet=start_planet:name()}))
+
+   -- Create the OSD. In this case, we do this in a separate function
+   -- called create_osd(), defined above.
+   create_osd()
+
+   -- Create a marker, which shows the target system and planet on the
+   -- map.
+   misn.markerAdd(start_system, "low", start_planet)
 end
 
 
