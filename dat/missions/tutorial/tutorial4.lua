@@ -75,9 +75,9 @@ local pay_text = _([[As you finish the landing procedures and arrive on the surf
 
 With tears in his eyes, Ian rushes to Lieutenant Milo, who opens his arms and firmly embraces him. "It's OK, love," he gently whispers. "I'm here. You're safe."
 
-After a few minutes, Ian calms down and hands you a credit chip. "Thank you, {player}," he says.
+After a few minutes, Ian calms down, wipes the tears from his eyes, and hands you a credit chip. "Thank you, {player}," he says. "I'm… uh, I'm sorry for that display, I–"
 
-"And thank you from me as well," Milo adds, handing you a second credit chip. "Thank you for keeping my boyfriend safe. As a token of my gratitude, I'd be willing to personally offer you a chance to climb the ranks of the Empire. Meet me at the bar if you're interested." He grabs Ian's hand, gives him a kiss, and walks off with him.]])
+"It's ok, Ian," Milo interripts, gently rubbing his back. "And thank you from me as well. Here, as a token of my gratitude for keeping my boyfriend safe, I'll be doubling your pay." Milo hands you a second credit chip. "I'd also like to personally offer you a chance to climb the ranks of the Empire. Meet me at the bar if you're interested. I'll be there shortly." He grabs Ian's hand, gives him a kiss, and walks off with him.]])
 
 local bartender_text = _([["Mr. Ian Structure went to your ship ahead of you. You should be all set to #bTake Off#0."]])
 
@@ -85,10 +85,11 @@ local misn_title = _("Ian's Transport")
 local misn_desc = _("Ian Structure has hired you to give him transport to another planet.")
 local misn_log = _([[You helped transport Ian Structure to {planet} ({system}), fighting off an unexpected pirate along the way. He and his boyfriend, Milo, thanked you for keeping him safe. Milo also offered a chance to climb the ranks of the Empire; he said to meet him at the bar on {planet} ({system}) if you're interested.]])
 
+local credits = 25000
+
 
 function create()
    misplanet, missys = planet.get("Liwia")
-   credits = 25000
 
    -- Must claim the system to disable spawning (and make sure no Empire
    -- ships come to the player's rescue).
@@ -112,6 +113,8 @@ function accept()
       misn.setTitle(misn_title)
       misn.setReward(fmt.credits(credits))
       misn.setDesc(misn_desc)
+
+      stage = 1
 
       local osd_desc = {
          _("Fly into space"),
@@ -142,11 +145,53 @@ function bartender_clue()
 end
 
 
+function create_osd()
+   local osd_desc
+   if stage == 1 then
+      osd_desc = {
+         _("Fly into space"),
+      }
+   elseif stage == 2 then
+      osd_desc = {
+         fmt.f(_("Press {starmapkey} to open your starmap"),
+            {starmapkey=naik.keyGet("starmap")}),
+      }
+   elseif stage == 3 then
+      osd_desc = {
+         fmt.f(_("Fly to {system}"), {system=missys}),
+         "\t" .. fmt.f(_("Press {starmapkey} to open your starmap"),
+            {starmapkey=naik.keyGet("starmap")}),
+         "\t" .. _("Click the marked system in your starmap to select it as the Autonav destination"),
+         "\t" .. _("Click \"Autonav\" in your starmap to initiate Autonav"),
+      }
+   elseif stage == 4 then
+      osd_desc = {
+         _("Target the nearby hostile ship"),
+         "\t" .. fmt.f(_("Press {target_hostile_key} to target the nearest hostile ship"),
+            {target_hostile_key=naik.keyGet("target_hostile")}),
+      }
+   elseif stage == 5 then
+      osd_desc = {
+         _("Destroy the Pirate Hyena"),
+      }
+   else
+      osd_desc = {
+         fmt.f(_("Land on {planet} ({system})"),
+            {planet=misplanet:name(), system=missys:name()}),
+         "\t" .. fmt.f(_("Press {local_jump_key} to perform an Escape Jump to get away from the pirates"),
+            {local_jump_key=naik.keyGet("local_jump")}),
+      }
+   end
+   misn.osdCreate(misn_title, osd_desc)
+end
+
+
 function enter_start()
    hook.rm(bartender_hook)
    hook.rm(enter_hook)
 
-   misn.osdActive(2)
+   stage = 2
+   create_osd()
 
    input_timer_hook = hook.timer(1, "timer_enter_start")
    input_hook = hook.input("input", "starmap")
@@ -177,7 +222,9 @@ end
 
 function safe_starmap()
    tk.msg("", fmt.f(jump_text, {system=missys}))
-   misn.osdActive(3)
+
+   stage = 3
+   create_osd()
 end
 
 
@@ -213,8 +260,6 @@ function enter_ambush()
 
    pirate:memory().kill_reward = 5000
 
-   misn.osdActive(4)
-
    hook.pilot(pirate, "death", "pirate_death")
    hook.pilot(pirate, "jump", "pirate_death")
    hook.pilot(pirate, "land", "pirate_land")
@@ -228,6 +273,9 @@ function timer_enter_ambush(pirate)
    tk.msg("", fmt.f(target_nearest_text,
          {system=missys:name(), player=player.name(),
             target_hostile_key=tutGetKey("target_hostile")}))
+
+   stage = 4
+   create_osd()
 end
 
 
@@ -235,18 +283,13 @@ function safe_target_hostile()
    hook.rm(timer_hook)
 
    tk.msg("", fight_text)
-   misn.osdActive(5)
 
-   -- Ensure the player has weapons.
+   stage = 5
+   create_osd()
+
+   -- Ensure the player has weapons. If they don't, give them a free
+   -- gun even if it makes the ship unspaceworthy.
    local p = player.pilot()
-   local n = #p:outfits("weapon")
-   if n < 2 then
-      p:outfitAdd("FL21-U Lumina Gun", 2 - n)
-   end
-
-   -- If this happens, that likely means not enough CPU is available for
-   -- weapons, so we'll override the CPU limitation and just let them
-   -- have a weapon they shouldn't.
    if #p:outfits("weapon") <= 0 then
       p:outfitAdd("FL21-U Lumina Gun", 1, true, true)
    end
@@ -266,7 +309,9 @@ end
 
 function timer_pirate_death()
    tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
-   misn.osdActive(6)
+
+   stage = 6
+   create_osd()
 
    player.allowLand(true)
    player.pilot():setNoJump(false)
