@@ -75,7 +75,7 @@ local overlay_text = _([["It's been awhile since I've been in space," Ian notes 
 
 "I've marked the asteroid field on your ship's overlay map. Could you press {overlaykey} to open your overlay map so I can show you, please?"]])
 
-local autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to use Autonav to take us to that area as fast as possible. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous. Most pilots call this phenomenon 'Time Compression', I believe, or 'TC' for short." Just #bright-click#0 on the location of the asteroid field to initialize Autonav."]])
+local autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to use Autonav to take us to that area as fast as possible. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous. Most pilots call this phenomenon 'Time Compression', or 'TC' for short." Just #bright-click#0 on the location of the asteroid field to initialize Autonav."]])
 
 local mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, Gold in this case, and you can pick the commodity up simply by flying over its location.
 
@@ -121,6 +121,7 @@ function accept()
 
       ready = false
       started = false
+      substep = 1
       finished = false
 
       -- Calculate the player's total cargo capacity, including any
@@ -161,25 +162,7 @@ function accept()
       approach()
       land()
 
-      local osd_desc = {
-         fmt.f(_("Land on {planet} ({system}), equip your ship with a weapon and {needed} kt of cargo capacity, and talk to Ian Structure at the bar"),
-            {planet=startplanet, system=startsys, needed=cargo_needed}),
-         fmt.f(_("Fly to {system} with Ian Structure"), {system=startsys}),
-         fmt.f(_("Press {overlaykey} to open your overlay map"),
-            {overlaykey=naik.keyGet("overlay")}),
-         _("Fly to Asteroid Field indicated on overlay map by right-clicking the area"),
-         _("Mine Gold from asteroids until your cargo hold is full"),
-         "\t" .. _("Target an asteroid by left-clicking on it"),
-         "\t" .. fmt.f(_("Use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid"),
-            {primarykey=naik.keyGet("primary"),
-               secondarykey=naik.keyGet("secondary")}),
-         "\t" .. _("Fly to the location of dropped Gold to collect it"),
-         "\t" .. fmt.f(_("If your weapons overheat, engage Active Cooldown by pressing {autobrake_key}"),
-            {autobrake_key=naik.keyGet("autobrake")}),
-         fmt.f(_("Land on {planet} ({system})"),
-            {planet=misplanet, system=missys}),
-      }
-      misn.osdCreate(_("Ian's Supplies"), osd_desc)
+      create_osd()
 
       marker = misn.markerAdd(missys, "low")
 
@@ -193,7 +176,88 @@ function accept()
 end
 
 
+function check_ready()
+   if not ready then
+      return false
+   end
+
+   local cargo_free = player.pilot():cargoFree()
+   if cargo_free < cargo_needed then
+      return false
+   end
+
+   local weapons_equipped = #player.pilot():outfits("weapon")
+   if weapons_equipped < 1 then
+      return false
+   end
+
+   return true
+end
+
+
+function create_osd()
+   if finished then
+      local osd_desc = {
+         fmt.f(_("Land on {planet} ({system})"),
+            {planet=misplanet, system=missys}),
+      }
+      misn.osdCreate(misn_title, osd_desc)
+   elseif started then
+      local osd_desc
+      if substep == 1 then
+         osd_desc = {
+            fmt.f(_("Press {overlaykey} to open your overlay map"),
+               {overlaykey=naik.keyGet("overlay")}),
+         }
+      elseif substep == 2 then
+         osd_desc = {
+            _("Fly to Asteroid Field indicated on overlay map using Autonav"),
+            "\t" .. _("Engage Autonav by right-clicking target location on overlay map")
+         }
+      else
+         osd_desc = {
+            _("Mine Gold from asteroids"),
+            "\t" .. fmt.f(_("{gathered}/{needed} kt gathered"),
+               {gathered=player.pilot():cargoHas("Gold"),
+                  needed=cargo_needed}),
+            "\t" .. _("Target an asteroid by left-clicking on it"),
+            "\t" .. fmt.f(_("Use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid"),
+               {primarykey=naik.keyGet("primary"),
+                  secondarykey=naik.keyGet("secondary")}),
+            "\t" .. _("Fly to the location of dropped Gold to collect it"),
+            "\t" .. fmt.f(_("If your weapons overheat, engage Active Cooldown by pressing {autobrake_key}"),
+               {autobrake_key=naik.keyGet("autobrake")}),
+         }
+      end
+      misn.osdCreate(misn_title, osd_desc)
+   elseif check_ready() then
+      local osd_desc = {
+         fmt.f(_("Fly to {system}"), {system=missys}),
+      }
+      misn.osdCreate(misn_title, osd_desc)
+   else
+      ready = false
+      local osd_desc = {
+         fmt.f(_("Land on {planet} ({system})"),
+            {planet=startplanet, system=startsys}),
+         fmt.f(_("Equip your ship with a weapon and {needed} kt of cargo capacity, then talk to Ian Structure at the bar"),
+            {needed=cargo_needed}),
+         "\t" .. _("Buy needed outfits at the Outfit Shop"),
+         "\t" .. _("Equip the outfits to your ship at the Hangar"),
+         "\t" .. _("Sell any cargo you're carrying at the Commodity Exchange"),
+      }
+
+      misn.osdCreate(misn_title, osd_desc)
+      if planet.cur() == startplanet then
+         misn.osdActive(2)
+      end
+   end
+end
+
+
 function approach()
+   create_osd()
+
    local cargo_free = player.pilot():cargoFree()
    if cargo_free < cargo_needed then
       local have_misn_cargo = false
@@ -225,9 +289,10 @@ function approach()
       return
    end
 
-   ready = true
-   misn.osdActive(2)
    tk.msg("", enough_space_text)
+
+   ready = true
+   create_osd()
 end
 
 
@@ -242,15 +307,9 @@ end
 
 
 function enter()
-   -- Reset mission objective to start with (simplifies the checks here)
-   misn.osdActive(1)
+   create_osd()
 
-   if not ready then
-      return
-   end
-
-   local cargo_free = player.pilot():cargoFree()
-   if cargo_free < cargo_needed then
+   if not check_ready() then
       return
    end
 
@@ -262,18 +321,8 @@ function enter()
       return
    end
 
-   local weapons_equipped = #player.pilot():outfits("weapon")
-   if weapons_equipped < 1 then
-      return
-   end
-
-   -- Ready for the mission; return the objective to objective 2 until
-   -- the timer advances it to objective 3.
-   misn.osdActive(2)
-
    hook.rm(bartender_hook)
 
-   started = true
    player.allowLand(false)
    player.pilot():setNoJump(true)
 
@@ -286,7 +335,8 @@ function timer_enter()
    tk.msg("", fmt.f(overlay_text,
             {player=player.name(), overlaykey=tutGetKey("overlay")}))
 
-   misn.osdActive(3)
+   started = true
+   create_osd()
 
    local pos = vec2.new(0, 0)
    mark = system.mrkAdd(_("Asteroid Field"), pos)
@@ -313,7 +363,9 @@ end
 
 function safe_overlay()
    tk.msg("", autonav_text)
-   misn.osdActive(4)
+
+   substep = 2
+   create_osd()
 end
 
 
@@ -325,18 +377,14 @@ function asteroid_proximity()
          {primarykey=tutGetKey("primary"),
             secondarykey=tutGetKey("secondary"),
             needed=cargo_needed}))
-   misn.osdActive(5)
 
-   -- Ensure the player has weapons.
+   substep = 3
+   create_osd()
+
+   -- Ensure the player has weapons. This should never be needed because
+   -- of previous checks, but it's critical that we make absolutely sure
+   -- the player has weapons, else they'll be in a softlock state.
    local p = player.pilot()
-   local n = #p:outfits("weapon")
-   if n < 2 then
-      p:outfitAdd("FL21-U Lumina Gun", 2 - n)
-   end
-
-   -- If this happens, that likely means not enough CPU is available for
-   -- weapons, so we'll override the CPU limitation and just let them
-   -- have a weapon they shouldn't.
    if #p:outfits("weapon") <= 0 then
       p:outfitAdd("FL21-U Lumina Gun", 1, true, true)
    end
@@ -347,6 +395,8 @@ end
 
 
 function timer_mining()
+   create_osd()
+
    if player.pilot():cargoHas("Gold") < cargo_needed then
       hook.timer(0.5, "timer_mining")
       return
@@ -361,7 +411,8 @@ function timer_mining()
    player.pilot():setNoJump(false)
 
    tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
-   misn.osdActive(10)
+
+   create_osd()
 
    misn.markerMove(marker, missys, misplanet)
 end
@@ -387,6 +438,8 @@ end
 
 
 function land()
+   create_osd()
+
    if not started then
       npc = misn.npcAdd("approach", _("Ian Structure"),
             "neutral/unique/youngbusinessman.png",

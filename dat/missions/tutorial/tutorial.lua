@@ -187,7 +187,7 @@ function create_osd()
          -- the implicit conversion of planets and systems to strings in
          -- the fmt.f() function, which is equivalent to the
          -- planet.name() and system.name() functions.
-         fmt.f(_("Fly to {planet} ({system} system)"),
+         fmt.f(_("Fly to {planet} ({system})"),
             {planet=start_planet, system=start_system}),
          -- Here, we add sub-objectives after the current objectives to
          -- add additional information. Sub-objectives are created by
@@ -202,7 +202,7 @@ function create_osd()
       }
    else
       osd_desc = {
-         fmt.f(_("Land on {planet} ({system} system)"),
+         fmt.f(_("Land on {planet} ({system})"),
             {planet=start_planet, system=start_system}),
          "\t" .. fmt.f(_("Mouse land control: double-click on {planet}"),
             {planet=start_planet}),

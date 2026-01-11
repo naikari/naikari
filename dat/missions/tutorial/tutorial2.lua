@@ -52,11 +52,11 @@ local ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise 
 
 local accept_text = _([["Excellent! I look forward to working with you.
 
-"All I need you to do is buy 10 kt #n[10 kilotonnes]#0 of Food on my behalf." You begin to protest, but Ian holds up his hand to interrupt. "Have no fear, {player}. I wouldn't make you pay for it using your own credits, of course." He pulls out a credit chip and hands it to you. "That should be sufficient to pay for what I need. I put some extra on just to be absolutely sure it will cover the cost; you can keep the extra credits left over in addition to your payment.
+"All I need you to do is buy 10 kt of Food on my behalf." There is an awkward pause as you wonder if you have enough credits to pay for that. Ian breaks the silence "Ah, of course, {player}, you're new to this, aren't you? Buying your first ship really digs into your wallet! So how about I pay some of your fee in advance, say, {advance}?" He pulls out a credit chip and hands it to you. "That should help you out. I was once like you: short on credits, but excited, owning my first…" He goes silent for a moment. "Ah, sorry, I got lost in thought there. Well, it was a long time ago.
 
 "You can buy the Food from the #bCommodity Exchange#0. Once you've picked it up, return here so we can transfer the Food to my storage unit."]])
 
-local reminder_text = _([[You ask Ian what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 kt #n[10 kilotonnes]#0 of Food. You should be able to find it at the #bCommodity Exchange#0. Let me know when you have it!"]])
+local reminder_text = _([[You ask Ian what cargo it was that he needed again, apologizing for forgetting already. "Oh, that's no problem!" he assures you. "It's 10 kt of Food. You should be able to find it at the #bCommodity Exchange#0. Let me know when you have it!"]])
 
 local finish_text = _([[You approach Ian and inform him that you have the cargo he needs. "Ah, perfect!" he responds. "Let's initiate that transfer, then.…" Ian Structure pushes a series of buttons on his datapad and you see that the cargo has been removed from your ship.
 
@@ -70,7 +70,7 @@ local misn_title = _("Ian Structure")
 local misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
 local misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
-local credits = 20000
+local credits = 17000
 
 
 function create()
@@ -84,23 +84,26 @@ end
 
 
 function accept()
+   local cost = commodity.get("Food"):priceAtTime(planet.cur(), time.get())
+   local advance = cost * 15
    local credits_conv = fmt.f(
-         n_("{credits} credit", "{credits} credits", credits),
-         {credits=fmt.number(credits)})
+         n_("{credits} ¢", "{credits} ¢", credits),
+         {credits=fmt.number(credits + advance)})
    local text
    if talked then
       text = fmt.f(ask_again_text,
-            {player=player.name(), credits=fmt.credits(credits),
+            {player=player.name(), credits=fmt.credits(credits + advance),
                credits_conv=credits_conv})
    else
       text = fmt.f(ask_text,
-            {player=player.name(), credits=fmt.credits(credits),
+            {player=player.name(), credits=fmt.credits(credits + advance),
                credits_conv=credits_conv})
       talked = true
    end
 
    if tk.yesno("", text) then
-      tk.msg("", fmt.f(accept_text, {player=player.name()}))
+      tk.msg("", fmt.f(accept_text,
+            {player=player.name(), advance=fmt.credits(advance)}))
 
       misn.accept()
 
@@ -114,8 +117,7 @@ function accept()
       }
       misn.osdCreate(_("Ian's Structure"), osd_desc)
 
-      local cost = commodity.get("Food"):priceAtTime(planet.cur(), time.get())
-      player.pay(cost * 15, "adjust")
+      player.pay(advance)
 
       land()
 
