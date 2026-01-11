@@ -32,15 +32,7 @@
   <item>Hull: Basic</item>
   <item>Weapon: Lumina</item>
   <item>Weapon: Claw Rocket</item>
-  <item>Utility: Radar</item>
-  <item>Utility: Mobility</item>
-  <item>Utility: Damage Type</item>
-  <item>Utility: Bolt Modifier</item>
-  <item>Structure: Shield</item>
-  <item>Structure: Energy</item>
-  <item>Structure: Speed</item>
-  <item>Structure: Cargo</item>
-  <item>Structure: Fuel</item>
-  <item>Structure: Mass Limit</item>
+  <item>Utility: Basic</item>
+  <item>Structure: Basic</item>
  </tech>
 </asset>

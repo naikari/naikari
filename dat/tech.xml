@@ -613,6 +613,11 @@
   <item>FMS300-H Spider Missile Gun</item>
  </tech>
 
+ <tech name="Utility: Basic">
+  <item>Light Afterburner</item>
+  <item>Jump Scanner</item>
+  <item>Asteroid Scanner</item>
+ </tech>
  <tech name="Utility: Radar">
   <item>Sensor Array</item>
   <item>Jump Scanner</item>
@@ -653,6 +658,12 @@
   <item>Bolt Shock Absorbers</item>
  </tech>
 
+ <tech name="Structure: Basic">
+  <item>Solar Panel</item>
+  <item>Steering Thrusters</item>
+  <item>Small Cargo Pod</item>
+  <item>Small Fuel Pod</item>
+ </tech>
  <tech name="Structure: Armor">
   <item>Biometal Armor</item>
   <item>Nanobond Plating</item>
