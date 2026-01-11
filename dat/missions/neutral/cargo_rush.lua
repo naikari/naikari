@@ -21,8 +21,6 @@ local mh = require "misnhelper"
 require "cargo_common"
 
 osd_title = _("Rush Cargo")
-osd_msg1 = _("Land on {planet} ({system} system) before {deadline}\n({time} remaining)")
-osd_timeup = _("Land on {planet} ({system} system) before {deadline}\n(deadline missed, but you can still make a late delivery if you hurry)")
 
 -- Create the mission
 function create()
@@ -161,18 +159,33 @@ function accept()
    misn.accept()
    intime = true
    misn.cargoAdd(cargo, amount)
-   local osd_msg = {}
-   osd_msg[1] = fmt.f(osd_msg1,
-         {planet=destplanet:name(), system=destsys:name(),
-            deadline=timelimit:str(),
-            time=time.str(timelimit - time.get(), 2)})
-   misn.osdCreate(osd_title, osd_msg)
+   create_osd()
 
    hook.land("land")
    hook.date(time.create(0, 0, 1000), "tick")
 end
 
--- Land hook
+
+function create_osd()
+   local osd_desc
+   if timelimit >= time.get() then
+      osd_desc = {
+         fmt.f(_("Land on {planet} ({system} system) before {deadline}"),
+            {planet=destplanet, system=destsys, deadline=timelimit:str()}),
+         "\t" .. fmt.f(_("{time} remaining"),
+            {time=time.str(timelimit - time.get(), 2)}),
+      }
+   else
+      osd_desc = {
+         fmt.f(_("Land on {planet} ({system} system) before {deadline}"),
+            {planet=destplanet, system=destsys, deadline=timelimit:str()}),
+         "\t" .. _("Deadline missed, but you can still make a late delivery if you hurry"),
+      }
+   end
+   misn.osdCreate(osd_title, osd_desc)
+end
+
+
 function land()
    if planet.cur() == destplanet then
       -- Semi-random message.
@@ -215,26 +228,17 @@ end
 
 -- Date hook
 function tick()
-   local osd_msg = {}
-   if timelimit >= time.get() then
-      local osd_msg = {}
-      osd_msg[1] = fmt.f(osd_msg1,
-            {planet=destplanet:name(), system=destsys:name(),
-               deadline=timelimit:str(),
-               time=time.str(timelimit - time.get(), 2)})
-      misn.osdCreate(osd_title, osd_msg)
-   elseif timelimit2 <= time.get() then
-      -- Case missed second deadline
-      mh.showFailMsg(
-         fmt.f(_("Deadline for delivery to {planet} ({system} system) missed."),
-            {planet=destplanet:name(), system=destsys:name()}))
-      misn.finish(false)
-   elseif intime then
-      -- Case missed first deadline
-      osd_msg[1] = fmt.f(osd_timeup,
-            {planet=destplanet:name(), system=destsys:name(),
-               deadline=timelimit:str()})
-      misn.osdCreate(osd_title, osd_msg)
+   create_osd()
+
+   if timelimit < time.get() then
+      -- Missed first deadline
       intime = false
+      if timelimit2 <= time.get() then
+         -- Missed second deadline
+         mh.showFailMsg(
+            fmt.f(_("Deadline for delivery to {planet} ({system}) missed."),
+               {planet=destplanet, system=destsys}))
+         misn.finish(false)
+      end
    end
 end

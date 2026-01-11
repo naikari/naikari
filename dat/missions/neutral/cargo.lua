@@ -22,7 +22,6 @@ require "cargo_common"
 
 
 osd_title = _("Cargo")
-osd_msg = _("Land on {planet} ({system} system)")
 
 
 function create()
@@ -120,9 +119,12 @@ function accept()
    end
    misn.accept()
    misn.cargoAdd(cargo, amount)
-   misn.osdCreate(osd_title, {
-         fmt.f(osd_msg, {planet=destplanet:name(), system=destsys:name()})
-      })
+
+   local osd_desc = {
+      fmt.f(_("Land on {planet} ({system} system)"),
+         {planet=destplanet, system=destsys}),
+   }
+   misn.osdCreate(osd_title, osd_desc)
 
    hook.land("land")
 end
