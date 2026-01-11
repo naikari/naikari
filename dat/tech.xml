@@ -380,7 +380,7 @@
   <item>Patchwork Medium Hull</item>
   <item>Patchwork Light Hull</item>
  </tech>
- <tech name="Basic APUs">
+ <tech name="APU: Basic">
   <item>Exacorp ET-900 APU</item>
   <item>Exacorp ET-800 APU</item>
   <item>Exacorp ET-600 APU</item>
@@ -388,7 +388,7 @@
   <item>Exacorp ET-300 APU</item>
   <item>Exacorp ET-200 APU</item>
  </tech>
- <tech name="Aegis APUs">
+ <tech name="APU: Aegis">
   <item>Intek Aegis 9801 APU</item>
   <item>Intek Aegis 8701 APU</item>
   <item>Intek Aegis 6501 APU</item>
@@ -396,7 +396,7 @@
   <item>Intek Aegis 3201 APU</item>
   <item>Intek Aegis 2101 APU</item>
  </tech>
- <tech name="Prometheus APUs">
+ <tech name="APU: Prometheus">
   <item>Intek Prometheus 9802 APU</item>
   <item>Intek Prometheus 8702 APU</item>
   <item>Intek Prometheus 6502 APU</item>
@@ -404,7 +404,7 @@
   <item>Intek Prometheus 3202 APU</item>
   <item>Intek Prometheus 2102 APU</item>
  </tech>
- <tech name="Hermes APUs">
+ <tech name="APU: Hermes">
   <item>Intek Hermes 9803 APU</item>
   <item>Intek Hermes 8703 APU</item>
   <item>Intek Hermes 6503 APU</item>
@@ -412,7 +412,7 @@
   <item>Intek Hermes 3203 APU</item>
   <item>Intek Hermes 2103 APU</item>
  </tech>
- <tech name="Orion APUs">
+ <tech name="APU: Orion">
   <item>Intek Orion 9901 APU</item>
   <item>Intek Orion 8801 APU</item>
   <item>Intek Orion 6601 APU</item>
@@ -420,13 +420,37 @@
   <item>Intek Orion 3301 APU</item>
   <item>Intek Orion 2201 APU</item>
  </tech>
- <tech name="Basic Engines">
+
+ <tech name="Engine: Basic">
   <item>Exacorp HS-6500 Engine</item>
   <item>Exacorp HS-4500 Engine</item>
   <item>Exacorp HS-1200 Engine</item>
   <item>Exacorp HS-700 Engine</item>
   <item>Exacorp HS-300 Engine</item>
   <item>Exacorp HS-150 Engine</item>
+ </tech>
+
+ <tech name="Utility: Radar">
+  <item>Sensor Array</item>
+  <item>Jump Scanner</item>
+  <item>Asteroid Scanner</item>
+ </tech>
+ <tech name="Utility: Mobility">
+  <item>Heavy Afterburner</item>
+  <item>Light Afterburner</item>
+  <item>Reverse Thrusters</item>
+ </tech>
+ <tech name="Utility: Bolt Modifier">
+  <item>Bolt Splitter</item>
+  <item>Power Amplification Circuit</item>
+  <item>Turbofire Module</item>
+  <item>Bolt Shock Absorbers</item>
+ </tech>
+ <tech name="Utility: Damage Type">
+  <item>Weapons Deionizer</item>
+  <item>Weapons Ionizer</item>
+  <item>Weapons Crystallizer</item>
+  <item>Weapons Razorizor</item>
  </tech>
 
 
