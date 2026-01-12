@@ -526,6 +526,13 @@
   <item>SHL Ultralight Stealth Hull</item>
  </tech>
 
+ <tech name="Weapon: Basic">
+  <item>FL21-U Lumina Gun</item>
+  <item>FC22-U Crystal Gun</item>
+  <item>FR11-U Razor Gun</item>
+  <item>FK21-U Katana Gun</item>
+  <item>FT80-U Talon Gun</item>
+ </tech>
  <tech name="Weapon: Lumina">
   <item>FL55-M Lumina Gun</item>
   <item>FL50-H Lumina Gun</item>

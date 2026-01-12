@@ -10,6 +10,5 @@
  </general>
  <specific type="modification">
   <rdr_jump_range_mod>50</rdr_jump_range_mod>
-  <energy_regen_malus>0.25</energy_regen_malus>
  </specific>
 </outfit>
