@@ -4,8 +4,7 @@
  <avail>
   <priority>59</priority>
   <cond>
-   planet.cur():class() ~= "0" and planet.cur():class() ~= "1"
-   and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
+   (planet.cur():class() == "Σt" or planet.cur():class() == "M")
    and planet.cur():services()["inhabited"]
    and system.cur():presence("Civilian") &gt; 0
   </cond>

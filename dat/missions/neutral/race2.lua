@@ -4,9 +4,7 @@
  <avail>
   <priority>50</priority>
   <cond>
-   planet.cur():class() ~= "1"
-   and planet.cur():class() ~= "2"
-   and planet.cur():class() ~= "3"
+   planet.cur():class() == "Σr"
    and system.cur():presence("Civilian") &gt; 0
    and system.cur():presence("Pirate") &lt;= 0
   </cond>
@@ -22,7 +20,7 @@
 --[[
 
    MISSION: Racing Skills 2
-   DESCRIPTION: The player joins a race sponsored by Melendez.
+   DESCRIPTION: The player joins a race sponsored by Exacorp.
 
 --]]
 
@@ -37,13 +35,13 @@ local ask_text = _([["Are you interested in participating in the upcoming race? 
 local yes_text = _([[The race organizer signs you up for the race and instructs you to meet the other racers out in space when you're ready.]])
 
 local win_text = {
-   _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says "Melendez Corporation". "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of {credits}!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money and participation payment on it.]]),
-   _([[A woman in a suit and tie takes you up onto a stage. A large name tag on her jacket says "Melendez Corporation". "Congratulations on your win," she says, shaking your hand, "that was a great race. On behalf of Melendez Corporation, I would like to present to you your prize money of {credits}!" She hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money and participation payment on it.]]),
+   _([[A man in a suit and tie takes you up onto a stage. A large name tag on his jacket says "Exacorp". "Congratulations on your win," he says, shaking your hand, "that was a great race. On behalf of Exacorp, I would like to present to you your prize money of {credits}!" He hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money and participation payment on it.]]),
+   _([[A woman in a suit and tie takes you up onto a stage. A large name tag on her jacket says "Exacorp". "Congratulations on your win," she says, shaking your hand, "that was a great race. On behalf of Exacorp, I would like to present to you your prize money of {credits}!" She hands you one of those fake oversized checks for the audience, and then a credit chip with the actual prize money and participation payment on it.]]),
 }
 
 local secondplace_text = {
-   _([[You congratulate the winner on a great race. While you didn't win the race, you did well to finish in second place. A man in a suit and tie wearing a tag that says "Melendez Corporation" hands you your prize of {credits} alongside your participation payment and congratulates you.]]),
-   _([[You congratulate the winner on a great race. While you didn't win the race, you did well to finish in second place. A woman in a suit and tie wearing a tag that says "Melendez Corporation" hands you your prize of {credits} alongside your participation payment and congratulates you.]]),
+   _([[You congratulate the winner on a great race. While you didn't win the race, you did well to finish in second place. A man in a suit and tie wearing a tag that says "Exacorp" hands you your prize of {credits} alongside your participation payment and congratulates you.]]),
+   _([[You congratulate the winner on a great race. While you didn't win the race, you did well to finish in second place. A woman in a suit and tie wearing a tag that says "Exacorp" hands you your prize of {credits} alongside your participation payment and congratulates you.]]),
    _([[You congratulate the winner on a great race and collect your prize of {credits} for second place as well as your participation payment.]]),
 }
 
@@ -72,11 +70,11 @@ Third Place Prize: {credits3}]])
 local OSDtitle = _("Sponsored Race")
 
 local sponsorship_msg = {
-   _("This race is sponsored by Melendez Corporation. Problem-free ships for problem-free voyages!"),
-   _("Get ready for another exciting race, sponsored by the company you trust, Melendez Corporation!"),
-   _("Melendez Corporation presents another exciting race! Get ready, folks!"),
-   _("This race is sponsored by Melendez Corporation, the civilian spacecraft company you trust!"),
-   _("This race is proudly sponsored by Melendez Corporation. Get ready, folks!"),
+   _("This race is sponsored by Exacorp. Problem-free ships for problem-free voyages!"),
+   _("Get ready for another exciting race, sponsored by the company you trust, Exacorp!"),
+   _("Exacorp presents another exciting race! Get ready, folks!"),
+   _("This race is sponsored by Exacorp, the civilian spacecraft company you trust!"),
+   _("This race is proudly sponsored by Exacorp. Get ready, folks!"),
 }
 
 

@@ -7,9 +7,7 @@
  <avail>
   <priority>50</priority>
   <cond>
-   planet.cur():class() ~= "1"
-   and planet.cur():class() ~= "2"
-   and planet.cur():class() ~= "3"
+   planet.cur():class() == "Σr"
    and system.cur():presence("Civilian") &gt; 0
    and system.cur():presence("Pirate") &lt;= 0
   </cond>
