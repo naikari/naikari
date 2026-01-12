@@ -46,7 +46,6 @@ local fmt = require "fmt"
 local fleet = require "fleet"
 local mh = require "misnhelper"
 require "events/tutorial/tutorial_common"
-require "missions/neutral/common"
 
 
 local ask_text = _([["I have one last mission for you, {player}, if you would be willing. This one is simple: I just need you to ferry me to a neighboring system, and I'll pay you {credits} for it. Are you willing to do it?"]])
@@ -116,19 +115,7 @@ function accept()
 
       stage = 1
 
-      local osd_desc = {
-         _("Fly into space"),
-         fmt.f(_("Press {starmapkey} to open your starmap"),
-            {starmapkey=naik.keyGet("starmap")}),
-         fmt.f(_("Select {system} by clicking on it in your starmap, then click \"Autonav\" and wait for Autonav to fly you there"),
-            {system=missys:name()}),
-         fmt.f(_("Press {target_hostile_key} to target the hostile ship"),
-            {target_hostile_key=naik.keyGet("target_hostile")}),
-         _("Destroy the Pirate Hyena"),
-         fmt.f(_("Land on {planet} ({system})"),
-            {planet=misplanet:name(), system=missys:name()}),
-      }
-      misn.osdCreate(_("Ian's Transport"), osd_desc)
+      create_osd()
 
       marker = misn.markerAdd(missys, "plot", misplanet)
 
@@ -177,7 +164,7 @@ function create_osd()
    else
       osd_desc = {
          fmt.f(_("Land on {planet} ({system})"),
-            {planet=misplanet:name(), system=missys:name()}),
+            {planet=misplanet, system=missys}),
          "\t" .. fmt.f(_("Press {local_jump_key} to perform an Escape Jump to get away from the pirates"),
             {local_jump_key=naik.keyGet("local_jump")}),
       }
@@ -271,7 +258,7 @@ end
 
 function timer_enter_ambush(pirate)
    tk.msg("", fmt.f(target_nearest_text,
-         {system=missys:name(), player=player.name(),
+         {system=missys, player=player.name(),
             target_hostile_key=tutGetKey("target_hostile")}))
 
    stage = 4
@@ -308,7 +295,7 @@ end
 
 
 function timer_pirate_death()
-   tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
+   tk.msg("", fmt.f(dest_text, {planet=misplanet}))
 
    stage = 6
    create_osd()
@@ -491,7 +478,7 @@ function timer_pirate_swarm(police)
    end
 
    tk.msg("", fmt.f(escape_text,
-         {local_jump_key=tutGetKey("local_jump"), planet=misplanet:name()}))
+         {local_jump_key=tutGetKey("local_jump"), planet=misplanet}))
 end
 
 
@@ -513,7 +500,7 @@ function land()
       return
    end
 
-   tk.msg("", fmt.f(pay_text, {planet=misplanet:name(), player=player.name()}))
+   tk.msg("", fmt.f(pay_text, {planet=misplanet, player=player.name()}))
 
    player.pay(2 * credits)
    diff.apply("hakoi_pirates")
@@ -523,7 +510,7 @@ function land()
          _([[Residents of the previously peaceful Virginis constellation are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling in the area to be cautious. An investigation is underway.]]),
          exp)
 
-   addMiscLog(fmt.f(misn_log, {planet=misplanet:name(), system=missys:name()}))
+   mh.addLogEntry(fmt.f(misn_log, {planet=misplanet, system=missys}))
    misn.finish(true)
 end
 

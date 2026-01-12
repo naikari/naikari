@@ -69,6 +69,18 @@ end
 
 
 --[[--
+Adds a mission log entry.
+
+@usage addLogEntry(_("You destroyed the Ring as Mount Doom."))
+   @tparam string entry The log entry.
+--]]
+function addLogEntry(entry)
+   shiplog.create("missions", p_("log", "Missions"))
+   shiplog.append(missions, entry)
+end
+
+
+--[[--
 Sets a mission bartender hint message.
 
 Must be called from the custom "bartender_mission" hook. The code which

@@ -43,7 +43,6 @@
 local fmt = require "fmt"
 local mh = require "misnhelper"
 require "events/tutorial/tutorial_common"
-require "missions/neutral/common"
 
 
 local ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I could use some help with a charity drive. Don't worry, it's a simple mission, and you will of course be given a fair payment of {credits} #n[{credits_conv}]#0 for your services. What do you say?"]])
@@ -68,7 +67,6 @@ local bartender_away_text = _([["It looks like you're working for Mr. Ian Struct
 
 local misn_title = _("Ian Structure")
 local misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
-local misn_log = _([[You helped a businessman named Ian Structure acquire some Food. He asked you to speak with him again on {planet} ({system}) for another mission.]])
 
 local credits = 20000
 
@@ -113,7 +111,7 @@ function accept()
 
       local osd_desc = {
          fmt.f(_("Buy 10 kt of Food from the Commodity Exchange and then talk to Ian Structure at the Spaceport Bar on {planet} ({system})"),
-            {planet=misplanet:name(), system=missys:name()}),
+            {planet=misplanet, system=missys}),
       }
       misn.osdCreate(_("Ian's Structure"), osd_desc)
 
@@ -154,8 +152,7 @@ function approach()
 
       player.pilot():cargoRm("Food", 10)
       player.pay(credits)
-      addMiscLog(fmt.f(misn_log,
-            {planet=misplanet:name(), system=missys:name()}))
+      mh.addLogEntry(fmt.f(misn_log, {planet=misplanet, system=missys}))
 
       naik.missionStart("Tutorial Part 3")
       misn.finish(true)

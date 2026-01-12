@@ -44,7 +44,6 @@ local fmt = require "fmt"
 local mh = require "misnhelper"
 require "proximity"
 require "events/tutorial/tutorial_common"
-require "missions/neutral/common"
 
 
 local ask_text = _([["Hello again, {player}! Are you ready for that other mission I had for you? It's a little more effort than the last mission, but still not too hard, and I'll pay you a nice {credits} reward for it."]])
@@ -410,7 +409,7 @@ function timer_mining()
    player.allowLand(true)
    player.pilot():setNoJump(false)
 
-   tk.msg("", fmt.f(dest_text, {planet=misplanet:name()}))
+   tk.msg("", fmt.f(dest_text, {planet=misplanet}))
 
    create_osd()
 
@@ -463,8 +462,7 @@ function land()
    player.pilot():cargoRm("Gold", ftonnes)
    player.pay(credits)
 
-   addMiscLog(fmt.f(misn_log,
-         {planet=misplanet:name(), system=missys:name()}))
+   mh.addLogEntry(fmt.f(misn_log, {planet=misplanet, system=missys}))
    misn.finish(true)
 end
 
