@@ -8,8 +8,6 @@
    and planet.cur():class() ~= "2" and planet.cur():class() ~= "3"
    and planet.cur():services()["inhabited"]
    and system.cur():presence("Civilian") &gt; 0
-   and (var.peek("tut_complete") == true
-      or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
   <chance>960</chance>
   <location>Computer</location>
@@ -220,9 +218,6 @@ function land()
             }
             credits = reward
          end
-
-         -- Mark the initial tutorial as complete.
-         var.push("tut_complete", true)
 
          tk.msg("", fmt.f(pay_text[rnd.rnd(1, #pay_text)],
                {planet=startpla:name(), credits=fmt.credits(credits)}))

@@ -12,8 +12,6 @@
    and planet.cur():class() ~= "3"
    and system.cur():presence("Civilian") &gt; 0
    and system.cur():presence("Pirate") &lt;= 0
-   and (var.peek("tut_complete") == true
-      or planet.cur():faction() ~= faction.get("Empire"))
   </cond>
   <chance>10</chance>
   <location>Bar</location>

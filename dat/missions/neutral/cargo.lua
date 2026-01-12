@@ -31,10 +31,7 @@ function create()
       misn.finish(false)
    end
 
-   -- Override tiers with only low tiers if tutorial is incomplete.
-   if not var.peek("tut_complete") then
-      tier = rnd.rnd(0, 1)
-   end
+   source_faction = planet.cur():faction()
 
    local piracyrisk, riskreward
    if avgrisk == 0 then
@@ -146,12 +143,18 @@ function land()
          }
          local f = planet.cur():faction()
          if f ~= nil then
-            f:modPlayerSingle(1)
+            f:modPlayerSingle(0.5)
+         end
+         if source_faction ~= nil then
+            source_faction:modPlayerSingle(0.5)
          end
       end
 
-      -- Mark the initial tutorial as complete.
-      var.push("tut_complete", true)
+      if source_faction ~= nil then
+         local v = "cargo_done_" .. source_faction:nameRaw()
+         local cargo_done = var.peek(v) or 0
+         var.push(v, cargo_done + 1)
+      end
 
       tk.msg("", fmt.f(cargo_land[rnd.rnd(1, #cargo_land)],
                {cargotype=_(cargo)}))

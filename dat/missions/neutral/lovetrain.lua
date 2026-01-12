@@ -9,10 +9,8 @@
   <faction>Frontier</faction>
   <faction>Independent</faction>
   <cond>
-   (not planet.cur():restriction() or planet.cur():restriction() == "lowclass"
-      or planet.cur():restriction() == "hiclass")
-   and (var.peek("tut_complete") == true
-      or planet.cur():faction() ~= faction.get("Empire"))
+   not planet.cur():restriction() or planet.cur():restriction() == "lowclass"
+      or planet.cur():restriction() == "hiclass"
   </cond>
  </avail>
 </mission>
