@@ -12,7 +12,7 @@
  </avail>
  <notes>
   <done_misn name="Tutorial"/>
-  <campaign>Tutorial</campaign>
+  <campaign>Ian's Structure</campaign>
  </notes>
 </mission>
 --]]
@@ -45,7 +45,7 @@ local mh = require "misnhelper"
 require "events/tutorial/tutorial_common"
 
 
-local ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Melendez salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I could use some help with a charity drive. Don't worry, it's a simple mission, and you will of course be given a fair payment of {credits} #n[{credits_conv}]#0 for your services. What do you say?"]])
+local ask_text = _([[You approach the well-dressed man and ask if he is the one you have been referred to by the Exacorp salesperson. He smiles in response. "Yes, that would be me," he says. "{player}, right? Pleased to meet you! My name is Ian Structure. I run a business near this area and I could use some help with a charity drive. Don't worry, it's a simple mission, and you will of course be given a fair payment of {credits} #n[{credits_conv}]#0 for your services. What do you say?"]])
 
 local ask_again_text = _([["Ah, {player}! Have you changed your mind? I promise I won't bite, and the {credits} #n[{credits_conv}]#0 payment will be worth it!"]])
 
@@ -65,8 +65,11 @@ local bartender_here_text = _([["It looks like you're working for Mr. Ian Struct
 
 local bartender_away_text = _([["It looks like you're working for Mr. Ian Structure. He should at the bar on {planet} ({system} system). If you're not sure what you should be doing, you should probably go there and ask him directly."]])
 
-local misn_title = _("Ian Structure")
+local misn_title = _("Ian's Charity")
 local misn_desc = _("A businessman named Ian Structure has given you the task of buying 10 kt of Food for him.")
+local misn_log_id = "ians_structure"
+local misn_log_title = _("Ian's Structure")
+local misn_log_text = _([[You met Ian Structure at the bar on {planet} ({system}) and accepted his offer for a mission, where he asked you to buy 10 kt of Food on his behalf for a charity drive. Considering how easy of a job it was, he paid very well for it. He then said he had another mission for you if you were willing to do it and that you could talk to him on {planet} if you were interested.]])
 
 local credits = 20000
 
@@ -75,9 +78,9 @@ function create()
    misplanet, missys = planet.cur()
    talked = false
 
-   misn.setNPC(misn_title,
+   misn.setNPC(_("Ian Structure"),
          "neutral/unique/youngbusinessman.png",
-         _("This must be the potential employer the Melendez salesperson referred you to."))
+         _("This must be the potential employer the Exacorp salesperson referred you to."))
 end
 
 
@@ -152,7 +155,9 @@ function approach()
 
       player.pilot():cargoRm("Food", 10)
       player.pay(credits)
-      mh.addLogEntry(fmt.f(misn_log, {planet=misplanet, system=missys}))
+
+      local log_text = fmt.f(misn_log_text, {planet=misplanet, system=missys})
+      mh.addLogEntry(log_text, misn_log_id, misn_log_title)
 
       naik.missionStart("Tutorial Part 3")
       misn.finish(true)

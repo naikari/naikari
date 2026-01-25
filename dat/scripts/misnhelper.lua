@@ -71,12 +71,31 @@ end
 --[[--
 Adds a mission log entry.
 
-@usage addLogEntry(_("You destroyed the Ring as Mount Doom."))
+@usage addLogEntry(_("You destroyed the Ring at Mount Doom."))
    @tparam string entry The log entry.
+   @tparam[opt] string category_id The internal ID of the category (e.g.
+      campaign) the mission is in.
+   @tparam[opt] string category_title The (translated) title of category
+      (e.g. campaign) the mission is in.
 --]]
-function addLogEntry(entry)
-   shiplog.create("missions", p_("log", "Missions"))
-   shiplog.append(missions, entry)
+function misnhelper.addLogEntry(entry, category_id, category_title)
+   local id, title
+   if category_id == nil or category_title == nil then
+      id = "mission"
+      title = p_("log", "Missions")
+      if category_title ~= nil then
+         warn(_("misnhelper.addLogEntry: category_id specified without category_title"))
+      elseif category_id ~= nil then
+         warn(_("misnhelper.addLogEntry: category_title specified without category_id"))
+      end
+   else
+      id = "mission_" .. category_id
+      title = fmt.f(p_("log", "Missions: {category}"),
+            {category=category_title})
+   end
+
+   shiplog.create(id, title)
+   shiplog.append(id, entry)
 end
 
 

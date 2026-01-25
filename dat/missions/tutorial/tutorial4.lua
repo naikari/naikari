@@ -12,7 +12,7 @@
   <done>Tutorial Part 3</done>
  </avail>
  <notes>
-  <campaign>Tutorial</campaign>
+  <campaign>Ian's Structure</campaign>
  </notes>
 </mission>
 --]]
@@ -52,7 +52,7 @@ local ask_text = _([["I have one last mission for you, {player}, if you would be
 
 local accept_text = _([["Thank you very much. I'll be at your ship when you're ready for me. I'll show you where we need to go once we're in space."]])
 
-local starmap_text = _([["Alright, {player}, let me show you where we need to go. Could you open your starmap by pressing {starmapkey}, please?"]])
+local starmap_text = _([["Just one more trip thru space," Ian mumbles nervously to himself. "It'll go off without a hitch… Alright, {player}, let me show you where we need to go. Could you open your starmap by pressing {starmapkey}, please?"]])
 
 local jump_text = _([["As you can see, I've marked the {system} system on your starmap. That's the system we need to go to. Luckily, it seems you already know the jump point to get there, so if you just select {system} with the mouse and click the Autonav button, we should be there in no time!"]])
 
@@ -76,13 +76,18 @@ With tears in his eyes, Ian rushes to Lieutenant Milo, who opens his arms and fi
 
 After a few minutes, Ian calms down, wipes the tears from his eyes, and hands you a credit chip. "Thank you, {player}," he says. "I'm… uh, I'm sorry for that display, I–"
 
-"It's ok, Ian," Milo interripts, gently rubbing his back. "And thank you from me as well. Here, as a token of my gratitude for keeping my boyfriend safe, I'll be doubling your pay." Milo hands you a second credit chip. "I'd also like to personally offer you a chance to climb the ranks of the Empire. Meet me at the bar if you're interested. I'll be there shortly." He grabs Ian's hand, gives him a kiss, and walks off with him.]])
+"It's ok, Ian," Milo interrupts, gently rubbing his back. "And thank you from me as well. Here, as a token of my gratitude for keeping my boyfriend safe, I'll be doubling your pay." Milo hands you a second credit chip. "I'd also like to personally offer you a chance to climb the ranks of the Empire. Meet me at the bar if you're interested. I'll be there shortly." He grabs Ian's hand, gives him a kiss, and walks off with him.]])
 
 local bartender_text = _([["Mr. Ian Structure went to your ship ahead of you. You should be all set to #bTake Off#0."]])
 
 local misn_title = _("Ian's Transport")
 local misn_desc = _("Ian Structure has hired you to give him transport to another planet.")
 local misn_log = _([[You helped transport Ian Structure to {planet} ({system}), fighting off an unexpected pirate along the way. He and his boyfriend, Milo, thanked you for keeping him safe. Milo also offered a chance to climb the ranks of the Empire; he said to meet him at the bar on {planet} ({system}) if you're interested.]])
+local misn_log_id = "ians_structure"
+local misn_log_title = _("Ian's Structure")
+local misn_log_text = _([[Your final mission for Ian Structure was a simple transit mission, where he asked you to take him to {planet} ({system}). It would have gone without a hitch, but as you entered {system}, you were unexpectedly attacked by a pirate, causing Ian to panic. You managed to successfully destroy the pirate ship, but when a larger group of pirates arrived, you had no choice but to run while Imperial officers kept them busy. While it was a frightening ordeal for you and especially for Ian, you both made it safely to {planet}, where you met Ian's boyfriend, Lieutenant Milo.
+
+While Ian Structure had no further missions for you, Lieutenant Milo, thankful that you kept his boyfriend safe, extended an offer to you for a chance to climb the ranks of the Empire. He said that if you were interested, you could meet him at the bar on {planet}.]])
 
 local credits = 25000
 
@@ -510,7 +515,9 @@ function land()
          _([[Residents of the previously peaceful Virginis constellation are shocked to discover that pirates have begun showing up in the region out of nowhere. Imperial authorities have successfully stopped these pirates from spreading further into the Empire and note that the level of pirate presence is small, but nonetheless warn those traveling in the area to be cautious. An investigation is underway.]]),
          exp)
 
-   mh.addLogEntry(fmt.f(misn_log, {planet=misplanet, system=missys}))
+   local log_text = fmt.f(misn_log_text, {planet=misplanet, system=missys})
+   mh.addLogEntry(log_text, misn_log_id, misn_log_title)
+
    misn.finish(true)
 end
 

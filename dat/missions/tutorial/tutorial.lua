@@ -9,7 +9,7 @@
   <location>None</location>
  </avail>
  <notes>
-  <campaign>Tutorial</campaign>
+  <campaign>Ian's Structure</campaign>
  </notes>
 </mission>
 --]]
@@ -45,9 +45,12 @@
 
 --[[
    require statements go here. Most missions should include the fmt
-   module, which provides useful functions for formatting text.
+   module, which provides useful functions for formatting text, and
+   misnhelper, which provides other useful generic mission-related
+   functions.
 --]]
 local fmt = require "fmt"
+local mh = require "misnhelper"
 
 
 --[[
@@ -103,12 +106,17 @@ local land_text = _([[You watch as the ship – your ship – automatically guid
 
 local finish_text = _([[The salesperson makes you sign dozens of forms: tax forms, waivers, indemnity agreements, and much more that you aren't given enough time to process. When you finish, the salesperson pats you on the back. "You have made an excellent choice, {player}! I'm sure you'll be making millions of credits in no time.
 
-"In fact, I know just where to start. A gentleman at the bar by the name of Ian Structure is looking for a hired hand, and I assure you, he pays good rates! I've told him about you and he said he would be thrilled to hire you for a mission!" The salesperson offers their hand and, not wanting to be combative, you shake it. "Good luck, {player}!" the salesperson says before swiftly escorting you out of their office.
+"In fact, I know just where to start. A gentleman at the bar by the name of Ian Structure is looking for a hired hand, and I assure you, he pays good rates! I've told him about you and he said he would be thrilled to hire you for a mission!" The salesperson offers their hand and, not wanting to be rude, you shake it. "Good luck, {player}!" the salesperson says before swiftly escorting you out of their office.
 
 You figure you might as well meet this man the salesperson mentioned at the #bSpaceport Bar#0 and see if the job is worthwhile.]])
 
 local misn_title = _("Point of Sale")
 local misn_desc = _("You have purchased a new ship from Exacorp and are in the process of finalizing the sale.")
+local misn_log_id = "ians_structure"
+local misn_log_title = _("Ian's Structure")
+local misn_log_text = _([[At your homeworld, {planet} ({system}), you purchased your first ship, a Llama called {shipname}, from Exacorp. You didn't quite get a chance to read over all the paperwork you signed for the obnoxiously dressed salesperson to get it, but the test flight went well and your career as a starpilot officially began.
+
+To get you started, the salesperson who sold the {shipname} to you suggested going to the bar on {planet} and talking to Ian Structure, who was apparently interested in hiring you for a mission.]])
 
 
 --[[ 
@@ -123,6 +131,7 @@ function create()
    -- be persisted even if the game is reloaded.
    start_planet, start_system = planet.get("Kikero")
    stage = 1
+   shipname = player.ship()
 
    -- Immediately call accept()
    accept()
@@ -273,5 +282,10 @@ function land()
 
    tk.msg("", fmt.f(land_text, {player=player.name()}))
    tk.msg("", fmt.f(finish_text, {player=player.name()}))
+
+   local log_text = fmt.f(misn_log_text,
+         {planet=start_planet, system=start_system, shipname=shipname})
+   mh.addLogEntry(log_text, misn_log_id, misn_log_title)
+
    misn.finish(true)
 end

@@ -12,7 +12,7 @@
   <done>Tutorial Part 2</done>
  </avail>
  <notes>
-  <campaign>Tutorial</campaign>
+  <campaign>Ian's Structure</campaign>
  </notes>
 </mission>
 --]]
@@ -70,19 +70,19 @@ local weapons_needed_text = _([["It looks like you've got plenty of cargo capaci
 
 local enough_space_text = _([["It looks like you're ready! For this mission, we'll be going into space; I will be joining you on your ship. When you're ready, press the #bTake Off button#0. Make sure you still have weapons and enough cargo capacity when you do so!"]])
 
-local overlay_text = _([["It's been awhile since I've been in space," Ian notes somewhat nervously. "Alright, the reason we're here is I need you to mine some Gold for me. Of course, I could buy it from the Commodity Exchange, but there happens to be a safe pure Gold asteroid field in this system, and that will be much cheaper than buying it.
+local overlay_text = _([["It's been awhile since I've been in space," Ian mumbles somewhat nervously. "Alright, the reason we're here is I need you to mine some Gold for me. Of course, I could buy it from the Commodity Exchange, but there happens to be a safe pure Gold asteroid field in this system, and that will be much cheaper than buying it. It'll go off without a hitch! That's right, it's perfectly safe, just like always says. Perfectly safe.
 
 "I've marked the asteroid field on your ship's overlay map. Could you press {overlaykey} to open your overlay map so I can show you, please?"]])
 
 local autonav_text = _([["Thank you! If you look here, you'll see I've marked an area with the label, 'Asteroid Field'. I need you to use Autonav to take us to that area as fast as possible. I mean, of course, the trip will take the same duration in real-time, but giving the work to Autonav will allow you to leave the captain's chair and do other things; it makes the time passage feel almost instantaneous. Most pilots call this phenomenon 'Time Compression', or 'TC' for short." Just #bright-click#0 on the location of the asteroid field to initialize Autonav."]])
 
-local mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, Gold in this case, and you can pick the commodity up simply by flying over its location.
+local mining_text = _([[Alright, let's start mining! Of course, mining is done with the same weaponry you would use to defend yourself against pirates should you be attacked. Of course, we don't have to worry about that, right? Right. It's ok. Just asteroids. All you have to do is click on a suitable asteroid to target it, then use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid. Once it's destroyed, it will normally drop some commodity, Gold in this case, and you can pick the commodity up simply by flying over its location.
 
 "I just need you to mine {needed} kt of Gold. I'll let you know what to do with it when you've mined it."]])
 
 local cooldown_text = _([[Ian Structure briefly startles you as he taps on your shoulder. "Sorry! I just noticed that your weapons are getting pretty hot. That's not doing your weapon accuracy any favors. Why don't you cool everything down by pressing {autobrake_key}?"]])
 
-local dest_text = _([["That should do it! Good job! With those firing skills, maybe you'd even be able to handle yourself against a pirate! I sure hope you don't have to, thô. Oh, what am I saying? There's no way the Empire would let pirates get into a place like this!" Ian sweats nervously, as if not entirely convinced.
+local dest_text = _([["That should do it! Good job! With those firing skills, maybe you'd even be able to handle yourself against a pirate! I sure hope you don't have to… no, no, there's no pirates here, Ian! It's safe." Ian sweats nervously, as if not entirely convinced.
 
 "Alright, I need you to take this Gold to {planet}. You should be able to see it on your overlay map, right? You can interact with its icon the same way you would interact with the planet itself, so you should be able to tell Autonav to land us there no problem."]])
 
@@ -94,7 +94,9 @@ local bartender_away_text = _([["It looks like you're working for Mr. Ian Struct
 
 local misn_title = _("Ian's Supplies")
 local misn_desc = _("Ian Structure has hired you to mine Gold from some asteroids.")
-local misn_log = _([[You accepted another mission from Ian Structure, this time mining some Gold from asteroids for him. He asked you to speak with him again on {planet} ({system}) for another mission.]])
+local misn_log_id = "ians_structure"
+local misn_log_title = _("Ian's Structure")
+local misn_log_text = _([[You accepted another mission from Ian Structure at the bar on {planet} ({system}). This time, he asked you to to mine {amount} kt of Gold for him from the asteroid field in {system} and deliver the Gold to {destplanet} ({destsystem}). While he seemed strangely nervous about it, Ian joined you in space as you mined the Gold. The task went off without a hitch, and Ian departed onto {destplanet} when you landed there with the Gold he needed. He said he had one more job for you and that you could meet him at the bar on {destplanet} if you were interested.]])
 
 local credits = 25000
 
@@ -157,7 +159,7 @@ function accept()
       end
 
       tk.msg("", fmt.f(accept_text,
-            {player=player.name(), needed=cargo_needed}))
+            {player=player.name(), needed=fmt.number(cargo_needed)}))
       approach()
       land()
 
@@ -218,7 +220,7 @@ function create_osd()
             _("Mine Gold from asteroids"),
             "\t" .. fmt.f(_("{gathered}/{needed} kt gathered"),
                {gathered=player.pilot():cargoHas("Gold"),
-                  needed=cargo_needed}),
+                  needed=fmt.number(cargo_needed)}),
             "\t" .. _("Target an asteroid by left-clicking on it"),
             "\t" .. fmt.f(_("Use {primarykey} and {secondarykey} to fire your weapons and destroy the targeted asteroid"),
                {primarykey=naik.keyGet("primary"),
@@ -240,7 +242,7 @@ function create_osd()
          fmt.f(_("Land on {planet} ({system})"),
             {planet=startplanet, system=startsys}),
          fmt.f(_("Equip your ship with a weapon and {needed} kt of cargo capacity, then talk to Ian Structure at the bar"),
-            {needed=cargo_needed}),
+            {needed=fmt.number(cargo_needed)}),
          "\t" .. _("Buy needed outfits at the Outfit Shop"),
          "\t" .. _("Equip the outfits to your ship at the Hangar"),
          "\t" .. _("Sell any cargo you're carrying at the Commodity Exchange"),
@@ -266,19 +268,19 @@ function approach()
                have_misn_cargo = true
             else
                tk.msg("", fmt.f(space_needed_havecargo_text,
-                     {available=cargo_free, needed=cargo_needed}))
+                     {available=cargo_free, needed=fmt.number(cargo_needed)}))
                return
             end
          end
       end
       if have_misn_cargo then
          tk.msg("", fmt.f(space_needed_havemisn_text,
-               {available=cargo_free, needed=cargo_needed}))
+               {available=cargo_free, needed=fmt.number(cargo_needed)}))
          return
       end
 
       tk.msg("", fmt.f(space_needed_text,
-            {available=cargo_free, needed=cargo_needed}))
+            {available=cargo_free, needed=fmt.number(cargo_needed)}))
       return
    end
 
@@ -375,7 +377,7 @@ function asteroid_proximity()
    tk.msg("", fmt.f(mining_text,
          {primarykey=tutGetKey("primary"),
             secondarykey=tutGetKey("secondary"),
-            needed=cargo_needed}))
+            needed=fmt.number(cargo_needed)}))
 
    substep = 3
    create_osd()
@@ -462,7 +464,11 @@ function land()
    player.pilot():cargoRm("Gold", ftonnes)
    player.pay(credits)
 
-   mh.addLogEntry(fmt.f(misn_log, {planet=misplanet, system=missys}))
+   local log_text = fmt.f(misn_log_text,
+         {planet=startplanet, system=startsys, amount=fmt.number(cargo_needed),
+            destplanet=misplanet, destsystem=missys})
+   mh.addLogEntry(log_text, misn_log_id, misn_log_title)
+
    misn.finish(true)
 end
 
