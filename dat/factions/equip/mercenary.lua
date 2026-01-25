@@ -26,7 +26,7 @@ equip_classOutfits_coreSystems["Yacht"] = {
 }
 equip_classOutfits_engines["Yacht"] = {
    "Exacorp HS-150 Engine",
-   "Tricon Zephyr Engine",
+   "Flex Tornado 150X Engine",
 }
 equip_classOutfits_hulls["Yacht"] = {
    "Exacorp D-2 Hull",
