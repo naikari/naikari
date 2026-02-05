@@ -5,7 +5,7 @@
 
 /** @cond */
 #include <float.h>
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 #include "map_overlay.h"
@@ -89,7 +89,7 @@ int ovr_input( SDL_Event *event )
    double x, y;
 
    /* We only want mouse events. */
-   if (event->type != SDL_MOUSEBUTTONDOWN)
+   if (event->type != SDL_EVENT_MOUSE_BUTTON_DOWN)
       return 0;
 
    /* Player must not be NULL. */
@@ -106,8 +106,8 @@ int ovr_input( SDL_Event *event )
       return 0;
 
    /* Translate from window to screen. */
-   mx = event->button.x;
-   my = event->button.y;
+   mx = (int)event->button.x;
+   my = (int)event->button.y;
    gl_windowToScreenPos( &mx, &my, mx, my );
 
    /* Click must be within overlay bounds. */

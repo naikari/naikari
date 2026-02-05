@@ -147,7 +147,7 @@ void map_system_close(void)
 static int map_system_keyHandler( unsigned int wid, SDL_Keycode key, SDL_Keymod mod )
 {
    (void)mod;
-   if (key == SDLK_m) {
+   if (key == SDLK_M) {
       map_system_close();
       return 1;
    }
@@ -530,7 +530,7 @@ static int map_system_mouse( unsigned int wid, SDL_Event* event, double mx, doub
    (void) rx;
    (void) ry;
    switch (event->type) {
-   case SDL_MOUSEBUTTONDOWN:
+   case SDL_EVENT_MOUSE_BUTTON_DOWN:
      /* Must be in bounds. */
      if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;

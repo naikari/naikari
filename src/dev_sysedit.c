@@ -10,7 +10,7 @@
 
 /** @cond */
 #include "physfs.h"
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */
@@ -188,7 +188,7 @@ void sysedit_open( StarSystem *sys )
 
    /* Close button. */
    window_addButtonKey(wid, -15, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", _("E&xit"), sysedit_close, SDLK_x);
+         "btnClose", _("E&xit"), sysedit_close, SDLK_X);
    i = 1;
 
    /* Autosave toggle. */
@@ -203,13 +203,13 @@ void sysedit_open( StarSystem *sys )
    /* Reset. */
    window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnReset", _("&Reset Jumps"), sysedit_btnReset, SDLK_r);
+         "btnReset", _("&Reset Jumps"), sysedit_btnReset, SDLK_R);
    i += 1;
 
    /* Editing. */
    window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnEdit", _("&Edit"), sysedit_btnEdit, SDLK_e);
+         "btnEdit", _("&Edit"), sysedit_btnEdit, SDLK_E);
    i += 1;
 
    /* Remove. */
@@ -225,13 +225,13 @@ void sysedit_open( StarSystem *sys )
    /* New planet. */
    window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnNew", _("&New Planet"), sysedit_btnNew, SDLK_n);
+         "btnNew", _("&New Planet"), sysedit_btnNew, SDLK_N);
    i += 2;
 
    /* Toggle Grid. */
    window_addButtonKey(wid, -15, 20+(BUTTON_HEIGHT+20)*i,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnGrid", _("&Grid"), sysedit_btnGrid, SDLK_g);
+         "btnGrid", _("&Grid"), sysedit_btnGrid, SDLK_G);
 
    /* Zoom buttons */
    window_addButton( wid, 40, 20, 30, 30, "btnZoomIn", "+", sysedit_buttonZoom );
@@ -871,7 +871,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
 
    switch (event->type) {
 
-      case SDL_MOUSEWHEEL:
+      case SDL_EVENT_MOUSE_WHEEL:
          /* Must be in bounds. */
          if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;
@@ -883,7 +883,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
 
          return 1;
 
-      case SDL_MOUSEBUTTONDOWN:
+      case SDL_EVENT_MOUSE_BUTTON_DOWN:
          /* Must be in bounds. */
          if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;
@@ -924,7 +924,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                         sysedit_tsel      = sel;
 
                         /* Check modifier. */
-                        if (mod & (KMOD_LCTRL | KMOD_RCTRL))
+                        if (mod & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
                            sysedit_tadd      = 0;
                         else {
                            /* Detect double click to open planet editor. */
@@ -943,7 +943,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   }
 
                   /* Add the system if not selected. */
-                  if (mod & (KMOD_LCTRL | KMOD_RCTRL))
+                  if (mod & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
                      sysedit_selectAdd( &sel );
                   else {
                      sysedit_deselect();
@@ -985,7 +985,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                         sysedit_tsel = sel;
 
                         /* Check modifier. */
-                        if (mod & (KMOD_LCTRL | KMOD_RCTRL))
+                        if (mod & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
                            sysedit_tadd = 0;
                         else {
                            /* Detect double click to open planet editor. */
@@ -1004,7 +1004,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
                   }
 
                   /* Add the system if not selected. */
-                  if (mod & (KMOD_LCTRL | KMOD_RCTRL))
+                  if (mod & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
                      sysedit_selectAdd( &sel );
                   else {
                      sysedit_deselect();
@@ -1021,7 +1021,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
             }
 
             /* Start dragging. */
-            if (!(mod & (KMOD_LCTRL | KMOD_RCTRL))) {
+            if (!(mod & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))) {
                sysedit_drag = 1;
                sysedit_dragTime = SDL_GetTicks();
                sysedit_moved = 0;
@@ -1030,7 +1030,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
          }
          return 1;
 
-      case SDL_MOUSEBUTTONUP:
+      case SDL_EVENT_MOUSE_BUTTON_UP:
          if (sysedit_drag) {
             if ((SDL_GetTicks() - sysedit_dragTime < SYSEDIT_DRAG_THRESHOLD) && (sysedit_moved < SYSEDIT_MOVE_THRESHOLD)) {
                if (sysedit_tsel.type == SELECT_NONE)
@@ -1065,7 +1065,7 @@ static int sysedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
          }
          break;
 
-      case SDL_MOUSEMOTION:
+      case SDL_EVENT_MOUSE_MOTION:
          /* Update mouse positions. */
          sysedit_mx  = mx;
          sysedit_my  = my;

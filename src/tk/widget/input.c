@@ -15,6 +15,7 @@
 /** @endcond */
 
 #include "nstring.h"
+#include "opengl.h"
 #include "tk/toolkit_priv.h"
 #include "utf8.h"
 #include "font.h"
@@ -285,7 +286,7 @@ static int inp_key( Widget* inp, SDL_Keycode key, SDL_Keymod mod )
       /* Move pointer. */
       if (key == SDLK_LEFT) {
          if (inp->dat.inp.pos > 0) {
-            if (mod & KMOD_CTRL) {
+            if (mod & SDL_KMOD_CTRL) {
                /* We want to position the cursor at the start of the previous or current word. */
                /* Begin by skipping all breakers. */
                while (inp->dat.inp.pos > 0 && inp_isBreaker(inp->dat.inp.input[inp->dat.inp.pos-1])) {
@@ -303,7 +304,7 @@ static int inp_key( Widget* inp, SDL_Keycode key, SDL_Keymod mod )
       else if (key == SDLK_RIGHT) {
          len = strlen(inp->dat.inp.input);
          if (inp->dat.inp.pos < len) {
-            if (mod & KMOD_CTRL) {
+            if (mod & SDL_KMOD_CTRL) {
                /* We want to position the cursor at the start of the next word. */
                /* Begin by skipping all non-breakers. */
                while (!inp_isBreaker(inp->dat.inp.input[inp->dat.inp.pos])
@@ -382,7 +383,7 @@ static int inp_key( Widget* inp, SDL_Keycode key, SDL_Keymod mod )
       /* We want to move inp->dat.inp.pos backward and delete all characters caught between it and curpos at the end. */
       curpos = inp->dat.inp.pos;
       if (inp->dat.inp.pos > 0) {
-         if (mod & KMOD_CTRL) {
+         if (mod & SDL_KMOD_CTRL) {
             /* We want to delete up to the start of the previous or current word. */
             /* Begin by skipping all breakers. */
             while (inp->dat.inp.pos > 0 && inp_isBreaker(inp->dat.inp.input[inp->dat.inp.pos-1])) {
@@ -415,7 +416,7 @@ static int inp_key( Widget* inp, SDL_Keycode key, SDL_Keymod mod )
       /* We want to move curpos forward and delete all characters caught between it and inp->dat.inp.pos at the end. */
       curpos = inp->dat.inp.pos;
       if (inp->dat.inp.pos < len) {
-         if (mod & KMOD_CTRL) {
+         if (mod & SDL_KMOD_CTRL) {
             /* We want to delete up until the start of the next word. */
             /* Begin by skipping all non-breakers. */
             while (!inp_isBreaker(inp->dat.inp.input[curpos])
@@ -737,15 +738,16 @@ static void inp_focusGain( Widget* inp )
    SDL_Rect input_pos;
    Window *w;
 
-   w = window_wget( inp->wdw );
-   gl_screenToWindowPos( &input_pos.x, &input_pos.y, w->x + inp->x + 5., w->y + inp->y );
+   w = window_wget(inp->wdw);
+   gl_screenToWindowPos(&input_pos.x, &input_pos.y, w->x + inp->x + 5.,
+         w->y + inp->y);
    input_pos.y -= inp->h;
    input_pos.w = (int)inp->w;
    input_pos.h = (int)inp->h;
 
-   SDL_EventState( SDL_TEXTINPUT, SDL_ENABLE);
-   SDL_StartTextInput();
-   SDL_SetTextInputRect( &input_pos );
+   SDL_SetEventEnabled(SDL_EVENT_TEXT_INPUT, 1);
+   SDL_StartTextInput(gl_screen.window);
+   SDL_SetTextInputArea(gl_screen.window, &input_pos, 0);
 }
 
 /**
@@ -756,8 +758,8 @@ static void inp_focusGain( Widget* inp )
 static void inp_focusLose( Widget* inp )
 {
    (void) inp;
-   SDL_StopTextInput();
-   SDL_EventState( SDL_TEXTINPUT, SDL_DISABLE);
+   SDL_StopTextInput(gl_screen.window);
+   SDL_SetEventEnabled(SDL_EVENT_TEXT_INPUT, 0);
 }
 
 

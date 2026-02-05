@@ -557,17 +557,17 @@ static int cust_event( unsigned int wid, SDL_Event *event, void* data )
 
    /* Handle all the events. */
    switch (event->type) {
-      case SDL_MOUSEBUTTONDOWN:
-         return cust_mouse( 1, event->button.button, event->button.x, event->button.y, cf );
-      case SDL_MOUSEBUTTONUP:
-         return cust_mouse( 2, event->button.button, event->button.x, event->button.y, cf );
-      case SDL_MOUSEMOTION:
-         return cust_mouse( 3, -1, event->button.x, event->button.y, cf );
+      case SDL_EVENT_MOUSE_BUTTON_DOWN:
+         return cust_mouse(1, event->button.button, event->button.x, event->button.y, cf);
+      case SDL_EVENT_MOUSE_BUTTON_UP:
+         return cust_mouse(2, event->button.button, event->button.x, event->button.y, cf);
+      case SDL_EVENT_MOUSE_MOTION:
+         return cust_mouse(3, -1, event->button.x, event->button.y, cf);
 
-      case SDL_KEYDOWN:
-         return cust_key( event->key.keysym.sym, event->key.keysym.mod, 1, cf );
-      case SDL_KEYUP:
-         return cust_key( event->key.keysym.sym, event->key.keysym.mod, 0, cf );
+      case SDL_EVENT_KEY_DOWN:
+         return cust_key(event->key.key, event->key.mod, 1, cf);
+      case SDL_EVENT_KEY_UP:
+         return cust_key(event->key.key, event->key.mod, 0, cf);
 
       default:
          return 0;
@@ -598,10 +598,17 @@ static int cust_mouse( int type, int button, double x, double y, custom_function
    lua_pushnumber(L, y);
    lua_pushnumber(L, type);
    if (type < 3) {
+      /* FIXME: This only supports 3 mouse buttons. Should be updated. */
       switch (button) {
-         case SDL_BUTTON_LEFT:  button=1; break;
-         case SDL_BUTTON_RIGHT: button=2; break;
-         default:               button=3; break;
+         case SDL_BUTTON_LEFT:
+            button = 1;
+            break;
+         case SDL_BUTTON_RIGHT:
+            button = 2;
+            break;
+         default:
+            button = 3;
+            break;
       }
       lua_pushnumber(L, button);
       if (cust_pcall(L, 4, 1))

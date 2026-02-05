@@ -385,7 +385,7 @@ static int news_mouse( unsigned int wid, SDL_Event *event, double mx, double my,
    (void) rx;
 
    switch (event->type) {
-      case SDL_MOUSEWHEEL:
+      case SDL_EVENT_MOUSE_WHEEL:
          /* Must be in bounds. */
          if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;
@@ -396,7 +396,7 @@ static int news_mouse( unsigned int wid, SDL_Event *event, double mx, double my,
             news_pos += h/3.;
          return 1;
 
-      case SDL_MOUSEBUTTONDOWN:
+      case SDL_EVENT_MOUSE_BUTTON_DOWN:
          /* Must be in bounds. */
          if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;
@@ -405,12 +405,12 @@ static int news_mouse( unsigned int wid, SDL_Event *event, double mx, double my,
             news_drag = 1;
          return 1;
 
-      case SDL_MOUSEBUTTONUP:
+      case SDL_EVENT_MOUSE_BUTTON_UP:
          if (news_drag)
             news_drag = 0;
          break;
 
-      case SDL_MOUSEMOTION:
+      case SDL_EVENT_MOUSE_MOTION:
          if (news_drag)
             news_pos -= ry;
          break;

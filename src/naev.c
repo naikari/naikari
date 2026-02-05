@@ -16,9 +16,10 @@
 /** @cond */
 #include "linebreak.h"
 #include "physfsrwops.h"
-#include "SDL.h"
-#include "SDL_error.h"
-#include "SDL_image.h"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+#include <SDL3/SDL_error.h>
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 
@@ -45,7 +46,6 @@
 #include "gui.h"
 #include "hook.h"
 #include "input.h"
-#include "joystick.h"
 #include "land.h"
 #include "load.h"
 #include "log.h"
@@ -163,7 +163,7 @@ int naev_pollQuit(void)
    SDL_Event event;
 
    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT) {
+      if (event.type == SDL_EVENT_QUIT) {
          quit = 1;
          break;
       }
@@ -327,26 +327,6 @@ int main( int argc, char** argv )
    time_ms = SDL_GetTicks();
 
    /*
-    * Input
-    */
-   if ((conf.joystick_ind >= 0) || (conf.joystick_nam != NULL)) {
-      if (joystick_init())
-         WARN( _("Error initializing joystick input") );
-      if (conf.joystick_nam != NULL) { /* use the joystick name to find a joystick */
-         if (joystick_use(joystick_get(conf.joystick_nam))) {
-            WARN( _("Failure to open any joystick, falling back to default keybinds") );
-            input_setDefault(LAYOUT_WASD);
-         }
-         free(conf.joystick_nam);
-      }
-      else if (conf.joystick_ind >= 0) /* use a joystick id instead */
-         if (joystick_use(conf.joystick_ind)) {
-            WARN( _("Failure to open any joystick, falling back to default keybinds") );
-            input_setDefault(LAYOUT_WASD);
-         }
-   }
-
-   /*
     * OpenAL - Sound
     */
    if (conf.nosound) {
@@ -401,14 +381,13 @@ int main( int argc, char** argv )
    /* primary loop */
    while (!quit) {
       while (!quit && SDL_PollEvent(&event)) { /* event loop */
-         if (event.type == SDL_QUIT) {
+         if (event.type == SDL_EVENT_QUIT) {
             if (quit || menu_askQuit()) {
                quit = 1; /* quit is handled here */
                break;
             }
          }
-         else if (event.type == SDL_WINDOWEVENT &&
-               event.window.event == SDL_WINDOWEVENT_RESIZED) {
+         else if (event.type == SDL_EVENT_WINDOW_RESIZED) {
             naev_resize(0);
             continue;
          }
@@ -438,7 +417,6 @@ int main( int argc, char** argv )
    ovr_mrkFree(); /* Clear markers. */
    toolkit_exit(); /* Kills the toolkit */
    ai_exit(); /* Stops the Lua AI magic */
-   joystick_exit(); /* Releases joystick */
    input_exit(); /* Cleans up keybindings */
    nebu_exit(); /* Destroys the nebula */
    lua_exit(); /* Closes Lua state. */
@@ -452,7 +430,7 @@ int main( int argc, char** argv )
 
    /* Free the icon. */
    if (naev_icon)
-      SDL_FreeSurface(naev_icon);
+      SDL_DestroySurface(naev_icon);
 
    IMG_Quit(); /* quits SDL_image */
    SDL_Quit(); /* quits SDL */
@@ -1046,7 +1024,7 @@ void update_routine( double dt, int enter_sys )
 static void window_caption (void)
 {
    char buf[PATH_MAX];
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
 
    /* Load icon. */
    rw = PHYSFSRWOPS_openRead( GFX_PATH"icon.png" );

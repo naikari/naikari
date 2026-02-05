@@ -346,23 +346,23 @@ void equipment_open( unsigned int wid )
 
    /* buttons */
    window_addButtonKey(wid, -10, 20, bw, bh, "btnCloseEquipment",
-         _("&Take Off"), land_buttonTakeoff, SDLK_t);
+         _("&Take Off"), land_buttonTakeoff, SDLK_T);
 
    window_addButtonKey(wid, 10+sw+10 + (10+bw)*2, 20,
          bw, bh, "btnSellShip",
-         _("&Sell Ship"), equipment_sellShip, SDLK_s);
+         _("&Sell Ship"), equipment_sellShip, SDLK_S);
    window_addButtonKey(wid, 10+sw+10 + (10+bw), 20,
          bw, bh, "btnChangeShip",
-         _("Swa&p Ship"), equipment_transChangeShip, SDLK_p);
+         _("Swa&p Ship"), equipment_transChangeShip, SDLK_P);
    window_addButtonKey(wid, 10 + sw + 10, 20, bw, bh, "btnSellOutfit",
-         _("Sell &Outfit"), equipment_sellOutfit, SDLK_o);
+         _("Sell &Outfit"), equipment_sellOutfit, SDLK_O);
 
    window_addButtonKey(wid, -10, -40-ch-10 - (10+bh),
          cw, bh, "btnUnequipShip",
-         _("&Unequip"), equipment_unequipShip, SDLK_u);
+         _("&Unequip"), equipment_unequipShip, SDLK_U);
    window_addButtonKey(wid, -10, -40-ch-10,
          cw, bh, "btnRenameShip",
-         _("&Rename"), equipment_renameShip, SDLK_r);
+         _("&Rename"), equipment_renameShip, SDLK_R);
 
    x = 10 + sw + 10 + ew + 10;
    y = -40;
@@ -982,7 +982,7 @@ static int equipment_mouseColumn( unsigned int wid, SDL_Event* event,
    if (ret < 0)
       return 0;
 
-   if (event->type == SDL_MOUSEBUTTONDOWN) {
+   if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
       /* Normal mouse usage. */
       if (wgt->weapons < 0) {
          if (event->button.button == SDL_BUTTON_LEFT)
@@ -1082,8 +1082,8 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       return 0;
 
    /* Must be left click for now. */
-   if ((event->type != SDL_MOUSEBUTTONDOWN) &&
-         (event->type != SDL_MOUSEMOTION))
+   if ((event->type != SDL_EVENT_MOUSE_BUTTON_DOWN) &&
+         (event->type != SDL_EVENT_MOUSE_MOTION))
       return 0;
 
    /* Get dimensions. */
@@ -1098,7 +1098,7 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       ret = equipment_mouseColumn( wid, event, mx, my, y, h,
             p->outfit_weapon, p, selected, wgt );
       if (ret)
-         return !!(event->type == SDL_MOUSEBUTTONDOWN);
+         return !!(event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
    }
    selected += array_size(p->outfit_weapon);
    x += tw;
@@ -1106,7 +1106,7 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       ret = equipment_mouseColumn( wid, event, mx, my, y, h,
             p->outfit_utility, p, selected, wgt );
       if (ret)
-         return !!(event->type == SDL_MOUSEBUTTONDOWN);
+         return !!(event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
    }
    selected += array_size(p->outfit_utility);
    x += tw;
@@ -1114,7 +1114,7 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       ret = equipment_mouseColumn( wid, event, mx, my, y, h,
             p->outfit_structure, p, selected, wgt );
       if (ret)
-         return !!(event->type == SDL_MOUSEBUTTONDOWN);
+         return !!(event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
    }
 
    /* Not over anything. */

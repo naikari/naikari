@@ -28,9 +28,9 @@
 
 /** @cond */
 #include <stdlib.h>
-#include "SDL.h"
-#include "SDL_error.h"
-#include "SDL_thread.h"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_error.h>
+#include <SDL3/SDL_thread.h>
 /** @endcond */
 
 #include "threadpool.h"
@@ -64,9 +64,9 @@ struct ThreadQueue_ {
    Node *first;         /* The first node */
    Node *last;          /* The second node */
    /* A semaphore to ensure reads only happen when the queue is not empty */
-   SDL_sem *semaphore;
-   SDL_mutex *t_lock;   /* Tail lock. Lock when reading/updating tail */
-   SDL_mutex *h_lock;   /* Same as tail lock, except it's head lock */
+   SDL_Semaphore *semaphore;
+   SDL_Mutex *t_lock;   /* Tail lock. Lock when reading/updating tail */
+   SDL_Mutex *h_lock;   /* Same as tail lock, except it's head lock */
 };
 
 /**
@@ -84,7 +84,7 @@ typedef struct ThreadData_ {
    int (*function)(void *); /* The function to be called */
    void *data;             /* Arguments to the above function */
    int signal;             /* Signals to the thread */
-   SDL_sem *semaphore;     /* The semaphore to signal new jobs or new signal in the
+   SDL_Semaphore *semaphore;     /* The semaphore to signal new jobs or new signal in the
                               'signal' variable */
    ThreadQueue *idle;      /* The queue with idle threads */
    ThreadQueue *stopped;   /* The queue with stopped threads */
@@ -94,9 +94,9 @@ typedef struct ThreadData_ {
  * @brief Virtual thread pool data.
  */
 typedef struct vpoolThreadData_ {
-   SDL_cond *cond;         /* Condition variable for signalling all jobs in the vpool
+   SDL_Condition *cond;         /* Condition variable for signalling all jobs in the vpool
                               are done */
-   SDL_mutex *mutex;       /* The mutex to use with the above condition variable */
+   SDL_Mutex *mutex;       /* The mutex to use with the above condition variable */
    int *count;             /* Variable to count number of finished jobs in the vpool */
    ThreadQueueData *node;  /* The job to be done */
 } vpoolThreadData;
@@ -172,14 +172,14 @@ static void tq_enqueue( ThreadQueue *q, void *data )
 
    /* Signal and unlock. This wil break if someone tries to enqueue 2^32+1
     * elements or something. */
-   SDL_SemPost( q->semaphore );
-   SDL_mutexV( q->t_lock );
+   SDL_SignalSemaphore(q->semaphore);
+   SDL_mutexV(q->t_lock);
 }
 
 /**
  * @brief Dequeue from the ThreadQueue q.
  *
- * @attention The callee should ALWAYS have called SDL_SemWait() on the semaphore.
+ * @attention The callee should ALWAYS have called SDL_WaitSemaphore() on the semaphore.
  *
  *    @param q The queue to dequeue from.
  *    @return A void pointer to the element from the queue.
@@ -293,11 +293,8 @@ static int threadpool_worker( void *data )
    /* Work loop */
    while (1) {
       /* Wait for new signal */
-      while (SDL_SemWait( work->semaphore ) == -1) {
-          /* Putting this in a while-loop is probably a really bad idea, but I
-           * don't have any better ideas. */
-          WARN(_("SDL_SemWait failed! Error: %s"), SDL_GetError());
-      }
+      SDL_WaitSemaphore(work->semaphore);
+
       /* Break if received signal to stop */
       if (work->signal == THREADSIG_STOP)
          break;
@@ -379,14 +376,15 @@ static int threadpool_handler( void *data )
           * Here we'll wait until thread gets work to do. If it doesn't it will
           * just stop a worker thread and wait until it gets something to do.
           */
-         if (SDL_SemWaitTimeout( global_queue->semaphore, THREADPOOL_TIMEOUT ) != 0) {
+         if (!SDL_WaitSemaphoreTimeout(global_queue->semaphore,
+                  THREADPOOL_TIMEOUT)) {
             /* There weren't any new jobs so we'll start killing threads ;) */
-            if (SDL_SemTryWait( idle->semaphore ) == 0) {
-               threadarg         = tq_dequeue( idle );
+            if (SDL_TryWaitSemaphore(idle->semaphore)) {
+               threadarg = tq_dequeue( idle );
                /* Set signal to stop worker thread */
                threadarg->signal = THREADSIG_STOP;
                /* Signal thread and decrement running threads counter */
-               SDL_SemPost( threadarg->semaphore );
+               SDL_SignalSemaphore(threadarg->semaphore);
                nrunning -= 1;
             }
 
@@ -401,10 +399,7 @@ static int threadpool_handler( void *data )
           * Here we wait for a new job. No threads are alive at this point and the
           * threadpool is just patiently waiting for work to arrive.
           */
-         if (SDL_SemWait( global_queue->semaphore ) == -1) {
-             WARN(_("SDL_SemWait failed! Error: %s"), SDL_GetError());
-             continue;
-         }
+         SDL_WaitSemaphore(global_queue->semaphore);
 
          /* We got work. Continue to handle work. */
       }
@@ -421,28 +416,25 @@ static int threadpool_handler( void *data )
        * another thread becomes idle.
        */
       /* Idle thread available */
-      if (SDL_SemTryWait(idle->semaphore) == 0)
-         threadarg         = tq_dequeue( idle );
+      if (SDL_TryWaitSemaphore(idle->semaphore))
+         threadarg = tq_dequeue(idle);
       /* Make a new thread */
-      else if (SDL_SemTryWait(stopped->semaphore) == 0) {
-         threadarg         = tq_dequeue( stopped );
+      else if (SDL_TryWaitSemaphore(stopped->semaphore)) {
+         threadarg = tq_dequeue(stopped);
          threadarg->signal = THREADSIG_RUN;
-         newthread         = 1;
+         newthread = 1;
       }
       /* Wait for idle thread */
       else {
-         while (SDL_SemWait(idle->semaphore) == -1) {
-             /* Bad idea */
-             WARN(_("SDL_SemWait failed! Error: %s"), SDL_GetError());
-         }
-         threadarg         = tq_dequeue( idle );
+         SDL_WaitSemaphore(idle->semaphore);
+         threadarg = tq_dequeue(idle);
       }
 
       /* Assign arguments for the thread */
-      threadarg->function  = node->function;
-      threadarg->data      = node->data;
+      threadarg->function = node->function;
+      threadarg->data = node->data;
       /* Signal the thread that there's a new job */
-      SDL_SemPost( threadarg->semaphore );
+      SDL_SignalSemaphore(threadarg->semaphore);
 
       /* Start a new thread and increment the thread counter */
       if (newthread) {
@@ -472,7 +464,7 @@ static int threadpool_handler( void *data )
  */
 int threadpool_init (void)
 {
-   MAXTHREADS = SDL_GetCPUCount() + 1; /* SDL 1.3 is pretty cool. */
+   MAXTHREADS = SDL_GetNumLogicalCPUCores() + 1; /* SDL 1.3 is pretty cool. */
 
    /* There's already a queue */
    if (global_queue != NULL) {
@@ -550,12 +542,12 @@ static int vpool_worker( void *data )
    work->node->function( work->node->data );
 
    /* Decrement the counter and signal vpool_wait if all threads are done */
-   SDL_mutexP( work->mutex );
-   cnt   = *(work->count) - 1;
-   if (cnt <= 0)                    /* All jobs done. */
-      SDL_CondSignal( work->cond );  /* Signal waiting thread */
+   SDL_mutexP(work->mutex);
+   cnt = *(work->count) - 1;
+   if (cnt <= 0) /* All jobs done. */
+      SDL_SignalCondition(work->cond); /* Signal waiting thread */
    *(work->count) = cnt;
-   SDL_mutexV( work->mutex );
+   SDL_mutexV(work->mutex);
 
    return 0;
 }
@@ -568,16 +560,16 @@ static int vpool_worker( void *data )
 void vpool_wait( ThreadQueue *queue )
 {
    int i, cnt;
-   SDL_cond *cond;
-   SDL_mutex *mutex;
+   SDL_Condition *cond;
+   SDL_Mutex *mutex;
    vpoolThreadData *arg;
    ThreadQueueData *node;
 
    /* Create temporary threading structures. */
-   cond  = SDL_CreateCond();
+   cond  = SDL_CreateCondition();
    mutex = SDL_CreateMutex();
    /* This might be a little ugly (and inefficient?) */
-   cnt   = SDL_SemValue( queue->semaphore );
+   cnt   = SDL_GetSemaphoreValue( queue->semaphore );
 
    /* Allocate all vpoolThreadData objects */
    arg = calloc( cnt, sizeof(vpoolThreadData) );
@@ -586,29 +578,26 @@ void vpool_wait( ThreadQueue *queue )
    /* Initialize the vpoolThreadData */
    for (i=0; i<cnt; i++) {
       /* This is needed to keep the invariants of the queue */
-      while (SDL_SemWait( queue->semaphore ) == -1) {
-          /* Again, a really bad idea */
-          WARN(_("SDL_SemWait failed! Error: %s"), SDL_GetError());
-      }
-      node = tq_dequeue( queue );
+      SDL_WaitSemaphore(queue->semaphore);
+      node = tq_dequeue(queue);
 
       /* Set up arguments. */
-      arg[i].node    = node;
-      arg[i].cond    = cond;
-      arg[i].mutex   = mutex;
-      arg[i].count   = &cnt;
+      arg[i].node = node;
+      arg[i].cond = cond;
+      arg[i].mutex = mutex;
+      arg[i].count = &cnt;
 
       /* Launch new job. */
       threadpool_newJob( vpool_worker, &arg[i] );
    }
 
    /* Wait for the threads to finish */
-   SDL_CondWait( cond, mutex );
+   SDL_WaitCondition( cond, mutex );
    SDL_mutexV( mutex );
 
    /* Clean up */
    SDL_DestroyMutex( mutex );
-   SDL_DestroyCond( cond );
+   SDL_DestroyCondition( cond );
    tq_destroy( queue );
    free( arg );
 }

@@ -9,7 +9,7 @@
 
 
 /** @cond */
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 
@@ -41,13 +41,6 @@ enum {
 typedef enum {
    KEYBIND_NULL, /**< Null keybinding. */
    KEYBIND_KEYBOARD, /**< Keyboard keybinding. */
-   KEYBIND_JAXISPOS, /**< Joystick axis positive side keybinding. */
-   KEYBIND_JAXISNEG, /**< Joystick axis negative side keybinding. */
-   KEYBIND_JBUTTON, /**< Joystick button keybinding. */
-   KEYBIND_JHAT_UP, /**< Joystick hat up direction keybinding. */
-   KEYBIND_JHAT_DOWN, /**< Joystick hat down direction keybinding. */
-   KEYBIND_JHAT_LEFT, /**< Joystick hat left direction keybinding. */
-   KEYBIND_JHAT_RIGHT /**< Joystick hat right direction keybinding. */
 } KeybindType; /**< Keybind types. */
 
 

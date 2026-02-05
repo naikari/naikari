@@ -9,8 +9,8 @@
 
 
 /** @cond */
-#include "SDL_mutex.h"
-#include "SDL_rwops.h"
+#include <SDL3/SDL_mutex.h>
+#include <SDL3/SDL_iostream.h>
 /** @endcond */
 
 
@@ -57,7 +57,7 @@ void sound_setSpeed(double speed);
 /*
  * source management
  */
-int source_newRW( SDL_RWops *rw, const char *name, unsigned int flags );
+int source_newRW( SDL_IOStream *rw, const char *name, unsigned int flags );
 int source_new( const char* filename, unsigned int flags );
 
 
@@ -101,7 +101,7 @@ void sound_volumeGroup( int group, double volume );
 int sound_env( SoundEnv_t env, double param );
 
 /* Lock for OpenAL operations. */
-extern SDL_mutex *sound_lock; /**< Global sound lock, used for all OpenAL calls. */
+extern SDL_Mutex *sound_lock; /**< Global sound lock, used for all OpenAL calls. */
 #define soundLock()        SDL_mutexP(sound_lock)
 #define soundUnlock()      SDL_mutexV(sound_lock)
 

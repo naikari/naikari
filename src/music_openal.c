@@ -5,9 +5,9 @@
 /** @cond */
 #include <math.h>
 #include <vorbis/vorbisfile.h>
-#include "SDL.h"
-#include "SDL_rwops.h"
-#include "SDL_thread.h"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_iostream.h>
+#include <SDL3/SDL_thread.h>
 
 #include "naev.h"
 /** @endcond */
@@ -69,9 +69,9 @@ static char *music_buf              = NULL; /**< Music playing buffer. */
 /*
  * Locks.
  */
-static SDL_mutex *music_vorbis_lock = NULL; /**< Lock for vorbisfile operations. */
-static SDL_cond  *music_state_cond  = NULL; /**< Cond for thread to signal status updates. */
-static SDL_mutex *music_state_lock  = NULL; /**< Lock for music state. */
+static SDL_Mutex *music_vorbis_lock = NULL; /**< Lock for vorbisfile operations. */
+static SDL_Condition  *music_state_cond  = NULL; /**< Cond for thread to signal status updates. */
+static SDL_Mutex *music_state_lock  = NULL; /**< Lock for music state. */
 static music_cmd_t   music_command  = MUSIC_CMD_NONE; /**< Target music state. */
 static music_state_t music_state    = MUSIC_STATE_DEAD; /**< Current music state. */
 static int music_forced             = 0; /**< Whether or not music is force stopped. */
@@ -81,7 +81,7 @@ static int music_forced             = 0; /**< Whether or not music is force stop
  * saves the music to ram in this structure
  */
 typedef struct alMusic_ {
-   SDL_RWops *rw; /**< RWops file reading from. */
+   SDL_IOStream *rw; /**< RWops file reading from. */
    OggVorbis_File stream; /**< Vorbis file stream. */
    vorbis_info* info; /**< Information of the stream. */
    ALenum format; /**< Stream format. */
@@ -286,15 +286,25 @@ static int music_thread( void* unused )
          case MUSIC_CMD_KILL:
             mal_stop( &m );
             music_state = MUSIC_STATE_DEAD;
-            SDL_CondBroadcast( music_state_cond );
+            SDL_BroadcastCondition(music_state_cond);
             musicUnlock();
             return 0;
 
-         case MUSIC_CMD_STOP:    mal_stop( &m ); break;
-         case MUSIC_CMD_PLAY:    mal_play( &m ); break;
-         case MUSIC_CMD_FADEOUT: mal_fadeout( &m ); break;
-         case MUSIC_CMD_FADEIN:  mal_fadein( &m ); break;
-         case MUSIC_CMD_PAUSE:   mal_pause( &m ); break;
+         case MUSIC_CMD_STOP:
+            al_stop(&m);
+            break;
+         case MUSIC_CMD_PLAY:
+            mal_play(&m);
+            break;
+         case MUSIC_CMD_FADEOUT:
+            mal_fadeout(&m);
+            break;
+         case MUSIC_CMD_FADEIN:
+            mal_fadein(&m);
+            break;
+         case MUSIC_CMD_PAUSE:
+            mal_pause(&m);
+            break;
 
          case MUSIC_CMD_NONE:
             break;
@@ -302,7 +312,7 @@ static int music_thread( void* unused )
       m.state = music_state;
       if (music_command != MUSIC_CMD_NONE) {
          music_command = MUSIC_CMD_NONE;
-         SDL_CondBroadcast( music_state_cond );
+         SDL_BroadcastCondition(music_state_cond);
       }
 
       musicUnlock();
@@ -313,7 +323,7 @@ static int music_thread( void* unused )
          case MUSIC_STATE_STARTUP:
             musicLock();
             music_state = MUSIC_STATE_IDLE;
-            SDL_CondBroadcast( music_state_cond );
+            SDL_BroadcastCondition(music_state_cond);
             musicUnlock();
             break;
 
@@ -545,7 +555,7 @@ int music_al_init (void)
    ALfloat v[] = { 0., 0., 0. };
 
    /* Create threading mechanisms. */
-   music_state_cond  = SDL_CreateCond();
+   music_state_cond  = SDL_CreateCondition();
    music_state_lock  = SDL_CreateMutex();
    music_vorbis_lock = SDL_CreateMutex();
    music_vorbis.rw   = NULL; /* indication it's not loaded */
@@ -583,7 +593,7 @@ int music_al_init (void)
    music_player = SDL_CreateThread( music_thread,
          "music_thread",
          NULL );
-   SDL_CondWait( music_state_cond, music_state_lock );
+   SDL_WaitCondition(music_state_cond, music_state_lock);
    musicUnlock();
 
    return 0;
@@ -614,14 +624,14 @@ void music_al_exit (void)
    /* Destroy the mutex. */
    SDL_DestroyMutex( music_vorbis_lock );
    SDL_DestroyMutex( music_state_lock );
-   SDL_DestroyCond( music_state_cond );
+   SDL_DestroyCondition( music_state_cond );
 }
 
 
 /**
  * @brief Internal music loading routines.
  */
-int music_al_load( const char* name, SDL_RWops *rw )
+int music_al_load( const char* name, SDL_IOStream *rw )
 {
    int rg;
    ALfloat track_gain_db, track_peak;
@@ -681,7 +691,7 @@ void music_al_free (void)
       music_command = MUSIC_CMD_STOP;
       music_forced  = 1;
 
-      SDL_CondWait( music_state_cond, music_state_lock );
+      SDL_WaitCondition(music_state_cond, music_state_lock);
       if (music_state == MUSIC_STATE_IDLE)
          music_forced = 0;
    }
@@ -752,7 +762,7 @@ void music_al_play (void)
    musicLock();
 
    music_command = MUSIC_CMD_FADEIN;
-   SDL_CondWait( music_state_cond, music_state_lock );
+   SDL_WaitCondition(music_state_cond, music_state_lock);
 
    musicUnlock();
 }
@@ -766,7 +776,7 @@ void music_al_stop (void)
    musicLock();
 
    music_command = MUSIC_CMD_FADEOUT;
-   SDL_CondWait( music_state_cond, music_state_lock );
+   SDL_WaitCondition(music_state_cond, music_state_lock);
 
    musicUnlock();
 }
@@ -780,7 +790,7 @@ void music_al_pause (void)
    musicLock();
 
    music_command = MUSIC_CMD_PAUSE;
-   SDL_CondWait( music_state_cond, music_state_lock );
+   SDL_WaitCondition(music_state_cond, music_state_lock);
 
    musicUnlock();
 }
@@ -794,7 +804,7 @@ void music_al_resume (void)
    musicLock();
 
    music_command = MUSIC_CMD_PLAY;
-   SDL_CondWait( music_state_cond, music_state_lock );
+   SDL_WaitCondition(music_state_cond, music_state_lock);
 
    musicUnlock();
 }
@@ -848,15 +858,12 @@ int music_al_isPlaying (void)
  */
 static void music_kill (void)
 {
-   int ret;
    musicLock();
 
    music_command = MUSIC_CMD_KILL;
-   music_forced  = 1;
-   ret = SDL_CondWaitTimeout( music_state_cond, music_state_lock, 3000 );
+   music_forced = 1;
 
-   /* Timed out, just slaughter the thread. */
-   if (ret == SDL_MUTEX_TIMEDOUT)
+   if (!SDL_WaitConditionTimeout(music_state_cond, music_state_lock, 3000))
       WARN(_("Music thread did not exit when asked, ignoring..."));
 
    musicUnlock();

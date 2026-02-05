@@ -8,7 +8,7 @@
 #  define MAP_OVERLAY_H
 
 /** @cond */
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 /* Map overlay. */

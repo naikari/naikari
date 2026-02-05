@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "physfsrwops.h"
-#include "SDL_image.h"
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 /** @endcond */
@@ -59,7 +59,7 @@ static size_t gl_transSize( const int w, const int h );
 static GLuint gl_texParameters( unsigned int flags );
 static GLuint gl_loadSurface( SDL_Surface* surface, unsigned int flags, int freesur );
 static glTexture* gl_loadNewImage( const char* path, unsigned int flags );
-static glTexture* gl_loadNewImageRWops( const char *path, SDL_RWops *rw, unsigned int flags );
+static glTexture* gl_loadNewImageRWops( const char *path, SDL_IOStream *rw, unsigned int flags );
 /* List. */
 static glTexture* gl_texExists( const char* path, int sx, int sy );
 static int gl_texAdd( glTexture *tex, int sx, int sy );
@@ -320,7 +320,7 @@ static GLuint gl_loadSurface( SDL_Surface* surface, unsigned int flags, int free
 
    /* cleanup */
    if (freesur)
-      SDL_FreeSurface( surface );
+      SDL_DestroySurface( surface );
    gl_checkErr();
 
    return texture;
@@ -341,7 +341,7 @@ static GLuint gl_loadSurface( SDL_Surface* surface, unsigned int flags, int free
  *    @param freesur Whether or not to free the surface.
  *    @return The glTexture for surface.
  */
-glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_RWops *rw,
+glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_IOStream *rw,
       unsigned int flags, int w, int h, int sx, int sy, int freesur )
 {
    glTexture *texture;
@@ -357,7 +357,7 @@ glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_RWo
       texture = gl_texExists( name, sx, sy );
       if (texture != NULL) {
          if (freesur)
-            SDL_FreeSurface( surface );
+            SDL_DestroySurface( surface );
          return texture;
       }
    }
@@ -375,15 +375,15 @@ glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_RWo
       md5val = malloc(16);
       md5_init(&md5);
 
-      pngsize = SDL_RWseek( rw, 0, SEEK_END );
-      SDL_RWseek( rw, 0, SEEK_SET );
+      pngsize = SDL_SeekIO( rw, 0, SEEK_END );
+      SDL_SeekIO( rw, 0, SEEK_SET );
 
       data = malloc(pngsize);
       if (data == NULL)
          WARN(_("Out of Memory"));
       else {
-         SDL_RWread( rw, data, pngsize, 1 );
-         md5_append( &md5, (md5_byte_t*)data, pngsize );
+         SDL_ReadIO(rw, data, pngsize);
+         md5_append(&md5, (md5_byte_t*)data, pngsize);
          free(data);
       }
       md5_finish( &md5, md5val );
@@ -597,14 +597,14 @@ glTexture* gl_newImage( const char* path, const unsigned int flags )
  *
  * May not necessarily load the image but use one if it's already open.
  *
- * @note Does not close the SDL_RWops file.
+ * @note Does not close the SDL_IOStream file.
  *
  *    @param path Path name used for checking cache and error reporting.
- *    @param rw SDL_RWops structure to load from.
+ *    @param rw SDL_IOStream structure to load from.
  *    @param flags Flags to control image parameters.
  *    @return Texture loaded from image.
  */
-glTexture* gl_newImageRWops( const char* path, SDL_RWops *rw, const unsigned int flags )
+glTexture* gl_newImageRWops( const char* path, SDL_IOStream *rw, const unsigned int flags )
 {
    glTexture *t;
 
@@ -630,7 +630,7 @@ glTexture* gl_newImageRWops( const char* path, SDL_RWops *rw, const unsigned int
 static glTexture* gl_loadNewImage( const char* path, const unsigned int flags )
 {
    glTexture *texture;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
 
    if (path==NULL) {
       WARN(_("Trying to load image from NULL path."));
@@ -646,7 +646,7 @@ static glTexture* gl_loadNewImage( const char* path, const unsigned int flags )
 
    texture = gl_loadNewImageRWops( path, rw, flags );
 
-   SDL_RWclose( rw );
+   SDL_CloseIO( rw );
    return texture;
 }
 
@@ -659,7 +659,7 @@ static glTexture* gl_loadNewImage( const char* path, const unsigned int flags )
  *    @param flags Flags to control image parameters.
  *    @return Texture loaded from image.
  */
-static glTexture* gl_loadNewImageRWops( const char *path, SDL_RWops *rw, unsigned int flags )
+static glTexture* gl_loadNewImageRWops( const char *path, SDL_IOStream *rw, unsigned int flags )
 {
    glTexture *texture;
    SDL_Surface *surface;
@@ -731,13 +731,13 @@ glTexture* gl_newSprite( const char* path, const int sx, const int sy,
  * @brief Loads the texture immediately, but also sets it as a sprite.
  *
  *    @param path Image name for deduplication.
- *    @param rw SDL_RWops structure to load for.
+ *    @param rw SDL_IOStream structure to load for.
  *    @param sx Number of X sprites in image.
  *    @param sy Number of Y sprites in image.
  *    @param flags Flags to control image parameters.
  *    @return Texture loaded.
  */
-glTexture* gl_newSpriteRWops( const char* path, SDL_RWops *rw,
+glTexture* gl_newSpriteRWops( const char* path, SDL_IOStream *rw,
    const int sx, const int sy, const unsigned int flags )
 {
    glTexture* texture;

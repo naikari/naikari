@@ -335,19 +335,19 @@ void map_open (void)
    /* Commodity button */
    window_addButtonKey(wid, -20 - (BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnCommod", _("M&ode"), map_buttonCommodity, SDLK_o);
+         "btnCommod", _("M&ode"), map_buttonCommodity, SDLK_O);
    /* Find button */
    window_addButtonKey(wid, -20 - 2*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnFind", _("&Find"), map_inputFind, SDLK_f);
+         "btnFind", _("&Find"), map_inputFind, SDLK_F);
    /* System Info button */
    window_addButtonKey(wid, -20 - 3*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnSystemMap", _("&System Info"), map_buttonSystemMap, SDLK_s);
+         "btnSystemMap", _("&System Info"), map_buttonSystemMap, SDLK_S);
    /* Autonav button */
    window_addButtonKey(wid, -20 - 4*(BUTTON_WIDTH+10), 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnAutonav", _("&Autonav"), player_autonavStartWindow, SDLK_a);
+         "btnAutonav", _("&Autonav"), player_autonavStartWindow, SDLK_A);
 
    /*
     * Bottom stuff
@@ -2052,7 +2052,7 @@ static int map_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
    t = 15.*15.; /* threshold */
 
    switch (event->type) {
-   case SDL_MOUSEWHEEL:
+   case SDL_EVENT_MOUSE_WHEEL:
       /* Must be in bounds. */
       if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
          return 0;
@@ -2062,7 +2062,7 @@ static int map_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
          map_buttonZoom( 0, "btnZoomOut" );
       return 1;
 
-   case SDL_MOUSEBUTTONDOWN:
+   case SDL_EVENT_MOUSE_BUTTON_DOWN:
       /* Must be in bounds. */
       if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
          return 0;
@@ -2089,19 +2089,19 @@ static int map_mouse( unsigned int wid, SDL_Event* event, double mx, double my,
             y = sys->pos.y * map_zoom;
 
             if ((pow2(mx-x)+pow2(my-y)) < t) {
-               map_select( sys, (SDL_GetModState() & KMOD_SHIFT) );
+               map_select( sys, (SDL_GetModState() & SDL_KMOD_SHIFT) );
                break;
             }
          }
       }
       return 1;
 
-   case SDL_MOUSEBUTTONUP:
+   case SDL_EVENT_MOUSE_BUTTON_UP:
       if (map_drag)
          map_drag = 0;
       break;
 
-   case SDL_MOUSEMOTION:
+   case SDL_EVENT_MOUSE_MOTION:
       if (map_drag) {
          /* axis is inverted */
          map_xpos -= rx;
@@ -2239,7 +2239,7 @@ static void map_buttonCommodity( unsigned int wid, char* str )
    /* Clicking the mode button - by default will show (or remove) the list of map modes.
       If ctrl is pressed, will toggle between current mode and default */
    mods = SDL_GetModState();
-   if (mods & (KMOD_LCTRL | KMOD_RCTRL)) { /* toggle on/off */
+   if (mods & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL)) { /* toggle on/off */
       if (map_mode == MAPMODE_TRAVEL) {
          map_mode = map_mode_last;
          cur_commod = cur_commod_last;

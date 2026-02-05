@@ -12,7 +12,7 @@
 /** @cond */
 #include <limits.h>
 #include "physfsrwops.h"
-#include "SDL_image.h"
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 /** @endcond */
@@ -290,7 +290,7 @@ static int ship_genTargetGFX( Ship *temp, SDL_Surface *surface, int sx, int sy )
  */
 static int ship_loadSpaceImage( Ship *temp, char *str, int sx, int sy )
 {
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    SDL_Surface *surface;
    int ret;
 
@@ -313,8 +313,8 @@ static int ship_loadSpaceImage( Ship *temp, char *str, int sx, int sy )
       return ret;
 
    /* Free stuff. */
-   SDL_RWclose( rw );
-   SDL_FreeSurface( surface );
+   SDL_CloseIO( rw );
+   SDL_DestroySurface( surface );
 
    /* Calculate mount angle. */
    temp->mangle  = 2.*M_PI;

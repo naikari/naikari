@@ -15,7 +15,7 @@
 /** @cond */
 #include <math.h>
 #include <stdlib.h>
-#include "SDL_thread.h"
+#include <SDL3/SDL_thread.h>
 #include "physfs.h"
 
 #include "naev.h"

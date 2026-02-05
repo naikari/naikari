@@ -7,9 +7,9 @@
 #include <math.h>
 #include <sys/stat.h>
 #include "physfsrwops.h"
-#include "SDL.h"
-#include "SDL_endian.h"
-#include "SDL_thread.h"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_endian.h>
+#include <SDL3/SDL_thread.h>
 
 #include "naev.h"
 /** @endcond */
@@ -58,7 +58,7 @@
 /*
  * Global sound lock.
  */
-SDL_mutex *sound_lock = NULL; /**< Global sound lock, always lock this before
+SDL_Mutex *sound_lock = NULL; /**< Global sound lock, always lock this before
                                    using any OpenAL functions. */
 
 
@@ -130,7 +130,7 @@ static int al_enableEFX (void);
 static ALuint sound_al_getSource (void);
 static int al_playVoice( alVoice *v, alSound *s,
       ALfloat px, ALfloat py, ALfloat vx, ALfloat vy, ALint relative );
-static int sound_al_loadWav( ALuint *buf, SDL_RWops *rw );
+static int sound_al_loadWav( ALuint *buf, SDL_IOStream *rw );
 static int sound_al_loadOgg( ALuint *buf, OggVorbis_File *vf );
 /*
  * Pausing.
@@ -152,18 +152,20 @@ static void sound_al_volumeUpdate (void);
  */
 static size_t ovpack_read( void *ptr, size_t size, size_t nmemb, void *datasource )
 {
-   SDL_RWops *rw = datasource;
-   return (size_t) SDL_RWread( rw, ptr, size, nmemb );
+   SDL_IOStream *rw = datasource;
+   if ((size > 0) && (nmemb > 0))
+      return SDL_ReadIO(rw, ptr, size * nmemb) / size;
+   return 0;
 }
 static int ovpack_seek( void *datasource, ogg_int64_t offset, int whence )
 {
-   SDL_RWops *rw = datasource;
-   return SDL_RWseek( rw, offset, whence );
+   SDL_IOStream *rw = datasource;
+   return SDL_SeekIO( rw, offset, whence );
 }
 static int ovpack_close( void *datasource )
 {
-   SDL_RWops *rw = datasource;
-   return SDL_RWclose( rw );
+   SDL_IOStream *rw = datasource;
+   return SDL_CloseIO( rw );
 }
 static int ovpack_closeFake( void *datasource )
 {
@@ -172,8 +174,8 @@ static int ovpack_closeFake( void *datasource )
 }
 static long ovpack_tell( void *datasource )
 {
-   SDL_RWops *rw = datasource;
-   return SDL_RWseek( rw, 0, SEEK_CUR );
+   SDL_IOStream *rw = datasource;
+   return SDL_SeekIO( rw, 0, SEEK_CUR );
 }
 ov_callbacks sound_al_ovcall = {
    .read_func  = ovpack_read,
@@ -543,33 +545,33 @@ void sound_al_exit_locked (void)
  *    @param snd Sound to load wav into.
  *    @param rw Data for the wave.
  */
-static int sound_al_loadWav( ALuint *buf, SDL_RWops *rw )
+static int sound_al_loadWav( ALuint *buf, SDL_IOStream *rw )
 {
    SDL_AudioSpec wav_spec;
    Uint32 wav_length;
    Uint8 *wav_buffer;
    ALenum format;
 
-   SDL_RWseek( rw, 0, SEEK_SET );
+   SDL_SeekIO( rw, 0, SEEK_SET );
 
    /* Load WAV. */
-   if (SDL_LoadWAV_RW( rw, 0, &wav_spec, &wav_buffer, &wav_length) == NULL) {
+   if (SDL_LoadWAV_IO( rw, 0, &wav_spec, &wav_buffer, &wav_length) == NULL) {
       WARN(_("SDL_LoadWav_RW failed: %s"), SDL_GetError());
       return -1;
    }
 
    /* Handle format. */
    switch (wav_spec.format) {
-      case AUDIO_U8:
-      case AUDIO_S8:
+      case SDL_AUDIO_U8:
+      case SDL_AUDIO_S8:
          format = (wav_spec.channels==1) ? AL_FORMAT_MONO8 : AL_FORMAT_STEREO8;
          break;
       case AUDIO_U16LSB:
-      case AUDIO_S16LSB:
+      case SDL_AUDIO_S16LE:
          format = (wav_spec.channels==1) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
          break;
       case AUDIO_U16MSB:
-      case AUDIO_S16MSB:
+      case SDL_AUDIO_S16BE:
          WARN( _("Big endian WAVs unsupported!") );
          return -1;
       default:
@@ -681,7 +683,7 @@ static int sound_al_loadOgg( ALuint *buf, OggVorbis_File *vf )
  *    @param rw File to load from.
  *    @param name Name for debugging purposes.
  */
-int sound_al_buffer( ALuint *buf, SDL_RWops *rw, const char *name )
+int sound_al_buffer( ALuint *buf, SDL_IOStream *rw, const char *name )
 {
    int ret;
    OggVorbis_File vf;
@@ -723,7 +725,7 @@ int sound_al_buffer( ALuint *buf, SDL_RWops *rw, const char *name )
  *    @param rw File to load from.
  *    @param name Name for debugging purposes.
  */
-int sound_al_load( alSound *snd, SDL_RWops *rw, const char *name )
+int sound_al_load( alSound *snd, SDL_IOStream *rw, const char *name )
 {
    int ret;
    ALint freq, bits, channels, size;

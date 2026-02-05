@@ -72,14 +72,11 @@
 PlayerConf_t conf = {
    .ndata = NULL,
    .language=NULL,
-   .joystick_nam = NULL
 };
 
 /* from main.c */
 extern int show_fps;
 extern int max_fps;
-extern int indjoystick;
-extern char* namjoystick;
 /* from input.c */
 extern unsigned int input_afterburnSensitivity;
 
@@ -102,8 +99,6 @@ static void print_usage( void )
    LOG(_("   -V, --vsync           enable vsync"));
    LOG(_("   -W n                  set width to n"));
    LOG(_("   -H n                  set height to n"));
-   LOG(_("   -j n, --joystick n    use joystick n"));
-   LOG(_("   -J s, --Joystick s    use joystick whose name contains s"));
    LOG(_("   -M, --mute            disables sound"));
    LOG(_("   -S, --sound           forces sound"));
    LOG(_("   -m f, --mvol f        sets the music volume to f"));
@@ -124,9 +119,6 @@ static void print_usage( void )
 void conf_setDefaults (void)
 {
    conf_cleanup();
-
-   /* Joystick. */
-   conf.joystick_ind = -1;
 
    /* GUI. */
    conf.map_overlay_opacity = MAP_OVERLAY_OPACITY_DEFAULT;
@@ -216,17 +208,18 @@ void conf_setAudioDefaults (void)
 void conf_setVideoDefaults (void)
 {
    int w, h, f;
-   SDL_DisplayMode resolution;
+   const SDL_DisplayMode *resolution;
 
    /* More complex resolution handling. */
    w = RESOLUTION_W_DEFAULT;
    h = RESOLUTION_H_DEFAULT;
    f = 0;
-   if (SDL_GetCurrentDisplayMode(0, &resolution) == 0) {
+   resolution = SDL_GetCurrentDisplayMode(0);
+   if (resolution != NULL) {
       /* Fullscreen and fit everything onscreen. */
-      if ((resolution.w <= w) || (resolution.h <= h)) {
-         w = resolution.w;
-         h = resolution.h;
+      if ((resolution->w <= w) || (resolution->h <= h)) {
+         w = resolution->w;
+         h = resolution->h;
          f = FULLSCREEN_DEFAULT;
       }
    }
@@ -266,7 +259,6 @@ void conf_cleanup (void)
    free(conf.datapath);
    free(conf.ndata);
    free(conf.language);
-   free(conf.joystick_nam);
    free(conf.dev_save_sys);
    free(conf.dev_save_map);
    free(conf.dev_save_asset);
@@ -365,14 +357,6 @@ int conf_loadConfig ( const char* file )
       conf_loadFloat(lEnv, "volume", conf.volume);
       conf_loadFloat(lEnv, "sound", conf.sound);
       conf_loadFloat(lEnv, "music", conf.music);
-
-      /* Joystick. */
-      nlua_getenv( lEnv, "joystick" );
-      if (lua_isnumber(naevL, -1))
-         conf.joystick_ind = (int)lua_tonumber(naevL, -1);
-      else if (lua_isstring(naevL, -1))
-         conf.joystick_nam = strdup(lua_tostring(naevL, -1));
-      lua_pop(naevL,1);
 
       /* GUI. */
       conf_loadFloat( lEnv, "map_overlay_opacity", conf.map_overlay_opacity );
@@ -476,15 +460,10 @@ int conf_loadConfig ( const char* file )
 
             if (str != NULL) { /* keybind is valid */
                /* get type */
-               if (strcmp(str,"null")==0)          type = KEYBIND_NULL;
-               else if (strcmp(str,"keyboard")==0) type = KEYBIND_KEYBOARD;
-               else if (strcmp(str,"jaxispos")==0) type = KEYBIND_JAXISPOS;
-               else if (strcmp(str,"jaxisneg")==0) type = KEYBIND_JAXISNEG;
-               else if (strcmp(str,"jbutton")==0)  type = KEYBIND_JBUTTON;
-               else if (strcmp(str,"jhat_up")==0)  type = KEYBIND_JHAT_UP;
-               else if (strcmp(str,"jhat_down")==0)  type = KEYBIND_JHAT_DOWN;
-               else if (strcmp(str,"jhat_left")==0)  type = KEYBIND_JHAT_LEFT;
-               else if (strcmp(str,"jhat_right")==0)  type = KEYBIND_JHAT_RIGHT;
+               if (strcmp(str,"null") == 0)
+                  type = KEYBIND_NULL;
+               else if (strcmp(str,"keyboard") == 0)
+                  type = KEYBIND_KEYBOARD;
                else {
                   WARN(_("Unknown keybinding of type %s"), str);
                   continue;
@@ -498,12 +477,18 @@ int conf_loadConfig ( const char* file )
 
                /* Set modifier, probably should be able to handle two at a time. */
                if (mod != NULL) {
-                  if      (strcmp(mod,"ctrl")==0)    m = NMOD_CTRL;
-                  else if (strcmp(mod,"shift")==0)   m = NMOD_SHIFT;
-                  else if (strcmp(mod,"alt")==0)     m = NMOD_ALT;
-                  else if (strcmp(mod,"meta")==0)    m = NMOD_META;
-                  else if (strcmp(mod,"any")==0)     m = NMOD_ANY;
-                  else if (strcmp(mod,"none")==0)    m = NMOD_NONE;
+                  if (strcmp(mod,"ctrl") == 0)
+                     m = NMOD_CTRL;
+                  else if (strcmp(mod,"shift") == 0)
+                     m = NMOD_SHIFT;
+                  else if (strcmp(mod,"alt") == 0)
+                     m = NMOD_ALT;
+                  else if (strcmp(mod,"meta") == 0)
+                     m = NMOD_META;
+                  else if (strcmp(mod,"any") == 0)
+                     m = NMOD_ANY;
+                  else if (strcmp(mod,"none") == 0)
+                     m = NMOD_NONE;
                   else {
                      WARN(_("Unknown keybinding mod of type %s"), mod);
                      m = NMOD_NONE;
@@ -544,8 +529,6 @@ void conf_parseCLI( int argc, char** argv )
       { "fullscreen", no_argument, 0, 'f' },
       { "fps", required_argument, 0, 'F' },
       { "vsync", no_argument, 0, 'V' },
-      { "joystick", required_argument, 0, 'j' },
-      { "Joystick", required_argument, 0, 'J' },
       { "width", required_argument, 0, 'W' },
       { "height", required_argument, 0, 'H' },
       { "mute", no_argument, 0, 'M' },
@@ -582,12 +565,6 @@ void conf_parseCLI( int argc, char** argv )
             break;
          case 'V':
             conf.vsync = 1;
-            break;
-         case 'j':
-            conf.joystick_ind = atoi(optarg);
-            break;
-         case 'J':
-            conf.joystick_nam = strdup(optarg);
             break;
          case 'W':
             conf.width = atoi(optarg);
@@ -936,20 +913,6 @@ int conf_saveConfig ( const char* file )
    conf_saveFloat("music", conf.music);
    conf_saveEmptyLine();
 
-   /* Joystick. */
-   conf_saveComment(_("The name or numeric index of the joystick to use"));
-   conf_saveComment(_("Setting this to nil disables the joystick support"));
-   if (conf.joystick_nam != NULL) {
-      conf_saveString("joystick",conf.joystick_nam);
-   }
-   else if (conf.joystick_ind >= 0) {
-      conf_saveInt("joystick",conf.joystick_ind);
-   }
-   else {
-      conf_saveString("joystick",NULL);
-   }
-   conf_saveEmptyLine();
-
    /* GUI. */
    conf_saveComment(_("Opacity fraction (0-1) for the overlay map."));
    conf_saveFloat("map_overlay_opacity", conf.map_overlay_opacity);
@@ -1061,19 +1024,16 @@ int conf_saveConfig ( const char* file )
       conf_saveComment(input_getKeybindDescription( keybind_info[i][0] ));
 
       /* Get the keybind */
-      key = input_getKeybind( keybind_info[i][0], &type, &mod );
+      key = input_getKeybind(keybind_info[i][0], &type, &mod);
 
       /* Determine the textual name for the keybind type */
       switch (type) {
-         case KEYBIND_KEYBOARD:  typename = "keyboard";  break;
-         case KEYBIND_JAXISPOS:  typename = "jaxispos";  break;
-         case KEYBIND_JAXISNEG:  typename = "jaxisneg";  break;
-         case KEYBIND_JBUTTON:   typename = "jbutton";   break;
-         case KEYBIND_JHAT_UP:   typename = "jhat_up";   break;
-         case KEYBIND_JHAT_DOWN: typename = "jhat_down"; break;
-         case KEYBIND_JHAT_LEFT: typename = "jhat_left"; break;
-         case KEYBIND_JHAT_RIGHT:typename = "jhat_right";break;
-         default:                typename = NULL;        break;
+         case KEYBIND_KEYBOARD:
+            typename = "keyboard";
+            break;
+         default:
+            typename = NULL;
+            break;
       }
       /* Write a nil if an unknown type */
       if ((typename == NULL) || (key == SDLK_UNKNOWN && type == KEYBIND_KEYBOARD)) {
@@ -1083,12 +1043,24 @@ int conf_saveConfig ( const char* file )
 
       /* Determine the textual name for the modifier */
       switch ((int)mod) {
-         case NMOD_CTRL:  modname = "ctrl";   break;
-         case NMOD_SHIFT: modname = "shift";  break;
-         case NMOD_ALT:   modname = "alt";    break;
-         case NMOD_META:  modname = "meta";   break;
-         case NMOD_ANY:   modname = "any";     break;
-         default:         modname = "none";    break;
+         case NMOD_CTRL:
+            modname = "ctrl";
+            break;
+         case NMOD_SHIFT:
+            modname = "shift";
+            break;
+         case NMOD_ALT:
+            modname = "alt";
+            break;
+         case NMOD_META:
+            modname = "meta";
+            break;
+         case NMOD_ANY:
+            modname = "any";
+            break;
+         default:
+            modname = "none";
+            break;
       }
 
       /* Determine the textual name for the key, if a keyboard keybind */

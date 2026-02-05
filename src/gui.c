@@ -2378,9 +2378,10 @@ glTexture* gui_hailIcon (void)
 /**
  * @brief Translates a mouse position from an SDL_Event to GUI coordinates.
  */
-static void gui_eventToScreenPos( int* sx, int* sy, int ex, int ey )
+static void gui_eventToScreenPos(int* sx, int* sy, float ex, float ey)
 {
-   gl_windowToScreenPos( sx, sy, ex - gui_viewport_x, ey - gui_viewport_y );
+   gl_windowToScreenPos(sx, sy, (int)((double)ex - gui_viewport_x),
+         (int)((double)ey - gui_viewport_y));
 }
 
 
@@ -2398,7 +2399,7 @@ int gui_radarClickEvent( SDL_Event* event )
    if (gui_radar.closed)
       return 0;
 
-   gui_eventToScreenPos( &mxr, &myr, event->button.x, event->button.y );
+   gui_eventToScreenPos(&mxr, &myr, event->button.x, event->button.y);
    if (gui_radar.shape == RADAR_RECT) {
       cx = gui_radar.x + gui_radar.w / 2.;
       cy = gui_radar.y + gui_radar.h / 2.;
@@ -2425,7 +2426,7 @@ int gui_handleEvent( SDL_Event *evt )
 
    if (player.p == NULL)
       return 0;
-   if ((evt->type == SDL_MOUSEBUTTONDOWN) &&
+   if ((evt->type == SDL_EVENT_MOUSE_BUTTON_DOWN) &&
          (pilot_isFlag(player.p,PILOT_HYP_PREP) ||
          pilot_isFlag(player.p,PILOT_HYP_BEGIN) ||
          pilot_isFlag(player.p,PILOT_HYPERSPACE)))
@@ -2434,27 +2435,27 @@ int gui_handleEvent( SDL_Event *evt )
    ret = 0;
    switch (evt->type) {
       /* Mouse motion. */
-      case SDL_MOUSEMOTION:
+      case SDL_EVENT_MOUSE_MOTION:
          if (!gui_L_mmove)
             break;
          gui_prepFunc( "mouse_move" );
-         gui_eventToScreenPos( &x, &y, evt->motion.x, evt->motion.y );
+         gui_eventToScreenPos(&x, &y, evt->motion.x, evt->motion.y);
          lua_pushnumber( naevL, x );
          lua_pushnumber( naevL, y );
          gui_runFunc( "mouse_move", 2, 0 );
          break;
 
       /* Mouse click. */
-      case SDL_MOUSEBUTTONDOWN:
-      case SDL_MOUSEBUTTONUP:
+      case SDL_EVENT_MOUSE_BUTTON_DOWN:
+      case SDL_EVENT_MOUSE_BUTTON_UP:
          if (!gui_L_mclick)
             break;
          gui_prepFunc( "mouse_click" );
          lua_pushnumber( naevL, evt->button.button+1 );
-         gui_eventToScreenPos( &x, &y, evt->button.x, evt->button.y );
+         gui_eventToScreenPos(&x, &y, evt->button.x, evt->button.y);
          lua_pushnumber( naevL, x );
          lua_pushnumber( naevL, y );
-         lua_pushboolean( naevL, (evt->type==SDL_MOUSEBUTTONDOWN) );
+         lua_pushboolean( naevL, (evt->type==SDL_EVENT_MOUSE_BUTTON_DOWN) );
          gui_runFunc( "mouse_click", 4, 1 );
          ret = lua_toboolean( naevL, -1 );
          lua_pop( naevL, 1 );

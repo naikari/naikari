@@ -12,7 +12,7 @@
 /** @cond */
 #include <ctype.h>
 #include "physfs.h"
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */
@@ -737,27 +737,6 @@ static void menuKeybinds_genList( unsigned int wid )
                snprintf(str[j], l, "%s <%s%s>", keybind_info[j][1], mod_text,
                      SDL_GetKeyName(key));
             break;
-         case KEYBIND_JAXISPOS:
-            snprintf(str[j], l, "%s <ja+%d>", keybind_info[j][1], key);
-            break;
-         case KEYBIND_JAXISNEG:
-            snprintf(str[j], l, "%s <ja-%d>", keybind_info[j][1], key);
-            break;
-         case KEYBIND_JBUTTON:
-            snprintf(str[j], l, "%s <jb%d>", keybind_info[j][1], key);
-            break;
-         case KEYBIND_JHAT_UP:
-            snprintf(str[j], l, "%s <jh%d-up>", keybind_info[j][1], key);
-            break;
-         case KEYBIND_JHAT_DOWN:
-            snprintf(str[j], l, "%s <jh%d-down>", keybind_info[j][1], key);
-            break;
-         case KEYBIND_JHAT_LEFT:
-            snprintf(str[j], l, "%s <jh%d-left>", keybind_info[j][1], key);
-            break;
-         case KEYBIND_JHAT_RIGHT:
-            snprintf(str[j], l, "%s <jh%d-right>", keybind_info[j][1], key);
-            break;
          default:
             snprintf(str[j], l, "%s", keybind_info[j][1]);
             break;
@@ -819,35 +798,14 @@ static void menuKeybinds_update( unsigned int wid, char *name )
          /* Print key. Special-case ASCII letters (use uppercase, unlike SDL_GetKeyName.). */
          if (key < 0x100 && isalpha(key))
             snprintf(binding, sizeof(binding), _("keyboard:   %s%s%c"),
-                  (mod != KMOD_NONE) ? input_modToText(mod) : "",
-                  (mod != KMOD_NONE) ? " + " : "",
+                  (mod != SDL_KMOD_NONE) ? input_modToText(mod) : "",
+                  (mod != SDL_KMOD_NONE) ? " + " : "",
                   toupper(key));
          else
             snprintf(binding, sizeof(binding), _("keyboard:   %s%s%s"),
-                  (mod != KMOD_NONE) ? input_modToText(mod) : "",
-                  (mod != KMOD_NONE) ? " + " : "",
+                  (mod != SDL_KMOD_NONE) ? input_modToText(mod) : "",
+                  (mod != SDL_KMOD_NONE) ? " + " : "",
                   SDL_GetKeyName(key));
-         break;
-      case KEYBIND_JAXISPOS:
-         snprintf(binding, sizeof(binding), _("joy axis pos:   <%d>"), key );
-         break;
-      case KEYBIND_JAXISNEG:
-         snprintf(binding, sizeof(binding), _("joy axis neg:   <%d>"), key );
-         break;
-      case KEYBIND_JBUTTON:
-         snprintf(binding, sizeof(binding), _("joy button:   <%d>"), key);
-         break;
-      case KEYBIND_JHAT_UP:
-         snprintf(binding, sizeof(binding), _("joy hat up:   <%d>"), key);
-         break;
-      case KEYBIND_JHAT_DOWN:
-         snprintf(binding, sizeof(binding), _("joy hat down: <%d>"), key);
-         break;
-      case KEYBIND_JHAT_LEFT:
-         snprintf(binding, sizeof(binding), _("joy hat left: <%d>"), key);
-         break;
-      case KEYBIND_JHAT_RIGHT:
-         snprintf(binding, sizeof(binding), _("joy hat right:<%d>"), key);
          break;
    }
 
@@ -1134,20 +1092,20 @@ static int opt_setKeyEvent( unsigned int wid, SDL_Event *event )
 
    /* See how to handle it. */
    switch (event->type) {
-      case SDL_KEYDOWN:
-         key  = event->key.keysym.sym;
+      case SDL_EVENT_KEY_DOWN:
+         key = event->key.key;
          /* If control key make player hit twice. */
-         test_key_event = (key == SDLK_NUMLOCKCLEAR) ||
-                          (key == SDLK_CAPSLOCK) ||
-                          (key == SDLK_SCROLLLOCK) ||
-                          (key == SDLK_RSHIFT) ||
-                          (key == SDLK_LSHIFT) ||
-                          (key == SDLK_RCTRL) ||
-                          (key == SDLK_LCTRL) ||
-                          (key == SDLK_RALT) ||
-                          (key == SDLK_LALT) ||
-                          (key == SDLK_RGUI) ||
-                          (key == SDLK_LGUI);
+         test_key_event = ((key == SDLK_NUMLOCKCLEAR)
+               || (key == SDLK_CAPSLOCK)
+               || (key == SDLK_SCROLLLOCK)
+               || (key == SDLK_RSHIFT)
+               || (key == SDLK_LSHIFT)
+               || (key == SDLK_RCTRL)
+               || (key == SDLK_LCTRL)
+               || (key == SDLK_RALT)
+               || (key == SDLK_LALT)
+               || (key == SDLK_RGUI)
+               || (key == SDLK_LGUI));
          if (test_key_event  && (opt_lastKeyPress != key)) {
             opt_lastKeyPress = key;
             return 0;
@@ -1156,57 +1114,19 @@ static int opt_setKeyEvent( unsigned int wid, SDL_Event *event )
          if (window_checkboxState( wid, "chkAny" ))
             mod = NMOD_ANY;
          else {
-            ev_mod = event->key.keysym.mod;
-            mod    = 0;
-            if (ev_mod & (KMOD_LSHIFT | KMOD_RSHIFT))
+            ev_mod = event->key.mod;
+            mod = 0;
+            if (ev_mod & (SDL_KMOD_LSHIFT | SDL_KMOD_RSHIFT))
                mod |= NMOD_SHIFT;
-            if (ev_mod & (KMOD_LCTRL | KMOD_RCTRL))
+            if (ev_mod & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
                mod |= NMOD_CTRL;
-            if (ev_mod & (KMOD_LALT | KMOD_RALT))
+            if (ev_mod & (SDL_KMOD_LALT | SDL_KMOD_RALT))
                mod |= NMOD_ALT;
-            if (ev_mod & (KMOD_LGUI | KMOD_RGUI))
+            if (ev_mod & (SDL_KMOD_LGUI | SDL_KMOD_RGUI))
                mod |= NMOD_META;
          }
          /* Set key. */
          opt_lastKeyPress = key;
-         break;
-
-      case SDL_JOYAXISMOTION:
-         if (event->jaxis.value > 0)
-            type = KEYBIND_JAXISPOS;
-         else if (event->jaxis.value < 0)
-            type = KEYBIND_JAXISNEG;
-         else
-            return 0; /* Not handled. */
-         key  = event->jaxis.axis;
-         mod  = NMOD_ANY;
-         break;
-
-      case SDL_JOYBUTTONDOWN:
-         type = KEYBIND_JBUTTON;
-         key  = event->jbutton.button;
-         mod  = NMOD_ANY;
-         break;
-
-      case SDL_JOYHATMOTION:
-         switch (event->jhat.value) {
-            case SDL_HAT_UP:
-               type = KEYBIND_JHAT_UP;
-               break;
-            case SDL_HAT_DOWN:
-               type = KEYBIND_JHAT_DOWN;
-               break;
-            case SDL_HAT_LEFT:
-               type = KEYBIND_JHAT_LEFT;
-               break;
-            case SDL_HAT_RIGHT:
-               type = KEYBIND_JHAT_RIGHT;
-               break;
-            default:
-               return 0; /* Not handled. */
-         }
-         key  = event->jhat.hat;
-         mod  = NMOD_ANY;
          break;
 
       /* Not handled. */
@@ -1349,7 +1269,7 @@ static void opt_video( unsigned int wid )
    window_setInputFilter( wid, "inpRes", INPUT_FILTER_RESOLUTION );
    y -= 30;
    SDL_DisplayMode mode;
-   display_index = SDL_GetWindowDisplayIndex(gl_screen.window);
+   display_index = SDL_GetDisplayForWindow(gl_screen.window);
    n = SDL_GetNumDisplayModes( display_index );
    def_missing = 1;
    for (i=0; i<n; i++) {
@@ -1721,12 +1641,12 @@ static void opt_getVideoMode( int *w, int *h, int *fullscreen )
 {
    SDL_DisplayMode mode;
    /* Warning: this test may be inadequate depending on our setup.
-    * Example (Wayland): if I called SDL_SetWindowDisplayMode with an impossibly large size, then SDL_SetWindowFullscreen,
+    * Example (Wayland): if I called SDL_SetWindowFullscreenMode with an impossibly large size, then SDL_SetWindowFullscreen,
     * I see a window on my desktop whereas SDL2 window flags report a fullscreen mode.
     * Mitigation: be strict about how the setup is done in opt_setVideoMode / gl_setupFullscreen, and never bypass them. */
    *fullscreen = (SDL_GetWindowFlags(gl_screen.window) & SDL_WINDOW_FULLSCREEN) != 0;
    if (*fullscreen && conf.modesetting) {
-      SDL_GetWindowDisplayMode(gl_screen.window, &mode);
+      SDL_GetWindowFullscreenMode(gl_screen.window, &mode);
       *w = mode.w;
       *h = mode.h;
    }

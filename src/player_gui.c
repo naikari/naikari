@@ -56,7 +56,7 @@ void player_guiInit(void)
 
 #ifdef DEBUGGING
          /* Make sure the GUI is vaild. */
-         SDL_RWops *rw;
+         SDL_IOStream *rw;
          char buf[PATH_MAX];
          snprintf(buf, sizeof(buf), GUI_PATH"%s.lua", name);
          rw = PHYSFSRWOPS_openRead(buf);
@@ -65,7 +65,7 @@ void player_guiInit(void)
                   name, buf);
             return;
          }
-         SDL_RWclose(rw);
+         SDL_CloseIO(rw);
 #endif /* DEBUGGING */
 
          array_push_back(&gui_list, strdup(name));
@@ -111,7 +111,7 @@ int player_guiAdd( char* name )
 
 #ifdef DEBUGGING
    /* Make sure the GUI is vaild. */
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    char buf[PATH_MAX];
    snprintf( buf, sizeof(buf), GUI_PATH"%s.lua", name );
    rw = PHYSFSRWOPS_openRead( buf );
@@ -119,7 +119,7 @@ int player_guiAdd( char* name )
       WARN(_("GUI '%s' does not exist as a file: '%s' not found."), name, buf );
       return -1;
    }
-   SDL_RWclose(rw);
+   SDL_CloseIO(rw);
 #endif /* DEBUGGING */
 
    /* Add. */

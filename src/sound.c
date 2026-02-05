@@ -12,9 +12,9 @@
 /** @cond */
 #include <sys/stat.h>
 #include "physfs.h"
-#include "SDL.h"
-#include "SDL_mutex.h"
-#include "SDL_thread.h"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_mutex.h>
+#include <SDL3/SDL_thread.h>
 
 #include "naev.h"
 /** @endcond */
@@ -62,7 +62,7 @@ static alSound *sound_list    = NULL; /**< List of available sounds. */
 static voiceId_t voice_genid = 0; /**< Voice identifier generator. */
 alVoice *voice_active         = NULL; /**< Active voices. */
 static alVoice *voice_pool    = NULL; /**< Pool of free voices. */
-static SDL_mutex *voice_mutex = NULL; /**< Lock for voices. */
+static SDL_Mutex *voice_mutex = NULL; /**< Lock for voices. */
 
 
 /*
@@ -666,7 +666,7 @@ static int sound_makeList (void)
    size_t i;
    char path[PATH_MAX];
    int len, suflen, flen;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
 
    if (sound_disabled)
       return 0;
@@ -700,7 +700,7 @@ static int sound_makeList (void)
       files[i][len] = '\0';
 
       source_newRW( rw, files[i], 0 );
-      SDL_RWclose( rw );
+      SDL_CloseIO( rw );
    }
 
    DEBUG( n_("Loaded %d Sound", "Loaded %d Sounds", array_size(sound_list)), array_size(sound_list) );
@@ -1000,7 +1000,7 @@ alVoice* voice_get(voiceId_t id)
 /**
  * @brief Loads a new sound source from a RWops.
  */
-int source_newRW( SDL_RWops *rw, const char *name, unsigned int flags )
+int source_newRW( SDL_IOStream *rw, const char *name, unsigned int flags )
 {
    int ret;
    alSound snd, *sndl;
@@ -1027,9 +1027,9 @@ int source_newRW( SDL_RWops *rw, const char *name, unsigned int flags )
  */
 int source_new( const char* filename, unsigned int flags )
 {
-   SDL_RWops *rw = PHYSFSRWOPS_openRead( filename );
+   SDL_IOStream *rw = PHYSFSRWOPS_openRead( filename );
    int id = source_newRW( rw, filename, flags );
-   SDL_RWclose( rw );
+   SDL_CloseIO( rw );
    return id;
 }
 

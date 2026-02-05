@@ -12,7 +12,7 @@
 /** @cond */
 #include <time.h>
 #include "physfs.h"
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */
@@ -279,24 +279,24 @@ void menu_main (void)
 
    /* Buttons. */
    window_addButtonKey(wid, 20, y, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnLoad", _("&Load Game"), menu_main_load, SDLK_l);
+         "btnLoad", _("&Load Game"), menu_main_load, SDLK_L);
    y -= BUTTON_HEIGHT+20;
    window_addButtonKey(wid, 20, y, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnNew", _("&New Game"), menu_main_new, SDLK_n);
+         "btnNew", _("&New Game"), menu_main_new, SDLK_N);
    y -= BUTTON_HEIGHT+20;
    if (conf.devmode) {
       window_addButtonKey(wid, 20, y, BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnEditor", _("&Editors"), menu_editors_open, SDLK_e);
+            "btnEditor", _("&Editors"), menu_editors_open, SDLK_E);
       y -= BUTTON_HEIGHT+20;
    }
    window_addButtonKey(wid, 20, y, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnOptions", _("&Options"), menu_options_button, SDLK_o);
+         "btnOptions", _("&Options"), menu_options_button, SDLK_O);
    y -= BUTTON_HEIGHT+20;
    window_addButtonKey(wid, 20, y, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnCredits", p_("Menu|", "&Credits"), menu_main_credits, SDLK_c);
+         "btnCredits", p_("Menu|", "&Credits"), menu_main_credits, SDLK_C);
    y -= BUTTON_HEIGHT+20;
    window_addButtonKey(wid, 20, y, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnExit", _("E&xit Game"), menu_exit, SDLK_x);
+         "btnExit", _("E&xit Game"), menu_exit, SDLK_X);
 
    /* Disable load button if there are no saves. */
    if (array_size( load_getList() ) == 0) {
@@ -490,18 +490,18 @@ void menu_small (void)
 
    window_addButtonKey(wid, 20, 20 + 4*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnResume", _("&Resume"), menu_small_resume, SDLK_r);
+         "btnResume", _("&Resume"), menu_small_resume, SDLK_R);
    window_addButtonKey(wid, 20, 20 + 3*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnLoad", _("&Load Game"), menu_small_load, SDLK_l);
+         "btnLoad", _("&Load Game"), menu_small_load, SDLK_L);
    window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnInfo", _("Ship &Computer"), menu_small_info, SDLK_c);
+         "btnInfo", _("Ship &Computer"), menu_small_info, SDLK_C);
    window_addButtonKey(wid, 20, 20 + 1*(BUTTON_HEIGHT+20),
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnOptions", _("&Options"), menu_options_button, SDLK_o);
+         "btnOptions", _("&Options"), menu_options_button, SDLK_O);
    window_addButtonKey(wid, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnExit", _("E&xit to Title"), menu_small_exit, SDLK_x);
+         "btnExit", _("E&xit to Title"), menu_small_exit, SDLK_X);
 
    menu_Open(MENU_SMALL);
 }
@@ -678,18 +678,18 @@ void menu_death (void)
    if (PHYSFS_exists(path))
       window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
             BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnContinue", _("&Continue"), menu_death_continue, SDLK_c);
+            "btnContinue", _("&Continue"), menu_death_continue, SDLK_C);
    else
       window_addButtonKey(wid, 20, 20 + 2*(BUTTON_HEIGHT+20),
             BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnRestart", _("&Restart"), menu_death_restart, SDLK_r);
+            "btnRestart", _("&Restart"), menu_death_restart, SDLK_R);
 
    window_addButtonKey(wid, 20, 20 + 1*(BUTTON_HEIGHT+20),
             BUTTON_WIDTH, BUTTON_HEIGHT,
-            "btnLoad", _("&Load Game"), menu_death_load, SDLK_l);
+            "btnLoad", _("&Load Game"), menu_death_load, SDLK_L);
    window_addButtonKey(wid, 20, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnMain", _("&Main Menu"), menu_death_main, SDLK_m);
+         "btnMain", _("&Main Menu"), menu_death_main, SDLK_M);
    menu_Open(MENU_DEATH);
 
    /* Makes it all look cooler since everything still goes on. */
@@ -804,15 +804,15 @@ static void menu_editors_open( unsigned int wid, char *unused )
    /* Set buttons for the editors */
    window_addButtonKey(wid, 20, y,
          BUTTON_WIDTH + EDITORS_EXTRA_WIDTH, BUTTON_HEIGHT,
-         "btnUniverse", _("&Universe Map"), uniedit_open, SDLK_u);
+         "btnUniverse", _("&Universe Map"), uniedit_open, SDLK_U);
    y -= BUTTON_HEIGHT+20;
    window_addButtonKey(wid, 20, y,
          BUTTON_WIDTH + EDITORS_EXTRA_WIDTH, BUTTON_HEIGHT,
-         "btnMapEdit", _("Map &Outfits"), mapedit_open, SDLK_o);
+         "btnMapEdit", _("Map &Outfits"), mapedit_open, SDLK_O);
    y -= BUTTON_HEIGHT+20;
    window_addButtonKey(wid, 20, y,
          BUTTON_WIDTH + EDITORS_EXTRA_WIDTH, BUTTON_HEIGHT,
-         "btnMain", _("E&xit to Main Menu"), menu_editors_close, SDLK_x);
+         "btnMain", _("E&xit to Main Menu"), menu_editors_close, SDLK_X);
 
     /* Editors menu is open. */
    menu_Open( MENU_EDITORS );

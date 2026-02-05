@@ -11,7 +11,7 @@
 
 /** @cond */
 #include "physfsrwops.h"
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */
@@ -39,7 +39,7 @@ int music_disabled = 0; /**< Whether or not music is disabled. */
  * Handle if music should run Lua script.  Must be locked to ensure same
  *  behaviour always.
  */
-static SDL_mutex *music_lock = NULL; /**< lock for music_runLua so it doesn't
+static SDL_Mutex *music_lock = NULL; /**< lock for music_runLua so it doesn't
                                           run twice in a row with weird
                                           results.
                                           DO NOT CALL MIX_* FUNCTIONS WHEN
@@ -316,7 +316,7 @@ double music_getVolumeLog(void)
  */
 int music_load( const char* name )
 {
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    char filename[PATH_MAX];
 
    if (music_disabled)

@@ -10,8 +10,8 @@
 
 /** @cond */
 #include <lauxlib.h>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 /** @endcond */
@@ -193,7 +193,7 @@ static int texL_new( lua_State *L )
    LuaFile_t *lf;
    LuaData_t *ld;
    int sx, sy;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    char *name;
 
    NLUA_CHECKRW(L);
@@ -246,7 +246,7 @@ static int texL_new( lua_State *L )
       if (rw==NULL)
          NLUA_ERROR(L,"Unable to open '%s'", lf->path );
       tex = gl_newSpriteRWops( lf->path, rw, sx, sy, 0 );
-      SDL_RWclose( rw );
+      SDL_CloseIO( rw );
    }
 
    /* Failed to load. */
@@ -304,7 +304,7 @@ static int texL_readData( lua_State *L )
    LuaFile_t *lf;
    LuaData_t ld;
    SDL_Surface *surface;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    const char *s;
    size_t size;
    uint8_t r, g, b, a;
@@ -338,8 +338,9 @@ static int texL_readData( lua_State *L )
    data = (float*)ld.data;
    for (i=0; i<surface->h; i++) {
       for (j=0; j<surface->w; j++) {
-         pix = get_pixel( surface, j, i );
-         SDL_GetRGBA( pix, surface->format, &r, &g, &b, &a );
+         pix = get_pixel(surface, j, i);
+         SDL_GetRGBA(pix, SDL_GetPixelFormatDetails(surface->format),
+               SDL_GetSurfacePalette(surface), &r, &g, &b, &a);
          size_t pos = 4*((surface->h-i-1)*surface->w+j);
          data[ pos+0 ] = ((float)r)/255.;
          data[ pos+1 ] = ((float)g)/255.;
@@ -355,7 +356,7 @@ static int texL_readData( lua_State *L )
    lua_pushinteger(L, surface->h);
 
    /* Clean up. */
-   SDL_FreeSurface( surface );
+   SDL_DestroySurface( surface );
 
    return 3;
 }
@@ -376,7 +377,7 @@ static int texL_writeData( lua_State *L )
    size_t len;
    char *data;
    SDL_Surface *surface;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
 
    w = tex->w;
    h = tex->h;
@@ -402,7 +403,7 @@ static int texL_writeData( lua_State *L )
    else
       IMG_SavePNG_RW( surface, rw, 1 );
 
-   SDL_FreeSurface( surface );
+   SDL_DestroySurface( surface );
 
    lua_pushboolean(L,1);
    return 1;

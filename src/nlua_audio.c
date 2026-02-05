@@ -275,7 +275,7 @@ static int audioL_new( lua_State *L )
    LuaAudio_t la;
    LuaFile_t *lf;
    const char *name;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    double master;
 
    name = NULL;
@@ -323,7 +323,7 @@ static int audioL_new( lua_State *L )
       al_checkErr();
       soundUnlock();
 
-      SDL_RWclose( rw );
+      SDL_CloseIO( rw );
    }
 
    lua_pushaudio(L, la);

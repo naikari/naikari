@@ -6,7 +6,7 @@
 #  define OBJECT_H
 
 /** @cond */
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 #include "opengl.h"

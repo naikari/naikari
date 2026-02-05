@@ -35,19 +35,19 @@
 #endif
 
 #if !TARGET_SDL2
-#ifndef RW_SEEK_SET
-#define RW_SEEK_SET SEEK_SET
+#ifndef SDL_IO_SEEK_SET
+#define SDL_IO_SEEK_SET SEEK_SET
 #endif
-#ifndef RW_SEEK_CUR
-#define RW_SEEK_CUR SEEK_CUR
+#ifndef SDL_IO_SEEK_CUR
+#define SDL_IO_SEEK_CUR SEEK_CUR
 #endif
-#ifndef RW_SEEK_END
-#define RW_SEEK_END SEEK_END
+#ifndef SDL_IO_SEEK_END
+#define SDL_IO_SEEK_END SEEK_END
 #endif
 #endif
 
 #if TARGET_SDL2
-static Sint64 SDLCALL physfsrwops_size(struct SDL_RWops *rw)
+static Sint64 SDLCALL physfsrwops_size(struct SDL_IOStream *rw)
 {
     PHYSFS_File *handle = (PHYSFS_File *) rw->hidden.unknown.data1;
     return (Sint64) PHYSFS_fileLength(handle);
@@ -56,18 +56,18 @@ static Sint64 SDLCALL physfsrwops_size(struct SDL_RWops *rw)
 
 
 #if TARGET_SDL2
-static Sint64 SDLCALL physfsrwops_seek(struct SDL_RWops *rw, Sint64 offset, int whence)
+static Sint64 SDLCALL physfsrwops_seek(struct SDL_IOStream *rw, Sint64 offset, int whence)
 #else
-static int physfsrwops_seek(SDL_RWops *rw, int offset, int whence)
+static int physfsrwops_seek(SDL_IOStream *rw, int offset, int whence)
 #endif
 {
     PHYSFS_File *handle = (PHYSFS_File *) rw->hidden.unknown.data1;
     PHYSFS_sint64 pos = 0;
 
-    if (whence == RW_SEEK_SET)
+    if (whence == SDL_IO_SEEK_SET)
         pos = (PHYSFS_sint64) offset;
 
-    else if (whence == RW_SEEK_CUR)
+    else if (whence == SDL_IO_SEEK_CUR)
     {
         const PHYSFS_sint64 current = PHYSFS_tell(handle);
         if (current == -1)
@@ -89,7 +89,7 @@ static int physfsrwops_seek(SDL_RWops *rw, int offset, int whence)
         pos = current + ((PHYSFS_sint64) offset);
     } /* else if */
 
-    else if (whence == RW_SEEK_END)
+    else if (whence == SDL_IO_SEEK_END)
     {
         const PHYSFS_sint64 len = PHYSFS_fileLength(handle);
         if (len == -1)
@@ -128,10 +128,10 @@ static int physfsrwops_seek(SDL_RWops *rw, int offset, int whence)
 
 
 #if TARGET_SDL2
-static size_t SDLCALL physfsrwops_read(struct SDL_RWops *rw, void *ptr,
+static size_t SDLCALL physfsrwops_read(struct SDL_IOStream *rw, void *ptr,
                                        size_t size, size_t maxnum)
 #else
-static int physfsrwops_read(SDL_RWops *rw, void *ptr, int size, int maxnum)
+static int physfsrwops_read(SDL_IOStream *rw, void *ptr, int size, int maxnum)
 #endif
 {
     PHYSFS_File *handle = (PHYSFS_File *) rw->hidden.unknown.data1;
@@ -160,10 +160,10 @@ static int physfsrwops_read(SDL_RWops *rw, void *ptr, int size, int maxnum)
 
 
 #if TARGET_SDL2
-static size_t SDLCALL physfsrwops_write(struct SDL_RWops *rw, const void *ptr,
+static size_t SDLCALL physfsrwops_write(struct SDL_IOStream *rw, const void *ptr,
                                         size_t size, size_t num)
 #else
-static int physfsrwops_write(SDL_RWops *rw, const void *ptr, int size, int num)
+static int physfsrwops_write(SDL_IOStream *rw, const void *ptr, int size, int num)
 #endif
 {
     PHYSFS_File *handle = (PHYSFS_File *) rw->hidden.unknown.data1;
@@ -180,7 +180,7 @@ static int physfsrwops_write(SDL_RWops *rw, const void *ptr, int size, int num)
 } /* physfsrwops_write */
 
 
-static int physfsrwops_close(SDL_RWops *rw)
+static int physfsrwops_close(SDL_IOStream *rw)
 {
     PHYSFS_File *handle = (PHYSFS_File *) rw->hidden.unknown.data1;
     if (!PHYSFS_close(handle))
@@ -194,9 +194,9 @@ static int physfsrwops_close(SDL_RWops *rw)
 } /* physfsrwops_close */
 
 
-static SDL_RWops *create_rwops(PHYSFS_File *handle)
+static SDL_IOStream *create_rwops(PHYSFS_File *handle)
 {
-    SDL_RWops *retval = NULL;
+    SDL_IOStream *retval = NULL;
 
     if (handle == NULL)
         SDL_SetError("PhysicsFS error: %s", PHYSFS_getLastError());
@@ -220,9 +220,9 @@ static SDL_RWops *create_rwops(PHYSFS_File *handle)
 } /* create_rwops */
 
 
-SDL_RWops *PHYSFSRWOPS_makeRWops(PHYSFS_File *handle)
+SDL_IOStream *PHYSFSRWOPS_makeRWops(PHYSFS_File *handle)
 {
-    SDL_RWops *retval = NULL;
+    SDL_IOStream *retval = NULL;
     if (handle == NULL)
         SDL_SetError("NULL pointer passed to PHYSFSRWOPS_makeRWops().");
     else
@@ -232,19 +232,19 @@ SDL_RWops *PHYSFSRWOPS_makeRWops(PHYSFS_File *handle)
 } /* PHYSFSRWOPS_makeRWops */
 
 
-SDL_RWops *PHYSFSRWOPS_openRead(const char *fname)
+SDL_IOStream *PHYSFSRWOPS_openRead(const char *fname)
 {
     return create_rwops(PHYSFS_openRead(fname));
 } /* PHYSFSRWOPS_openRead */
 
 
-SDL_RWops *PHYSFSRWOPS_openWrite(const char *fname)
+SDL_IOStream *PHYSFSRWOPS_openWrite(const char *fname)
 {
     return create_rwops(PHYSFS_openWrite(fname));
 } /* PHYSFSRWOPS_openWrite */
 
 
-SDL_RWops *PHYSFSRWOPS_openAppend(const char *fname)
+SDL_IOStream *PHYSFSRWOPS_openAppend(const char *fname)
 {
     return create_rwops(PHYSFS_openAppend(fname));
 } /* PHYSFSRWOPS_openAppend */

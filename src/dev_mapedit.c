@@ -10,7 +10,7 @@
 
 /** @cond */
 #include "physfs.h"
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */
@@ -176,26 +176,26 @@ void mapedit_open( unsigned int wid_unused, char *unused )
    buttonHPos = 2;
    window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
          20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClear", "&Reset", mapedit_clear, SDLK_r);
+         "btnClear", "&Reset", mapedit_clear, SDLK_R);
    buttonHPos--;
 
    /* Button : open map file. */
    window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
          20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnOpen", "&Open", mapedit_btnOpen, SDLK_o);
+         "btnOpen", "&Open", mapedit_btnOpen, SDLK_O);
    buttonHPos--;
 
    /* Button : save current map to file. */
    window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
          20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnSaveAs", "&Save", mapedit_btnSaveMapAs, SDLK_s);
+         "btnSaveAs", "&Save", mapedit_btnSaveMapAs, SDLK_S);
    buttonHPos = 0;
    buttonVPos--;
 
    /* Button : exit editor. */
    window_addButtonKey(wid, -20-(BUTTON_WIDTH+20)*buttonHPos,
          20+(BUTTON_HEIGHT+20)*buttonVPos, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", "E&xit", mapedit_close, SDLK_x);
+         "btnClose", "E&xit", mapedit_close, SDLK_X);
 
    /* Filename. */
    window_addText( wid, -200, -40-textPos*parHeight-linesPos*lineHeight, 100, lineHeight, 0, "txtSFileName",
@@ -398,7 +398,7 @@ static int mapedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
    t = 15.*15.; /* threshold */
 
    switch (event->type) {
-   case SDL_MOUSEWHEEL:
+   case SDL_EVENT_MOUSE_WHEEL:
       /* Must be in bounds. */
       if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
          return 0;
@@ -408,7 +408,7 @@ static int mapedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
          mapedit_buttonZoom( 0, "btnZoomOut" );
       return 1;
 
-      case SDL_MOUSEBUTTONDOWN:
+      case SDL_EVENT_MOUSE_BUTTON_DOWN:
          /* Must be in bounds. */
          if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;
@@ -467,14 +467,14 @@ static int mapedit_mouse( unsigned int wid, SDL_Event* event, double mx, double 
          }
          break;
 
-      case SDL_MOUSEBUTTONUP:
+      case SDL_EVENT_MOUSE_BUTTON_UP:
          /* Handles dragging viewport around. */
          if (mapedit_drag) {
             mapedit_drag = 0;
          }
          break;
 
-      case SDL_MOUSEMOTION:
+      case SDL_EVENT_MOUSE_MOTION:
          /* Update mouse positions. */
          mapedit_mx = mx;
          mapedit_my = my;
@@ -677,7 +677,7 @@ void mapedit_loadMapMenu_open (void)
    /* Buttons */
    window_addButtonKey(mapedit_widLoad, -20, 20 + BUTTON_HEIGHT+20,
          BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnLoad", "&Load", mapedit_loadMapMenu_load, SDLK_l);
+         "btnLoad", "&Load", mapedit_loadMapMenu_load, SDLK_L);
    window_addButton( mapedit_widLoad, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
          "btnBack", "Back", mapedit_loadMapMenu_close );
    window_addButton( mapedit_widLoad, 20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,

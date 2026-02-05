@@ -218,22 +218,22 @@ void input_setDefault(int layout)
 {
    /* Movement */
    if (layout == LAYOUT_WASD) {
-      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_w, NMOD_ANY);
-      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
-      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_d, NMOD_ANY);
-      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_s, NMOD_ANY);
+      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_W, NMOD_ANY);
+      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_A, NMOD_ANY);
+      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_D, NMOD_ANY);
+      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_S, NMOD_ANY);
    }
    else if (layout == LAYOUT_ZQSD) {
-      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_z, NMOD_ANY);
-      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
-      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_d, NMOD_ANY);
-      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_s, NMOD_ANY);
+      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_Z, NMOD_ANY);
+      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_Q, NMOD_ANY);
+      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_D, NMOD_ANY);
+      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_S, NMOD_ANY);
    }
    else if (layout == LAYOUT_IJKL) {
-      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_i, NMOD_ANY);
-      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_j, NMOD_ANY);
-      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_l, NMOD_ANY);
-      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_k, NMOD_ANY);
+      input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_I, NMOD_ANY);
+      input_setKeybind("left", KEYBIND_KEYBOARD, SDLK_J, NMOD_ANY);
+      input_setKeybind("right", KEYBIND_KEYBOARD, SDLK_L, NMOD_ANY);
+      input_setKeybind("reverse", KEYBIND_KEYBOARD, SDLK_K, NMOD_ANY);
    }
    else {
       input_setKeybind("accel", KEYBIND_KEYBOARD, SDLK_UP, NMOD_ANY);
@@ -244,39 +244,39 @@ void input_setDefault(int layout)
 
    /* Targeting */
    if (layout == LAYOUT_WASD) {
-      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE);
-      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL);
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_T, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_T, NMOD_CTRL);
       input_setKeybind("target_nearest", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
       input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
       input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
-      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY);
-      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_R, NMOD_ANY);
+      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_C, NMOD_ANY);
    }
    else if (layout == LAYOUT_ZQSD) {
-      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE);
-      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL);
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_T, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_T, NMOD_CTRL);
       input_setKeybind("target_nearest", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
       input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
       input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
-      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY);
-      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_c, NMOD_ANY);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_R, NMOD_ANY);
+      input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_C, NMOD_ANY);
    }
    else if (layout == LAYOUT_IJKL) {
-      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_p, NMOD_NONE);
-      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_p, NMOD_CTRL);
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_P, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_P, NMOD_CTRL);
       input_setKeybind("target_nearest", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
       input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
       input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
-      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_o, NMOD_ANY);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_O, NMOD_ANY);
       input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_BACKSPACE, NMOD_ANY);
    }
    else {
-      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_t, NMOD_NONE);
-      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_t, NMOD_CTRL);
-      input_setKeybind("target_nearest", KEYBIND_KEYBOARD, SDLK_n, NMOD_ANY);
+      input_setKeybind("target_next", KEYBIND_KEYBOARD, SDLK_T, NMOD_NONE);
+      input_setKeybind("target_prev", KEYBIND_KEYBOARD, SDLK_T, NMOD_CTRL);
+      input_setKeybind("target_nearest", KEYBIND_KEYBOARD, SDLK_N, NMOD_ANY);
       input_setKeybind("target_nextHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
       input_setKeybind("target_prevHostile", KEYBIND_NULL, SDLK_UNKNOWN, NMOD_NONE);
-      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_r, NMOD_ANY);
+      input_setKeybind("target_hostile", KEYBIND_KEYBOARD, SDLK_R, NMOD_ANY);
       input_setKeybind("target_clear", KEYBIND_KEYBOARD, SDLK_BACKSPACE, NMOD_ANY);
    }
 
@@ -284,28 +284,28 @@ void input_setDefault(int layout)
    input_setKeybind( "primary", KEYBIND_KEYBOARD, SDLK_SPACE, NMOD_ANY );
 
    if (layout == LAYOUT_WASD) {
-      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
-      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_q, NMOD_ANY);
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_E, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_Q, NMOD_ANY);
       input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY);
    }
    else if (layout == LAYOUT_ZQSD) {
-      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
-      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_E, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_A, NMOD_ANY);
       input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY);
    }
    else if (layout == LAYOUT_IJKL) {
-      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_u, NMOD_ANY);
-      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_h, NMOD_ANY);
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_U, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_H, NMOD_ANY);
       input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_SEMICOLON, NMOD_ANY);
    }
    else {
-      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_a, NMOD_ANY);
-      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_e, NMOD_ANY);
+      input_setKeybind("face", KEYBIND_KEYBOARD, SDLK_A, NMOD_ANY);
+      input_setKeybind("local_jump", KEYBIND_KEYBOARD, SDLK_E, NMOD_ANY);
       input_setKeybind("secondary", KEYBIND_KEYBOARD, SDLK_LSHIFT, NMOD_ANY);
    }
 
-   input_setKeybind("follow", KEYBIND_KEYBOARD, SDLK_f, NMOD_NONE);
-   input_setKeybind("board", KEYBIND_KEYBOARD, SDLK_b, NMOD_NONE);
+   input_setKeybind("follow", KEYBIND_KEYBOARD, SDLK_F, NMOD_NONE);
+   input_setKeybind("board", KEYBIND_KEYBOARD, SDLK_B, NMOD_NONE);
    input_setKeybind("weapset1", KEYBIND_KEYBOARD, SDLK_1, NMOD_ANY);
    input_setKeybind("weapset2", KEYBIND_KEYBOARD, SDLK_2, NMOD_ANY);
    input_setKeybind("weapset3", KEYBIND_KEYBOARD, SDLK_3, NMOD_ANY);
@@ -324,32 +324,32 @@ void input_setDefault(int layout)
    input_setKeybind( "e_return", KEYBIND_KEYBOARD, SDLK_DELETE, NMOD_ANY );
    input_setKeybind( "e_clear", KEYBIND_KEYBOARD, SDLK_HOME, NMOD_ANY );
    /* Space Navigation */
-   input_setKeybind( "starmap", KEYBIND_KEYBOARD, SDLK_m, NMOD_NONE );
+   input_setKeybind( "starmap", KEYBIND_KEYBOARD, SDLK_M, NMOD_NONE );
    input_setKeybind( "overlay", KEYBIND_KEYBOARD, SDLK_TAB, NMOD_ANY );
-   input_setKeybind( "mousefly", KEYBIND_KEYBOARD, SDLK_x, NMOD_CTRL );
-   input_setKeybind( "autobrake", KEYBIND_KEYBOARD, SDLK_b, NMOD_CTRL );
+   input_setKeybind( "mousefly", KEYBIND_KEYBOARD, SDLK_X, NMOD_CTRL );
+   input_setKeybind( "autobrake", KEYBIND_KEYBOARD, SDLK_B, NMOD_CTRL );
 
    if (layout == LAYOUT_IJKL)
    {
-      input_setKeybind("target_planet", KEYBIND_KEYBOARD, SDLK_s, NMOD_NONE);
-      input_setKeybind("land", KEYBIND_KEYBOARD, SDLK_d, NMOD_NONE);
-      input_setKeybind("thyperspace", KEYBIND_KEYBOARD, SDLK_w, NMOD_NONE);
-      input_setKeybind("autonav", KEYBIND_KEYBOARD, SDLK_n, NMOD_CTRL);
-      input_setKeybind("jump", KEYBIND_KEYBOARD, SDLK_n, NMOD_NONE);
+      input_setKeybind("target_planet", KEYBIND_KEYBOARD, SDLK_S, NMOD_NONE);
+      input_setKeybind("land", KEYBIND_KEYBOARD, SDLK_D, NMOD_NONE);
+      input_setKeybind("thyperspace", KEYBIND_KEYBOARD, SDLK_W, NMOD_NONE);
+      input_setKeybind("autonav", KEYBIND_KEYBOARD, SDLK_N, NMOD_CTRL);
+      input_setKeybind("jump", KEYBIND_KEYBOARD, SDLK_N, NMOD_NONE);
    }
    else
    {
-      input_setKeybind("target_planet", KEYBIND_KEYBOARD, SDLK_p, NMOD_NONE);
-      input_setKeybind("land", KEYBIND_KEYBOARD, SDLK_l, NMOD_NONE);
-      input_setKeybind("thyperspace", KEYBIND_KEYBOARD, SDLK_h, NMOD_NONE);
-      input_setKeybind("autonav", KEYBIND_KEYBOARD, SDLK_j, NMOD_CTRL);
-      input_setKeybind("jump", KEYBIND_KEYBOARD, SDLK_j, NMOD_NONE);
+      input_setKeybind("target_planet", KEYBIND_KEYBOARD, SDLK_P, NMOD_NONE);
+      input_setKeybind("land", KEYBIND_KEYBOARD, SDLK_L, NMOD_NONE);
+      input_setKeybind("thyperspace", KEYBIND_KEYBOARD, SDLK_H, NMOD_NONE);
+      input_setKeybind("autonav", KEYBIND_KEYBOARD, SDLK_J, NMOD_CTRL);
+      input_setKeybind("jump", KEYBIND_KEYBOARD, SDLK_J, NMOD_NONE);
    }
    /* Communication */
    input_setKeybind("log_up", KEYBIND_KEYBOARD, SDLK_PAGEUP, NMOD_NONE);
    input_setKeybind("log_down", KEYBIND_KEYBOARD, SDLK_PAGEDOWN, NMOD_NONE);
-   input_setKeybind("hail", KEYBIND_KEYBOARD, SDLK_y, NMOD_NONE);
-   input_setKeybind("autohail", KEYBIND_KEYBOARD, SDLK_y, NMOD_CTRL);
+   input_setKeybind("hail", KEYBIND_KEYBOARD, SDLK_Y, NMOD_NONE);
+   input_setKeybind("autohail", KEYBIND_KEYBOARD, SDLK_Y, NMOD_CTRL);
    /* Misc. */
    input_setKeybind( "mapzoomin", KEYBIND_KEYBOARD, SDLK_KP_PLUS, NMOD_ANY );
    input_setKeybind( "mapzoomout", KEYBIND_KEYBOARD, SDLK_KP_MINUS, NMOD_ANY );
@@ -357,7 +357,7 @@ void input_setDefault(int layout)
    input_setKeybind( "togglefullscreen", KEYBIND_KEYBOARD, SDLK_F11, NMOD_ANY );
    input_setKeybind( "pause", KEYBIND_KEYBOARD, SDLK_PAUSE, NMOD_ANY );
 
-   input_setKeybind("speed", KEYBIND_KEYBOARD, SDLK_BACKQUOTE, NMOD_ANY);
+   input_setKeybind("speed", KEYBIND_KEYBOARD, SDLK_GRAVE, NMOD_ANY);
    input_setKeybind("menu", KEYBIND_KEYBOARD, SDLK_ESCAPE, NMOD_ANY);
    input_setKeybind("info", KEYBIND_KEYBOARD, SDLK_F1, NMOD_NONE);
    input_setKeybind("console", KEYBIND_KEYBOARD, SDLK_F2, NMOD_NONE);
@@ -371,7 +371,7 @@ void input_setDefault(int layout)
    input_setKeybind("switchtab8", KEYBIND_KEYBOARD, SDLK_8, NMOD_ALT);
    input_setKeybind("switchtab9", KEYBIND_KEYBOARD, SDLK_9, NMOD_ALT);
    input_setKeybind("switchtab0", KEYBIND_KEYBOARD, SDLK_0, NMOD_ALT);
-   input_setKeybind("paste", KEYBIND_KEYBOARD, SDLK_v, NMOD_CTRL);
+   input_setKeybind("paste", KEYBIND_KEYBOARD, SDLK_V, NMOD_CTRL);
 }
 
 
@@ -383,35 +383,26 @@ void input_init (void)
    Keybind *temp;
    int i;
 
-   /* Window. */
-   SDL_EventState( SDL_SYSWMEVENT,      SDL_DISABLE );
-
    /* Keyboard. */
-   SDL_EventState( SDL_KEYDOWN,         SDL_ENABLE );
-   SDL_EventState( SDL_KEYUP,           SDL_ENABLE );
+   SDL_SetEventEnabled(SDL_EVENT_KEY_DOWN, 1);
+   SDL_SetEventEnabled(SDL_EVENT_KEY_UP, 1);
 
    /* Mice. */
-   SDL_EventState( SDL_MOUSEMOTION,     SDL_ENABLE );
-   SDL_EventState( SDL_MOUSEBUTTONDOWN, SDL_ENABLE );
-   SDL_EventState( SDL_MOUSEBUTTONUP,   SDL_ENABLE );
-
-   /* Joystick, enabled in joystick.c if needed. */
-   SDL_EventState( SDL_JOYAXISMOTION,   SDL_DISABLE );
-   SDL_EventState( SDL_JOYHATMOTION,    SDL_DISABLE );
-   SDL_EventState( SDL_JOYBUTTONDOWN,   SDL_DISABLE );
-   SDL_EventState( SDL_JOYBUTTONUP,     SDL_DISABLE );
+   SDL_SetEventEnabled(SDL_EVENT_MOUSE_MOTION, 1);
+   SDL_SetEventEnabled(SDL_EVENT_MOUSE_BUTTON_DOWN, 1);
+   SDL_SetEventEnabled(SDL_EVENT_MOUSE_BUTTON_UP, 1);
 
    /* Quit. */
-   SDL_EventState( SDL_QUIT,            SDL_ENABLE );
+   SDL_SetEventEnabled(SDL_EVENT_QUIT, 1);
 
    /* Window. */
-   SDL_EventState( SDL_WINDOWEVENT,     SDL_ENABLE );
+   SDL_SetEventEnabled(SDL_EVENT_WINDOW_RESIZED, 1);
 
-   /* Keyboard. */
-   SDL_EventState( SDL_TEXTINPUT,       SDL_DISABLE); /* Enabled on a per-widget basis. */
+   /* Keyboard, enabled on a per-widget basis. */
+   SDL_SetEventEnabled(SDL_EVENT_TEXT_INPUT, 0);
 
    /* Mouse. */
-   SDL_EventState( SDL_MOUSEWHEEL,      SDL_ENABLE );
+   SDL_SetEventEnabled(SDL_EVENT_MOUSE_WHEEL, 1);
 
    input_keybinds = malloc( input_numbinds * sizeof(Keybind) );
 
@@ -481,7 +472,7 @@ void input_toggleEnable( const char *key, int enable )
  */
 void input_mouseShow (void)
 {
-   SDL_ShowCursor( SDL_ENABLE );
+   SDL_ShowCursor();
    input_mouseCounter++;
 }
 
@@ -604,34 +595,6 @@ void input_getKeybindDisplay( const char *keybind, char *buf, int len )
             p += scnprintf( &buf[p], len-p, "%s", _(SDL_GetKeyName(key)) );
          (void)p;
          break;
-
-      case KEYBIND_JBUTTON:
-         snprintf( buf, len, _("joy button %d"), key );
-         break;
-
-      case KEYBIND_JHAT_UP:
-         snprintf( buf, len, _("joy hat %d up"), key );
-         break;
-
-      case KEYBIND_JHAT_DOWN:
-         snprintf( buf, len, _("joy hat %d down"), key );
-         break;
-
-      case KEYBIND_JHAT_LEFT:
-         snprintf( buf, len, _("joy hat %d left"), key );
-         break;
-
-      case KEYBIND_JHAT_RIGHT:
-         snprintf( buf, len, _("joy hat %d right"), key );
-         break;
-
-      case KEYBIND_JAXISPOS:
-         snprintf( buf, len, _("joy axis %d-"), key );
-         break;
-
-      case KEYBIND_JAXISNEG:
-         snprintf( buf, len, _("joy axis %d+"), key );
-         break;
    }
 }
 
@@ -687,15 +650,6 @@ const char *input_keyAlreadyBound( KeybindType type, SDL_Keycode key, SDL_Keymod
                return keybind_info[i][0];
             break;
 
-         case KEYBIND_JAXISPOS:
-         case KEYBIND_JAXISNEG:
-         case KEYBIND_JBUTTON:
-         case KEYBIND_JHAT_UP:
-         case KEYBIND_JHAT_DOWN:
-         case KEYBIND_JHAT_LEFT:
-         case KEYBIND_JHAT_RIGHT:
-            return keybind_info[i][0];
-
          default:
             break;
       }
@@ -732,13 +686,13 @@ const char* input_getKeybindDescription( const char *keybind )
 SDL_Keymod input_translateMod( SDL_Keymod mod )
 {
    SDL_Keymod mod_filtered = 0;
-   if (mod & (KMOD_LSHIFT | KMOD_RSHIFT))
+   if (mod & (SDL_KMOD_LSHIFT | SDL_KMOD_RSHIFT))
       mod_filtered |= NMOD_SHIFT;
-   if (mod & (KMOD_LCTRL | KMOD_RCTRL))
+   if (mod & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
       mod_filtered |= NMOD_CTRL;
-   if (mod & (KMOD_LALT | KMOD_RALT))
+   if (mod & (SDL_KMOD_LALT | SDL_KMOD_RALT))
       mod_filtered |= NMOD_ALT;
-   if (mod & (KMOD_LGUI | KMOD_RGUI))
+   if (mod & (SDL_KMOD_LGUI | SDL_KMOD_RGUI))
       mod_filtered |= NMOD_META;
    return mod_filtered;
 }
@@ -756,7 +710,7 @@ void input_update( double dt )
 
       /* Hide if necessary. */
       if ((input_mouseTimer < 0.) && (input_mouseCounter <= 0))
-         SDL_ShowCursor( SDL_DISABLE );
+         SDL_HideCursor();
    }
 
    /* Key repeat if applicable. */
@@ -1244,91 +1198,8 @@ static void input_key( int keynum, double value, double kabs, int repeat )
  * events
  */
 /* prototypes */
-static void input_joyaxis( const SDL_Keycode axis, const int value );
-static void input_joyevent( const int event, const SDL_Keycode button );
-static void input_keyevent( const int event, const SDL_Keycode key, const SDL_Keymod mod, const int repeat );
-
-/*
- * joystick
- */
-/**
- * @brief Filters a joystick axis event.
- *    @param axis Axis generated by the event.
- *    @param value Value of the axis.
- */
-static void input_joyaxis( const SDL_Keycode axis, const int value )
-{
-   int i, k;
-   for (i=0; i<input_numbinds; i++) {
-      if (input_keybinds[i].key == axis) {
-         /* Positive axis keybinding. */
-         if ((input_keybinds[i].type == KEYBIND_JAXISPOS)
-               && (value >= 0)) {
-            k = (value > 0) ? KEY_PRESS : KEY_RELEASE;
-            if ((k == KEY_PRESS) && input_keybinds[i].disabled)
-               continue;
-            input_key( i, k, FABS(((double)value)/32767.), 0 );
-         }
-
-         /* Negative axis keybinding. */
-         if ((input_keybinds[i].type == KEYBIND_JAXISNEG)
-               && (value <= 0)) {
-            k = (value < 0) ? KEY_PRESS : KEY_RELEASE;
-            if ((k == KEY_PRESS) && input_keybinds[i].disabled)
-               continue;
-            input_key( i, k, FABS(((double)value)/32767.), 0 );
-         }
-      }
-   }
-}
-/**
- * @brief Filters a joystick button event.
- *    @param event Event type (down/up).
- *    @param button Button generating the event.
- */
-static void input_joyevent( const int event, const SDL_Keycode button )
-{
-   int i;
-   for (i=0; i<input_numbinds; i++) {
-      if ((event == KEY_PRESS) && input_keybinds[i].disabled)
-         continue;
-      if ((input_keybinds[i].type == KEYBIND_JBUTTON) &&
-            (input_keybinds[i].key == button))
-         input_key(i, event, -1., 0);
-   }
-}
-
-/**
- * @brief Filters a joystick hat event.
- *    @param value Direction on hat.
- *    @param hat Hat generating the event.
- */
-static void input_joyhatevent( const Uint8 value, const Uint8 hat )
-{
-   int i, event;
-   for (i=0; i<input_numbinds; i++) {
-      if (input_keybinds[i].key != hat)
-         continue;
-
-      if (input_keybinds[i].type == KEYBIND_JHAT_UP) {
-         event = (value & SDL_HAT_UP) ? KEY_PRESS : KEY_RELEASE;
-         if (!((event == KEY_PRESS) && input_keybinds[i].disabled))
-            input_key(i, event, -1., 0);
-      } else if (input_keybinds[i].type == KEYBIND_JHAT_DOWN) {
-         event = (value & SDL_HAT_DOWN) ? KEY_PRESS : KEY_RELEASE;
-         if (!((event == KEY_PRESS) && input_keybinds[i].disabled))
-            input_key(i, event, -1., 0);
-      } else if (input_keybinds[i].type == KEYBIND_JHAT_LEFT) {
-         event = (value & SDL_HAT_LEFT) ? KEY_PRESS : KEY_RELEASE;
-         if (!((event == KEY_PRESS) && input_keybinds[i].disabled))
-            input_key(i, event, -1., 0);
-      } else if (input_keybinds[i].type == KEYBIND_JHAT_RIGHT) {
-         event = (value & SDL_HAT_RIGHT) ? KEY_PRESS : KEY_RELEASE;
-         if (!((event == KEY_PRESS) && input_keybinds[i].disabled))
-            input_key(i, event, -1., 0);
-      }
-   }
-}
+static void input_keyevent(const int event, const SDL_Keycode key,
+      const SDL_Keymod mod, const int repeat);
 
 
 /*
@@ -1341,7 +1212,8 @@ static void input_joyhatevent( const Uint8 value, const Uint8 hat )
  *    @param mod Modifiers active when event was generated.
  *    @param repeat Whether the key is still held down, rather than newly pressed.
  */
-static void input_keyevent( const int event, SDL_Keycode key, const SDL_Keymod mod, const int repeat )
+static void input_keyevent(const int event, SDL_Keycode key,
+      const SDL_Keymod mod, const int repeat)
 {
    int i;
    SDL_Keymod mod_filtered;
@@ -1386,7 +1258,7 @@ static void input_mouseMove( SDL_Event* event )
 {
    int mx, my;
 
-   gl_windowToScreenPos( &mx, &my, event->button.x, event->button.y );
+   gl_windowToScreenPos(&mx, &my, (int)event->button.x, (int)event->button.y);
    player.mousex = mx;
    player.mousey = my;
 }
@@ -1424,14 +1296,14 @@ static void input_clickevent( SDL_Event* event )
       if ((event->button.button == SDL_BUTTON_MIDDLE)
             || (event->button.button == SDL_BUTTON_X1)
             || (event->button.button == SDL_BUTTON_X2)) {
-         if (event->type == SDL_MOUSEBUTTONDOWN) {
-            player_restoreControl( PINPUT_MOVEMENT, NULL );
+         if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+            player_restoreControl(PINPUT_MOVEMENT, NULL);
             player_setFlag(PLAYER_ACCEL);
             player_accel(1.);
             input_accelButton = 1;
          }
 
-         else if (event->type == SDL_MOUSEBUTTONUP) {
+         else if (event->type == SDL_EVENT_MOUSE_BUTTON_UP) {
             player_accelOver();
             player_rmFlag(PLAYER_ACCEL);
             input_accelButton = 0;
@@ -1439,14 +1311,14 @@ static void input_clickevent( SDL_Event* event )
 
          /* double tap accel = afterburn! */
          t = SDL_GetTicks();
-         if (conf.doubletap_afterburn && (event->type == SDL_MOUSEBUTTONDOWN)
+         if (conf.doubletap_afterburn && (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN)
                && INGAME() && NOHYP() && NODEAD()
                && (t-input_accelLast <= AFTERBURNER_SENSITIVITY))
             pilot_afterburn( player.p );
-         else if (event->type == SDL_MOUSEBUTTONUP)
+         else if (event->type == SDL_EVENT_MOUSE_BUTTON_UP)
             pilot_afterburnOver( player.p );
 
-         if (event->type == SDL_MOUSEBUTTONDOWN)
+         if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN)
             input_accelLast = t;
          return;
       }
@@ -1458,14 +1330,14 @@ static void input_clickevent( SDL_Event* event )
       return;
 
    /* Mouse targeting only uses mouse button down. */
-   if (event->type != SDL_MOUSEBUTTONDOWN)
+   if (event->type != SDL_EVENT_MOUSE_BUTTON_DOWN)
       return;
 
    autonav = (event->button.button == SDL_BUTTON_RIGHT) ? 1 : 0;
 
    px = player.p->solid->pos.x;
    py = player.p->solid->pos.y;
-   gl_windowToScreenPos( &mx, &my, event->button.x, event->button.y );
+   gl_windowToScreenPos(&mx, &my, (int)event->button.x, (int)event->button.y);
    if ((mx <= 15 || my <= 15 ) || (my >= gl_screen.h - 15 || mx >= gl_screen.w - 15)) {
       /* Border targeting is handled as a special case, as it uses angles,
        * not coordinates. */
@@ -1815,24 +1687,25 @@ void input_handle( SDL_Event* event )
    size_t e;
 
    /* Special case mouse stuff. */
-   if ((event->type == SDL_MOUSEMOTION)  ||
-         (event->type == SDL_MOUSEBUTTONDOWN) ||
-         (event->type == SDL_MOUSEBUTTONUP)) {
+   if ((event->type == SDL_EVENT_MOUSE_MOTION)  ||
+         (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN) ||
+         (event->type == SDL_EVENT_MOUSE_BUTTON_UP)) {
       input_mouseTimer = MOUSE_HIDE;
-      SDL_ShowCursor( SDL_ENABLE );
+      SDL_ShowCursor();
       ismouse = 1;
    }
    else
       ismouse = 0;
 
    /* Special case paste. */
-   if ((event->type == SDL_KEYDOWN) && SDL_HasClipboardText() &&
-         (SDL_EventState(SDL_TEXTINPUT, SDL_QUERY) == SDL_ENABLE)) {
-      SDL_Keymod mod = input_translateMod( event->key.keysym.mod );
-      if ((input_paste->key == event->key.keysym.sym) &&
+   if ((event->type == SDL_EVENT_KEY_DOWN)
+         && SDL_HasClipboardText()
+         && SDL_EventEnabled(SDL_EVENT_TEXT_INPUT)) {
+      SDL_Keymod mod = input_translateMod(event->key.mod);
+      if ((input_paste->key == event->key.key) &&
             (input_paste->mod & mod)) {
          txt = SDL_GetClipboardText();
-         evt.type = SDL_TEXTINPUT;
+         evt.type = SDL_EVENT_TEXT_INPUT;
          i = 0;
          while ((ch = u8_nextchar(txt, &i))) {
             e = u8_wc_toutf8(evt.text.text, ch);
@@ -1870,47 +1743,31 @@ void input_handle( SDL_Event* event )
       /*
        * game itself
        */
-      case SDL_JOYAXISMOTION:
-         input_joyaxis(event->jaxis.axis, event->jaxis.value);
-         break;
-
-      case SDL_JOYBUTTONDOWN:
-         input_joyevent(KEY_PRESS, event->jbutton.button);
-         break;
-
-      case SDL_JOYBUTTONUP:
-         input_joyevent(KEY_RELEASE, event->jbutton.button);
-         break;
-
-      case SDL_JOYHATMOTION:
-         input_joyhatevent(event->jhat.value, event->jhat.hat);
-         break;
-
-      case SDL_KEYDOWN:
+      case SDL_EVENT_KEY_DOWN:
          if (event->key.repeat != 0)
             return;
-         input_keyevent(KEY_PRESS, event->key.keysym.sym, event->key.keysym.mod, 0);
+         input_keyevent(KEY_PRESS, event->key.key, event->key.mod, 0);
          break;
 
-      case SDL_KEYUP:
+      case SDL_EVENT_KEY_UP:
          if (event->key.repeat !=0)
             return;
-         input_keyevent(KEY_RELEASE, event->key.keysym.sym, event->key.keysym.mod, 0);
+         input_keyevent(KEY_RELEASE, event->key.key, event->key.mod, 0);
          break;
 
 
       /* Mouse stuff. */
-      case SDL_MOUSEBUTTONDOWN:
-      case SDL_MOUSEBUTTONUP:
+      case SDL_EVENT_MOUSE_BUTTON_DOWN:
+      case SDL_EVENT_MOUSE_BUTTON_UP:
          input_clickevent( event );
          break;
 
-      case SDL_MOUSEWHEEL:
+      case SDL_EVENT_MOUSE_WHEEL:
          if ((conf.zoom_manual) && (event->wheel.y != 0))
             input_clickZoom(event->wheel.y);
          break;
 
-      case SDL_MOUSEMOTION:
+      case SDL_EVENT_MOUSE_MOTION:
          input_mouseMove( event );
          break;
 

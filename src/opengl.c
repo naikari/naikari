@@ -32,9 +32,9 @@
 
 /** @cond */
 #include "physfsrwops.h"
-#include "SDL.h"
-#include "SDL_error.h"
-#include "SDL_image.h"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_error.h>
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 /** @endcond */
@@ -94,7 +94,7 @@ static int gl_setupScaling (void);
 void gl_screenshot( const char *filename )
 {
    GLubyte *screenbuf;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    SDL_Surface *surface;
    int i, w, h;
 
@@ -124,7 +124,7 @@ void gl_screenshot( const char *filename )
    gl_checkErr();
 
    /* Free memory. */
-   SDL_FreeSurface( surface );
+   SDL_DestroySurface( surface );
 }
 
 
@@ -222,22 +222,22 @@ int gl_setupFullscreen (void)
    int ok;
    SDL_DisplayMode target, closest;
 
-   display_index = SDL_GetWindowDisplayIndex( gl_screen.window );
+   display_index = SDL_GetDisplayForWindow( gl_screen.window );
 
    if (conf.fullscreen && conf.modesetting) {
       /* Try to use desktop resolution if nothing is specifically set. */
       if (conf.explicit_dim) {
-         SDL_GetWindowDisplayMode( gl_screen.window, &target );
+         SDL_GetWindowFullscreenMode( gl_screen.window, &target );
          target.w = conf.width;
          target.h = conf.height;
       }
       else
          SDL_GetDesktopDisplayMode( display_index, &target );
 
-      if (SDL_GetClosestDisplayMode( display_index, &target, &closest ) == NULL)
+      if (SDL_GetClosestFullscreenDisplayMode( display_index, &target, &closest ) == NULL)
          SDL_GetDisplayMode( display_index, 0, &closest ); /* fall back to the best one */
 
-      SDL_SetWindowDisplayMode( gl_screen.window, &closest );
+      SDL_SetWindowFullscreenMode( gl_screen.window, &closest );
    }
    ok = SDL_SetWindowFullscreen( gl_screen.window, gl_getFullscreenMode() );
    /* HACK: Force pending resize events to be processed, particularly on Wayland. */
@@ -269,7 +269,7 @@ static int gl_createWindow( unsigned int flags )
 {
    int ret;
 
-   flags |= SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
+   flags |= SDL_WINDOW_SHOWN | SDL_WINDOW_HIGH_PIXEL_DENSITY;
    if (conf.resizable)
       flags |= SDL_WINDOW_RESIZABLE;
    if (conf.borderless)
