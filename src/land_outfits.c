@@ -163,22 +163,22 @@ void outfits_open( unsigned int wid, const Outfit **outfits )
    if (data==NULL) {
       window_addButtonKey(wid, off = -10, 20,
             bw, bh, "btnCloseOutfits",
-            _("&Take Off"), land_buttonTakeoff, SDLK_t);
+            _("&Take Off"), land_buttonTakeoff, SDLK_T);
    }
    else {
       window_addButtonKey(wid, off = -10, 20,
             bw, bh, "btnCloseOutfits",
-            _("Close"), window_close, SDLK_t);
+            _("Close"), window_close, SDLK_T);
    }
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnSellOutfit",
-         _("&Sell"), outfits_sell, SDLK_s);
+         _("&Sell"), outfits_sell, SDLK_S);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnBuyOutfit",
-         _("&Buy"), outfits_buy, SDLK_b);
+         _("&Buy"), outfits_buy, SDLK_B);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnFindOutfits",
-         _("&Find Outfits"), outfits_find, SDLK_f);
+         _("&Find Outfits"), outfits_find, SDLK_F);
    (void)off;
 
    /* fancy 192x192 image */
@@ -891,9 +891,9 @@ static int outfits_getMod (void)
 
    mods = SDL_GetModState();
    q = 1;
-   if (mods & (KMOD_LCTRL | KMOD_RCTRL))
+   if (mods & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
       q *= 5;
-   if (mods & (KMOD_LSHIFT | KMOD_RSHIFT))
+   if (mods & (SDL_KMOD_LSHIFT | SDL_KMOD_RSHIFT))
       q *= 10;
 
    return q;

@@ -16,7 +16,7 @@
 #include <libgen.h>
 #include <stddef.h>
 #include <string.h>
-#include "SDL_image.h"
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 /** @endcond */

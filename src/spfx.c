@@ -11,8 +11,7 @@
 
 /** @cond */
 #include <inttypes.h>
-#include "SDL.h"
-#include "SDL_haptic.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */
@@ -44,8 +43,6 @@
 #define SHAKE_K         (1./50.) /**< Constant for virtual spring. */
 #define SHAKE_B         (3.*sqrt(SHAKE_K*SHAKE_MASS)) /**< Constant for virtual dampener. */
 
-#define HAPTIC_UPDATE_INTERVAL   0.1 /**< Time between haptic updates. */
-
 
 /* Trail stuff. */
 #define TRAIL_UPDATE_DT       0.05  /**< Rate (in seconds) at which trail is updated. */
@@ -65,12 +62,6 @@ static double shake_force_mod = 0.; /**< Shake force modifier. */
 static double shake_force_mean = 0.; /**< Running mean of the force. */
 static float shake_force_ang = 0.; /**< Shake force angle. */
 static perlin_data_t *shake_noise = NULL; /**< Shake noise. */
-/* Haptic stuff. */
-extern SDL_Haptic *haptic; /**< From joystick.c */
-extern unsigned int haptic_query; /**< From joystick.c */
-static int haptic_rumble         = -1; /**< Haptic rumble effect ID. */
-static SDL_HapticEffect haptic_rumbleEffect; /**< Haptic rumble effect. */
-static double haptic_lastUpdate  = 0.; /**< Timer to update haptic effect again. */
 
 
 /*
@@ -148,9 +139,6 @@ static SPFX *spfx_stack_back = NULL; /**< Back special effect layer. */
 static int spfx_base_parse( SPFX_Base *temp, const char *filename );
 static void spfx_base_free( SPFX_Base *effect );
 static void spfx_update_layer( SPFX *layer, const double dt );
-/* Haptic. */
-static int spfx_hapticInit (void);
-static void spfx_hapticRumble( double mod );
 /* Trail. */
 static void spfx_update_trails( double dt );
 static void spfx_trail_update( Trail_spfx* trail, double dt );
@@ -392,7 +380,6 @@ int spfx_load (void)
    shake_shader.VertexPosition= shaders.shake.VertexPosition;
    shake_shader.ClipSpaceFromLocal = shaders.shake.ClipSpaceFromLocal;
    shake_shader.MainTex       = shaders.shake.MainTex;
-   spfx_hapticInit();
    shake_noise = noise_new( 1, NOISE_DEFAULT_HURST, NOISE_DEFAULT_LACUNARITY );
 
    /*
@@ -541,10 +528,6 @@ void spfx_update( const double dt, const double real_dt )
    spfx_update_layer( spfx_stack_middle, dt );
    spfx_update_layer( spfx_stack_back, dt );
    spfx_update_trails( dt );
-
-   /* Decrement the haptic timer. */
-   if (haptic_lastUpdate > 0.)
-      haptic_lastUpdate -= real_dt; /* Based on real delta-tick. */
 
    /* Shake. */
    spfx_updateShake( dt );
@@ -868,88 +851,9 @@ void spfx_shake( double mod )
    /* Add the modifier. */
    shake_force_mod = MIN( SPFX_SHAKE_MAX, shake_force_mod + SPFX_SHAKE_MOD*mod );
 
-   /* Rumble if it wasn't rumbling before. */
-   spfx_hapticRumble(mod);
-
    /* Create the shake. */
    if (shake_shader_pp_id==0)
       shake_shader_pp_id = render_postprocessAdd( &shake_shader, PP_LAYER_GAME, 99 );
-}
-
-
-/**
- * @brief Initializes the rumble effect.
- *
- *    @return 0 on success.
- */
-static int spfx_hapticInit (void)
-{
-   SDL_HapticEffect *efx;
-
-   /* Haptic must be enabled. */
-   if (haptic == NULL)
-      return 0;
-
-   efx = &haptic_rumbleEffect;
-   memset( efx, 0, sizeof(SDL_HapticEffect) );
-   efx->type = SDL_HAPTIC_SINE;
-   efx->periodic.direction.type   = SDL_HAPTIC_POLAR;
-   efx->periodic.length           = 1000;
-   efx->periodic.period           = 200;
-   efx->periodic.magnitude        = 0x4000;
-   efx->periodic.fade_length      = 1000;
-   efx->periodic.fade_level       = 0;
-
-   haptic_rumble = SDL_HapticNewEffect( haptic, efx );
-   if (haptic_rumble < 0) {
-      WARN(_("Unable to upload haptic effect: %s."), SDL_GetError());
-      return -1;
-   }
-
-   return 0;
-}
-
-
-/**
- * @brief Runs a rumble effect.
- *
- *    @brief Current modifier being added.
- */
-static void spfx_hapticRumble( double mod )
-{
-   SDL_HapticEffect *efx;
-   double len, mag;
-
-   /* Not active. */
-   if (haptic_rumble < 0)
-      return;
-
-   /* Not time to update yet. */
-   if ((haptic_lastUpdate > 0.) || (shake_shader_pp_id==0) || (mod > SPFX_SHAKE_MAX/3.))
-      return;
-
-   /* Stop the effect if it was playing. */
-   SDL_HapticStopEffect( haptic, haptic_rumble );
-
-   /* Get length and magnitude. */
-   len = 1000. * shake_force_mod / SPFX_SHAKE_DECAY;
-   mag = 32767. * (shake_force_mod / SPFX_SHAKE_MAX);
-
-   /* Update the effect. */
-   efx = &haptic_rumbleEffect;
-   efx->periodic.magnitude    = (int16_t)mag;
-   efx->periodic.length       = (uint32_t)len;
-   efx->periodic.fade_length  = MIN( efx->periodic.length, 1000 );
-   if (SDL_HapticUpdateEffect( haptic, haptic_rumble, &haptic_rumbleEffect ) < 0) {
-      WARN(_("Failed to update haptic effect: %s."), SDL_GetError());
-      return;
-   }
-
-   /* Run the new effect. */
-   SDL_HapticRunEffect( haptic, haptic_rumble, 1 );
-
-   /* Set timer again. */
-   haptic_lastUpdate += HAPTIC_UPDATE_INTERVAL;
 }
 
 

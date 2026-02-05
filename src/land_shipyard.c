@@ -103,16 +103,16 @@ void shipyard_open( unsigned int wid )
    /* buttons */
    window_addButtonKey(wid, off = -10, 20,
          bw, bh, "btnCloseShipyard",
-         _("&Take Off"), land_buttonTakeoff, SDLK_t);
+         _("&Take Off"), land_buttonTakeoff, SDLK_T);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnTradeShip",
-         _("T&rade-In"), shipyard_trade, SDLK_r);
+         _("T&rade-In"), shipyard_trade, SDLK_R);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnBuyShip",
-         _("&Buy"), shipyard_buy, SDLK_b);
+         _("&Buy"), shipyard_buy, SDLK_B);
    window_addButtonKey(wid, off -= 10+bw, 20,
          bw, bh, "btnFindShips",
-         _("&Find Ships"), shipyard_find, SDLK_f);
+         _("&Find Ships"), shipyard_find, SDLK_F);
    (void)off;
 
    /* slot types */
@@ -781,7 +781,7 @@ static int shipyard_mouseSlots(unsigned int wid, SDL_Event* event,
    if (ship == NULL)
       return 0;
 
-   if (event->type != SDL_MOUSEMOTION)
+   if (event->type != SDL_EVENT_MOUSE_MOTION)
       return 0;
 
    shipyard_mouseover = NULL;

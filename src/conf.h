@@ -145,10 +145,6 @@ typedef struct PlayerConf_s {
    double sound; /**< Volume level for sound effects. */
    double music; /**< Volume level for music. */
 
-   /* Joystick. */
-   int joystick_ind; /**< Index of joystick to use. */
-   char *joystick_nam; /**< Name of joystick to use. */
-
    /* Keyrepeat. */
    unsigned int repeat_delay; /**< Time in ms before start repeating. */
    unsigned int repeat_freq; /**< Time in ms between each repeat once started repeating. */

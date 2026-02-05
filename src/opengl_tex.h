@@ -9,7 +9,7 @@
 
 /** @cond */
 #include <stdint.h>
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 #include "colour.h"
@@ -17,10 +17,10 @@
 
 
 /* Recommended for compatibility and such */
-#define RMASK   SDL_SwapLE32(0x000000ff) /**< Red bit mask. */
-#define GMASK   SDL_SwapLE32(0x0000ff00) /**< Green bit mask. */
-#define BMASK   SDL_SwapLE32(0x00ff0000) /**< Blue bit mask. */
-#define AMASK   SDL_SwapLE32(0xff000000) /**< Alpha bit mask. */
+#define RMASK   SDL_Swap32LE(0x000000ff) /**< Red bit mask. */
+#define GMASK   SDL_Swap32LE(0x0000ff00) /**< Green bit mask. */
+#define BMASK   SDL_Swap32LE(0x00ff0000) /**< Blue bit mask. */
+#define AMASK   SDL_Swap32LE(0xff000000) /**< Alpha bit mask. */
 #define RGBAMASK  RMASK,GMASK,BMASK,AMASK
 
 
@@ -73,14 +73,14 @@ void gl_exitTextures (void);
 glTexture* gl_loadImageData( float *data, int w, int h, int sx, int sy, const char* name );
 glTexture* gl_loadImagePad( const char *name, SDL_Surface* surface,
       unsigned int flags, int w, int h, int sx, int sy, int freesur );
-glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_RWops *rw,
+glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_IOStream *rw,
       unsigned int flags, int w, int h, int sx, int sy, int freesur );
 glTexture* gl_loadImage( SDL_Surface* surface, const unsigned int flags ); /* Frees the surface. */
 glTexture* gl_newImage( const char* path, const unsigned int flags );
-glTexture* gl_newImageRWops( const char* path, SDL_RWops *rw, const unsigned int flags ); /* Does not close the RWops. */
+glTexture* gl_newImageRWops( const char* path, SDL_IOStream *rw, const unsigned int flags ); /* Does not close the RWops. */
 glTexture* gl_newSprite( const char* path, const int sx, const int sy,
       const unsigned int flags );
-glTexture* gl_newSpriteRWops( const char* path, SDL_RWops *rw,
+glTexture* gl_newSpriteRWops( const char* path, SDL_IOStream *rw,
    const int sx, const int sy, const unsigned int flags );
 glTexture* gl_dupTexture( glTexture *texture );
 

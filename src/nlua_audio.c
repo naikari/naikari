@@ -11,7 +11,7 @@
 
 /** @cond */
 #include <lauxlib.h>
-#include "physfsrwops.h"
+#include "physfssdl3.h"
 
 #include "naev.h"
 /** @endcond */
@@ -275,7 +275,7 @@ static int audioL_new( lua_State *L )
    LuaAudio_t la;
    LuaFile_t *lf;
    const char *name;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    double master;
 
    name = NULL;
@@ -292,7 +292,7 @@ static int audioL_new( lua_State *L )
 
    memset( &la, 0, sizeof(LuaAudio_t) );
    if (!sound_disabled) {
-      rw = PHYSFSRWOPS_openRead( name );
+      rw = PHYSFSSDL3_openRead(name);
       if (rw==NULL)
          NLUA_ERROR(L,"Unable to open '%s'", name );
 
@@ -323,7 +323,7 @@ static int audioL_new( lua_State *L )
       al_checkErr();
       soundUnlock();
 
-      SDL_RWclose( rw );
+      SDL_CloseIO( rw );
    }
 
    lua_pushaudio(L, la);

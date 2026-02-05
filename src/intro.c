@@ -13,7 +13,7 @@
 
 
 /** @cond */
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */
@@ -227,47 +227,46 @@ static void intro_event_handler( int *stop, double *offset, double *vel )
    SDL_Event event;           /* user key-press, mouse-push, etc. */
 
    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT) {
+      if (event.type == SDL_EVENT_QUIT) {
          naev_quit();
          continue;
       }
 
-      if (event.type == SDL_WINDOWEVENT &&
-            event.window.event == SDL_WINDOWEVENT_RESIZED) {
+      if (event.type == SDL_EVENT_WINDOW_RESIZED) {
          naev_resize(0);
          continue;
       }
 
-      if (event.type != SDL_KEYDOWN)
+      if (event.type != SDL_EVENT_KEY_DOWN)
          continue;
 
       /* Escape skips directly. */
-      if (event.key.keysym.sym == SDLK_ESCAPE) {
+      if (event.key.key == SDLK_ESCAPE) {
          *stop = 1;
          break;
       }
 
       /* Slow down the text. */
-      else if (event.key.keysym.sym == SDLK_UP) {
+      else if (event.key.key == SDLK_UP) {
          *vel -= 8.0;
          if (*vel < 0.0)
             *vel = 0.0;
       }
 
       /* Speed up the text. */
-      else if (event.key.keysym.sym == SDLK_DOWN) {
+      else if (event.key.key == SDLK_DOWN) {
          *vel += 8.0;
          if (*vel > 100.0)
             *vel = 100.0;
       }
 
       /* Jump down. */
-      else if ((event.key.keysym.sym == SDLK_SPACE) ||
-            (event.key.keysym.sym == SDLK_RETURN))
+      else if ((event.key.key == SDLK_SPACE)
+            || (event.key.key == SDLK_RETURN))
          *offset += 100;
 
       /* Jump up. */
-      else if (event.key.keysym.sym == SDLK_BACKSPACE)
+      else if (event.key.key == SDLK_BACKSPACE)
          *offset -= 100;
 
       /* User is clearly flailing on keyboard. */
@@ -326,7 +325,7 @@ int intro_display( const char *text, const char *mus )
    int sb_index; /* Position in the line array. */
    double vel  = 16.; /* velocity: speed of text. */
    int stop = 0; /* stop the intro. */
-   Uint32 tcur, tlast, tlag;/* timers. */
+   Uint64 tcur, tlast, tlag;/* timers. */
    double delta; /* time diff from last render to this one. */
    int cmd_index = 0; /* index into the big list of intro lines. */
    intro_img_t side_image; /* image to go along with the text. */
