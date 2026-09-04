@@ -53,7 +53,7 @@ noticed_offplanet = _("It seems your actions have led to the discovery of your i
 factions = {
    "Coälition",
    "Empire",
-   "Frontier",
+   "Federation",
 }
 orig_standing = {}
 orig_standing["__save"] = true

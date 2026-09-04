@@ -44,7 +44,7 @@ local nopay_factions = {
    "Trader",
    "Miner",
    "Mercenary",
-   "Frontier",
+   "Federation",
    "FLF",
 }
 

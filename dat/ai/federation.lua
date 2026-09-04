@@ -17,7 +17,7 @@ function create()
    local bribe_no = {
       p_("bribe_no", "\"The only way to deal with scum like you is with cannons!\""),
       p_("bribe_no", "\"I don't want your money.\""),
-      p_("bribe_no", "\"I'm here for the Frontier, not money.\""),
+      p_("bribe_no", "\"I'm here for the United Federation, not money.\""),
       p_("bribe_no", "\"Not interested.\""),
       p_("bribe_no", "\"I won't let you off that easily.\""),
    }
@@ -47,12 +47,12 @@ end
 
 -- taunts
 local taunts_offense = {
-   p_("taunt", "For the Frontier!"),
+   p_("taunt", "For the Federation!"),
    p_("taunt", "You'll make great target practice!"),
    p_("taunt", "You won't get away with your actions!"),
 }
 local taunts_defense = {
-   p_("taunt_defensive", "Frontier vessel under attack! Requesting assistance!"),
+   p_("taunt_defensive", "Federation vessel under attack! Requesting assistance!"),
    p_("taunt_defensive", "You'll regret that!"),
    p_("taunt_defensive", "I won't go down without a fight!"),
    p_("taunt_defensive", "To hell with you!"),

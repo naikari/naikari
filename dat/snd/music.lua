@@ -315,7 +315,7 @@ factional_combat = {
       add_neutral = true;
       "flf_battle1", "battlesomething2",
       },
-   ["Frontier"] = {
+   ["Federation"] = {
       add_neutral = true;
       "flf_battle1",
       },

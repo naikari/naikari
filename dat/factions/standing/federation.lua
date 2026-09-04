@@ -27,7 +27,7 @@ function faction_hit(current, amount, source, secondary, fac)
     local flf = faction.get("FLF")
     local flf_rep = flf:playerStanding()
     if new < 0 then
-        -- If you make enemies with the Frontier, FLF standing will
+        -- If you make enemies with the Federation, FLF standing will
         -- drop to match.
         flf:setPlayerStanding(math.min(flf_rep, new))
     end

@@ -7,7 +7,7 @@
   <chance>90</chance>
   <location>Computer</location>
   <faction>Empire</faction>
-  <faction>Frontier</faction>
+  <faction>Federation</faction>
   <faction>Independent</faction>
  </avail>
 </mission>

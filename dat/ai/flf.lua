@@ -53,17 +53,20 @@ end
 
 
 local taunts_offense = {
-   p_("taunt", "For the Frontier!"),
+   p_("taunt", "For the Federation!"),
    p_("taunt", "You'll make great target practice!"),
    p_("taunt", "Purge the oppressors!"),
+   p_("taunt", "For freedom!"),
+   p_("taunt", "For liberty!"),
 }
 local taunts_defense = {
-   p_("taunt_defensive", "Frontier vessel under attack! Requesting assistance!"),
+   p_("taunt_defensive", "Federation vessel under attack! Requesting assistance!"),
    p_("taunt_defensive", "You'll regret that!"),
    p_("taunt_defensive", "I won't go down without a fight!"),
    p_("taunt_defensive", "To hell with you!"),
    p_("taunt_defensive", "You won't get away with this!"),
-   p_("taunt_defensive", "For the Frontier!"),
+   p_("taunt_defensive", "For the Federation!"),
+   p_("taunt_defensive", "Give me liberty or give me death!"),
 }
 function taunt(target, offense)
    -- Only 50% of actually taunting.

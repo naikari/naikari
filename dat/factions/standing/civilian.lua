@@ -9,7 +9,7 @@ _fdelta_kill = {-10, 0} -- Maximum change constraints
 local proxy_factions = {
    "Coälition",
    "Empire",
-   "Frontier",
+   "Federation",
 }
 
 

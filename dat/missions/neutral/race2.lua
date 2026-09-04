@@ -12,7 +12,7 @@
   <chance>20</chance>
   <location>Bar</location>
   <faction>Empire</faction>
-  <faction>Frontier</faction>
+  <faction>Federation</faction>
   <faction>Independent</faction>
  </avail>
 </mission>

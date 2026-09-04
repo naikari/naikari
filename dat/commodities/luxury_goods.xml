@@ -13,5 +13,5 @@
  <population_modifier>0.5</population_modifier>
  <faction_modifier type="Empire">1.2</faction_modifier>
  <faction_modifier type="FLF">0.6</faction_modifier>
- <faction_modifier type="Frontier">0.6</faction_modifier>
+ <faction_modifier type="Federation">0.6</faction_modifier>
 </commodity>

@@ -88,7 +88,7 @@
    <enemy>Coälition</enemy>
    <enemy>Collective</enemy>
    <enemy>Empire</enemy>
-   <enemy>Frontier</enemy>
+   <enemy>Federation</enemy>
    <enemy>Independent</enemy>
    <enemy>Miner</enemy>
    <enemy>Sirius</enemy>
@@ -112,9 +112,10 @@
   <allies>
   </allies>
   <enemies>
-   <enemy>Pirate</enemy>
-   <enemy>FLF</enemy>
    <enemy>Collective</enemy>
+   <enemy>Federation</enemy>
+   <enemy>FLF</enemy>
+   <enemy>Pirate</enemy>
   </enemies>
  </faction>
  <faction>
@@ -134,19 +135,39 @@
   </enemies>
  </faction>
  <faction>
-  <name>Frontier</name>
-  <ai>frontier</ai>
+  <name>Federation</name>
+  <ai>federation</ai>
   <known />
   <logo>frontier</logo>
-  <longname>Frontier Alliance</longname>
-  <player>3</player>
+  <longname>United Federation of Worlds</longname>
+  <player>0</player>
   <colour>yellow</colour>
-  <spawn>frontier</spawn>
-  <standing>frontier</standing>
+  <spawn>federation</spawn>
+  <standing>federation</standing>
   <allies>
+   <ally>FLF</ally>
   </allies>
   <enemies>
+   <enemy>Empire</enemy>
    <enemy>Pirate</enemy>
+  </enemies>
+ </faction>
+ <faction>
+  <name>FLF</name>
+  <ai>flf</ai>
+  <known />
+  <logo>flf</logo>
+  <longname>Federal Liberty Front</longname>
+  <player>0</player>
+  <colour>yellow</colour>
+  <spawn>flf</spawn>
+  <standing>flf</standing>
+  <equip>mercenary</equip>
+  <allies>
+   <ally>Federation</ally>
+  </allies>
+  <enemies>
+   <enemy>Empire</enemy>
   </enemies>
  </faction>
  <faction>
@@ -188,21 +209,6 @@
   <enemies>
    <enemy>Empire</enemy>
    <enemy>Pirate</enemy>
-  </enemies>
- </faction>
- <faction>
-  <name>FLF</name>
-  <ai>flf</ai>
-  <known />
-  <logo>flf</logo>
-  <longname>Frontier Liberation Front</longname>
-  <player>3</player>
-  <colour>yellow</colour>
-  <spawn>flf</spawn>
-  <standing>flf</standing>
-  <equip>mercenary</equip>
-  <enemies>
-   <enemy>Empire</enemy>
   </enemies>
  </faction>
  <faction>

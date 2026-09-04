@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<asset name="Virtual Frontier Small">
+<asset name="Virtual Federation Small">
  <virtual/>
  <presence>
-  <faction>Frontier</faction>
+  <faction>Federation</faction>
   <value>60.000000</value>
   <range>2</range>
  </presence>

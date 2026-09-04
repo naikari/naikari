@@ -15,6 +15,6 @@
  <period>70</period>
  <population_modifier>0.25</population_modifier>
  <faction_modifier type="FLF">0.4</faction_modifier>
- <faction_modifier type="Frontier">0.4</faction_modifier>
+ <faction_modifier type="Federation">0.4</faction_modifier>
  <faction_modifier type="Pirate">1.2</faction_modifier>
 </commodity>

@@ -6,7 +6,7 @@
   <chance>15</chance>
   <location>Bar</location>
   <faction>Empire</faction>
-  <faction>Frontier</faction>
+  <faction>Federation</faction>
   <faction>Independent</faction>
   <cond>
    not planet.cur():restriction() or planet.cur():restriction() == "lowclass"

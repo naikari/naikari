@@ -40,7 +40,6 @@ local formation = require "formation"
 local paying_factions = {
    "Coälition",
    "Empire",
-   "Frontier",
    "Independent",
 }
 
