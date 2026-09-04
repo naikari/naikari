@@ -19,7 +19,7 @@ _fmod_misn_friend = 0.3 -- Missions done for the faction's allies
 -- Minimum values that combat hits will bring you down to.
 -- nil means no floor.
 _ffloor_distress = nil
-_ffloor_kill = -20
+_ffloor_kill = -5
 
 _fstanding_friendly = 70
 _fstanding_neutral = 0
