@@ -7,7 +7,7 @@
 #  define MUSIC_OPENAL_H
 
 /** @cond */
-#include <SDL3/SDL_iostream.h>
+#include "SDL_rwops.h"
 /** @endcond */
 
 #include "nopenal.h"
@@ -23,7 +23,7 @@ void music_al_exit (void);
 /*
  * Loading.
  */
-int music_al_load( const char* name, SDL_IOStream *rw );
+int music_al_load( const char* name, SDL_RWops *rw );
 void music_al_free (void);
 
 

@@ -3,9 +3,9 @@
  */
 
 /**
- * @mainpage Naikari
+ * @mainpage Naev
  *
- * Doxygen documentation for the Naikari project.
+ * Doxygen documentation for the Naev project.
  */
 /**
  * @file naev.c
@@ -15,11 +15,10 @@
 
 /** @cond */
 #include "linebreak.h"
-#include "physfssdl3.h"
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
-#include <SDL3/SDL_error.h>
-#include <SDL3_image/SDL_image.h>
+#include "physfsrwops.h"
+#include "SDL.h"
+#include "SDL_error.h"
+#include "SDL_image.h"
 
 #include "naev.h"
 
@@ -46,6 +45,7 @@
 #include "gui.h"
 #include "hook.h"
 #include "input.h"
+#include "joystick.h"
 #include "land.h"
 #include "load.h"
 #include "log.h"
@@ -91,7 +91,7 @@
 #define VERSION_FILE    "VERSION" /**< Version file by default. */
 
 static int quit = 0; /**< For primary loop */
-static Uint64 time_ms = 0; /**< used to calculate FPS and movement. */
+static Uint32 time_ms = 0; /**< used to calculate FPS and movement. */
 static double loading_r = 0.; /**< Just to provide some randomness. */
 static glTexture *loading = NULL; /**< Loading screen. */
 static glFont loading_font; /**< Loading font. */
@@ -163,7 +163,7 @@ int naev_pollQuit(void)
    SDL_Event event;
 
    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_EVENT_QUIT) {
+      if (event.type == SDL_QUIT) {
          quit = 1;
          break;
       }
@@ -233,11 +233,11 @@ int main( int argc, char** argv )
 
 #if HAS_UNIX
    /* Set window class and name. */
-   SDL_setenv_unsafe("SDL_VIDEO_X11_WMCLASS", APPNAME, 0);
+   SDL_setenv("SDL_VIDEO_X11_WMCLASS", APPNAME, 0);
 #endif /* HAS_UNIX */
 
    /* Must be initialized before input_init is called. */
-   if (!SDL_InitSubSystem(SDL_INIT_VIDEO)) {
+   if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
       WARN( _("Unable to initialize SDL Video: %s"), SDL_GetError());
       return -1;
    }
@@ -327,6 +327,26 @@ int main( int argc, char** argv )
    time_ms = SDL_GetTicks();
 
    /*
+    * Input
+    */
+   if ((conf.joystick_ind >= 0) || (conf.joystick_nam != NULL)) {
+      if (joystick_init())
+         WARN( _("Error initializing joystick input") );
+      if (conf.joystick_nam != NULL) { /* use the joystick name to find a joystick */
+         if (joystick_use(joystick_get(conf.joystick_nam))) {
+            WARN( _("Failure to open any joystick, falling back to default keybinds") );
+            input_setDefault(LAYOUT_WASD);
+         }
+         free(conf.joystick_nam);
+      }
+      else if (conf.joystick_ind >= 0) /* use a joystick id instead */
+         if (joystick_use(conf.joystick_ind)) {
+            WARN( _("Failure to open any joystick, falling back to default keybinds") );
+            input_setDefault(LAYOUT_WASD);
+         }
+   }
+
+   /*
     * OpenAL - Sound
     */
    if (conf.nosound) {
@@ -381,13 +401,14 @@ int main( int argc, char** argv )
    /* primary loop */
    while (!quit) {
       while (!quit && SDL_PollEvent(&event)) { /* event loop */
-         if (event.type == SDL_EVENT_QUIT) {
+         if (event.type == SDL_QUIT) {
             if (quit || menu_askQuit()) {
                quit = 1; /* quit is handled here */
                break;
             }
          }
-         else if (event.type == SDL_EVENT_WINDOW_RESIZED) {
+         else if (event.type == SDL_WINDOWEVENT &&
+               event.window.event == SDL_WINDOWEVENT_RESIZED) {
             naev_resize(0);
             continue;
          }
@@ -417,6 +438,7 @@ int main( int argc, char** argv )
    ovr_mrkFree(); /* Clear markers. */
    toolkit_exit(); /* Kills the toolkit */
    ai_exit(); /* Stops the Lua AI magic */
+   joystick_exit(); /* Releases joystick */
    input_exit(); /* Cleans up keybindings */
    nebu_exit(); /* Destroys the nebula */
    lua_exit(); /* Closes Lua state. */
@@ -430,8 +452,9 @@ int main( int argc, char** argv )
 
    /* Free the icon. */
    if (naev_icon)
-      SDL_DestroySurface(naev_icon);
+      SDL_FreeSurface(naev_icon);
 
+   IMG_Quit(); /* quits SDL_image */
    SDL_Quit(); /* quits SDL */
 
    /* Clean up parser. */
@@ -738,7 +761,7 @@ void naev_resize(int force)
 {
    /* Auto-detect window size. */
    int w, h;
-   SDL_GetWindowSizeInPixels(gl_screen.window, &w, &h);
+   SDL_GL_GetDrawableSize( gl_screen.window, &w, &h );
 
    /* Update options menu, if open. (Never skip, in case the fullscreen mode alone changed.) */
    opt_resize();
@@ -810,7 +833,7 @@ static void fps_init (void)
 static double fps_elapsed (void)
 {
    double dt;
-   Uint64 t;
+   Uint32 t;
 
 #if HAS_POSIX && defined(CLOCK_MONOTONIC)
    struct timespec ts;
@@ -1023,15 +1046,15 @@ void update_routine( double dt, int enter_sys )
 static void window_caption (void)
 {
    char buf[PATH_MAX];
-   SDL_IOStream *rw;
+   SDL_RWops *rw;
 
    /* Load icon. */
-   rw = PHYSFSSDL3_openRead(GFX_PATH"icon.png");
+   rw = PHYSFSRWOPS_openRead( GFX_PATH"icon.png" );
    if (rw == NULL) {
       WARN( _("Icon (icon.png) not found!") );
       return;
    }
-   naev_icon = IMG_Load_IO(rw, 1);
+   naev_icon   = IMG_Load_RW( rw, 1 );
    if (naev_icon == NULL) {
       WARN( _("Unable to load icon.png!") );
       return;
@@ -1116,23 +1139,22 @@ int naev_versionCompare( const char *version )
  */
 static void print_SDLversion (void)
 {
-   const int linked = SDL_GetVersion();
-   const int compiled = SDL_VERSION;
-   int version_linked, version_compiled;
+   const SDL_version *linked;
+   SDL_version compiled;
+   unsigned int version_linked, version_compiled;
 
-   DEBUG(_("SDL: %d.%d.%d [compiled: %d.%d.%d]"),
-         SDL_VERSIONNUM_MAJOR(linked), SDL_VERSIONNUM_MINOR(linked),
-         SDL_VERSIONNUM_MICRO(linked),
-         SDL_VERSIONNUM_MAJOR(compiled), SDL_VERSIONNUM_MINOR(compiled),
-         SDL_VERSIONNUM_MICRO(compiled));
+   /* Extract information. */
+   SDL_VERSION(&compiled);
+   SDL_version ll;
+   SDL_GetVersion( &ll );
+   linked = &ll;
+   DEBUG( _("SDL: %d.%d.%d [compiled: %d.%d.%d]"),
+         linked->major, linked->minor, linked->patch,
+         compiled.major, compiled.minor, compiled.patch);
 
    /* Get version as number. */
-   version_linked = SDL_VERSIONNUM(
-      SDL_VERSIONNUM_MAJOR(linked), SDL_VERSIONNUM_MINOR(linked),
-      SDL_VERSIONNUM_MICRO(linked));
-   version_compiled = SDL_VERSIONNUM(
-      SDL_VERSIONNUM_MAJOR(compiled), SDL_VERSIONNUM_MINOR(compiled),
-      SDL_VERSIONNUM_MICRO(compiled));
+   version_linked    = linked->major*100 + linked->minor;
+   version_compiled  = compiled.major*100 + compiled.minor;
 
    /* Check if major/minor version differ. */
    if (version_linked > version_compiled)

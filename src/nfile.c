@@ -53,9 +53,9 @@
  *    @param name Name of environment variable.
  *    @return The environment variable or NULL if an error occurs.
  */
-static const char* xdgGetEnv(const char *name)
+static char* xdgGetEnv(const char *name)
 {
-    const char *env = SDL_getenv(name);
+    char *env = SDL_getenv(name);
     if ((env != NULL) && (env[0] != '\0'))
         return env;
     /* What errno signifies missing env var? */
@@ -94,7 +94,7 @@ static char * xdgGetRelativeHome( const char *envname, const char *relativefallb
         errno = 0;
         const char *home;
         unsigned int homelen;
-        home = xdgGetEnv("HOME");
+        home = xdgGetEnv( "HOME" );
         if (home == NULL)
             return NULL;
         homelen = strlen(home);
@@ -141,7 +141,7 @@ const char* nfile_configPath (void)
         snprintf( naev_configPath, PATH_MAX, "%s/naikari/", path );
         free (path);
 #elif WIN32
-      const char *path = SDL_getenv("APPDATA");
+      char *path = SDL_getenv("APPDATA");
       if (path == NULL) {
          WARN(_("%%APPDATA%% isn't set, using current directory."));
          path = ".";
@@ -185,7 +185,7 @@ const char* nfile_cachePath (void)
         snprintf( naev_cachePath, PATH_MAX, "%s/naikari/", path );
         free (path);
 #elif WIN32
-      const char *path = SDL_getenv("APPDATA");
+      char *path = SDL_getenv("APPDATA");
       if (path == NULL) {
          WARN(_("%%APPDATA%% isn't set, using current directory."));
          path = ".";

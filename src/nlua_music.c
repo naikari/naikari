@@ -10,7 +10,7 @@
 
 
 /** @cond */
-#include <SDL3/SDL.h>
+#include "SDL.h"
 
 #include "naev.h"
 /** @endcond */

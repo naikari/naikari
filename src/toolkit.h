@@ -9,7 +9,7 @@
 
 
 /** @cond */
-#include <SDL3/SDL.h>
+#include "SDL.h"
 /** @endcond */
 
 #include "font.h"

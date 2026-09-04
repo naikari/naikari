@@ -210,11 +210,11 @@ static void comm_addPilotSpecialButtons( unsigned int wid )
    if ( pilot_isHostile(comm_pilot) )
       window_addButtonKey(wid, -20, 20 + BUTTON_HEIGHT + 20,
             BUTTON_WIDTH, BUTTON_HEIGHT, "btnBribe", _("&Bribe"),
-            comm_bribePilot, SDLK_B);
+            comm_bribePilot, SDLK_b);
    else
       window_addButtonKey( wid, -20, 20 + BUTTON_HEIGHT + 20,
             BUTTON_WIDTH, BUTTON_HEIGHT, "btnRequest",
-            _("&Refuel"), comm_requestFuel, SDLK_R );
+            _("&Refuel"), comm_requestFuel, SDLK_r );
 }
 
 
@@ -264,7 +264,7 @@ int comm_openPlanet(Planet *planet, int autonav)
    if (!planet->can_land && !planet->bribed && (planet->bribe_msg != NULL))
       window_addButtonKey(wid, -20, 20 + BUTTON_HEIGHT + 20,
             BUTTON_WIDTH, BUTTON_HEIGHT, "btnBribe", _("&Bribe"),
-            comm_bribePlanet, SDLK_B);
+            comm_bribePlanet, SDLK_b);
 
    return 0;
 }
@@ -386,7 +386,7 @@ static unsigned int comm_open( glTexture *gfx, int faction,
 
    /* Buttons. */
    window_addButtonKey(wid, -20, 20, BUTTON_WIDTH, BUTTON_HEIGHT,
-         "btnClose", _("&Close"), comm_close, SDLK_C);
+         "btnClose", _("&Close"), comm_close, SDLK_c);
 
    return wid;
 }

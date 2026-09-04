@@ -96,11 +96,11 @@ void commodity_exchange_open( unsigned int wid )
 
    /* buttons */
    window_addButtonKey(wid, -10, 20, bw, LAND_BUTTON_HEIGHT,
-         "btnCommodityClose", _("&Take Off"), land_buttonTakeoff, SDLK_T);
+         "btnCommodityClose", _("&Take Off"), land_buttonTakeoff, SDLK_t);
    window_addButtonKey(wid, -10 - 1*(bw+10), 20, bw, LAND_BUTTON_HEIGHT,
-         "btnCommoditySell", _("&Sell"), commodity_sell, SDLK_S);
+         "btnCommoditySell", _("&Sell"), commodity_sell, SDLK_s);
    window_addButtonKey(wid, -10 - 2*(bw+10), 20, bw, LAND_BUTTON_HEIGHT,
-         "btnCommodityBuy", _("&Buy"), commodity_buy, SDLK_B);
+         "btnCommodityBuy", _("&Buy"), commodity_buy, SDLK_b);
 
    /* store gfx */
    window_addRect( wid, -20, -40, 192, 192, "rctStore", &cBlack, 0 );
@@ -457,9 +457,9 @@ int commodity_getMod (void)
 
    mods = SDL_GetModState();
    q = 10;
-   if (mods & (SDL_KMOD_LCTRL | SDL_KMOD_RCTRL))
+   if (mods & (KMOD_LCTRL | KMOD_RCTRL))
       q *= 5;
-   if (mods & (SDL_KMOD_LSHIFT | SDL_KMOD_RSHIFT))
+   if (mods & (KMOD_LSHIFT | KMOD_RSHIFT))
       q *= 10;
 
    return q;

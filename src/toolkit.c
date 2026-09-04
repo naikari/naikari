@@ -1647,22 +1647,22 @@ int toolkit_inputWindow( Window *wdw, SDL_Event *event, int purge )
    if (!window_isFlag(wdw, WINDOW_KILL)) {
       /* Pass it on. */
       switch (event->type) {
-         case SDL_EVENT_MOUSE_MOTION:
-         case SDL_EVENT_MOUSE_BUTTON_DOWN:
-         case SDL_EVENT_MOUSE_BUTTON_UP:
-         case SDL_EVENT_MOUSE_WHEEL:
+         case SDL_MOUSEMOTION:
+         case SDL_MOUSEBUTTONDOWN:
+         case SDL_MOUSEBUTTONUP:
+         case SDL_MOUSEWHEEL:
             ret |= toolkit_mouseEvent(wdw, event);
             break;
 
-         case SDL_EVENT_KEY_DOWN:
-         case SDL_EVENT_KEY_UP:
+         case SDL_KEYDOWN:
+         case SDL_KEYUP:
             ret |= toolkit_keyEvent(wdw, event);
             break;
 
-         case SDL_EVENT_TEXT_INPUT:
+         case SDL_TEXTINPUT:
             ret |= toolkit_textEvent(wdw, event);
             break;
-         case SDL_EVENT_TEXT_EDITING:
+         case SDL_TEXTEDITING:
             break;
       }
    }
@@ -1693,33 +1693,27 @@ int toolkit_inputWindow( Window *wdw, SDL_Event *event, int purge )
 Uint32 toolkit_inputTranslateCoords( Window *w, SDL_Event *event,
       int *x, int *y, int *rx, int *ry )
 {
-   float sdl_x, sdl_y;
-
    /* Extract the position as event. */
-   if (event->type == SDL_EVENT_MOUSE_MOTION) {
-      *x = (int)event->motion.x;
-      *y = (int)event->motion.y;
+   if (event->type==SDL_MOUSEMOTION) {
+      *x = event->motion.x;
+      *y = event->motion.y;
    }
-   else if ((event->type == SDL_EVENT_MOUSE_BUTTON_DOWN)
-         || (event->type == SDL_EVENT_MOUSE_BUTTON_UP)) {
-      *x = (int)event->button.x;
-      *y = (int)event->button.y;
+   else if ((event->type==SDL_MOUSEBUTTONDOWN) || (event->type==SDL_MOUSEBUTTONUP)) {
+      *x = event->button.x;
+      *y = event->button.y;
    }
-   else if (event->type == SDL_EVENT_MOUSE_WHEEL) {
-      SDL_GetMouseState(&sdl_x, &sdl_y);
-      *x = (int)sdl_x;
-      *y = (int)sdl_y;
-   }
+   else if (event->type == SDL_MOUSEWHEEL)
+      SDL_GetMouseState( x, y );
 
    /* Translate offset. */
-   gl_windowToScreenPos(x, y, *x, *y);
+   gl_windowToScreenPos( x, y, *x, *y );
 
    /* Transform to relative to window. */
    *x -= w->x;
    *y -= w->y;
 
    /* Relative only matter if mouse motion. */
-   if (event->type==SDL_EVENT_MOUSE_MOTION) {
+   if (event->type==SDL_MOUSEMOTION) {
       *ry = (double)event->motion.yrel * gl_screen.mxscale;
       *rx = (double)event->motion.xrel * gl_screen.myscale;
    }
@@ -1789,7 +1783,7 @@ static int toolkit_mouseEventWidget( Window *w, Widget *wgt,
    y -= wgt->y;
 
    /* Handle mouse event. */
-   if (event->type == SDL_EVENT_MOUSE_MOTION)
+   if (event->type == SDL_MOUSEMOTION)
       button = event->motion.state;
    else
       button = event->button.button;
@@ -1800,7 +1794,7 @@ static int toolkit_mouseEventWidget( Window *w, Widget *wgt,
    /* Regular widgets. */
    ret = 0;
    switch (event->type) {
-      case SDL_EVENT_MOUSE_MOTION:
+      case SDL_MOUSEMOTION:
          /* Change the status of the widget if mouse isn't down. */
 
          /* Not scrolling. */
@@ -1825,7 +1819,7 @@ static int toolkit_mouseEventWidget( Window *w, Widget *wgt,
 
          break;
 
-      case SDL_EVENT_MOUSE_WHEEL:
+      case SDL_MOUSEWHEEL:
          if (!inbounds)
             break;
 
@@ -1835,7 +1829,7 @@ static int toolkit_mouseEventWidget( Window *w, Widget *wgt,
 
          break;
 
-      case SDL_EVENT_MOUSE_BUTTON_DOWN:
+      case SDL_MOUSEBUTTONDOWN:
          if (!inbounds)
             break;
 
@@ -1856,7 +1850,7 @@ static int toolkit_mouseEventWidget( Window *w, Widget *wgt,
          input_clicked( (void*)wgt );
          break;
 
-      case SDL_EVENT_MOUSE_BUTTON_UP:
+      case SDL_MOUSEBUTTONUP:
          /* Since basically only buttons are handled here, we ignore
           * it all except the left mouse button. */
          if (button != SDL_BUTTON_LEFT)
@@ -1904,17 +1898,17 @@ static SDL_Keymod toolkit_mapMod( SDL_Keycode key )
 {
    switch(key) {
       case SDLK_LCTRL:
-         return SDL_KMOD_LCTRL;
+         return KMOD_LCTRL;
       case SDLK_RCTRL:
-         return SDL_KMOD_RCTRL;
+         return KMOD_RCTRL;
       case SDLK_LALT:
-         return SDL_KMOD_LALT;
+         return KMOD_LALT;
       case SDLK_RALT:
-         return SDL_KMOD_RALT;
+         return KMOD_RALT;
       case SDLK_LSHIFT:
-         return SDL_KMOD_LSHIFT;
+         return KMOD_LSHIFT;
       case SDLK_RSHIFT:
-         return SDL_KMOD_RSHIFT;
+         return KMOD_RSHIFT;
       default:
          return 0;
    }
@@ -1982,13 +1976,13 @@ static int toolkit_keyEvent( Window *wdw, SDL_Event* event )
    int ret;
 
    /* Event info. */
-   key = event->key.key;
-   mod = event->key.mod;
+   key = event->key.keysym.sym;
+   mod = event->key.keysym.mod;
 
    /* Hack to simulate key repetition */
-   if (event->type == SDL_EVENT_KEY_DOWN)
+   if (event->type == SDL_KEYDOWN)
       toolkit_regKey(key);
-   else if (event->type == SDL_EVENT_KEY_UP)
+   else if (event->type == SDL_KEYUP)
       toolkit_unregKey(key);
 
    /* See if window is valid. */
@@ -1999,14 +1993,14 @@ static int toolkit_keyEvent( Window *wdw, SDL_Event* event )
    wgt = toolkit_getFocus( wdw );
 
    /* We only want keydown from now on. */
-   if (event->type != SDL_EVENT_KEY_DOWN)
+   if (event->type != SDL_KEYDOWN)
       return 0;
 
    /* Trigger event function if exists. */
    if (wgt != NULL) {
       if (wgt->keyevent != NULL) {
-         ret = wgt->keyevent(wgt, input_key, input_mod);
-         if (ret != 0)
+         ret = wgt->keyevent( wgt, input_key, input_mod );
+         if (ret!=0)
             return ret;
       }
    }
@@ -2051,7 +2045,7 @@ static int toolkit_keyEvent( Window *wdw, SDL_Event* event )
 
    /* Placed here so it can be overriden in console for tab completion. */
    if (key == SDLK_TAB) {
-      if (mod & (SDL_KMOD_LSHIFT | SDL_KMOD_RSHIFT))
+      if (mod & (KMOD_LSHIFT | KMOD_RSHIFT))
          toolkit_prevFocus( wdw );
       else
          toolkit_nextFocus( wdw );
@@ -2074,8 +2068,8 @@ static int toolkit_textEvent( Window *wdw, SDL_Event* event )
 
    /* Trigger event function if exists. */
    if ((wgt != NULL) && (wgt->textevent != NULL)) {
-      ret = (*wgt->textevent)(wgt, event->text.text);
-      if (ret != 0)
+      ret = (*wgt->textevent)( wgt, event->text.text );
+      if (ret!=0)
          return ret;
    }
 

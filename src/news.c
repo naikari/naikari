@@ -51,7 +51,7 @@ static char buf[NEWS_MAX_LENGTH];
 
 static int len;
 
-static Uint64 news_tick = 0; /**< Last news tick. */
+static Uint32 news_tick = 0; /**< Last news tick. */
 static int news_drag = 0; /**< Is dragging news? */
 static double news_pos = 0.; /**< Position of the news feed. */
 static glFont *news_font = &gl_defFont; /**< Font to use. */
@@ -385,7 +385,7 @@ static int news_mouse( unsigned int wid, SDL_Event *event, double mx, double my,
    (void) rx;
 
    switch (event->type) {
-      case SDL_EVENT_MOUSE_WHEEL:
+      case SDL_MOUSEWHEEL:
          /* Must be in bounds. */
          if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;
@@ -396,7 +396,7 @@ static int news_mouse( unsigned int wid, SDL_Event *event, double mx, double my,
             news_pos += h/3.;
          return 1;
 
-      case SDL_EVENT_MOUSE_BUTTON_DOWN:
+      case SDL_MOUSEBUTTONDOWN:
          /* Must be in bounds. */
          if ((mx < 0.) || (mx > w) || (my < 0.) || (my > h))
             return 0;
@@ -405,12 +405,12 @@ static int news_mouse( unsigned int wid, SDL_Event *event, double mx, double my,
             news_drag = 1;
          return 1;
 
-      case SDL_EVENT_MOUSE_BUTTON_UP:
+      case SDL_MOUSEBUTTONUP:
          if (news_drag)
             news_drag = 0;
          break;
 
-      case SDL_EVENT_MOUSE_MOTION:
+      case SDL_MOUSEMOTION:
          if (news_drag)
             news_pos -= ry;
          break;
@@ -433,7 +433,7 @@ static void news_render( double bx, double by, double w, double h, void *data )
 {
    (void) data;
    int i, s, m, p;
-   Uint64 t;
+   Uint32 t;
    double y, dt;
 
    t = SDL_GetTicks();

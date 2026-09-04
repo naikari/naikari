@@ -14,7 +14,7 @@
 #include "naev.h"
 /** @endcond */
 
-#include "physfssdl3.h"
+#include "physfsrwops.h"
 
 #include "nlua_file.h"
 
@@ -153,7 +153,7 @@ static int fileL_gc( lua_State *L )
 {
    LuaFile_t *lf = luaL_checkfile(L,1);
    if (lf->rw != NULL) {
-      SDL_CloseIO(lf->rw);
+      SDL_RWclose(lf->rw);
       lf->rw = NULL;
    }
    return 0;
@@ -217,16 +217,16 @@ static int fileL_open( lua_State *L )
 
    /* TODO handle mode. */
    if (strcmp(mode,"w")==0)
-      lf->rw = PHYSFSSDL3_openWrite(lf->path);
+      lf->rw = PHYSFSRWOPS_openWrite( lf->path );
    else
-      lf->rw = PHYSFSSDL3_openRead(lf->path);
+      lf->rw = PHYSFSRWOPS_openRead( lf->path );
    if (lf->rw == NULL) {
       lua_pushboolean(L,0);
       lua_pushstring(L, SDL_GetError());
       return 2;
    }
    lf->mode = mode[0];
-   lf->size = (size_t)SDL_GetIOSize(lf->rw);
+   lf->size = (size_t)SDL_RWsize(lf->rw);
 
    lua_pushboolean(L,1);
    return 1;
@@ -244,7 +244,7 @@ static int fileL_close( lua_State *L )
 {
    LuaFile_t *lf = luaL_checkfile(L,1);
    if (lf->rw != NULL) {
-      SDL_CloseIO(lf->rw);
+      SDL_RWclose(lf->rw);
       lf->rw = NULL;
    }
    lf->mode = 'c';
@@ -272,11 +272,11 @@ static int fileL_read( lua_State *L )
       NLUA_ERROR(L, _("file not open!"));
 
    /* Figure out how much to read. */
-   readlen = luaL_optinteger(L,2,SDL_GetIOSize(lf->rw));
+   readlen = luaL_optinteger(L,2,SDL_RWsize(lf->rw));
 
    /* Create buffer and read into it. */
-   buf = malloc(readlen);
-   len = SDL_ReadIO(lf->rw, buf, readlen);
+   buf = malloc( readlen );
+   len = SDL_RWread( lf->rw, buf, 1, readlen );
 
    lua_pushlstring(L,buf,len);
    lua_pushinteger(L,len);
@@ -304,10 +304,10 @@ static int fileL_write( lua_State *L )
    if (lf->rw == NULL)
       NLUA_ERROR(L, _("file not open!"));
 
-   buf = luaL_checklstring(L, 2, &len);
-   write = luaL_optlong(L, 3, len);
+   buf   = luaL_checklstring(L,2,&len);
+   write = luaL_optlong(L,3,len);
 
-   wrote = SDL_WriteIO(lf->rw, buf, write);
+   wrote = SDL_RWwrite( lf->rw, buf, 1, write );
    if (wrote != write) {
       lua_pushboolean(L,0);
       lua_pushstring(L, SDL_GetError());
@@ -338,7 +338,7 @@ static int fileL_seek( lua_State *L )
       return 1;
    }
 
-   ret = SDL_SeekIO( lf->rw, pos, SDL_IO_SEEK_SET );
+   ret = SDL_RWseek( lf->rw, pos, RW_SEEK_SET );
 
    lua_pushboolean(L, ret>=0);
    return 1;

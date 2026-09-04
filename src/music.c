@@ -10,8 +10,8 @@
 
 
 /** @cond */
-#include "physfssdl3.h"
-#include <SDL3/SDL.h>
+#include "physfsrwops.h"
+#include "SDL.h"
 
 #include "naev.h"
 /** @endcond */
@@ -39,7 +39,7 @@ int music_disabled = 0; /**< Whether or not music is disabled. */
  * Handle if music should run Lua script.  Must be locked to ensure same
  *  behaviour always.
  */
-static SDL_Mutex *music_lock = NULL; /**< lock for music_runLua so it doesn't
+static SDL_mutex *music_lock = NULL; /**< lock for music_runLua so it doesn't
                                           run twice in a row with weird
                                           results.
                                           DO NOT CALL MIX_* FUNCTIONS WHEN
@@ -60,7 +60,7 @@ static int music_runLua( const char *situation );
  * The current music.
  */
 static char *music_name = NULL; /**< Current music name. */
-static Uint64 music_start = 0; /**< Music start playing time. */
+static Uint32 music_start = 0; /**< Music start playing time. */
 static double music_timer = 0.; /**< Music timer. */
 static int music_temp_disabled = 0; /**< Music is temporarily disabled. */
 static int music_temp_repeat = 0; /**< Music is repeating. */
@@ -99,14 +99,14 @@ void music_update( double dt )
    }
 
    /* Lock music and see if needs to update. */
-   SDL_LockMutex(music_lock);
+   SDL_mutexP(music_lock);
    if (music_runchoose == 0) {
-      SDL_UnlockMutex(music_lock);
+      SDL_mutexV(music_lock);
       return;
    }
    music_runchoose = 0;
    buf = strdup( music_situation );
-   SDL_UnlockMutex(music_lock);
+   SDL_mutexV(music_lock);
    music_runLua( buf );
    free( buf );
 
@@ -316,7 +316,7 @@ double music_getVolumeLog(void)
  */
 int music_load( const char* name )
 {
-   SDL_IOStream *rw;
+   SDL_RWops *rw;
    char filename[PATH_MAX];
 
    if (music_disabled)
@@ -334,7 +334,7 @@ int music_load( const char* name )
    /* Load new music. */
    music_name = strdup(name);
    music_start = SDL_GetTicks();
-   rw = PHYSFSSDL3_openRead(filename);
+   rw = PHYSFSRWOPS_openRead(filename);
    if (rw == NULL) {
       WARN(_("Music '%s' not found."), filename);
       return -1;
@@ -588,13 +588,13 @@ int music_chooseDelay( const char* situation, double delay )
       return 0;
 
    /* Lock so it doesn't run in between an update. */
-   SDL_LockMutex(music_lock);
+   SDL_mutexP(music_lock);
    music_timer       = delay;
    music_temp_disabled = 0;
    music_runchoose   = 0;
    free(music_situation);
    music_situation = strdup(situation);
-   SDL_UnlockMutex(music_lock);
+   SDL_mutexV(music_lock);
 
    return 0;
 }
@@ -614,13 +614,13 @@ void music_rechoose (void)
       return;
 
    /* Lock so it doesn't run in between an update. */
-   SDL_LockMutex(music_lock);
+   SDL_mutexP(music_lock);
    music_timer       = 0.;
    music_runchoose   = 1;
    music_temp_disabled = 0;
    free(music_situation);
    music_situation = strdup("idle");
-   SDL_UnlockMutex(music_lock);
+   SDL_mutexV(music_lock);
 }
 
 

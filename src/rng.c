@@ -17,7 +17,7 @@
 #include <stdint.h>
 #include <time.h>
 #include <unistd.h>
-#include <SDL3/SDL.h>
+#include "SDL.h"
 
 #include "naev.h"
 

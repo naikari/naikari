@@ -12,14 +12,14 @@
 /** @cond */
 #include <sys/stat.h>
 #include "physfs.h"
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_mutex.h>
-#include <SDL3/SDL_thread.h>
+#include "SDL.h"
+#include "SDL_mutex.h"
+#include "SDL_thread.h"
 
 #include "naev.h"
 /** @endcond */
 
-#include "physfssdl3.h"
+#include "physfsrwops.h"
 
 #include "sound.h"
 
@@ -62,7 +62,7 @@ static alSound *sound_list    = NULL; /**< List of available sounds. */
 static voiceId_t voice_genid = 0; /**< Voice identifier generator. */
 alVoice *voice_active         = NULL; /**< Active voices. */
 static alVoice *voice_pool    = NULL; /**< Pool of free voices. */
-static SDL_Mutex *voice_mutex = NULL; /**< Lock for voices. */
+static SDL_mutex *voice_mutex = NULL; /**< Lock for voices. */
 
 
 /*
@@ -666,7 +666,7 @@ static int sound_makeList (void)
    size_t i;
    char path[PATH_MAX];
    int len, suflen, flen;
-   SDL_IOStream *rw;
+   SDL_RWops *rw;
 
    if (sound_disabled)
       return 0;
@@ -693,14 +693,14 @@ static int sound_makeList (void)
 
       /* Load the sound. */
       snprintf( path, sizeof(path), SOUND_PATH"%s", files[i] );
-      rw = PHYSFSSDL3_openRead(path);
+      rw = PHYSFSRWOPS_openRead( path );
 
       /* remove the suffix */
       len = flen - suflen;
       files[i][len] = '\0';
 
       source_newRW( rw, files[i], 0 );
-      SDL_CloseIO( rw );
+      SDL_RWclose( rw );
    }
 
    DEBUG( n_("Loaded %d Sound", "Loaded %d Sounds", array_size(sound_list)), array_size(sound_list) );
@@ -1000,7 +1000,7 @@ alVoice* voice_get(voiceId_t id)
 /**
  * @brief Loads a new sound source from a RWops.
  */
-int source_newRW(SDL_IOStream *rw, const char *name, unsigned int flags)
+int source_newRW( SDL_RWops *rw, const char *name, unsigned int flags )
 {
    int ret;
    alSound snd, *sndl;
@@ -1009,14 +1009,14 @@ int source_newRW(SDL_IOStream *rw, const char *name, unsigned int flags)
    if (sound_disabled)
       return -1;
 
-   memset(&snd, 0, sizeof(alSound));
-   ret = sound_al_load(&snd, rw, name);
+   memset( &snd, 0, sizeof(alSound) );
+   ret = sound_al_load( &snd, rw, name );
    if (ret)
       return -1;
 
-   sndl = &array_grow(&sound_list);
-   memcpy(sndl, &snd, sizeof(alSound));
-   sndl->name = strdup(name);
+   sndl = &array_grow( &sound_list );
+   memcpy( sndl, &snd, sizeof(alSound) );
+   sndl->name = strdup( name );
 
    return sndl-sound_list;
 }
@@ -1025,11 +1025,11 @@ int source_newRW(SDL_IOStream *rw, const char *name, unsigned int flags)
 /**
  * @brief Loads a new source from a file.
  */
-int source_new(const char* filename, unsigned int flags)
+int source_new( const char* filename, unsigned int flags )
 {
-   SDL_IOStream *rw = PHYSFSSDL3_openRead(filename);
-   int id = source_newRW(rw, filename, flags);
-   SDL_CloseIO(rw);
+   SDL_RWops *rw = PHYSFSRWOPS_openRead( filename );
+   int id = source_newRW( rw, filename, flags );
+   SDL_RWclose( rw );
    return id;
 }
 

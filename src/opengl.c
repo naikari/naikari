@@ -31,10 +31,10 @@
 
 
 /** @cond */
-#include "physfssdl3.h"
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_error.h>
-#include <SDL3_image/SDL_image.h>
+#include "physfsrwops.h"
+#include "SDL.h"
+#include "SDL_error.h"
+#include "SDL_image.h"
 
 #include "naev.h"
 /** @endcond */
@@ -94,15 +94,15 @@ static int gl_setupScaling (void);
 void gl_screenshot( const char *filename )
 {
    GLubyte *screenbuf;
-   SDL_IOStream *rw;
+   SDL_RWops *rw;
    SDL_Surface *surface;
    int i, w, h;
 
    /* Allocate data. */
-   w = gl_screen.rw;
-   h = gl_screen.rh;
-   screenbuf = malloc(sizeof(GLubyte) * 3 * w * h);
-   surface = SDL_CreateSurface(w, h, SDL_GetPixelFormatForMasks(24, RGBAMASK));
+   w           = gl_screen.rw;
+   h           = gl_screen.rh;
+   screenbuf   = malloc( sizeof(GLubyte) * 3 * w*h );
+   surface     = SDL_CreateRGBSurface( 0, w, h, 24, RGBAMASK );
 
    /* Read pixels from buffer -- SLOW. */
    glPixelStorei(GL_PACK_ALIGNMENT, 1); /* Force them to pack the bytes. */
@@ -115,16 +115,16 @@ void gl_screenshot( const char *filename )
    free( screenbuf );
 
    /* Save PNG. */
-   if (!(rw = PHYSFSSDL3_openWrite(filename)))
-      WARN(_("Aborting screenshot"));
+   if (!(rw = PHYSFSRWOPS_openWrite( filename )))
+      WARN( _("Aborting screenshot") );
    else
-      IMG_SavePNG_IO(surface, rw, 1);
+      IMG_SavePNG_RW( surface, rw, 1 );
 
    /* Check to see if an error occurred. */
    gl_checkErr();
 
    /* Free memory. */
-   SDL_DestroySurface( surface );
+   SDL_FreeSurface( surface );
 }
 
 
@@ -214,46 +214,32 @@ static int gl_setupAttributes()
  * @brief Tries to apply the configured display mode to the window.
  *
  *    @note Caller is responsible for calling gl_resize/naev_resize afterward.
- *    @return 1 on success.
+ *    @return 0 on success.
  */
 int gl_setupFullscreen (void)
 {
-   SDL_DisplayID display_index;
+   int display_index;
    int ok;
-   const SDL_DisplayMode *mode;
    SDL_DisplayMode target, closest;
 
-   display_index = SDL_GetDisplayForWindow(gl_screen.window);
+   display_index = SDL_GetWindowDisplayIndex( gl_screen.window );
 
    if (conf.fullscreen && conf.modesetting) {
       /* Try to use desktop resolution if nothing is specifically set. */
       if (conf.explicit_dim) {
-         mode = SDL_GetWindowFullscreenMode(gl_screen.window);
-         if (mode == NULL)
-            return 0;
-         target = *mode;
+         SDL_GetWindowDisplayMode( gl_screen.window, &target );
          target.w = conf.width;
          target.h = conf.height;
       }
-      else {
-         mode = SDL_GetDesktopDisplayMode(display_index);
-         if (mode == NULL)
-            return 0;
-         target = *mode;
-      }
+      else
+         SDL_GetDesktopDisplayMode( display_index, &target );
 
-      if (!SDL_GetClosestFullscreenDisplayMode(
-               display_index, target.w, target.h, target.refresh_rate, 1,
-               &closest)) {
-         mode = SDL_GetDesktopDisplayMode(display_index);
-         if (mode == NULL)
-            return 0;
-         closest = *mode;
-      }
+      if (SDL_GetClosestDisplayMode( display_index, &target, &closest ) == NULL)
+         SDL_GetDisplayMode( display_index, 0, &closest ); /* fall back to the best one */
 
-      SDL_SetWindowFullscreenMode(gl_screen.window, &closest);
+      SDL_SetWindowDisplayMode( gl_screen.window, &closest );
    }
-   ok = SDL_SetWindowFullscreen(gl_screen.window, gl_getFullscreenMode());
+   ok = SDL_SetWindowFullscreen( gl_screen.window, gl_getFullscreenMode() );
    /* HACK: Force pending resize events to be processed, particularly on Wayland. */
    SDL_PumpEvents();
    SDL_GL_SwapWindow(gl_screen.window);
@@ -283,14 +269,16 @@ static int gl_createWindow( unsigned int flags )
 {
    int ret;
 
-   flags |= SDL_WINDOW_SHOWN | SDL_WINDOW_HIGH_PIXEL_DENSITY;
+   flags |= SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI;
    if (conf.resizable)
       flags |= SDL_WINDOW_RESIZABLE;
    if (conf.borderless)
       flags |= SDL_WINDOW_BORDERLESS;
 
    /* Create the window. */
-   gl_screen.window = SDL_CreateWindow(APPNAME, conf.width, conf.height, flags);
+   gl_screen.window = SDL_CreateWindow( APPNAME,
+         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+         conf.width, conf.height, flags );
    if (gl_screen.window == NULL)
       ERR(_("Unable to create window! %s"), SDL_GetError());
 
@@ -405,7 +393,7 @@ static int gl_setupScaling (void)
 
    /* Get the basic dimensions from SDL2. */
    SDL_GetWindowSize(gl_screen.window, &gl_screen.w, &gl_screen.h);
-   SDL_GetWindowSizeInPixels(gl_screen.window, &gl_screen.rw, &gl_screen.rh);
+   SDL_GL_GetDrawableSize(gl_screen.window, &gl_screen.rw, &gl_screen.rh);
    /* Calculate scale factor, if OS has native HiDPI scaling. */
    gl_screen.dwscale = (double)gl_screen.w / (double)gl_screen.rw;
    gl_screen.dhscale = (double)gl_screen.h / (double)gl_screen.rh;
@@ -458,7 +446,7 @@ int gl_init (void)
    flags = SDL_WINDOW_OPENGL | gl_getFullscreenMode();
 
    /* Initializes Video */
-   if (!SDL_InitSubSystem(SDL_INIT_VIDEO)) {
+   if (SDL_InitSubSystem(SDL_INIT_VIDEO) < 0) {
       WARN(_("Unable to initialize SDL Video: %s"), SDL_GetError());
       return -1;
    }

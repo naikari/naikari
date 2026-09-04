@@ -28,12 +28,11 @@
 
 
 /** @cond */
-#include <ctype.h>
 #include <inttypes.h>
 #include <limits.h>
 #include <math.h>
 
-#include <SDL3/SDL.h>
+#include "SDL.h"
 /** @endcond */
 
 #include "ncompat.h"

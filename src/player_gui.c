@@ -11,7 +11,7 @@
 
 /** @cond */
 #include "physfs.h"
-#include "physfssdl3.h"
+#include "physfsrwops.h"
 
 #include "naev.h"
 /** @endcond */
@@ -56,16 +56,16 @@ void player_guiInit(void)
 
 #ifdef DEBUGGING
          /* Make sure the GUI is vaild. */
-         SDL_IOStream *rw;
+         SDL_RWops *rw;
          char buf[PATH_MAX];
          snprintf(buf, sizeof(buf), GUI_PATH"%s.lua", name);
-         rw = PHYSFSSDL3_openRead(buf);
+         rw = PHYSFSRWOPS_openRead(buf);
          if (rw == NULL) {
             WARN(_("GUI '%s' does not exist as a file: '%s' not found."),
                   name, buf);
             return;
          }
-         SDL_CloseIO(rw);
+         SDL_RWclose(rw);
 #endif /* DEBUGGING */
 
          array_push_back(&gui_list, strdup(name));
@@ -111,15 +111,15 @@ int player_guiAdd( char* name )
 
 #ifdef DEBUGGING
    /* Make sure the GUI is vaild. */
-   SDL_IOStream *rw;
+   SDL_RWops *rw;
    char buf[PATH_MAX];
    snprintf( buf, sizeof(buf), GUI_PATH"%s.lua", name );
-   rw = PHYSFSSDL3_openRead(buf);
+   rw = PHYSFSRWOPS_openRead( buf );
    if (rw == NULL) {
       WARN(_("GUI '%s' does not exist as a file: '%s' not found."), name, buf );
       return -1;
    }
-   SDL_CloseIO(rw);
+   SDL_RWclose(rw);
 #endif /* DEBUGGING */
 
    /* Add. */

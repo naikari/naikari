@@ -52,7 +52,7 @@
  */
 
 /** @cond */
-#include <SDL3/SDL.h>
+#include "SDL.h"
 /** @endcond */
 
 #include "md5.h"

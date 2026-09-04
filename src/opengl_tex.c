@@ -12,8 +12,8 @@
 /** @cond */
 #include <stdio.h>
 #include <stdlib.h>
-#include "physfssdl3.h"
-#include <SDL3_image/SDL_image.h>
+#include "physfsrwops.h"
+#include "SDL_image.h"
 
 #include "naev.h"
 /** @endcond */
@@ -59,7 +59,7 @@ static size_t gl_transSize( const int w, const int h );
 static GLuint gl_texParameters( unsigned int flags );
 static GLuint gl_loadSurface( SDL_Surface* surface, unsigned int flags, int freesur );
 static glTexture* gl_loadNewImage( const char* path, unsigned int flags );
-static glTexture* gl_loadNewImageRWops( const char *path, SDL_IOStream *rw, unsigned int flags );
+static glTexture* gl_loadNewImageRWops( const char *path, SDL_RWops *rw, unsigned int flags );
 /* List. */
 static glTexture* gl_texExists( const char* path, int sx, int sy );
 static int gl_texAdd( glTexture *tex, int sx, int sy );
@@ -75,13 +75,11 @@ static int gl_texAdd( glTexture *tex, int sx, int sy );
  */
 static int SDL_IsTrans( SDL_Surface* s, int x, int y )
 {
-   const SDL_PixelFormatDetails *format;
    int bpp;
    Uint8 *p;
    Uint32 pixelcolour;
 
-   format = SDL_GetPixelFormatDetails(s->format);
-   bpp = format->bytes_per_pixel;
+   bpp = s->format->BytesPerPixel;
    /* here p is the address to the pixel we want to retrieve */
    p = (Uint8 *)s->pixels + y*s->pitch + x*bpp;
 
@@ -109,7 +107,7 @@ static int SDL_IsTrans( SDL_Surface* s, int x, int y )
    }
 
    /* test whether pixels colour == colour of transparent pixels for that surface */
-   return ((pixelcolour & format->Amask) < (Uint32)(0.1*(double)format->Amask));
+   return ((pixelcolour & s->format->Amask) < (Uint32)(0.1*(double)s->format->Amask));
 }
 
 
@@ -293,21 +291,18 @@ glTexture* gl_loadImageData( float *data, int w, int h, int sx, int sy, const ch
  */
 static GLuint gl_loadSurface( SDL_Surface* surface, unsigned int flags, int freesur )
 {
-   const SDL_PixelFormatDetails *format;
    GLuint texture;
    GLfloat param;
-
-   format = SDL_GetPixelFormatDetails(surface->format);
 
    /* Get texture. */
    texture = gl_texParameters( flags );
 
    /* now load the texture data up */
-   SDL_LockSurface(surface);
-   glPixelStorei(GL_UNPACK_ALIGNMENT, MIN(surface->pitch&-surface->pitch, 8));
-   glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB_ALPHA, surface->w, surface->h, 0,
-         format->Amask ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, surface->pixels);
-   SDL_UnlockSurface(surface);
+   SDL_LockSurface( surface );
+   glPixelStorei( GL_UNPACK_ALIGNMENT, MIN( surface->pitch&-surface->pitch, 8 ) );
+   glTexImage2D( GL_TEXTURE_2D, 0, GL_SRGB_ALPHA,
+         surface->w, surface->h, 0, surface->format->Amask ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, surface->pixels );
+   SDL_UnlockSurface( surface );
 
    /* Create mipmaps. */
    if (flags & OPENGL_TEX_MIPMAPS) {
@@ -325,7 +320,7 @@ static GLuint gl_loadSurface( SDL_Surface* surface, unsigned int flags, int free
 
    /* cleanup */
    if (freesur)
-      SDL_DestroySurface( surface );
+      SDL_FreeSurface( surface );
    gl_checkErr();
 
    return texture;
@@ -346,7 +341,7 @@ static GLuint gl_loadSurface( SDL_Surface* surface, unsigned int flags, int free
  *    @param freesur Whether or not to free the surface.
  *    @return The glTexture for surface.
  */
-glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_IOStream *rw,
+glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_RWops *rw,
       unsigned int flags, int w, int h, int sx, int sy, int freesur )
 {
    glTexture *texture;
@@ -362,7 +357,7 @@ glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_IOS
       texture = gl_texExists( name, sx, sy );
       if (texture != NULL) {
          if (freesur)
-            SDL_DestroySurface( surface );
+            SDL_FreeSurface( surface );
          return texture;
       }
    }
@@ -380,15 +375,15 @@ glTexture* gl_loadImagePadTrans( const char *name, SDL_Surface* surface, SDL_IOS
       md5val = malloc(16);
       md5_init(&md5);
 
-      pngsize = SDL_SeekIO( rw, 0, SEEK_END );
-      SDL_SeekIO( rw, 0, SEEK_SET );
+      pngsize = SDL_RWseek( rw, 0, SEEK_END );
+      SDL_RWseek( rw, 0, SEEK_SET );
 
       data = malloc(pngsize);
       if (data == NULL)
          WARN(_("Out of Memory"));
       else {
-         SDL_ReadIO(rw, data, pngsize);
-         md5_append(&md5, (md5_byte_t*)data, pngsize);
+         SDL_RWread( rw, data, pngsize, 1 );
+         md5_append( &md5, (md5_byte_t*)data, pngsize );
          free(data);
       }
       md5_finish( &md5, md5val );
@@ -602,14 +597,14 @@ glTexture* gl_newImage( const char* path, const unsigned int flags )
  *
  * May not necessarily load the image but use one if it's already open.
  *
- * @note Does not close the SDL_IOStream file.
+ * @note Does not close the SDL_RWops file.
  *
  *    @param path Path name used for checking cache and error reporting.
- *    @param rw SDL_IOStream structure to load from.
+ *    @param rw SDL_RWops structure to load from.
  *    @param flags Flags to control image parameters.
  *    @return Texture loaded from image.
  */
-glTexture* gl_newImageRWops( const char* path, SDL_IOStream *rw, const unsigned int flags )
+glTexture* gl_newImageRWops( const char* path, SDL_RWops *rw, const unsigned int flags )
 {
    glTexture *t;
 
@@ -635,7 +630,7 @@ glTexture* gl_newImageRWops( const char* path, SDL_IOStream *rw, const unsigned 
 static glTexture* gl_loadNewImage( const char* path, const unsigned int flags )
 {
    glTexture *texture;
-   SDL_IOStream *rw;
+   SDL_RWops *rw;
 
    if (path==NULL) {
       WARN(_("Trying to load image from NULL path."));
@@ -643,7 +638,7 @@ static glTexture* gl_loadNewImage( const char* path, const unsigned int flags )
    }
 
    /* Load from packfile */
-   rw = PHYSFSSDL3_openRead(path);
+   rw = PHYSFSRWOPS_openRead( path );
    if (rw == NULL) {
       WARN(_("Failed to load surface '%s' from ndata."), path);
       return NULL;
@@ -651,7 +646,7 @@ static glTexture* gl_loadNewImage( const char* path, const unsigned int flags )
 
    texture = gl_loadNewImageRWops( path, rw, flags );
 
-   SDL_CloseIO( rw );
+   SDL_RWclose( rw );
    return texture;
 }
 
@@ -660,12 +655,11 @@ static glTexture* gl_loadNewImage( const char* path, const unsigned int flags )
  * @brief Only loads the image, does not add to stack unlike gl_newImage.
  *
  *    @param path Only used for debugging. Can be set to NULL.
- *    @param rw SDL_IOStream structure to use to load.
+ *    @param rw SDL_Rwops structure to use to load.
  *    @param flags Flags to control image parameters.
  *    @return Texture loaded from image.
  */
-static glTexture* gl_loadNewImageRWops(const char *path, SDL_IOStream *rw,
-      unsigned int flags)
+static glTexture* gl_loadNewImageRWops( const char *path, SDL_RWops *rw, unsigned int flags )
 {
    glTexture *texture;
    SDL_Surface *surface;
@@ -674,8 +668,8 @@ static glTexture* gl_loadNewImageRWops(const char *path, SDL_IOStream *rw,
    if (path==NULL)
       path = _("unknown");
 
-   surface = IMG_Load_IO(rw, 0);
-   flags |= OPENGL_TEX_VFLIP;
+   surface = IMG_Load_RW( rw, 0 );
+   flags  |= OPENGL_TEX_VFLIP;
    if (surface == NULL) {
       WARN(_("Unable to load image '%s'."), path );
       return NULL;
@@ -737,13 +731,13 @@ glTexture* gl_newSprite( const char* path, const int sx, const int sy,
  * @brief Loads the texture immediately, but also sets it as a sprite.
  *
  *    @param path Image name for deduplication.
- *    @param rw SDL_IOStream structure to load for.
+ *    @param rw SDL_RWops structure to load for.
  *    @param sx Number of X sprites in image.
  *    @param sy Number of Y sprites in image.
  *    @param flags Flags to control image parameters.
  *    @return Texture loaded.
  */
-glTexture* gl_newSpriteRWops( const char* path, SDL_IOStream *rw,
+glTexture* gl_newSpriteRWops( const char* path, SDL_RWops *rw,
    const int sx, const int sy, const unsigned int flags )
 {
    glTexture* texture;
