@@ -369,6 +369,17 @@
  </tech>
 
 
+ <tech name="Generic Outfits">
+  <item>Bad Cores</item>
+  <item>APU: Basic</item>
+  <item>Engine: Basic</item>
+  <item>Hull: Basic</item>
+  <item>Weapon: Basic</item>
+  <item>Utility: Basic</item>
+  <item>Structure: Basic</item>
+  <item>Ships: Basic</item>
+ </tech>
+
  <tech name="Bad Cores">
   <item>Makeshift Large APU</item>
   <item>Makeshift Medium APU</item>
@@ -722,5 +733,17 @@
  </tech>
  <tech name="License: Empire">
   <item>Imperial Military License</item>
+ </tech>
+
+ <tech name="Ships: Basic">
+  <item>Llama</item>
+ </tech>
+ <tech name="Ships: Cargo">
+  <item>Llama</item>
+  <item>Quicksilver</item>
+  <item>Koäla</item>
+  <item>Mule</item>
+  <item>Rhino</item>
+  <item>Elephant</item>
  </tech>
 </Techs>

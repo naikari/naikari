@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asset name="Liwian Shipyards">
+ <pos>
+  <x>1375.099180</x>
+  <y>17073.022056</y>
+ </pos>
+ <GFX>
+  <space>station-shipyard.webp</space>
+  <exterior>citadel.webp</exterior>
+ </GFX>
+ <general>
+  <class>M</class>
+  <population>0</population>
+  <services>
+   <land/>
+   <refuel/>
+   <outfits/>
+   <shipyard/>
+   <uninhabited/>
+  </services>
+ </general>
+ <tech>
+  <item>Bad Cores</item>
+  <item>APU: Basic</item>
+  <item>APU: Aegis</item>
+  <item>APU: Prometheus</item>
+  <item>Engine: Basic</item>
+  <item>Engine: Heavy</item>
+  <item>Hull: Basic</item>
+  <item>Hull: Mid</item>
+  <item>Hull: Cargo</item>
+  <item>Weapon: Lumina</item>
+  <item>Weapon: Tiger Missile</item>
+  <item>Utility: Radar</item>
+  <item>Utility: Mobility</item>
+  <item>Utility: Health</item>
+  <item>Utility: Energy</item>
+  <item>Utility: Weapon Conversion</item>
+  <item>Structure: Shield</item>
+  <item>Structure: Energy</item>
+  <item>Structure: Speed</item>
+  <item>Structure: Cargo</item>
+  <item>Structure: Fuel</item>
+  <item>Structure: Mass Limit</item>
+  <item>Ships: Cargo</item>
+ </tech>
+</asset>

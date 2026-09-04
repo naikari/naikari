@@ -26,12 +26,6 @@
   <commodities/>
  </general>
  <tech>
-  <item>Bad Cores</item>
-  <item>APU: Basic</item>
-  <item>Engine: Basic</item>
-  <item>Hull: Basic</item>
-  <item>Weapon: Basic</item>
-  <item>Utility: Basic</item>
-  <item>Structure: Basic</item>
+  <item>Generic Outfits</item>
  </tech>
 </asset>
