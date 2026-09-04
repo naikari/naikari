@@ -90,6 +90,24 @@ void rng_init (void)
 
 
 /**
+ * @fn void rng_setSeed(uint32_t seed)
+ *
+ * @brief Sets a particular seed for the random subsystem.
+ */
+void rng_setSeed(uint32_t seed)
+{
+   int i;
+
+   mt_initArray(seed);
+
+   /* generate numbers to get away from poor initial values */
+   for (i=0; i<10; i++) {
+      mt_genArray();
+   }
+}
+
+
+/**
  * @fn static uint32_t rng_timeEntropy (void)
  *
  * @brief Uses time as a source of entropy.

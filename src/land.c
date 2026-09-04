@@ -1207,6 +1207,7 @@ void land_genWindows( int load, int changetab )
    int w, h;
    Planet *p;
    int regen;
+   uint32_t seed;
 
    /* Destroy old window if exists. */
    if (land_wid > 0) {
@@ -1277,6 +1278,13 @@ void land_genWindows( int load, int changetab )
 
    /* Create tabbed window. */
    land_windows = window_addTabbedWindow( land_wid, -1, -1, -1, -1, "tabLand", j, names, 0 );
+
+   /* Set a deterministic seed. */
+   seed = (uint32_t)ntime_get();
+   for (i=0; i<MISSION_MAX; i++) {
+      seed += (uint32_t)player_missions[i]->id;
+   }
+   rng_setSeed(seed);
 
    /*
     * Order here is very important:
@@ -1607,6 +1615,9 @@ void takeoff( int delay )
 
       return;
    }
+
+   /* Re-randomize the seed. */
+   rng_init();
 
    /* Clear queued takeoff. */
    land_takeoff = 0;

@@ -46,6 +46,7 @@
 
 /* Init */
 void rng_init (void);
+void rng_setSeed(uint32_t seed);
 
 /* Random functions */
 unsigned int randint (void);
