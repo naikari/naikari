@@ -691,6 +691,10 @@ static void misn_accept( unsigned int wid, char* str )
       if ((ret==0) || (ret==3) || (ret==2) || (ret==-1)) { /* success in accepting the mission */
          if (ret==-1)
             mission_cleanup( &mission_computer[pos] );
+
+         /* A small amount of time passes */
+         ntime_inc(ntime_create(0, 0, 1000));
+
          memmove( &mission_computer[pos], &mission_computer[pos+1],
                sizeof(Mission) * (mission_ncomputer-pos-1) );
          mission_ncomputer--;
