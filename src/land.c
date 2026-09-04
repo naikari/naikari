@@ -692,9 +692,6 @@ static void misn_accept( unsigned int wid, char* str )
          if (ret==-1)
             mission_cleanup( &mission_computer[pos] );
 
-         /* A small amount of time passes */
-         ntime_inc(ntime_create(0, 0, 1000));
-
          memmove( &mission_computer[pos], &mission_computer[pos+1],
                sizeof(Mission) * (mission_ncomputer-pos-1) );
          mission_ncomputer--;
@@ -1285,9 +1282,6 @@ void land_genWindows( int load, int changetab )
 
    /* Set a deterministic seed. */
    seed = (uint32_t)ntime_get();
-   for (i=0; i<MISSION_MAX; i++) {
-      seed += (uint32_t)player_missions[i]->id;
-   }
    rng_setSeed(seed);
 
    /*
