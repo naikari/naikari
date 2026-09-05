@@ -348,21 +348,29 @@ void equipment_open( unsigned int wid )
    window_addButtonKey(wid, -10, 20, bw, bh, "btnCloseEquipment",
          _("&Take Off"), land_buttonTakeoff, SDLK_t);
 
-   window_addButtonKey(wid, 10+sw+10 + (10+bw)*2, 20,
-         bw, bh, "btnSellShip",
-         _("&Sell Ship"), equipment_sellShip, SDLK_s);
-   window_addButtonKey(wid, 10+sw+10 + (10+bw), 20,
-         bw, bh, "btnChangeShip",
-         _("Swa&p Ship"), equipment_transChangeShip, SDLK_p);
-   window_addButtonKey(wid, 10 + sw + 10, 20, bw, bh, "btnSellOutfit",
-         _("Sell &Outfit"), equipment_sellOutfit, SDLK_o);
-
-   window_addButtonKey(wid, -10, -40-ch-10 - (10+bh),
+   window_addButtonKey(wid, -10, -40-ch-10 - (10+bh)*3,
+         cw, bh, "btnSellShip",
+         _("&Sell"), equipment_sellShip, SDLK_s);
+   window_addButtonKey(wid, -10, -40-ch-10 - (10+bh)*2,
          cw, bh, "btnUnequipShip",
          _("&Unequip"), equipment_unequipShip, SDLK_u);
-   window_addButtonKey(wid, -10, -40-ch-10,
+   window_addButtonKey(wid, -10, -40-ch-10 - (10+bh)*1,
          cw, bh, "btnRenameShip",
          _("&Rename"), equipment_renameShip, SDLK_r);
+   window_addButtonKey(wid, -10, -40-ch-10,
+         cw, bh, "btnChangeShip",
+         _("&Board"), equipment_transChangeShip, SDLK_b);
+
+   /* These buttons will be implemented later
+   window_addButtonKey(wid, 10+sw+10 + (10+bw)*2, 20,
+         bw, bh, "btnAssignPilot",
+         _("Assign &Pilot"), equipment_assignPilot, SDLK_p);
+   window_addButtonKey(wid, 10+sw+10 + (10+bw), 20,
+         bw, bh, "btnManagePilots",
+         _("&Manage Pilots"), equipment_managePilots, SDLK_m);
+   */
+   window_addButtonKey(wid, 10 + sw + 10, 20, bw, bh, "btnSellOutfit",
+         _("Sell &Outfit"), equipment_sellOutfit, SDLK_o);
 
    x = 10 + sw + 10 + ew + 10;
    y = -40;

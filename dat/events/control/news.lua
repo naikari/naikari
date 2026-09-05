@@ -65,7 +65,7 @@ cond_articles = {
       end,
    },
    {
-      title = _("Em 5 Experiences New Growth"),
+      title = _("Octawius Experiences New Growth"),
       text = _([[Economists note an uptick in economic activity and recommend all pilots seek out new opportunities on Octawius (Alpha Virginis system). Safe but prosperous, the Alpha Virginis system is tough to beat, and its prosperity is expected to continue for the foreseeable future.]]),
       tag = "mhint_Tutorial Part 4",
       mission = "Tutorial Part 4",
