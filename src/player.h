@@ -115,6 +115,17 @@ typedef struct Player_s {
 
 
 /**
+ * @brief Player hired pilot.
+ */
+typedef struct PlayerHiredPilot_s {
+   char *name; /**< Pilot's name. */
+   char *ai; /**< Pilot's AI profile. */
+   double rating; /**< Pilot's combat rating. */
+   credits_t fee; /**< Pilot's fee. */
+} PlayerHiredPilot_t;
+
+
+/**
  * @brief Wrapper for outfits.
  */
 typedef struct PlayerOutfit_s {
@@ -130,16 +141,6 @@ typedef struct PlayerShip_s {
    Pilot* p;      /**< Pilot. */
    int autoweap;  /**< Automatically update weapon sets. */
 } PlayerShip_t;
-
-
-/**
- * @brief Player hired pilot.
- */
-typedef struct PlayerHiredPilot_s {
-   char *name; /**< Pilot's name. */
-   double rating; /**< Pilot's combat rating. */
-   credits_t fee; /**< Pilot's fee. */
-} PlayerHiredPilot_t;
 
 
 /*
