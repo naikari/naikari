@@ -138,55 +138,6 @@ jobs:
           path: ${{ github.workspace }}/build/dist/*
           if-no-files-found: error
 
-  "Darwin_Naikari_Release":
-    needs: "Package_Source"
-    runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/naikari/naikari-macos:latest"
-
-    steps:
-      - name: Get Source
-        uses: actions/download-artifact@v4
-        with:
-          name: naikari-dist
-
-      - name: Extract Source
-        run: |
-          mkdir source
-          tar -xf source.tar.xz -C source --strip 1
-
-      - name: Meson Setup
-        run: |
-          meson setup build source \
-              --prefix="$(pwd)"/build/dist/Naikari.app \
-              --bindir=Contents/MacOS \
-              -Dndata_path=Contents/Resources \
-              --cross-file='source/utils/build/macos_cross_osxcross.ini' \
-              --buildtype=debugoptimized \
-              -Dnightly=false \
-              -Db_lto=true \
-              -Dauto_features=enabled \
-              -Ddocs_c=disabled \
-              -Ddocs_lua=disabled
-
-      - name: Meson Compile
-        run: |
-          meson compile -C build
-
-      - name: Meson Install
-        run: |
-          meson install -C build
-          cd build/dist
-          zip -r naikari-macos.zip Naikari.app/*
-          rm -rf Naikari.app
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: naikari-macos
-          path: ${{ github.workspace }}/build/dist/*
-          if-no-files-found: error
-
   "Upload_Naikari_Release":
     strategy:
       fail-fast: true
@@ -201,7 +152,6 @@ jobs:
         Package_Source,
         Linux_Naikari_Release,
         Windows_Naikari_Release,
-        Darwin_Naikari_Release,
       ]
     if: ${{ github.repository == 'naikari/naikari' }}
 
@@ -211,7 +161,7 @@ jobs:
 
       - name: Create Release Staging and Output Areas
         run: |
-          mkdir -p temp build/{staging,dist/{lin64,macos,win64}}
+          mkdir -p temp build/{staging,dist/{lin64,win64}}
 
       - name: Download Artifacts
         uses: actions/download-artifact@v4

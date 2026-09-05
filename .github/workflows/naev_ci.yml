@@ -199,83 +199,6 @@ jobs:
           name: ${{ matrix.image }}-${{ github.sha }}-install-log
           path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
 
-  "Darwin_Compile_Naikari":
-    needs: "Package_Source"
-
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - image: naikari-macos
-            config: macos_cross_osxcross.ini
-
-    runs-on: ubuntu-latest
-    container:
-      image: "ghcr.io/naikari/${{ matrix.image }}:latest"
-
-    steps:
-      - name: Get Source
-        uses: actions/download-artifact@v4
-        with:
-          name: naikari-dist-${{ github.sha }}
-
-      - name: Extract Source
-        run: |
-          mkdir source
-          tar -xf naikari-*.tar.xz -C source --strip 1
-
-      - name: Meson Setup
-        id: setup
-        run: |
-          meson setup build source \
-              --prefix="$(pwd)"/build/dist/Naikari.app \
-              --bindir=Contents/MacOS \
-              -Dndata_path=Contents/Resources \
-              --cross-file='source/utils/build/${{ matrix.config }}' \
-              --buildtype=debug \
-              -Dnightly=false \
-              -Db_lto=true \
-              -Dauto_features=enabled \
-              -Ddocs_c=disabled \
-              -Ddocs_lua=disabled
-
-      - name: Upload Setup Log
-        uses: actions/upload-artifact@v4
-        if: ${{ success() || steps.setup.outcome == 'failure' }}
-        with:
-          name: ${{ matrix.image }}-${{ github.sha }}-setup-log
-          path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
-
-      - name: Meson Compile
-        id: compile
-        run: |
-          meson compile -C build
-
-      - name: Upload Compile Log
-        uses: actions/upload-artifact@v4
-        if: ${{ success() || steps.compile.outcome == 'failure' }}
-        with:
-          name: ${{ matrix.image }}-${{ github.sha }}-compile-log
-          path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
-
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.image }}-${{ github.sha }}-buildArtifacts
-          path: |
-            ${{ github.workspace }}/build
-          if-no-files-found: error
-
-      - name: Test Install
-        run: |
-          meson install -C build
-
-      - name: Upload Install Log
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.image }}-${{ github.sha }}-install-log
-          path: ${{ github.workspace }}/build/meson-logs/meson-log.txt
-
   "Lua_Documentation":
     runs-on: ubuntu-latest
     container:
@@ -285,7 +208,6 @@ jobs:
         Package_Source,
         Linux_Compile_Naikari,
         Windows_Compile_Naikari,
-        Darwin_Compile_Naikari,
       ]
 
     steps:
