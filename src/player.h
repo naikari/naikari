@@ -132,6 +132,16 @@ typedef struct PlayerShip_s {
 } PlayerShip_t;
 
 
+/**
+ * @brief Player hired pilot.
+ */
+typedef struct PlayerHiredPilot_s {
+   char *name; /**< Pilot's name. */
+   double rating; /**< Pilot's combat rating. */
+   credits_t fee; /**< Pilot's fee. */
+} PlayerHiredPilot_t;
+
+
 /*
  * Local player.
  */
