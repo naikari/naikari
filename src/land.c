@@ -299,10 +299,10 @@ static void bar_open( unsigned int wid )
    /* Buttons */
    window_addButtonKey(wid, -10, 20,
          bw, bh, "btnCloseBar",
-         _("&Take Off"), land_buttonTakeoff, SDLK_t);
+         _("&Take Off"), land_buttonTakeoff, SDLK_T);
    window_addButtonKey(wid, -10 - (bw+10), 20,
          bw, bh, "btnApproach",
-         _("&Approach"), bar_approach, SDLK_a);
+         _("&Approach"), bar_approach, SDLK_A);
 
    /* Add portrait text. */
    window_addText(wid, iw + 40, -40,
@@ -609,13 +609,13 @@ static void misn_open( unsigned int wid )
    /* buttons */
    window_addButtonKey(wid, -20, 20,
          bw, LAND_BUTTON_HEIGHT, "btnCloseMission",
-         _("&Take Off"), land_buttonTakeoff, SDLK_t);
+         _("&Take Off"), land_buttonTakeoff, SDLK_T);
    window_addButtonKey(wid, -20 - 1*(bw+10), 20,
          bw, LAND_BUTTON_HEIGHT, "btnCurrentMissions",
-         _("&Current Missions"), misn_currentList, SDLK_c);
+         _("&Current Missions"), misn_currentList, SDLK_C);
    window_addButtonKey(wid, -20 - 2*(bw+10), 20,
          bw, LAND_BUTTON_HEIGHT, "btnAcceptMission",
-         _("&Accept Mission"), misn_accept, SDLK_a);
+         _("&Accept Mission"), misn_accept, SDLK_A);
 
    /* Date text */
    th = gl_printHeightRaw(&gl_defFont, mw,

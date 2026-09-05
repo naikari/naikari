@@ -116,8 +116,8 @@ void sound_al_exit_locked (void);
 /*
  * Sound creation.
  */
-int sound_al_buffer( ALuint *buf, SDL_RWops *rw, const char *name );
-int sound_al_load( alSound *snd, SDL_RWops *rw, const char *name );
+int sound_al_buffer( ALuint *buf, SDL_IOStream *rw, const char *name );
+int sound_al_load( alSound *snd, SDL_IOStream *rw, const char *name );
 void sound_al_free( alSound *snd );
 
 

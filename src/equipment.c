@@ -63,7 +63,7 @@
  */
 static CstSlotWidget eq_wgt; /**< Equipment widget. */
 static double equipment_dir = 0.; /**< Equipment dir. */
-static Uint32 equipment_lastick = 0; /**< Last tick. */
+static Uint64 equipment_lastick = 0; /**< Last tick. */
 static unsigned int equipment_wid = 0; /**< Global wid. */
 static iar_data_t *iar_data = NULL; /**< Stored image array positions. */
 static Outfit ***iar_outfits = NULL; /**< Outfits associated with the image array cells. */
@@ -346,31 +346,31 @@ void equipment_open( unsigned int wid )
 
    /* buttons */
    window_addButtonKey(wid, -10, 20, bw, bh, "btnCloseEquipment",
-         _("&Take Off"), land_buttonTakeoff, SDLK_t);
+         _("&Take Off"), land_buttonTakeoff, SDLK_T);
 
    window_addButtonKey(wid, -10, -40-ch-10 - (10+bh)*3,
          cw, bh, "btnSellShip",
-         _("&Sell"), equipment_sellShip, SDLK_s);
+         _("&Sell"), equipment_sellShip, SDLK_S);
    window_addButtonKey(wid, -10, -40-ch-10 - (10+bh)*2,
          cw, bh, "btnUnequipShip",
-         _("&Unequip"), equipment_unequipShip, SDLK_u);
+         _("&Unequip"), equipment_unequipShip, SDLK_U);
    window_addButtonKey(wid, -10, -40-ch-10 - (10+bh)*1,
          cw, bh, "btnRenameShip",
-         _("&Rename"), equipment_renameShip, SDLK_r);
+         _("&Rename"), equipment_renameShip, SDLK_R);
    window_addButtonKey(wid, -10, -40-ch-10,
          cw, bh, "btnChangeShip",
-         _("&Board"), equipment_transChangeShip, SDLK_b);
+         _("&Board"), equipment_transChangeShip, SDLK_B);
 
    /* These buttons will be implemented later
    window_addButtonKey(wid, 10+sw+10 + (10+bw)*2, 20,
          bw, bh, "btnAssignPilot",
-         _("Assign &Pilot"), equipment_assignPilot, SDLK_p);
+         _("Assign &Pilot"), equipment_assignPilot, SDLK_P);
    window_addButtonKey(wid, 10+sw+10 + (10+bw), 20,
          bw, bh, "btnManagePilots",
-         _("&Manage Pilots"), equipment_managePilots, SDLK_m);
+         _("&Manage Pilots"), equipment_managePilots, SDLK_M);
    */
    window_addButtonKey(wid, 10 + sw + 10, 20, bw, bh, "btnSellOutfit",
-         _("Sell &Outfit"), equipment_sellOutfit, SDLK_o);
+         _("Sell &Outfit"), equipment_sellOutfit, SDLK_O);
 
    x = 10 + sw + 10 + ew + 10;
    y = -40;
@@ -869,7 +869,7 @@ static void equipment_renderShip( double bx, double by,
       double bw, double bh, double x, double y, Pilot* p )
 {
    int sx, sy;
-   Uint32 tick;
+   Uint64 tick;
    double dt;
    double px, py;
    double pw, ph;
@@ -990,7 +990,7 @@ static int equipment_mouseColumn( unsigned int wid, SDL_Event* event,
    if (ret < 0)
       return 0;
 
-   if (event->type == SDL_MOUSEBUTTONDOWN) {
+   if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
       /* Normal mouse usage. */
       if (wgt->weapons < 0) {
          if (event->button.button == SDL_BUTTON_LEFT)
@@ -1090,8 +1090,8 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       return 0;
 
    /* Must be left click for now. */
-   if ((event->type != SDL_MOUSEBUTTONDOWN) &&
-         (event->type != SDL_MOUSEMOTION))
+   if ((event->type != SDL_EVENT_MOUSE_BUTTON_DOWN) &&
+         (event->type != SDL_EVENT_MOUSE_MOTION))
       return 0;
 
    /* Get dimensions. */
@@ -1106,7 +1106,7 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       ret = equipment_mouseColumn( wid, event, mx, my, y, h,
             p->outfit_weapon, p, selected, wgt );
       if (ret)
-         return !!(event->type == SDL_MOUSEBUTTONDOWN);
+         return !!(event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
    }
    selected += array_size(p->outfit_weapon);
    x += tw;
@@ -1114,7 +1114,7 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       ret = equipment_mouseColumn( wid, event, mx, my, y, h,
             p->outfit_utility, p, selected, wgt );
       if (ret)
-         return !!(event->type == SDL_MOUSEBUTTONDOWN);
+         return !!(event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
    }
    selected += array_size(p->outfit_utility);
    x += tw;
@@ -1122,7 +1122,7 @@ static int equipment_mouseSlots( unsigned int wid, SDL_Event* event,
       ret = equipment_mouseColumn( wid, event, mx, my, y, h,
             p->outfit_structure, p, selected, wgt );
       if (ret)
-         return !!(event->type == SDL_MOUSEBUTTONDOWN);
+         return !!(event->type == SDL_EVENT_MOUSE_BUTTON_DOWN);
    }
 
    /* Not over anything. */

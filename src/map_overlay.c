@@ -5,7 +5,7 @@
 
 /** @cond */
 #include <float.h>
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 #include "map_overlay.h"
@@ -48,7 +48,7 @@ static unsigned int mrk_idgen = 0; /**< ID generator for markers. */
 static ovr_marker_t *ovr_markers = NULL; /**< Overlay markers. */
 
 
-static Uint32 ovr_opened = 0; /**< Time last opened. */
+static Uint64 ovr_opened = 0; /**< Time last opened. */
 static int ovr_open = 0; /**< Is the overlay open? */
 static double ovr_res = 10.; /**< Resolution. */
 static const double ovr_text_pixbuf = 5.; /**< Extra margin around overlay text. */
@@ -89,7 +89,7 @@ int ovr_input( SDL_Event *event )
    double x, y;
 
    /* We only want mouse events. */
-   if (event->type != SDL_MOUSEBUTTONDOWN)
+   if (event->type != SDL_EVENT_MOUSE_BUTTON_DOWN)
       return 0;
 
    /* Player must not be NULL. */
@@ -106,8 +106,8 @@ int ovr_input( SDL_Event *event )
       return 0;
 
    /* Translate from window to screen. */
-   mx = event->button.x;
-   my = event->button.y;
+   mx = (int)event->button.x;
+   my = (int)event->button.y;
    gl_windowToScreenPos( &mx, &my, mx, my );
 
    /* Click must be within overlay bounds. */

@@ -1242,7 +1242,7 @@ static void info_openMissions( unsigned int wid )
          "closeMissions", _("Close"), info_close );
    window_addButtonKey(wid, -40 - BUTTON_WIDTH, 20,
          BUTTON_WIDTH, BUTTON_HEIGHT, "btnAbortMission",
-         _("&Abort"), mission_menu_abort, SDLK_a);
+         _("&Abort"), mission_menu_abort, SDLK_A);
 
    /* If player is under manual control, we must prevent missions from
     * being aborted. Otherwise the player could prevent a mission which

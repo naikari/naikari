@@ -8,7 +8,7 @@
 
 
 /** @cond */
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 #include "nlua.h"
@@ -24,7 +24,7 @@ typedef struct LuaFile_s {
    char path[PATH_MAX]; /**< Filename or path. */
    char mode;
    size_t size;
-   SDL_RWops *rw; /**< RWops. */
+   SDL_IOStream *rw; /**< RWops. */
 } LuaFile_t;
 
 
