@@ -28,6 +28,7 @@
 
 
 /** @cond */
+#include <ctype.h>
 #include <inttypes.h>
 #include <limits.h>
 #include <math.h>
