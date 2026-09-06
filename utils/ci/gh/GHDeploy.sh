@@ -80,7 +80,7 @@ fi
 # Make dist path if it does not exist
 mkdir -p "$OUTDIR"/dist
 mkdir -p "$OUTDIR"/lin64
-mkdir -p "$OUTDIR"/macos
+#mkdir -p "$OUTDIR"/macos
 mkdir -p "$OUTDIR"/win64
 
 # Move all build artefacts to deployment locations
@@ -91,7 +91,7 @@ cp "$TEMPPATH"/naikari-linux-x86-64/*.zsync "$OUTDIR"/lin64/naikari-"$SUFFIX"-li
 chmod +x "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage
 
 # Move macOS dmg image to deployment location
-cp "$TEMPPATH"/naikari-macos/*.dmg "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.dmg
+#cp "$TEMPPATH"/naikari-macos/*.dmg "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.dmg
 
 # Move Windows installer to deployment location
 cp "$TEMPPATH"/naikari-win64/naikari*.exe "$OUTDIR"/win64/naikari-"$SUFFIX"-win64.exe
@@ -108,7 +108,7 @@ if [ "$DRYRUN" == "false" ]; then
     run_gau -version
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage -mediatype "application/octet-stream" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/lin64/naikari-"$SUFFIX"-linux-x86_64.AppImage.zsync -mediatype "application/octet-stream" -overwrite
-    run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.dmg -mediatype "application/octet-stream" -overwrite
+#    run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/macos/naikari-"$SUFFIX"-macos.dmg -mediatype "application/octet-stream" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/win64/naikari-"$SUFFIX"-win64.exe -mediatype "application/vnd.microsoft.portable-executable" -overwrite
     run_gau -repo "$REPONAME" -tag "$TAGNAME" -token "$GH_TOKEN" -f "$OUTDIR"/dist/naikari-"$SUFFIX"-source.tar.xz -mediatype "application/x-gtar" -overwrite
 elif [ "$DRYRUN" == "true" ]; then
