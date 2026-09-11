@@ -461,7 +461,7 @@ static SDL_Surface* nebu_surfaceFromNebulaMap( float* map, const int w, const in
    double c;
 
    /* the good surface */
-   sur = SDL_CreateRGBSurface( SDL_SWSURFACE, w, h, 32, RGBAMASK );
+   sur = SDL_CreateSurface(w, h, SDL_GetPixelFormatForMasks(32, RGBAMASK));
    pix = sur->pixels;
 
    /* convert from mapping to actual colours */

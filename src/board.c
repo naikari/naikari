@@ -102,7 +102,7 @@ static int board_hook(void *data)
 
    window_addButtonKey(wdw, 20, -40, BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealCredits", _("Loot &Credits"),
-         board_stealCreds, SDLK_c);
+         board_stealCreds, SDLK_C);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
@@ -111,7 +111,7 @@ static int board_hook(void *data)
 
    window_addButtonKey(wdw, 20, -40 - 1*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealFuel", _("Loot &Fuel"), board_stealFuel,
-         SDLK_f);
+         SDLK_F);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 1*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
@@ -120,7 +120,7 @@ static int board_hook(void *data)
 
    window_addButtonKey(wdw, 20, -40 - 2*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealCargo", _("Loot Car&go"), board_stealCargo,
-         SDLK_g);
+         SDLK_G);
    window_addText(wdw, 20+BUTTON_WIDTH+10,
          -40 - 2*(BUTTON_HEIGHT+20) - (BUTTON_HEIGHT-gl_defFont.h)/2,
          BOARDING_WIDTH - (20+BUTTON_WIDTH+10),
@@ -129,11 +129,11 @@ static int board_hook(void *data)
 
    window_addButtonKey(wdw, 20, -40 - 3*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnStealAll", _("Loot &All"), board_stealAll,
-         SDLK_a);
+         SDLK_A);
 
    window_addButtonKey(wdw, 20, -40 - 4*(BUTTON_HEIGHT+20), BUTTON_WIDTH,
          BUTTON_HEIGHT, "btnBoardingClose", _("Lea&ve"), board_exit,
-         SDLK_v);
+         SDLK_V);
 
    window_setFocus(wdw, "btnStealAll");
 

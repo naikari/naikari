@@ -33,7 +33,7 @@
 #include <limits.h>
 #include <math.h>
 
-#include "SDL.h"
+#include <SDL3/SDL.h>
 /** @endcond */
 
 #include "ncompat.h"

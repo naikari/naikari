@@ -10,13 +10,13 @@
 
 /** @cond */
 #include <lauxlib.h>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 /** @endcond */
 
-#include "physfsrwops.h"
+#include "physfssdl3.h"
 
 #include "nlua_tex.h"
 
@@ -193,7 +193,7 @@ static int texL_new( lua_State *L )
    LuaFile_t *lf;
    LuaData_t *ld;
    int sx, sy;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    char *name;
 
    NLUA_CHECKRW(L);
@@ -242,11 +242,11 @@ static int texL_new( lua_State *L )
    if (path != NULL)
       tex = gl_newSprite( path, sx, sy, 0 );
    else {
-      rw = PHYSFSRWOPS_openRead( lf->path );
+      rw = PHYSFSSDL3_openRead(lf->path);
       if (rw==NULL)
          NLUA_ERROR(L,"Unable to open '%s'", lf->path );
       tex = gl_newSpriteRWops( lf->path, rw, sx, sy, 0 );
-      SDL_RWclose( rw );
+      SDL_CloseIO( rw );
    }
 
    /* Failed to load. */
@@ -260,7 +260,8 @@ static int texL_new( lua_State *L )
 
 static inline uint32_t get_pixel(SDL_Surface *surface, int x, int y)
 {
-   int bpp = surface->format->BytesPerPixel;
+   const SDL_PixelFormatDetails *format = SDL_GetPixelFormatDetails(surface->format);
+   int bpp = format->bytes_per_pixel;
    /* Here p is the address to the pixel we want to retrieve */
    uint8_t *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
 
@@ -304,7 +305,7 @@ static int texL_readData( lua_State *L )
    LuaFile_t *lf;
    LuaData_t ld;
    SDL_Surface *surface;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    const char *s;
    size_t size;
    uint8_t r, g, b, a;
@@ -319,14 +320,14 @@ static int texL_readData( lua_State *L )
    }
    else
       s = luaL_checkstring(L,1);
-   rw = PHYSFSRWOPS_openRead( s );
+   rw = PHYSFSSDL3_openRead(s);
    if (rw == NULL)
       NLUA_ERROR(L, _("problem opening file '%s' for reading"), s );
 
    /* Try to read the image. */
-   surface = IMG_Load_RW( rw, 1 );
+   surface = IMG_Load_IO(rw, 1);
    if (surface == NULL)
-      NLUA_ERROR(L, _("problem opening image for reading") );
+      NLUA_ERROR(L, _("problem opening image for reading"));
 
    /* Convert surface to LuaData_t */
    SDL_LockSurface( surface );
@@ -338,8 +339,9 @@ static int texL_readData( lua_State *L )
    data = (float*)ld.data;
    for (i=0; i<surface->h; i++) {
       for (j=0; j<surface->w; j++) {
-         pix = get_pixel( surface, j, i );
-         SDL_GetRGBA( pix, surface->format, &r, &g, &b, &a );
+         pix = get_pixel(surface, j, i);
+         SDL_GetRGBA(pix, SDL_GetPixelFormatDetails(surface->format),
+               SDL_GetSurfacePalette(surface), &r, &g, &b, &a);
          size_t pos = 4*((surface->h-i-1)*surface->w+j);
          data[ pos+0 ] = ((float)r)/255.;
          data[ pos+1 ] = ((float)g)/255.;
@@ -355,7 +357,7 @@ static int texL_readData( lua_State *L )
    lua_pushinteger(L, surface->h);
 
    /* Clean up. */
-   SDL_FreeSurface( surface );
+   SDL_DestroySurface( surface );
 
    return 3;
 }
@@ -376,7 +378,7 @@ static int texL_writeData( lua_State *L )
    size_t len;
    char *data;
    SDL_Surface *surface;
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
 
    w = tex->w;
    h = tex->h;
@@ -389,20 +391,21 @@ static int texL_writeData( lua_State *L )
    gl_checkErr();
 
    /* Convert to PNG. */
-   surface = SDL_CreateRGBSurface( 0, w, h, 32, RGBAMASK );
-   for (i=0; i<h; i++)
-      memcpy( (GLubyte*)surface->pixels + i * (4*w), &data[ (h - i - 1) * (4*w) ], 4*w );
+   surface = SDL_CreateSurface(w, h, SDL_GetPixelFormatForMasks(32, RGBAMASK));
+   for (i=0; i<h; i++) {
+      memcpy((GLubyte*)surface->pixels + i*4*w, &data[(h-i-1) * 4 * w], 4 * w);
+   }
 
    /* Free buffer. */
    free( data );
 
    /* Save to file. */
-   if (!(rw = PHYSFSRWOPS_openWrite( filename )))
+   if (!(rw = PHYSFSSDL3_openWrite(filename)))
       NLUA_ERROR(L,_("Unable to open '%s' for writing!"),filename);
    else
-      IMG_SavePNG_RW( surface, rw, 1 );
+      IMG_SavePNG_IO(surface, rw, 1);
 
-   SDL_FreeSurface( surface );
+   SDL_DestroySurface(surface);
 
    lua_pushboolean(L,1);
    return 1;

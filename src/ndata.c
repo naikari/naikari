@@ -19,7 +19,7 @@
 #endif /* WIN32 */
 
 #include "physfs.h"
-#include "SDL.h"
+#include <SDL3/SDL.h>
 
 #include "naev.h"
 /** @endcond */

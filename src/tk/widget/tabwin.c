@@ -193,9 +193,9 @@ static int tab_raw( Widget* tab, SDL_Event *event )
 
    /* First handle event internally. */
    ret = 0;
-   if (event->type == SDL_MOUSEBUTTONDOWN)
+   if (event->type == SDL_EVENT_MOUSE_BUTTON_DOWN)
       ret = tab_mouse( tab, event );
-   else if (event->type == SDL_KEYDOWN)
+   else if (event->type == SDL_EVENT_KEY_DOWN)
       ret = tab_key( tab, event );
 
    /* Took the event. */
@@ -272,7 +272,7 @@ static int tab_mouse( Widget* tab, SDL_Event *event )
 
       /* Create event. */
       if (tab->dat.tab.onChange != NULL)
-         tab->dat.tab.onChange( tab->wdw, tab->name, old, tab->dat.tab.active );
+         tab->dat.tab.onChange(tab->wdw, tab->name, old, tab->dat.tab.active);
       break;
    }
 
@@ -287,7 +287,7 @@ static int tab_mouse( Widget* tab, SDL_Event *event )
 bind_key = input_getKeybind(n, NULL, &bind_mod); \
 if ((key == bind_key) && (mod == bind_mod)) \
    change = v
-static int tab_key( Widget* tab, SDL_Event *event )
+static int tab_key(Widget* tab, SDL_Event *event)
 {
    int old, change;
    SDL_Keycode key, bind_key;
@@ -296,25 +296,25 @@ static int tab_key( Widget* tab, SDL_Event *event )
    int ret;
 
    /* Event info. */
-   key = event->key.keysym.sym;
-   mod = input_translateMod( event->key.keysym.mod );
+   key = event->key.key;
+   mod = input_translateMod(event->key.mod);
 
    /* Handle tab changing. */
    change = -1;
-   CHECK_CHANGE( "switchtab1", 0 );
-   CHECK_CHANGE( "switchtab2", 1 );
-   CHECK_CHANGE( "switchtab3", 2 );
-   CHECK_CHANGE( "switchtab4", 3 );
-   CHECK_CHANGE( "switchtab5", 4 );
-   CHECK_CHANGE( "switchtab6", 5 );
-   CHECK_CHANGE( "switchtab7", 6 );
-   CHECK_CHANGE( "switchtab8", 7 );
-   CHECK_CHANGE( "switchtab9", 8 );
-   CHECK_CHANGE( "switchtab0", 9 );
+   CHECK_CHANGE("switchtab1", 0);
+   CHECK_CHANGE("switchtab2", 1);
+   CHECK_CHANGE("switchtab3", 2);
+   CHECK_CHANGE("switchtab4", 3);
+   CHECK_CHANGE("switchtab5", 4);
+   CHECK_CHANGE("switchtab6", 5);
+   CHECK_CHANGE("switchtab7", 6);
+   CHECK_CHANGE("switchtab8", 7);
+   CHECK_CHANGE("switchtab9", 8);
+   CHECK_CHANGE("switchtab0", 9);
 
    /* Window. */
    ret = 0;
-   wdw = window_wget( tab->dat.tab.windows[ tab->dat.tab.active ] );
+   wdw = window_wget(tab->dat.tab.windows[tab->dat.tab.active]);
 
    /* Handle keypresses. */
    switch (key) {
@@ -333,9 +333,9 @@ static int tab_key( Widget* tab, SDL_Event *event )
          else {
             /* This is entirely backwards, but it's working around existing widget placement. */
             if (mod & NMOD_SHIFT)
-               toolkit_nextFocus( wdw );
+               toolkit_nextFocus(wdw);
             else
-               toolkit_prevFocus( wdw );
+               toolkit_prevFocus(wdw);
          }
          ret = 1;
          break;
@@ -350,7 +350,7 @@ static int tab_key( Widget* tab, SDL_Event *event )
       tab->dat.tab.active = change;
       /* Create event. */
       if (tab->dat.tab.onChange != NULL)
-          tab->dat.tab.onChange( tab->wdw, tab->name, old, tab->dat.tab.active );
+          tab->dat.tab.onChange(tab->wdw, tab->name, old, tab->dat.tab.active);
       ret = 1;
    }
 

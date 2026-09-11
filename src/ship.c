@@ -11,8 +11,8 @@
 
 /** @cond */
 #include <limits.h>
-#include "physfsrwops.h"
-#include "SDL_image.h"
+#include "physfssdl3.h"
+#include <SDL3_image/SDL_image.h>
 
 #include "naev.h"
 /** @endcond */
@@ -227,6 +227,7 @@ glTexture* ship_loadCommGFX( const Ship* s )
 static int ship_genTargetGFX( Ship *temp, SDL_Surface *surface, int sx, int sy )
 {
    SDL_Surface *gfx, *gfx_store;
+   const SDL_PixelFormatDetails *format;
    int x, y, sw, sh;
    SDL_Rect rtemp, dstrect;
    char buf[PATH_MAX];
@@ -239,10 +240,13 @@ static int ship_genTargetGFX( Ship *temp, SDL_Surface *surface, int sx, int sy )
    SDL_SetSurfaceBlendMode(surface, SDL_BLENDMODE_NONE);
 
    /* create the temp POT surface */
-   gfx = SDL_CreateRGBSurface( 0, sw, sh,
-         surface->format->BytesPerPixel*8, RGBAMASK );
-   gfx_store = SDL_CreateRGBSurface( 0, SHIP_TARGET_W, SHIP_TARGET_H,
-         surface->format->BytesPerPixel*8, RGBAMASK );
+   format = SDL_GetPixelFormatDetails(surface->format);
+   gfx = SDL_CreateSurface(
+      sw, sh,
+      SDL_GetPixelFormatForMasks(format->bytes_per_pixel*8, RGBAMASK));
+   gfx_store = SDL_CreateSurface(
+      SHIP_TARGET_W, SHIP_TARGET_H,
+      SDL_GetPixelFormatForMasks(format->bytes_per_pixel*8, RGBAMASK));
 
    if (gfx == NULL) {
       WARN( _("Unable to create ship '%s' targeting surface."), temp->name );
@@ -290,17 +294,17 @@ static int ship_genTargetGFX( Ship *temp, SDL_Surface *surface, int sx, int sy )
  */
 static int ship_loadSpaceImage( Ship *temp, char *str, int sx, int sy )
 {
-   SDL_RWops *rw;
+   SDL_IOStream *rw;
    SDL_Surface *surface;
    int ret;
 
    /* Load the space sprite. */
-   rw    = PHYSFSRWOPS_openRead( str );
-   if (rw==NULL) {
+   rw = PHYSFSSDL3_openRead(str);
+   if (rw == NULL) {
       WARN(_("Unable to open '%s' for reading!"), str);
       return -1;
    }
-   surface = IMG_Load_RW( rw, 0 );
+   surface = IMG_Load_IO(rw, 0);
 
    /* Load the texture. */
    temp->gfx_space = gl_loadImagePadTrans( str, surface, rw,
@@ -313,8 +317,8 @@ static int ship_loadSpaceImage( Ship *temp, char *str, int sx, int sy )
       return ret;
 
    /* Free stuff. */
-   SDL_RWclose( rw );
-   SDL_FreeSurface( surface );
+   SDL_CloseIO( rw );
+   SDL_DestroySurface( surface );
 
    /* Calculate mount angle. */
    temp->mangle  = 2.*M_PI;
